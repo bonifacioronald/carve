@@ -1,5 +1,6 @@
+import 'package:carve_app/navigation.dart';
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import './models/colors.dart' as custom_colors;
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Carve',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomeScreen(),
+          fontFamily: 'Livvic',
+          accentColor: custom_colors.secondaryLightPurple),
+      home: Navigation(),
     );
   }
 }
