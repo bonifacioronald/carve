@@ -21,7 +21,7 @@ class NavigationState extends State<Navigation> {
     ResourcesScreen(),
     ContentLibararyScreen(),
     ForumScreen(),
-    TrackerScreen()
+    TrackerScreen(),
   ];
 
   @override

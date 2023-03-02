@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "715745325982",
+    "project_id": "carve-853b3",
+    "storage_bucket": "carve-853b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715745325982:android:420386d43ec01be7fb1c8f",
+        "android_client_info": {
+          "package_name": "com.example.carve_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715745325982-9pcsqtd0lhtcbuo4mhcn963ah4un1vh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_hDyjmzhHZc4DuaEz43vOI-87ejptgM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715745325982-9pcsqtd0lhtcbuo4mhcn963ah4un1vh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
