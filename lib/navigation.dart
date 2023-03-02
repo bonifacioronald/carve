@@ -1,4 +1,8 @@
+import 'package:carve_app/screens/content_library_screen.dart';
+import 'package:carve_app/screens/forum_screen.dart';
+import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
+import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:flutter/material.dart';
 
 import './models/colors.dart' as custom_colors;
@@ -14,6 +18,10 @@ class NavigationState extends State<Navigation> {
   int currentIndex = 0;
   List<Widget> screens = [
     HomeScreen(),
+    ResourcesScreen(),
+    ContentLibararyScreen(),
+    ForumScreen(),
+    TrackerScreen()
   ];
 
   @override
@@ -65,7 +73,11 @@ class NavigationState extends State<Navigation> {
             showSelectedLabels: false,
             showUnselectedLabels: false,
             currentIndex: currentIndex,
-            onTap: (int newIndex) {},
+            onTap: (int newIndex) {
+              setState(() {
+                currentIndex = newIndex;
+              });
+            },
             items: [
               BottomNavigationBarItem(
                   label: '',

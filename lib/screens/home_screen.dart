@@ -51,11 +51,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: DailyContentCard(),
-                      )),
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: DailyContentCard(),
+                    ),
+                  ),
                 ],
               ),
             ),
