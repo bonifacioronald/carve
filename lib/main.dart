@@ -1,9 +1,11 @@
+import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
+import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:flutter/material.dart';
 import './models/colors.dart' as custom_colors;
 import 'package:firebase_core/firebase_core.dart';
 
-Future main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: 'Livvic',
           accentColor: custom_colors.secondaryLightPurple),
-      home: Navigation(),
+      home: AuthWidgetTree(),
     );
   }
 }

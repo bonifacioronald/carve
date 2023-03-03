@@ -38,6 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   persistent_bottom_nav_bar: ^5.0.2
   cloud_firestore: 4.4.3
+  firebase_auth: ^4.2.9
+  firebase_core: ^2.7.0
+  google_sign_in: ^6.0.2
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +75,7 @@ flutter:
     - lib/assets/images/app_logo.png
     - lib/assets/images/daily_content_card_bg.png
     - lib/assets/images/family_image.png
+    - lib/assets/images/google_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

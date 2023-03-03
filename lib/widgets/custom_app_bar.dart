@@ -1,3 +1,5 @@
+import 'dart:ffi';
+import '../auth.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
@@ -34,6 +36,17 @@ class CustomAppBar extends StatelessWidget {
             Icons.account_circle_outlined,
             color: Colors.white,
             size: 40,
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          GestureDetector(
+            onTap: (() => Auth().signOut()),
+            child: Icon(
+              Icons.logout_outlined,
+              color: Colors.white,
+              size: 40,
+            ),
           ),
         ],
       ),
