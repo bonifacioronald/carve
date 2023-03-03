@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import './models/colors.dart' as custom_colors;
 
 class Navigation extends StatefulWidget {
+  static const routeName = '/navigation';
   @override
   State<Navigation> createState() => NavigationState();
 }

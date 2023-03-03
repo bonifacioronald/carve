@@ -1,6 +1,13 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
+import 'package:carve_app/screens/question_1_screen.dart';
+import 'package:carve_app/screens/question_2_screen.dart';
+import 'package:carve_app/screens/question_3_screen.dart';
+import 'package:carve_app/screens/question_4_screen.dart';
+import 'package:carve_app/screens/question_5_screen.dart';
+import 'package:carve_app/screens/question_6_screen.dart';
+import 'package:carve_app/screens/question_title_screen.dart';
 import 'package:flutter/material.dart';
 import './models/colors.dart' as custom_colors;
 import 'package:firebase_core/firebase_core.dart';
@@ -24,6 +31,16 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Livvic',
           accentColor: custom_colors.secondaryLightPurple),
       home: AuthWidgetTree(),
+      routes: {
+        Navigation.routeName: (context) => Navigation(),
+        QuestionTitleScreen.routeName: ((context) => QuestionTitleScreen()),
+        Question1Screen.routeName: ((context) => Question1Screen()),
+        Question2Screen.routeName: (context) => Question2Screen(),
+        Question3Screen.routeName: (context) => Question3Screen(),
+        Question4Screen.routeName: (context) => Question4Screen(),
+        Question5Screen.routeName: ((context) => Question5Screen()),
+        Question6Screen.routeName: (context) => Question6Screen()
+      },
     );
   }
 }

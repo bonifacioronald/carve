@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Auth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -29,10 +30,10 @@ class Auth {
       password: password,
     )
         .then((value) {
-      FirebaseFirestore.instance
-          .collection('users')
-          .doc(value.user!.uid)
-          .set({"email": value.user!.email});
+      FirebaseFirestore.instance.collection('users').doc(value.user!.uid).set({
+        "email": value.user!.email,
+        "userId": value.user!.uid,
+      });
     });
   }
 
@@ -49,5 +50,12 @@ class Auth {
     );
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  setUserName(String name) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(curentUser!.uid)
+        .update({"name": name});
   }
 }

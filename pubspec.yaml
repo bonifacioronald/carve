@@ -76,6 +76,7 @@ flutter:
     - lib/assets/images/daily_content_card_bg.png
     - lib/assets/images/family_image.png
     - lib/assets/images/google_logo.png
+    - lib/assets/images/question_screen_bg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -94,6 +95,8 @@ flutter:
         - asset: lib/assets/fonts/Livvic-Regular.ttf
         - asset: lib/assets/fonts/Livvic-Bold.ttf
           weight: 700
+        - asset: lib/assets/fonts/Livvic-Black.ttf
+          weight: 900
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

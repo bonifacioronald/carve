@@ -1,3 +1,5 @@
+import 'package:carve_app/navigation.dart';
+import 'package:carve_app/screens/question_title_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,10 +31,13 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
 
   Future<void> signInWithEmailAndPassword() async {
     try {
-      await Auth().signInWithEmailAndPassword(
-        _controllerEmail.text,
-        _controllerPassword.text,
-      );
+      await Auth()
+          .signInWithEmailAndPassword(
+            _controllerEmail.text,
+            _controllerPassword.text,
+          )
+          .then(
+              (value) => Navigator.of(context).pushNamed(Navigation.routeName));
     } on FirebaseAuthException catch (e) {
       setState(
         () {
@@ -48,6 +53,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
         _controllerEmail.text,
         _controllerPassword.text,
       );
+      await Navigator.of(context).pushNamed(QuestionTitleScreen.routeName);
     } on FirebaseAuthException catch (e) {
       setState(
         () {
