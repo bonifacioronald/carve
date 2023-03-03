@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../auth.dart';
 
 class LoginRegisterScreen extends StatefulWidget {
@@ -112,16 +113,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.red,
-              spreadRadius: 10,
-              blurRadius: 2,
-              offset: Offset(0, 10),
-            ),
-          ],
-        ),
+        decoration: BoxDecoration(),
         width: 220,
         height: 50,
         child: ElevatedButton(
@@ -131,7 +123,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
               ? signInWithEmailAndPassword()
               : createUserWithEmailAndPassword()),
           child: Text(
-            isLogin ? 'LOG IN' : 'REGISTER',
+            isLogin ? 'LOG IN' : 'SIGN UP',
             style: TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),
@@ -148,7 +140,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
         });
       }),
       child: Text(
-        isLogin ? 'REGISTER' : 'LOGIN',
+        isLogin ? 'SIGN UP' : 'LOGIN',
         style: TextStyle(
             decoration: TextDecoration.underline,
             fontSize: 14,

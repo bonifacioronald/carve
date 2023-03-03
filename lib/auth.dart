@@ -19,14 +19,21 @@ class Auth {
     );
   }
 
-  Future<void> createUserWithEmailAndPassword(
+  Future<void>? createUserWithEmailAndPassword(
     String email,
     String password,
-  ) async {
-    await _firebaseAuth.createUserWithEmailAndPassword(
+  ) {
+    _firebaseAuth
+        .createUserWithEmailAndPassword(
       email: email,
       password: password,
-    );
+    )
+        .then((value) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(value.user!.uid)
+          .set({"email": value.user!.email});
+    });
   }
 
   Future<void> signOut() async {
