@@ -1,6 +1,7 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/WelcomeMain.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: AuthWidgetTree(),
+        home: WelcomeMain(),
         routes: {
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
           Navigation.routeName: (context) => Navigation(),
