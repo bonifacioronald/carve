@@ -1,9 +1,11 @@
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/content_library_screen.dart';
 import 'package:carve_app/screens/forum_screen.dart';
 import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import './models/colors.dart' as custom_colors;
 
@@ -17,6 +19,8 @@ class NavigationState extends State<Navigation> {
   static GlobalKey<NavigationState> globalKey =
       new GlobalKey<NavigationState>();
   int currentIndex = 0;
+  bool _isLoading = true;
+
   List<Widget> screens = [
     HomeScreen(),
     ResourcesScreen(),
@@ -24,6 +28,32 @@ class NavigationState extends State<Navigation> {
     ForumScreen(),
     TrackerScreen(),
   ];
+
+  Widget _loadingScreen() {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: custom_colors.backgroundPurple,
+      child: Center(
+        child: CircularProgressIndicator(
+          color: custom_colors.secondaryLightPurple,
+        ),
+      ),
+    );
+  }
+
+  @override
+  initState() {
+    Provider.of<UserProvider>(context, listen: false).fetchUserData().then(
+      (_) {
+        setState(
+          () {
+            _isLoading = false;
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +74,7 @@ class NavigationState extends State<Navigation> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: screens[currentIndex],
+      body: _isLoading ? _loadingScreen() : screens[currentIndex],
       bottomNavigationBar: Container(
         height: 80,
         decoration: BoxDecoration(
@@ -105,11 +135,12 @@ class NavigationState extends State<Navigation> {
                     size: NavBarIconSize,
                   )),
               BottomNavigationBarItem(
-                  label: '',
-                  icon: Icon(
-                    Icons.bar_chart_rounded,
-                    size: NavBarIconSize,
-                  )),
+                label: '',
+                icon: Icon(
+                  Icons.bar_chart_rounded,
+                  size: NavBarIconSize,
+                ),
+              ),
             ],
           ),
         ),

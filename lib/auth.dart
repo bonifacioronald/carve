@@ -1,12 +1,14 @@
+import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class Auth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  User? get curentUser => _firebaseAuth.currentUser;
+  User? get currentUser => _firebaseAuth.currentUser;
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
@@ -37,8 +39,10 @@ class Auth {
     });
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut(BuildContext context) async {
+    print('logout');
     await _firebaseAuth.signOut();
+    Navigator.of(context).pushReplacementNamed(LoginRegisterScreen.routeName);
   }
 
   signInWithGoogle() async {
@@ -50,12 +54,5 @@ class Auth {
     );
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
-
-  setUserName(String name) async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(curentUser!.uid)
-        .update({"name": name});
   }
 }

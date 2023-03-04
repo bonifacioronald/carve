@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget {
             width: 12,
           ),
           GestureDetector(
-            onTap: (() => Auth().signOut()),
+            onTap: (() => Auth().signOut(context)),
             child: Icon(
               Icons.logout_outlined,
               color: Colors.white,

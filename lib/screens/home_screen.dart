@@ -1,16 +1,26 @@
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/widgets/custom_app_bar.dart';
 import 'package:carve_app/widgets/daily_content_card.dart';
 import 'package:carve_app/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
+import '../models/user.dart';
 import '../widgets/main_menu_category_section.dart';
 import '../widgets/main_menu_video_course_section.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    User currentUser =
+        Provider.of<UserProvider>(context, listen: false).currentUser;
     return SingleChildScrollView(
       child: Container(
         width: double.infinity,
@@ -37,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome Back,\nDylan!',
+                          'Welcome Back,\n${currentUser.name}',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 28,

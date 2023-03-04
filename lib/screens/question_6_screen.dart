@@ -2,9 +2,11 @@ import 'dart:ffi';
 
 import 'package:carve_app/auth.dart';
 import 'package:carve_app/navigation.dart';
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 
 class Question6Screen extends StatefulWidget {
@@ -17,7 +19,7 @@ class Question6Screen extends StatefulWidget {
   TextEditingController nameController = TextEditingController();
 
   Future<void> setUserName(String name, BuildContext context) async {
-    await Auth().setUserName(name);
+    await Provider.of<UserProvider>(context, listen: false).setUserName(name);
     Navigator.of(context).pushNamed(Navigation.routeName);
   }
 }

@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../auth.dart';
 
 class LoginRegisterScreen extends StatefulWidget {
-  const LoginRegisterScreen({super.key});
+  static const routeName = '/login-register';
 
   @override
   State<LoginRegisterScreen> createState() => _LoginRegisterScreenState();
