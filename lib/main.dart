@@ -6,6 +6,7 @@ import 'package:carve_app/screens/daily_content.dart';
 import 'package:carve_app/screens/Local_Class.dart';
 import 'package:carve_app/screens/forum_all.dart';
 import 'package:carve_app/screens/forum_screen.dart';
+import 'package:carve_app/screens/local_parenting_class_screen.dart';
 import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/welcome_screen.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: WelcomeScreen(),
+        home: Navigation(),
         routes: {
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
           Navigation.routeName: (context) => Navigation(),
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           local_class.routeName: (context) => local_class(),
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum()
+          LocalParentingClass.routeName: (context) => LocalParentingClass()
         },
       ),
     );
