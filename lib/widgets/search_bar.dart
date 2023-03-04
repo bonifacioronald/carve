@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({super.key});
+  String text;
+
+  SearchBar(this.text);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class SearchBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Search for content...',
+            text,
             style: TextStyle(
                 fontSize: 14,
                 color: custom_colors.primaryDarkPurple.withOpacity(0.5),

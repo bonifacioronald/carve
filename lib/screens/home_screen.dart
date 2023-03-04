@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        SearchBar()
+                        SearchBar("Search for content"),
                       ],
                     ),
                   ),
