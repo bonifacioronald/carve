@@ -2,6 +2,8 @@ import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/daily_content.dart';
+import 'package:carve_app/screens/Local_Class.dart';
+import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
@@ -53,7 +55,8 @@ class MyApp extends StatelessWidget {
           Question5Screen.routeName: (context) => Question5Screen(),
           Question6Screen.routeName: (context) => Question6Screen(),
           SettingScreen.routeName: (context) => SettingScreen(),
-          DailyContent.routeName: (context) => DailyContent()
+          DailyContent.routeName: (context) => DailyContent(),
+          local_class.routeName: (context) => local_class()
         },
       ),
     );
