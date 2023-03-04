@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ForumCard extends StatelessWidget {
   String name;
   String time;
-  String  category;
+  String category;
   String title;
   String like;
   String comments;
@@ -15,7 +15,7 @@ class ForumCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 352,
-      height:192,
+      
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -24,21 +24,21 @@ class ForumCard extends StatelessWidget {
         color: Colors.grey.withOpacity(0.5),
         spreadRadius: 1,
         blurRadius: 1,
-        offset: Offset(0, 3),)
+        offset: Offset(0, 3))
         ]
       ),
       padding: EdgeInsets.symmetric(horizontal: 16),
       child:Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children:[
           Container(
             padding: EdgeInsets.only(left: 8,top:16),
             child:Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(name, style: TextStyle(color: Color(0XFF000000).withOpacity(0.4), fontSize: 16, fontWeight: FontWeight.bold)),
-                Icon(Icons.circle_rounded, color: Color(0XFF000000), size: 4),
+                Icon(Icons.circle_rounded, color: Color(0XFF000000).withOpacity(0.5), size: 4),
                 Text(time, style: TextStyle(color: Color(0XFF000000).withOpacity(0.4), fontSize: 16, fontWeight: FontWeight.bold)),
                 SizedBox(width: 4),
                 
@@ -68,7 +68,6 @@ class ForumCard extends StatelessWidget {
                 
                 
           ),
-          SizedBox(height: 8),
           Container(
             padding: EdgeInsets.only(left: 8),
             child:Text(title, style: TextStyle(color: Color(0XFF02084B), fontSize: 18, fontWeight: FontWeight.bold)),
@@ -92,14 +91,14 @@ class ForumCard extends StatelessWidget {
                 Icon(Icons.comment_outlined, color: Color(0XFF5B5B5B5B).withOpacity(0.5), size: 24),
                 SizedBox(width: 4),
                 Text(comments, style: TextStyle(color: Color(0XFF5B5B5B5B).withOpacity(0.5), fontSize: 16, fontWeight: FontWeight.bold)),
-                SizedBox(width: 84),
+                SizedBox(width: 75),
                 TextButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Color(0XFFFFFFFF)),
         ),
         onPressed: (){
               Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => createForums()));
+      MaterialPageRoute(builder: (context) => createForum()));
             },
             child:Text("Read more >", style: TextStyle(color: Color(0XFF02084B), fontSize: 15, fontWeight: FontWeight.bold)),
         

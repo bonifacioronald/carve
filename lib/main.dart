@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: ForumScreen(),
+        home: WelcomeScreen(),
         routes: {
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
           Navigation.routeName: (context) => Navigation(),
