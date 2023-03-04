@@ -5,6 +5,7 @@ import 'package:carve_app/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
+import '../models/colors.dart';
 import '../models/user.dart';
 import '../widgets/main_menu_category_section.dart';
 import '../widgets/main_menu_video_course_section.dart';
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        SearchBar()
+                        SearchBar("Search for content",Colors.white,primaryDarkPurple),
                       ],
                     ),
                   ),

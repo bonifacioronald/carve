@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({super.key});
+  String text;
+  Color bgColor;
+  Color textColor;
+
+  SearchBar(this.text, this.bgColor,this.textColor);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -11,16 +17,16 @@ class SearchBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       width: double.infinity,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(12)),
+          color: bgColor, borderRadius: BorderRadius.circular(12)),
       child: Center(
           child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Search for content...',
+            text,
             style: TextStyle(
                 fontSize: 14,
-                color: custom_colors.primaryDarkPurple.withOpacity(0.5),
+                color: textColor.withOpacity(0.5),
                 fontWeight: FontWeight.bold),
           ),
           Icon(
