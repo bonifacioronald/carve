@@ -14,15 +14,16 @@ class SettingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:EdgeInsets.only(right: 20),
       height:50,
+      width:double.infinity,
       child: 
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          
           children: [
             Container(child:
-              Row(children:[Icon(icon),
-              SizedBox(width:10),
+              Row(children:[
+                Icon(icon, color: primaryDarkPurple),
+              SizedBox(width:20),
               Text(text,
                   style:TextStyle(
                     color:primaryDarkPurple,
@@ -32,13 +33,14 @@ class SettingWidget extends StatelessWidget {
               ]
             )
             ),
-            Container(child:
-            Row(
-              children:[
-              Icon(Icons.keyboard_arrow_right_sharp)
-            ]
-          )
-            )
+            Spacer(),
+            
+            
+             
+              Icon(Icons.keyboard_arrow_right_sharp, color: primaryDarkPurple,)
+            
+          
+            
         ],
         )
 
