@@ -1,4 +1,6 @@
+import 'package:carve_app/screens/daily_content.dart';
 import 'package:carve_app/widgets/categories_button.dart';
+import 'Local_Class.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
@@ -72,7 +74,8 @@ class ResourcesScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(local_class.routeName),
                             child: Container(
                                 width: 151,
                                 height: 40,

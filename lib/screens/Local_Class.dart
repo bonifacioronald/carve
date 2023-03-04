@@ -4,11 +4,10 @@ import '../models/colors.dart' as custom_colors;
 
 class local_class extends StatelessWidget {
   const local_class({super.key});
+  static const routeName = '/localClass-1';
 
   @override
   Widget build(BuildContext context) {
-    const routeName = "/local-pregnancy";
-
     return MaterialApp(
         home: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -19,16 +18,19 @@ class local_class extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(),
-                      height: 50,
-                      width: 70,
-                      child: Row(children: [
-                        Icon(
-                          Icons.keyboard_arrow_left_sharp,
-                          size: 60,
-                        )
-                      ]),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Container(
+                        padding: EdgeInsets.only(),
+                        height: 50,
+                        width: 70,
+                        child: Row(children: [
+                          Icon(
+                            Icons.keyboard_arrow_left_sharp,
+                            size: 60,
+                          )
+                        ]),
+                      ),
                     ),
                     SizedBox(
                       height: 10,
