@@ -1,7 +1,8 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/WelcomeMain.dart';
+import 'package:carve_app/screens/setting_screen.dart';
+import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
@@ -39,17 +40,18 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: WelcomeMain(),
+        home: WelcomeScreen(),
         routes: {
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
           Navigation.routeName: (context) => Navigation(),
-          QuestionTitleScreen.routeName: ((context) => QuestionTitleScreen()),
-          Question1Screen.routeName: ((context) => Question1Screen()),
+          QuestionTitleScreen.routeName: (context) => QuestionTitleScreen(),
+          Question1Screen.routeName: (context) => Question1Screen(),
           Question2Screen.routeName: (context) => Question2Screen(),
           Question3Screen.routeName: (context) => Question3Screen(),
           Question4Screen.routeName: (context) => Question4Screen(),
-          Question5Screen.routeName: ((context) => Question5Screen()),
-          Question6Screen.routeName: (context) => Question6Screen()
+          Question5Screen.routeName: (context) => Question5Screen(),
+          Question6Screen.routeName: (context) => Question6Screen(),
+          SettingScreen.routeName: (context) => SettingScreen()
         },
       ),
     );

@@ -1,4 +1,6 @@
 import 'dart:ffi';
+import 'package:carve_app/screens/setting_screen.dart';
+
 import '../auth.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
@@ -32,18 +34,11 @@ class CustomAppBar extends StatelessWidget {
           SizedBox(
             width: 12,
           ),
-          Icon(
-            Icons.account_circle_outlined,
-            color: Colors.white,
-            size: 40,
-          ),
-          SizedBox(
-            width: 12,
-          ),
           GestureDetector(
-            onTap: (() => Auth().signOut(context)),
+            onTap: () =>
+                Navigator.of(context).pushNamed(SettingScreen.routeName),
             child: Icon(
-              Icons.logout_outlined,
+              Icons.account_circle_outlined,
               color: Colors.white,
               size: 40,
             ),

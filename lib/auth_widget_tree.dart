@@ -1,3 +1,4 @@
+import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'screens/login_register_screen.dart';
@@ -19,7 +20,7 @@ class _AuthWidgetTreeState extends State<AuthWidgetTree> {
         if (snapshot.hasData) {
           return Navigation();
         } else {
-          return LoginRegisterScreen();
+          return WelcomeScreen();
         }
       },
     );
