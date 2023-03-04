@@ -5,27 +5,21 @@ import 'package:flutter/material.dart';
 
 class SpecSettingBar extends StatelessWidget {
   String text;
-  
-  SpecSettingBar(this.text);
 
+  SpecSettingBar(this.text);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 55,
-        width: double.infinity,
-        child:Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(text),
-            ToggleButton(true),
-
-
-
-
-        ],)
-
-
+      height: 55,
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(text),
+          ToggleButton(true),
+        ],
+      ),
     );
   }
 }
