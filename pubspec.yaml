@@ -81,6 +81,7 @@ flutter:
     - lib/assets/images/onboarding_2_image.png
     - lib/assets/images/onboarding_3_image.png
     - lib/assets/images/app_logo.png
+    - lib/assets/images/daily_bg.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

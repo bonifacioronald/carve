@@ -1,3 +1,4 @@
+import 'package:carve_app/screens/daily_content.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
@@ -39,28 +40,32 @@ class DailyContentCard extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
-              Container(
-                width: 140,
-                height: 40,
-                decoration: BoxDecoration(
-                    color: custom_colors.primaryDarkPurple,
-                    borderRadius: BorderRadius.circular(12)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      'Access Now',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Icon(
-                      Icons.play_circle_outline_rounded,
-                      color: custom_colors.backgroundPurple,
-                      size: 28,
-                    )
-                  ],
+              GestureDetector(
+                onTap: () =>
+                    Navigator.of(context).pushNamed(DailyContent.routeName),
+                child: Container(
+                  width: 140,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: custom_colors.primaryDarkPurple,
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'Access Now',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.play_circle_outline_rounded,
+                        color: custom_colors.backgroundPurple,
+                        size: 28,
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
