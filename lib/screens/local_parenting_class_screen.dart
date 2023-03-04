@@ -1,10 +1,9 @@
-import 'package:carve_app/widgets/categories_button.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
-class local_class extends StatelessWidget {
-  const local_class({super.key});
-  static const routeName = '/localClass-1';
+class LocalParentingClass extends StatelessWidget {
+  const LocalParentingClass({super.key});
+  static const routeName = '/local-parenting-class';
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +84,7 @@ class local_class extends StatelessWidget {
                                     color: Colors.black,
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'lib/assets/images/LYC mother and child center.jpeg'),
+                                            'lib/assets/images/LYC_mother_and_child_center.jpeg'),
                                         fit: BoxFit.cover),
                                     borderRadius: BorderRadius.circular(15),
                                   ),

@@ -34,7 +34,7 @@ class DailyContentCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                'Your Daily Content\nAre Waiting!',
+                'Your Daily Content\nIs Waiting!',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,

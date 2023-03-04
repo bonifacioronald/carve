@@ -66,7 +66,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                        "How much time in a day are you be willing to spend to learn parenting skills?",
+                        "How much time are you willing to spend in a day to learn about parenting skills?",
                         style: TextStyle(
                             color: custom_colors.primaryDarkPurple,
                             fontSize: 24,

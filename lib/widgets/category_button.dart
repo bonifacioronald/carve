@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
 class CategoryButton extends StatelessWidget {
-  Color color;
+  Color buttonColor;
+  Color iconColor;
   IconData icon;
   String text;
 
-  CategoryButton(this.color, this.icon, this.text);
+  CategoryButton(this.buttonColor, this.iconColor, this.icon, this.text);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CategoryButton extends StatelessWidget {
           width: 60,
           height: 60,
           decoration: BoxDecoration(
-            color: color,
+            color: buttonColor,
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
@@ -29,7 +30,7 @@ class CategoryButton extends StatelessWidget {
           ),
           child: Icon(
             icon,
-            color: Colors.white,
+            color: iconColor,
             size: 36,
           ),
         ),
@@ -38,6 +39,7 @@ class CategoryButton extends StatelessWidget {
         ),
         Text(
           text,
+          textAlign: TextAlign.center,
           style:
               TextStyle(fontSize: 14, color: custom_colors.primaryDarkPurple),
         )
