@@ -37,16 +37,29 @@ class MainMenuCategorySection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CategoryButton(custom_colors.primaryDarkPurple,
-                  Icons.food_bank_outlined, "Food"),
-              CategoryButton(custom_colors.primaryDarkPurple.withOpacity(0.7),
-                  Icons.read_more, "Read"),
+              CategoryButton(
+                custom_colors.primaryDarkPurple,
+                Colors.white,
+                Icons.food_bank_outlined,
+                "Food",
+              ),
+              CategoryButton(
+                custom_colors.primaryDarkPurple.withOpacity(0.7),
+                Colors.white,
+                Icons.read_more,
+                "Read",
+              ),
               CategoryButton(
                   custom_colors.secondaryLightPurple.withOpacity(0.6),
+                  Colors.white,
                   Icons.read_more,
                   "Read"),
               CategoryButton(
-                  custom_colors.secondaryLightPurple, Icons.read_more, "Read"),
+                custom_colors.secondaryLightPurple,
+                Colors.white,
+                Icons.read_more,
+                "Read",
+              ),
             ],
           ),
         )
