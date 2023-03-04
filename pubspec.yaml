@@ -31,6 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  smooth_page_indicator:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -78,6 +79,8 @@ flutter:
     - lib/assets/images/family_image.png
     - lib/assets/images/google_logo.png
     - lib/assets/images/question_screen_bg.png
+    - lib/assets/images/pregnant.jpg
+    - lib/assets/images/infant.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
