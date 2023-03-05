@@ -11,6 +11,7 @@ import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
+import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
 import 'package:carve_app/screens/question_2_screen.dart';
