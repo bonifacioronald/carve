@@ -132,7 +132,7 @@ class content_box extends StatelessWidget {
           style: TextStyle(
               fontSize: 40,
               color: Colors.white,
-              fontWeight: isTitleScreen ? FontWeight.w900 : FontWeight.w400),
+              fontWeight: isTitleScreen ? FontWeight.w900 : FontWeight.w600),
           minFontSize: 23,
           maxFontSize: 25,
           maxLines: 15,
