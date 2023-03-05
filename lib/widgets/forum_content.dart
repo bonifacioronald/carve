@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
+import 'package:carve_app/screens/forum_page_screen.dart';
 import 'package:flutter/material.dart';
 
 class ForumCard extends StatelessWidget {
@@ -82,9 +83,7 @@ class ForumCard extends StatelessWidget {
                 ),
               ),
               Container(
-                alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(left: 8),
-                height: 72,
                 child: Text(title,
                     style: TextStyle(
                         color: Color(0XFF02084B),
@@ -98,33 +97,28 @@ class ForumCard extends StatelessWidget {
                 endIndent: 12,
               ),
               Container(
-                  padding: EdgeInsets.only(left: 8, bottom: 8),
+                  padding: EdgeInsets.only(left: 8),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Icon(Icons.thumb_up_alt_outlined,
-                                color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                                size: 24),
-                            Text(like,
-                                style: TextStyle(
-                                    color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600)),
-                            SizedBox(width: 16),
-                            Icon(Icons.comment_outlined,
-                                color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                                size: 24),
-                            Text(comments,
-                                style: TextStyle(
-                                    color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                      ),
+                      Icon(Icons.thumb_up_alt_outlined,
+                          color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                          size: 24),
+                      Text(like,
+                          style: TextStyle(
+                              color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(width: 16),
+                      Icon(Icons.comment_outlined,
+                          color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                          size: 24),
+                      SizedBox(width: 4),
+                      Text(comments,
+                          style: TextStyle(
+                              color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(width: 75),
                       TextButton(
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
@@ -132,7 +126,7 @@ class ForumCard extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => createForum()));
+                              builder: (context) => forumPage()));
                         },
                         child: Container(
                           alignment: Alignment.bottomRight,
