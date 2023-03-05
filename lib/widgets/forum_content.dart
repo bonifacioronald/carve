@@ -1,5 +1,4 @@
-import 'dart:html';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +20,7 @@ class ForumCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 16),
       child: Container(
           width: 352,
+          height: 192,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -41,13 +41,16 @@ class ForumCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
+                    AutoSizeText(
                       username,
                       style: TextStyle(
                           color: Color(0XFF000000).withOpacity(0.4),
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
                       overflow: TextOverflow.ellipsis,
+                      minFontSize: 16,
+                      maxFontSize: 16,
+                      maxLines: 1,
                     ),
                     Icon(Icons.circle_rounded,
                         color: Color(0XFF000000).withOpacity(0.5), size: 4),
@@ -55,7 +58,7 @@ class ForumCard extends StatelessWidget {
                         style: TextStyle(
                             color: Color(0XFF000000).withOpacity(0.4),
                             fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w600),
                         overflow: TextOverflow.ellipsis),
                     SizedBox(width: 4),
                     Container(
@@ -69,53 +72,59 @@ class ForumCard extends StatelessWidget {
                           child: Text(category,
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold)),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600)),
                         )),
-                    SizedBox(width: 12),
+                    SizedBox(width: 8),
                     Icon(Icons.bookmark_add_outlined,
                         color: Color(0XFF5B5B5B5B).withOpacity(0.5), size: 28),
                   ],
                 ),
               ),
               Container(
+                alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(left: 8),
+                height: 72,
                 child: Text(title,
                     style: TextStyle(
                         color: Color(0XFF02084B),
                         fontSize: 18,
-                        fontWeight: FontWeight.bold)),
+                        fontWeight: FontWeight.w600)),
               ),
-              SizedBox(height: 8),
               Divider(
                 color: Color(0XFF02084B).withOpacity(0.1),
+                indent: 8,
                 thickness: 2,
                 endIndent: 12,
               ),
               Container(
-                  padding: EdgeInsets.only(left: 4, bottom: 4),
+                  padding: EdgeInsets.only(left: 8, bottom: 8),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.thumb_up_alt_outlined,
-                          color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                          size: 24),
-                      SizedBox(width: 4),
-                      Text(like,
-                          style: TextStyle(
-                              color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold)),
-                      SizedBox(width: 16),
-                      Icon(Icons.comment_outlined,
-                          color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                          size: 24),
-                      SizedBox(width: 4),
-                      Text(comments,
-                          style: TextStyle(
-                              color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold)),
-                      SizedBox(width: 75),
+                      Container(
+                        child: Row(
+                          children: [
+                            Icon(Icons.thumb_up_alt_outlined,
+                                color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                                size: 24),
+                            Text(like,
+                                style: TextStyle(
+                                    color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                            SizedBox(width: 16),
+                            Icon(Icons.comment_outlined,
+                                color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                                size: 24),
+                            Text(comments,
+                                style: TextStyle(
+                                    color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      ),
                       TextButton(
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
@@ -125,11 +134,14 @@ class ForumCard extends StatelessWidget {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => createForum()));
                         },
-                        child: Text("Read more >",
-                            style: TextStyle(
-                                color: Color(0XFF02084B),
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold)),
+                        child: Container(
+                          alignment: Alignment.bottomRight,
+                          child: Text("Read more >",
+                              style: TextStyle(
+                                  color: Color(0XFF02084B),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600)),
+                        ),
                       ),
                     ],
                   ))

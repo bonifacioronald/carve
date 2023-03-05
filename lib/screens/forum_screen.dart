@@ -93,7 +93,7 @@ class ForumScreen extends StatelessWidget {
                   padding: EdgeInsets.only(top: 8, right: 24, bottom: 4),
                   child: Column(children: [
                     ForumCard(
-                        "Benjamin Lim",
+                        "Benjamin",
                         "12h ago",
                         "Pregnancy",
                         "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
