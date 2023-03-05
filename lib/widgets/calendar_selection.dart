@@ -11,15 +11,19 @@ class CalendarSelection extends StatefulWidget {
 }
 
 DateTime startOfPregnancy = DateTime(2022, 09, 03);
+DateTime inputDate = DateTime.now();
 DateTime targetDay = DateTime.now();
 Duration? diff;
 int? days;
 int displayedWeek =
     (DateTime.now().difference(startOfPregnancy).inDays / 7).ceil();
-
 int number = 1;
 String imageUrl = '';
 CalendarFormat _calendarFormat = CalendarFormat.week;
+TextEditingController _input=TextEditingController();
+String screenInput='';
+
+
 Widget tapped(String text) {
   return Container(
       width: 117,
@@ -31,6 +35,7 @@ Widget tapped(String text) {
 }
 
 Widget untapped(String text) {
+  print(screenInput);
   return Container(
       width: 117,
       height: 32,
@@ -108,12 +113,13 @@ class _CalendarSelectionState extends State<CalendarSelection> {
       ];
 
     return Container(
-        height: 550,
+        height: 650,
         child: Stack(children: [
           Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(height:125),
                 Center(
                   child: Container(
                     height: 300,
@@ -129,11 +135,16 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                             height: 250)),
                   ),
                 ),
-                SizedBox(height: 35),
+                SizedBox(height: 15),
+                Text("notes: "+ screenInput, style:TextStyle(fontSize:10,color:primaryDarkPurple)),
+                SizedBox(height:15),
                 Text('Week ' + displayedWeek.toString(),
                     style:
                         TextStyle(fontWeight: FontWeight.w900, fontSize: 24)),
-              ]),
+              ]
+              
+              
+              ),
           Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             Container(
                 width: 351,
@@ -221,7 +232,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                         child: tapped("Month")),
                   ]
                 ])),
-            TableCalendar(
+            Container(color:backgroundPurple,child:TableCalendar(
               headerStyle: HeaderStyle(
                   formatButtonVisible: false,
                   titleCentered: true,
@@ -247,7 +258,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                   _calendarFormat = format;
                 });
               },
-            ),
+            )),
             SizedBox(height: 10),
             Align(
                 alignment: Alignment.centerLeft,
@@ -275,13 +286,57 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                           ),
                         ],
                       ),
-                      width: 70,
+                      width: 120,
                       height: 30,
                       child:
-                          Text('Today', style: TextStyle(color: Colors.white))),
+                          Text('Back to Today', style: TextStyle(color: Colors.white,fontWeight:FontWeight.bold))),
                 )),
             SizedBox(height: 10),
           ]),
-        ]));
+        
+        Align(
+            alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+            onTap: () {
+              showDialog(context: context,
+               
+               builder: (context) => AlertDialog(
+                
+                title: Text('Add Note'),
+                content: TextField(
+                  autofocus: true,
+                  controller:_input,
+                   decoration : InputDecoration(
+                    suffixIcon: IconButton(
+                      icon:Icon(Icons.clear),
+                      onPressed: (){_input.clear();},
+                      
+
+                      ),
+                    
+                    hintText:"Add any note for the day: "+ targetDay.day.toString()+
+                    "/"+targetDay.month.toString()+'/'+
+                    targetDay.year.toString())
+               
+               ),
+               actions:[TextButton(onPressed: () { setState(){screenInput= _input.text;} Navigator.pop(context);
+               }, child: Text('Submit',style:TextStyle(fontWeight: FontWeight.w900)))]
+               )
+              );
+              
+            },
+            child: Container(
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                    color: primaryDarkPurple, shape: BoxShape.circle),
+                alignment: Alignment.center,
+                child: Icon(Icons.add, color: Colors.white)),
+          )
+        
+        )]
+        
+        
+        ));
   }
 }

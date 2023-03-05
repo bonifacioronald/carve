@@ -12,12 +12,14 @@ class TrackerScreen extends StatefulWidget {
   State<TrackerScreen> createState() => _TrackerScreenState();
 
 }
+
 class _TrackerScreenState extends State<TrackerScreen> {
   CalendarFormat _calendarFormat = CalendarFormat.week;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
         body: Container(
             width: double.infinity,
             height: double.infinity,
@@ -43,9 +45,5 @@ class _TrackerScreenState extends State<TrackerScreen> {
                 CalendarSelection()
               ])
           ));
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-    );
   }
 }
