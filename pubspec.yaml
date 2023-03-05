@@ -43,6 +43,9 @@ dependencies:
   google_sign_in: ^6.0.2
   provider: ^6.0.5
   image_picker: ^0.8.6+4
+  dio: ^5.0.1
+  google_maps_flutter: ^2.2.5
+  flutter_polyline_points: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -103,6 +106,8 @@ flutter:
     - family: Livvic
       fonts:
         - asset: lib/assets/fonts/Livvic-Regular.ttf
+        - asset: lib/assets/fonts/Livvic-Semibold.ttf
+          weight: 600
         - asset: lib/assets/fonts/Livvic-Bold.ttf
           weight: 700
         - asset: lib/assets/fonts/Livvic-Black.ttf
