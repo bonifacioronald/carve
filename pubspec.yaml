@@ -89,6 +89,16 @@ flutter:
     - lib/assets/images/food_icon.png
     - lib/assets/images/LYC_mother_and_child_center.jpeg
     - lib/assets/images/prana_yoga_kl.jpeg
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_1month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_2month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_3month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_4month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_5month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_6month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_7month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_8month.png
+    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_9month.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
