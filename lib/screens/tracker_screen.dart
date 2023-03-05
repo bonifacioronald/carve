@@ -9,15 +9,6 @@ class TrackerScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      child: Center(
-        child: Text(
-          'Tracker Screen',
-          style: TextStyle(
-              color: custom_colors.primaryDarkPurple,
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
-        ),
-      ),
     );
   }
 }

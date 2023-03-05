@@ -9,6 +9,7 @@ import 'package:carve_app/screens/forum_screen.dart';
 import 'package:carve_app/screens/local_parenting_class_screen.dart';
 import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
+import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: AuthWidgetTree(),
+        home: TrackerScreen(),
         routes: {
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
           Navigation.routeName: (context) => Navigation(),
