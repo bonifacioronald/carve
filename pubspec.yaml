@@ -88,6 +88,7 @@ flutter:
     - lib/assets/images/food_icon.png
     - lib/assets/images/LYC_mother_and_child_center.jpeg
     - lib/assets/images/prana_yoga_kl.jpeg
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
