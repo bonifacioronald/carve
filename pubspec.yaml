@@ -100,6 +100,7 @@ flutter:
     - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_9month.png
 
 
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -115,6 +116,8 @@ flutter:
     - family: Livvic
       fonts:
         - asset: lib/assets/fonts/Livvic-Regular.ttf
+        - asset: lib/assets/fonts/Livvic-SemiBold.ttf
+          weight: 600
         - asset: lib/assets/fonts/Livvic-Bold.ttf
           weight: 700
         - asset: lib/assets/fonts/Livvic-Black.ttf

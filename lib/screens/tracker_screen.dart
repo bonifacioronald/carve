@@ -43,5 +43,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
                 CalendarSelection()
               ])
           ));
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+    );
   }
 }
