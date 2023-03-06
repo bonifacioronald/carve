@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carve_app/models/content_model.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/screens/home_screen.dart';
@@ -237,6 +237,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                           ),
                         ),
                         Expanded(
+                          flex: 2,
                           child: Container(
                             color: Colors.transparent,
                           ),
@@ -314,7 +315,8 @@ class ending_box extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Text(
-                "Excellent work on completing\n           your daily content!",
+                "Excellent work on completing\nyour daily content!",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -322,19 +324,18 @@ class ending_box extends StatelessWidget {
                     height: 1.5),
               ),
             ),
-            Spacer(),
-            Center(
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
               child: Container(
                 width: 300,
-                height: 400,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: custom_colors.primaryDarkPurple),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 90,
-                    ),
                     Container(
                       child: Text(
                         content.contentDetails,
@@ -392,7 +393,9 @@ class ending_box extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer()
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
