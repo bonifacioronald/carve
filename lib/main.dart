@@ -1,6 +1,7 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/maps_resources.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
           LocalParentingClass.routeName: (context) => LocalParentingClass(),
+          mapsResources.routeName: (context) => mapsResources(),
         },
       ),
     );
