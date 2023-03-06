@@ -1,8 +1,6 @@
 import 'package:carve_app/auth.dart';
-import 'package:carve_app/models/colors.dart';
+import 'package:carve_app/models/colors.dart' as custom_colors;
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import '../widgets/setting_widget.dart';
 import '../widgets/search_bar.dart';
 
@@ -25,20 +23,30 @@ class SettingScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.keyboard_arrow_left_sharp, size: 30),
-                      Text('Settings',
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: primaryDarkPurple)),
-                      Icon(Icons.notifications_active, color: primaryDarkPurple)
-                    ]),
-                SizedBox(height: 30),
-                SearchBar(
-                    "Search setting...", backgroundPurple, primaryDarkPurple),
-                SizedBox(height: 30),
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: (() => Navigator.of(context).pop()),
+                      child: Icon(Icons.keyboard_arrow_left_sharp, size: 30),
+                    ),
+                    Text(
+                      'Settings',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: custom_colors.primaryDarkPurple,
+                      ),
+                    ),
+                    Icon(
+                      Icons.notifications_active,
+                      color: custom_colors.primaryDarkPurple,
+                    )
+                  ],
+                ),
+                SizedBox(height: 20),
+                SearchBar("Search setting...", custom_colors.backgroundPurple,
+                    custom_colors.primaryDarkPurple),
+                SizedBox(height: 40),
                 SettingWidget(Icons.account_box, "My account"),
                 SettingWidget(Icons.lock, "Privacy"),
                 SettingWidget(Icons.map, "Address"),
@@ -46,11 +54,11 @@ class SettingScreen extends StatelessWidget {
                 SettingWidget(Icons.question_mark_rounded, "Need Help?"),
                 SettingWidget(
                     Icons.chat_bubble_outline, "Help Improve The App"),
-                SizedBox(height: 30),
+                SizedBox(height: 40),
                 Text("Logins",
                     style: TextStyle(
-                        fontSize: 16,
-                        color: primaryDarkPurple,
+                        fontSize: 24,
+                        color: custom_colors.primaryDarkPurple,
                         fontWeight: FontWeight.bold)),
                 SettingWidget(Icons.add_box_rounded, "Add account"),
                 GestureDetector(
