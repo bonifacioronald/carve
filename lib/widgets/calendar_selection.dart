@@ -24,6 +24,7 @@ TextEditingController _input=TextEditingController();
 String screenInput='';
 
 
+
 Widget tapped(String text) {
   return Container(
       width: 117,
@@ -36,6 +37,7 @@ Widget tapped(String text) {
 
 Widget untapped(String text) {
   print(screenInput);
+  print(_input.text);
   return Container(
       width: 117,
       height: 32,
@@ -136,7 +138,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                   ),
                 ),
                 SizedBox(height: 15),
-                Text("notes: "+ screenInput, style:TextStyle(fontSize:10,color:primaryDarkPurple)),
+                Text("notes: "+_input.text, style:TextStyle(fontSize:16,color:primaryDarkPurple)),
                 SizedBox(height:15),
                 Text('Week ' + displayedWeek.toString(),
                     style:
@@ -314,12 +316,12 @@ class _CalendarSelectionState extends State<CalendarSelection> {
 
                       ),
                     
-                    hintText:"Add any note for the day: "+ targetDay.day.toString()+
+                    hintText:"Add note for - "+ targetDay.day.toString()+
                     "/"+targetDay.month.toString()+'/'+
                     targetDay.year.toString())
                
                ),
-               actions:[TextButton(onPressed: () { setState(){screenInput= _input.text;} Navigator.pop(context);
+               actions:[TextButton(onPressed: () { setState(){screenInput= _input.text; } Navigator.pop(context);
                }, child: Text('Submit',style:TextStyle(fontWeight: FontWeight.w900)))]
                )
               );
