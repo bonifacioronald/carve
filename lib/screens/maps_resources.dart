@@ -13,7 +13,7 @@ class mapsResources extends StatelessWidget {
           title: Text('Food Bank Map'),
         ),
         body: Container(
-          child: MapScreen(),
+          child: MapSample(),
         ));
   }
 }
