@@ -9,10 +9,11 @@ class mapsResources extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ,
-      body: Container(
-        child: MapScreen(),
-      )
-    );
+        appBar: AppBar(
+          title: Text('Food Bank Map'),
+        ),
+        body: Container(
+          child: MapScreen(),
+        ));
   }
 }
