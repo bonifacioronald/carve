@@ -1,10 +1,12 @@
 class ContentModel {
-  String contentTitle;
+  String id;
+  String title;
   List<String> content;
   List<String> suitableCategories;
 
   ContentModel(
-      {required this.contentTitle,
+      {required this.id,
+      required this.title,
       required this.content,
       required this.suitableCategories});
 }

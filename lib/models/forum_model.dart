@@ -5,8 +5,8 @@ class ForumModel {
   String content;
   int category;
   DateTime publishedDate;
-  int totalLike;
-  int totalReply;
+  int totalLikes;
+  int totalReplies;
 
   ForumModel(
       {required this.id,
@@ -15,6 +15,6 @@ class ForumModel {
       required this.content,
       required this.category,
       required this.publishedDate,
-      required this.totalLike,
-      required this.totalReply});
+      required this.totalLikes,
+      required this.totalReplies});
 }
