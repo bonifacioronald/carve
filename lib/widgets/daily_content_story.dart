@@ -1,46 +1,45 @@
-import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carve_app/models/content_model.dart';
-import 'package:carve_app/navigation.dart';
-import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
-import 'package:carve_app/models/content_model.dart';
-import 'package:carve_app/data/content_data.dart';
 import 'package:async/async.dart';
 
 class DailyContentStory extends StatefulWidget {
   List<ContentModel> contentsList;
+  DailyContentStory(this.contentsList, {super.key});
 
-  DailyContentStory(this.contentsList);
   @override
   State<DailyContentStory> createState() => _DailyContentStoryState();
 }
 
-int currentIndex = 0;
+int currentSlideIndex = 0;
 bool isLastScreen = false;
 bool isPaused = false;
 bool isPlaying = true;
-
+bool isTitleScreen = false;
 RestartableTimer? timer;
+int contentIndex = 0;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
   void runTimer() {
-    timer = RestartableTimer(const Duration(seconds: 30), () {
+    timer = RestartableTimer(const Duration(seconds: 3), () {
       print("timehasstarted");
       setState(() {
         if (timer != null &&
-            currentIndex < widget.contentsList.length - 1 &&
+            currentSlideIndex <=
+                widget.contentsList[contentIndex].content.length &&
             isPaused == false) {
-          currentIndex++;
+          currentSlideIndex++;
         }
       });
     });
 
-    if (timer != null && currentIndex <= widget.contentsList.length - 1) {
+    if (timer != null &&
+        currentSlideIndex <=
+            widget.contentsList[contentIndex].content.length - 1) {
       setState(() {
         timer!.reset();
       });
@@ -50,14 +49,25 @@ class _DailyContentStoryState extends State<DailyContentStory> {
 
   @override
   Widget build(BuildContext context) {
-    if (currentIndex < widget.contentsList.length - 1) {
+    int totalSlides = widget.contentsList[contentIndex].content.length + 1;
+
+    print(widget.contentsList[contentIndex].content.length);
+    if (currentSlideIndex <=
+        widget.contentsList[contentIndex].content.length - 1) {
       runTimer();
     } else {
       isLastScreen = true;
     }
 
-    ContentModel content = widget.contentsList[currentIndex];
-    ContentModel contentTitleScreen = widget.contentsList[0];
+    if (currentSlideIndex == 0) {
+      isTitleScreen = true;
+      print(isTitleScreen);
+    } else {
+      isTitleScreen = false;
+    }
+
+    ContentModel content = widget.contentsList[contentIndex];
+    String contentTitleScreen = widget.contentsList[contentIndex].content[0];
 
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
@@ -95,7 +105,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                             width: 150,
                             child: Center(
                               child: Text(
-                                content.contentTitle,
+                                content.title,
                                 style: TextStyle(
                                     color: custom_colors.primaryDarkPurple,
                                     fontSize: 18,
@@ -112,7 +122,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                             onTap: () {
                               Navigator.of(context).pop();
                               setState(() {
-                                currentIndex = 0;
+                                currentSlideIndex = 0;
                               });
                             },
                             child: Container(
@@ -135,14 +145,14 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                       height: 10,
                       width: MediaQuery.of(context).size.width - 40,
                       child: AnimatedSmoothIndicator(
-                        activeIndex: currentIndex,
-                        count: widget.contentsList.length,
+                        activeIndex: currentSlideIndex,
+                        count: totalSlides,
                         effect: ExpandingDotsEffect(
                           dotColor: Colors.white,
                           activeDotColor: custom_colors.primaryDarkPurple,
                           dotWidth: ((MediaQuery.of(context).size.width - 40) -
-                                  ((widget.contentsList.length - 1) * (5))) /
-                              (widget.contentsList.length + 2),
+                                  ((totalSlides - 1) * (5))) /
+                              (totalSlides + 2),
                           dotHeight: 6,
                           spacing: 5,
                           expansionFactor: 3,
@@ -151,9 +161,9 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                     ),
                     SizedBox(height: 20),
                     isLastScreen
-                        ? ending_box(contentTitleScreen)
-                        : content_box(content, false),
-                    SizedBox(height: content.isTitleScreen ? 40 : 15),
+                        ? ending_box(content)
+                        : content_box(content, isTitleScreen),
+                    SizedBox(height: isTitleScreen ? 40 : 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -222,9 +232,9 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                           child: GestureDetector(
                             onTap: () {
                               isLastScreen = false;
-                              if (currentIndex != 0) {
+                              if (currentSlideIndex != 0) {
                                 setState(() {
-                                  currentIndex--;
+                                  currentSlideIndex--;
                                   runTimer();
                                 });
                               }
@@ -245,10 +255,9 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              if (currentIndex <
-                                  widget.contentsList.length - 1) {
+                              if (currentSlideIndex < totalSlides - 1) {
                                 setState(() {
-                                  currentIndex++;
+                                  currentSlideIndex++;
                                   runTimer();
                                 });
                               }
@@ -283,18 +292,16 @@ class content_box extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        alignment:
-            content.isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
+        alignment: isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
         child: AutoSizeText(
-          content.contentDetails,
+          content.content[currentSlideIndex],
           style: TextStyle(
               fontSize: 40,
               color: Colors.white,
-              fontWeight:
-                  content.isTitleScreen ? FontWeight.w900 : FontWeight.w600,
+              fontWeight: isTitleScreen ? FontWeight.w900 : FontWeight.w600,
               height: 1.5),
           minFontSize: 23,
-          maxFontSize: content.isTitleScreen ? 40 : 23,
+          maxFontSize: isTitleScreen ? 40 : 23,
           maxLines: 13,
         ),
       ),
@@ -338,7 +345,7 @@ class ending_box extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        content.contentDetails,
+                        content.content[contentIndex],
                         style: TextStyle(
                             fontSize: 32,
                             color: Colors.white,

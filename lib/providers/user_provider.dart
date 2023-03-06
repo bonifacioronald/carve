@@ -2,10 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../auth.dart';
-import '../models/user.dart';
+import '../models/user_model.dart';
 
 class UserProvider with ChangeNotifier {
-  User currentUser = User(id: '', name: '', email: '');
+  UserModel currentUser = UserModel(
+      id: '',
+      name: '',
+      email: '',
+      appUsageDuration: '',
+      childAge: '',
+      childGender: '',
+      isPregnant: false,
+      parentingStyle: '');
 
   Future<void> setUserName(String name) async {
     await FirebaseFirestore.instance

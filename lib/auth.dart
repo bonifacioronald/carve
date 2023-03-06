@@ -32,7 +32,7 @@ class Auth {
       password: password,
     )
         .then((value) {
-      FirebaseFirestore.instance.collection('users').doc(value.user!.uid).set({
+      FirebaseFirestore.instance.collection('user').doc(value.user!.uid).set({
         "email": value.user!.email,
         "userId": value.user!.uid,
       });
