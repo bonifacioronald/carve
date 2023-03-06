@@ -1,4 +1,5 @@
 import 'package:carve_app/screens/daily_content.dart';
+import 'package:carve_app/screens/maps_resources.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'local_parenting_class_screen.dart';
 import 'package:flutter/material.dart';
@@ -208,11 +209,15 @@ class ResourcesScreen extends StatelessWidget {
                           Icons.payments_outlined,
                           "Charities",
                         ),
-                        CategoryButton(
-                          custom_colors.secondaryLightPurple.withOpacity(0.6),
-                          Colors.white,
-                          Icons.food_bank_outlined,
-                          "Food Bank",
+                        GestureDetector(
+                          onTap: (() => Navigator.of(context)
+                              .pushNamed(mapsResources.routeName)),
+                          child: CategoryButton(
+                            custom_colors.secondaryLightPurple.withOpacity(0.6),
+                            Colors.white,
+                            Icons.food_bank_outlined,
+                            "Food Bank",
+                          ),
                         ),
                         CategoryButton(
                           custom_colors.primaryDarkPurple.withOpacity(0.7),

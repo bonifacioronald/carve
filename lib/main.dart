@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: ForumScreen(),
+        home: ResourcesScreen(),
         routes: {
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
           Navigation.routeName: (context) => Navigation(),
@@ -63,7 +63,8 @@ class MyApp extends StatelessWidget {
           DailyContent.routeName: (context) => DailyContent(),
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
-          LocalParentingClass.routeName: (context) => LocalParentingClass()
+          LocalParentingClass.routeName: (context) => LocalParentingClass(),
+          mapsResources.routeName: (context) => mapsResources(),
         },
       ),
     );
