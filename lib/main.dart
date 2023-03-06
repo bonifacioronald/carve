@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           DailyContent.routeName: (context) => DailyContent(),
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
-          LocalParentingClass.routeName: (context) => LocalParentingClass()
+          LocalParentingClass.routeName: (context) => LocalParentingClass(),
         },
       ),
     );
