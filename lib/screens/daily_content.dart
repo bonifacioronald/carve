@@ -1,3 +1,4 @@
+import 'package:carve_app/data/content_data.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:carve_app/widgets/toggle_button.dart';
@@ -29,7 +30,7 @@ class _DailyContentState extends State<DailyContent> {
           color: custom_colors.backgroundPurple,
           child: Column(
             children: [
-              DailyContentStory(),
+              DailyContentStory(contentsData),
               Container(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                 child: Column(
