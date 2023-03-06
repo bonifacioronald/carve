@@ -1,18 +1,13 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/user_provider.dart';
-
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/specific_setting_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content.dart';
 import 'package:carve_app/screens/forum_all.dart';
-import 'package:carve_app/screens/forum_screen.dart';
 import 'package:carve_app/screens/local_parenting_class_screen.dart';
-import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
-import 'package:carve_app/screens/tracker_screen.dart';
-import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:provider/provider.dart';
