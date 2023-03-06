@@ -31,7 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  smooth_page_indicator:
+  smooth_page_indicator: ^1.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -43,10 +43,11 @@ dependencies:
   google_sign_in: ^6.0.2
   provider: ^6.0.5
   image_picker: ^0.8.6+4
+  auto_size_text: ^3.0.0
+  table_calendar: ^3.0.8
   dio: ^5.0.1
   google_maps_flutter: ^2.2.5
   flutter_polyline_points: ^1.0.0
-  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

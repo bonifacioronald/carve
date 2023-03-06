@@ -11,7 +11,7 @@ import '../widgets/main_menu_category_section.dart';
 import '../widgets/main_menu_video_course_section.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  static const routeName = '/home-screen';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -57,7 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        SearchBar("Search for content",Colors.white,primaryDarkPurple),
+                        SearchBar("Search for content", Colors.white,
+                            primaryDarkPurple),
                       ],
                     ),
                   ),
