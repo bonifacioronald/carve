@@ -24,7 +24,7 @@ int currentIndex = 0;
 bool isLastScreen = false;
 bool isPaused = false;
 bool isPlaying = true;
-
+bool isTitleScreen = false;
 RestartableTimer? timer;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
@@ -56,8 +56,12 @@ class _DailyContentStoryState extends State<DailyContentStory> {
       isLastScreen = true;
     }
 
-    ContentModel content = widget.contentsList[currentIndex];
-    ContentModel contentTitleScreen = widget.contentsList[0];
+    if (currentIndex == 0) {
+      isTitleScreen = true;
+    }
+
+    ContentModel content = widget.contentsList[0];
+    String contentTitleScreen = widget.contentsList[0].content[0];
 
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
@@ -151,9 +155,9 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                     ),
                     SizedBox(height: 20),
                     isLastScreen
-                        ? ending_box(contentTitleScreen)
+                        ? ending_box(content)
                         : content_box(content, false),
-                    SizedBox(height: content.isTitleScreen ? 40 : 15),
+                    SizedBox(height: isTitleScreen ? 40 : 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -283,18 +287,16 @@ class content_box extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        alignment:
-            content.isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
+        alignment: isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
         child: AutoSizeText(
-          content.contentDetails,
+          content.content[currentIndex],
           style: TextStyle(
               fontSize: 40,
               color: Colors.white,
-              fontWeight:
-                  content.isTitleScreen ? FontWeight.w900 : FontWeight.w600,
+              fontWeight: isTitleScreen ? FontWeight.w900 : FontWeight.w600,
               height: 1.5),
           minFontSize: 23,
-          maxFontSize: content.isTitleScreen ? 40 : 23,
+          maxFontSize: isTitleScreen ? 40 : 23,
           maxLines: 13,
         ),
       ),
@@ -338,7 +340,7 @@ class ending_box extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        content.contentDetails,
+                        content.content[0],
                         style: TextStyle(
                             fontSize: 32,
                             color: Colors.white,

@@ -1,11 +1,10 @@
 class ContentModel {
   String contentTitle;
-  String contentDetails;
-
-  bool isTitleScreen;
+  List<String> content;
+  List<String> suitableCategories;
 
   ContentModel(
       {required this.contentTitle,
-      required this.contentDetails,
-      required this.isTitleScreen});
+      required this.content,
+      required this.suitableCategories});
 }
