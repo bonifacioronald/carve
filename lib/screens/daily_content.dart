@@ -1,3 +1,5 @@
+import 'package:carve_app/data/content_data.dart';
+import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:carve_app/widgets/toggle_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,88 +30,7 @@ class _DailyContentState extends State<DailyContent> {
           color: custom_colors.backgroundPurple,
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                height: 695,
-                padding: EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: MediaQuery.of(context).padding.top + 30),
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("lib/assets/images/daily_bg.png"),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
-                child: Column(
-                  children: [
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 30,
-                            width: 150,
-                            child: Center(
-                              child: Text(
-                                "Daily Content",
-                                style: TextStyle(
-                                    color: custom_colors.primaryDarkPurple,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(width: 170),
-                          GestureDetector(
-                            onTap: () => Navigator.of(context).pop(),
-                            child: Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                  color: Colors.white, shape: BoxShape.circle),
-                              child: Icon(
-                                Icons.close_sharp,
-                                size: 30,
-                                color: custom_colors.primaryDarkPurple,
-                              ),
-                            ),
-                          )
-                        ]),
-                    SizedBox(height: 520),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 30,
-                          width: 173,
-                          decoration: BoxDecoration(
-                              color: custom_colors.primaryDarkPurple,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Center(
-                            child: Text(
-                              formattedDate,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 90),
-                        IconSwitchingButton(
-                            Icons.pause_circle_filled, Icons.play_circle_fill),
-                        SizedBox(width: 5),
-                        IconSwitchingButton(Icons.volume_up, Icons.volume_off)
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              DailyContentStory(contentsData),
               Container(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                 child: Column(
