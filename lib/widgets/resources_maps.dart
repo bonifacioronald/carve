@@ -1,81 +1,50 @@
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+class MapSample extends StatefulWidget {
+  const MapSample({Key? key}) : super(key: key);
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  State<MapSample> createState() => MapSampleState();
 }
 
-class _MapScreenState extends State<MapScreen> {
-  static const initialPosition = CameraPosition(
-    target: LatLng(3.07166638, 101.587997648),
-    zoom: 10.0,
+class MapSampleState extends State<MapSample> {
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
+
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
   );
-//   void _addMarker(LatLng pos){
-//   if(_origin == null || (_origin!=null && _destination!=null)){
-//     setState(() {
-//       _origin = Marker(
-//         markerId: MarkerId('origin'),
-//         position: pos,
-//         infoWindow: InfoWindow(
-//           title: 'Origin',
-//           snippet: 'This is where you start from',
-//         ),
-//         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-//       );
-//     });
-// }else{
-//   setState(() {
-//     _destination = Marker(
-//       markerId: MarkerId('destination'),
-//       position: pos,
-//       infoWindow: InfoWindow(
-//         title: 'Destination',
-//         snippet: 'This is where you end up',
-//       ),
-//       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-//     );
-//   });
-// }
-// }
-  late GoogleMapController _mapController;
-  // late Marker _origin;
-  // late Marker _destination;
+
+  static const CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(3.07166638, 101.587997648),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
+
   @override
-  void dispose() {
-     _mapController.dispose();
-  super.dispose();
-}
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
-        initialCameraPosition: initialPosition,
-        myLocationButtonEnabled: false,
-        zoomControlsEnabled: false,
-        onMapCreated: (controller) {
-          _mapController = controller;
+        mapType: MapType.hybrid,
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
         },
-        markers: {
-          // if(_origin!= null) _origin,
-          // if(_destination!= null) _destination,
-        },
-        // onLongPress: _addMarker,
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          onPressed: () =>
-            _mapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                initialPosition
-                )
-              ),
-              child: Icon(Icons.center_focus_strong),
-            ),
-            );
-          }
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _goToTheLake,
+        label: const Text('To the lake!'),
+        icon: const Icon(Icons.directions_boat),
+      ),
+    );
   }
 
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  }
+}
