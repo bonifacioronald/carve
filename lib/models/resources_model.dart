@@ -8,5 +8,5 @@ class ResourcesModel {
       {required this.id,
       required this.title,
       required this.location,
-      required this.categories},);
+      required this.categories});
 }
