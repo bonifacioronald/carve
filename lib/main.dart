@@ -1,16 +1,12 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/specific_setting_screen.dart';
+import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content.dart';
 import 'package:carve_app/screens/forum_all.dart';
-import 'package:carve_app/screens/forum_screen.dart';
 import 'package:carve_app/screens/local_parenting_class_screen.dart';
-import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
-import 'package:carve_app/screens/tracker_screen.dart';
-import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
@@ -50,6 +46,7 @@ class MyApp extends StatelessWidget {
             accentColor: custom_colors.secondaryLightPurple),
         home: AuthWidgetTree(),
         routes: {
+          HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
           Navigation.routeName: (context) => Navigation(),
           QuestionTitleScreen.routeName: (context) => QuestionTitleScreen(),
@@ -63,7 +60,7 @@ class MyApp extends StatelessWidget {
           DailyContent.routeName: (context) => DailyContent(),
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
-          LocalParentingClass.routeName: (context) => LocalParentingClass()
+          LocalParentingClass.routeName: (context) => LocalParentingClass(),
         },
       ),
     );

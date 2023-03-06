@@ -21,11 +21,13 @@ class SettingWidget extends StatelessWidget {
               children: [
                 Icon(icon, color: primaryDarkPurple),
                 SizedBox(width: 20),
-                Text(text,
-                    style: TextStyle(
-                        color: primaryDarkPurple,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),),
+                Text(
+                  text,
+                  style: TextStyle(
+                      color: primaryDarkPurple,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),
