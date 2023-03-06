@@ -42,6 +42,7 @@ class forumPage extends StatelessWidget {
                       "1h ago",
                       "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
                       "I'm curious about this topic and wondering about the social norms and etiquette surrounding such a question. While some people might see it as a legitimate inquiry or simply being curious, others might find it invasive or inappropriate. I'm interested in hearing different perspectives on this issue and learning more about how people approach this kind of situation.",
+                      "Makan",
                       120,
                     ),
                     SizedBox(height: 16),
@@ -65,7 +66,7 @@ class forumPage extends StatelessWidget {
                         "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
                         120),
                     SizedBox(height: 16),
-                    replyButton(),
+                    ReplyButton(),
                   ])
                 ])));
   }

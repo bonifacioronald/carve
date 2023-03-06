@@ -7,118 +7,157 @@ class forumContentCard extends StatelessWidget {
   String time;
   String title;
   String content;
+  String category;
   int likes;
-  forumContentCard(
-      this.username, this.time, this.title, this.content, this.likes,
+  forumContentCard(this.username, this.time, this.title, this.content,
+      this.category, this.likes,
       {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         width: 348,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: custom_colors.primaryDarkPurple),
-                          // Changed the icons to the user profile
-                          child: Center(
-                            child: Icon(
-                              Icons.supervised_user_circle,
-                              color: Colors.white,
-                              size: 36,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Container(
-                            height: 40,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(username,
-                                    style: TextStyle(
-                                        color:
-                                            Color(0XFF000000).withOpacity(0.4),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
-                                    overflow: TextOverflow.ellipsis),
-                                Text(time,
-                                    style: TextStyle(
-                                        color:
-                                            Color(0XFF000000).withOpacity(0.4),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
-                                    overflow: TextOverflow.ellipsis),
-                              ],
-                            )),
-                        SizedBox(width: 140),
-                        Container(
-                          alignment: Alignment.topRight,
-                          child: iconSwitching(
-                              Icons.bookmark_border,
-                              Icons.bookmark,
-                              40,
-                              custom_colors.primaryDarkPurple),
-                        )
-                      ]),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Text(
-                title,
-                style: TextStyle(
-                    color: Color(0XFF000000),
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Text(
-              content,
-              style: TextStyle(
-                  color: Color(0XFF000000),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
-            ),
-            SizedBox(height: 16),
-            Row(
-              children: [
-                Container(
-                    child: Row(
-                  children: [
-                    Icon(Icons.thumb_up_alt_outlined,
-                        color: Color(0XFF5B5B5B5B).withOpacity(0.5), size: 24),
-                    Text("$likes",
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  // User icon
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: custom_colors.primaryDarkPurple,
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.supervised_user_circle,
+                        color: Colors.white,
+                        size: 36,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Username
+                      Text(
+                        username,
                         style: TextStyle(
-                            color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600)),
-                    SizedBox(width: 16)
+                          color: Color(0XFF000000).withOpacity(0.4),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      // Time
+                      Text(
+                        time,
+                        style: TextStyle(
+                          color: Color(0XFF000000).withOpacity(0.4),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                  const Expanded(child: SizedBox()),
+                  // Bookmark icon
+                  iconSwitching(
+                    Icons.bookmark_border,
+                    Icons.bookmark,
+                    40,
+                    custom_colors.primaryDarkPurple,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              // Title
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Color(0XFF000000),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Content with read more link
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: content,
+                      style: const TextStyle(
+                        color: Color(0XFF000000),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const TextSpan(text: ' '),
+                    TextSpan(
+                      text: 'Read more',
+                      style: TextStyle(
+                        color: custom_colors.primaryDarkPurple,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ],
-                )),
-              ],
-            )
-          ],
-        ));
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Category
+                  Container(
+                    width: 92,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      color: Color(0XFF8E93FB).withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        category,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Comment icon and count
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.thumb_up_alt_sharp,
+                        color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                        size: 24,
+                      ),
+                      Text(
+                        "$likes",
+                        style: TextStyle(
+                          color: Color(0XFF5B5B5B5B).withOpacity(0.5),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ]));
   }
 }
