@@ -45,9 +45,12 @@ dependencies:
   image_picker: ^0.8.6+4
   auto_size_text: ^3.0.0
   table_calendar: ^3.0.8
+  url_launcher: ^6.1.10
   dio: ^5.0.1
   google_maps_flutter: ^2.2.5
   flutter_polyline_points: ^1.0.0
+  geolocator: ^9.0.2
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:
