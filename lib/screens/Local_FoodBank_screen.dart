@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
-class FoodBank extends StatelessWidget {
-  const FoodBank({super.key});
-  static const routeName = '/local-parenting-class';
+
+class LocalFoodBank extends StatelessWidget {
+  const LocalFoodBank({super.key});
+  static const routeName = '/local-food-bank';
 
   @override
   Widget build(BuildContext context) {

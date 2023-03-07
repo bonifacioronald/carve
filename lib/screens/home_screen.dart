@@ -1,3 +1,4 @@
+import 'package:carve_app/models/user_model.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/widgets/custom_app_bar.dart';
 import 'package:carve_app/widgets/daily_content_card.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../models/colors.dart';
-import '../models/user.dart';
 import '../widgets/main_menu_category_section.dart';
 import '../widgets/main_menu_video_course_section.dart';
 
@@ -20,8 +20,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    User currentUser =
-        Provider.of<UserProvider>(context, listen: false).currentUser;
+    UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
     return SingleChildScrollView(
       child: Container(
         width: double.infinity,

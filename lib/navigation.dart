@@ -18,6 +18,10 @@ class Navigation extends StatefulWidget {
 class NavigationState extends State<Navigation> {
   static GlobalKey<NavigationState> globalKey =
       new GlobalKey<NavigationState>();
+  BottomNavigationBar get navigationBar {
+    return NavigationState.globalKey.currentWidget as BottomNavigationBar;
+  }
+
   int currentIndex = 0;
   bool _isLoading = true;
 
@@ -65,7 +69,7 @@ class NavigationState extends State<Navigation> {
         width: 64,
         child: FloatingActionButton(
           backgroundColor: custom_colors.secondaryLightPurple,
-          onPressed: () {},
+          onPressed: () => navigationBar.onTap!(2),
           child: Icon(
             Icons.local_library_outlined,
             size: NavBarIconSize,
@@ -123,11 +127,12 @@ class NavigationState extends State<Navigation> {
                     size: NavBarIconSize,
                   )),
               BottomNavigationBarItem(
-                  label: '',
-                  icon: Icon(
-                    Icons.group_outlined,
-                    size: 0,
-                  )),
+                label: '',
+                icon: Icon(
+                  Icons.group_outlined,
+                  size: 0,
+                ),
+              ),
               BottomNavigationBarItem(
                   label: '',
                   icon: Icon(

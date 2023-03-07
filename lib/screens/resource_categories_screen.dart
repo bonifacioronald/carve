@@ -2,12 +2,13 @@ import 'dart:ffi';
 
 import 'package:carve_app/main.dart';
 import 'package:carve_app/widgets/category_button.dart';
+import 'package:carve_app/widgets/map_screen_widgets.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
 class FoodBank extends StatelessWidget {
   const FoodBank({super.key});
-  static const routeName = '/local-parenting-class';
+  static const routeName = '/resources-categories';
 
   @override
   Widget build(BuildContext context) {
@@ -92,13 +93,18 @@ class FoodBank extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white,
-                            ),
-                            height: 350,
-                            width: 350,
-                          ),
+
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                              ),
+                              height: 350,
+                              width: 350,
+                              child: Stack(
+                                children: [
+                                  CurrentLocationScreen(),
+                                ],
+                              )),
                           SizedBox(
                             height: 20,
                           ),

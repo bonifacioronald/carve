@@ -33,7 +33,6 @@ dependencies:
     sdk: flutter
   smooth_page_indicator: ^1.0.1
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -47,6 +46,11 @@ dependencies:
   auto_size_text: ^3.0.0
   table_calendar: ^3.0.8
   url_launcher: ^6.1.10
+  dio: ^5.0.1
+  google_maps_flutter: ^2.2.5
+  flutter_polyline_points: ^1.0.0
+  geolocator: ^9.0.2
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:
@@ -91,16 +95,15 @@ flutter:
     - lib/assets/images/food_icon.png
     - lib/assets/images/LYC_mother_and_child_center.jpeg
     - lib/assets/images/prana_yoga_kl.jpeg
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_1month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_2month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_3month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_4month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_5month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_6month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_7month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_8month.png
-    - lib/assets/images/Carve Pregnancy Tracker Assets/pregnancy_tracker_fetus_9month.png
-
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_1month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_2month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_3month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_4month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_5month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_6month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_7month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_8month.png
+    - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_9month.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -118,7 +121,7 @@ flutter:
     - family: Livvic
       fonts:
         - asset: lib/assets/fonts/Livvic-Regular.ttf
-        - asset: lib/assets/fonts/Livvic-SemiBold.ttf
+        - asset: lib/assets/fonts/Livvic-Semibold.ttf
           weight: 600
         - asset: lib/assets/fonts/Livvic-Bold.ttf
           weight: 700

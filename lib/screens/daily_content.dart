@@ -1,4 +1,5 @@
 import 'package:carve_app/data/content_data.dart';
+import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:carve_app/widgets/toggle_button.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class DailyContent extends StatefulWidget {
   const DailyContent({super.key});
@@ -18,6 +20,8 @@ class DailyContent extends StatefulWidget {
 class _DailyContentState extends State<DailyContent> {
   @override
   Widget build(BuildContext context) {
+    Provider.of<ContentProvider>(context, listen: false).fetchContentListData();
+
     imageCache.clear;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);

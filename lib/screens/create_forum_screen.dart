@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:carve_app/widgets/add_image.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'package:carve_app/widgets/create_button.dart';
-import 'package:carve_app/widgets/description.dart';
+import 'package:carve_app/widgets/forum_create_page_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';

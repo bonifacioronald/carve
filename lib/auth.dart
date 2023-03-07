@@ -32,11 +32,18 @@ class Auth {
       password: password,
     )
         .then((value) {
-      FirebaseFirestore.instance.collection('users').doc(value.user!.uid).set({
+      FirebaseFirestore.instance.collection('user').doc(value.user!.uid).set({
         "email": value.user!.email,
-        "userId": value.user!.uid,
+        "id": value.user!.uid,
+        'name': '',
+        'appUsageDuration': '',
+        'childAge': '',
+        'childGender': '',
+        'isPregnant': false,
+        'parentingStyle': ''
       });
     });
+    return null;
   }
 
   Future<void> signOut(BuildContext context) async {
