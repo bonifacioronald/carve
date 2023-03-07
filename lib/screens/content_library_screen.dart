@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:carve_app/widgets/content_library_card.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
@@ -92,7 +93,7 @@ class ContentLibraryScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Container(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                padding: EdgeInsets.only(left: 30, right: 30, top: 25),
                 width: double.infinity,
                 height: 1191,
                 decoration: BoxDecoration(
@@ -122,9 +123,18 @@ class ContentLibraryScreen extends StatelessWidget {
                           size: 21,
                         )
                       ],
+                    ),
+                    SizedBox(height: 10),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                        width: 800,
+                        color: Colors.brown,
+                        child: Row(
+                          children: [ContentLibraryCard()],
+                        ),
+                      ),
                     )
-
-                    
                   ],
                 ),
               )
