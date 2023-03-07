@@ -1,3 +1,4 @@
+import 'package:carve_app/loading_screen.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/content_library_screen.dart';
 import 'package:carve_app/screens/forum_screen.dart';
@@ -33,19 +34,6 @@ class NavigationState extends State<Navigation> {
     TrackerScreen(),
   ];
 
-  Widget _loadingScreen() {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: custom_colors.backgroundPurple,
-      child: Center(
-        child: CircularProgressIndicator(
-          color: custom_colors.secondaryLightPurple,
-        ),
-      ),
-    );
-  }
-
   @override
   initState() {
     Provider.of<UserProvider>(context, listen: false).fetchUserData().then(
@@ -78,7 +66,7 @@ class NavigationState extends State<Navigation> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: _isLoading ? _loadingScreen() : screens[currentIndex],
+      body: _isLoading ? LoadingScreen() : screens[currentIndex],
       bottomNavigationBar: Container(
         height: 80,
         decoration: BoxDecoration(

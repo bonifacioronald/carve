@@ -8,8 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:async/async.dart';
 
 class DailyContentStory extends StatefulWidget {
-  List<ContentModel> contentsList;
-  DailyContentStory(this.contentsList, {super.key});
+  ContentModel content;
+  DailyContentStory(this.content, {super.key});
 
   @override
   State<DailyContentStory> createState() => _DailyContentStoryState();
@@ -21,7 +21,6 @@ bool isPaused = false;
 bool isPlaying = true;
 bool isTitleScreen = false;
 RestartableTimer? timer;
-int contentIndex = 0;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
   void runTimer() {
@@ -29,8 +28,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
       print("timehasstarted");
       setState(() {
         if (timer != null &&
-            currentSlideIndex <=
-                widget.contentsList[contentIndex].content.length &&
+            currentSlideIndex <= widget.content.content.length &&
             isPaused == false) {
           currentSlideIndex++;
         }
@@ -38,8 +36,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
     });
 
     if (timer != null &&
-        currentSlideIndex <=
-            widget.contentsList[contentIndex].content.length - 1) {
+        currentSlideIndex <= widget.content.content.length - 1) {
       setState(() {
         timer!.reset();
       });
@@ -49,11 +46,10 @@ class _DailyContentStoryState extends State<DailyContentStory> {
 
   @override
   Widget build(BuildContext context) {
-    int totalSlides = widget.contentsList[contentIndex].content.length + 1;
+    int totalSlides = widget.content.content.length + 1;
 
-    print(widget.contentsList[contentIndex].content.length);
-    if (currentSlideIndex <=
-        widget.contentsList[contentIndex].content.length - 1) {
+    print(widget.content.content.length);
+    if (currentSlideIndex <= widget.content.content.length - 1) {
       runTimer();
     } else {
       isLastScreen = true;
@@ -66,9 +62,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
       isTitleScreen = false;
     }
 
-    ContentModel content = widget.contentsList[contentIndex];
-    String contentTitleScreen = widget.contentsList[contentIndex].content[0];
-
+    ContentModel content = widget.content;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
 
@@ -161,7 +155,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                     ),
                     SizedBox(height: 20),
                     isLastScreen
-                        ? ending_box(content)
+                        ? ending_box(content.title)
                         : content_box(content, isTitleScreen),
                     SizedBox(height: isTitleScreen ? 40 : 15),
                     Row(
@@ -310,9 +304,9 @@ class content_box extends StatelessWidget {
 }
 
 class ending_box extends StatelessWidget {
-  ContentModel content;
+  String title;
 
-  ending_box(this.content);
+  ending_box(this.title);
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -345,7 +339,7 @@ class ending_box extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        content.content[contentIndex],
+                        title,
                         style: TextStyle(
                             fontSize: 32,
                             color: Colors.white,
