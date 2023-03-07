@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:carve_app/main.dart';
 import 'package:carve_app/widgets/category_button.dart';
-import 'package:carve_app/widgets/current_location_screen.dart';
+import 'package:carve_app/widgets/map_screen_widgets.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
