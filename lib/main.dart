@@ -1,15 +1,15 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/maps_resources.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content.dart';
 import 'package:carve_app/screens/forum_all.dart';
 import 'package:carve_app/screens/local_parenting_class_screen.dart';
+import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
-import 'package:carve_app/widgets/resources_maps.dart';
+import 'package:carve_app/widgets/current_location_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
 import 'package:carve_app/screens/question_2_screen.dart';
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: MapSample(),
+        home: FoodBank(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
           LocalParentingClass.routeName: (context) => LocalParentingClass(),
-          mapsResources.routeName: (context) => mapsResources(),
+          FoodBank.routeName: (context) => FoodBank(),
         },
       ),
     );

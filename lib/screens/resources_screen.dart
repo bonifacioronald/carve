@@ -1,5 +1,5 @@
 import 'package:carve_app/screens/daily_content.dart';
-import 'package:carve_app/screens/maps_resources.dart';
+import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'local_parenting_class_screen.dart';
 import 'package:flutter/material.dart';
@@ -149,7 +149,7 @@ class ResourcesScreen extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: (() => Navigator.of(context)
-                                    .pushNamed(mapsResources.routeName)),
+                                    .pushNamed(FoodBank.routeName)),
                                 child: CategoryButton(
                                   custom_colors.secondaryLightPurple
                                       .withOpacity(0.6),
