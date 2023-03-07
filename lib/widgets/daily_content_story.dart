@@ -8,52 +8,47 @@ import 'package:intl/intl.dart';
 import 'package:async/async.dart';
 
 class DailyContentStory extends StatefulWidget {
-  List<ContentModel> contentsList;
-  DailyContentStory(this.contentsList, {super.key});
+  ContentModel content;
+  DailyContentStory(this.content, {super.key});
 
   @override
   State<DailyContentStory> createState() => _DailyContentStoryState();
 }
 
 int currentSlideIndex = 0;
-bool isLastScreen = false;
-bool isPaused = false;
-bool isPlaying = true;
+bool isPaused = true;
+bool isPlaying = false;
 bool isTitleScreen = false;
 RestartableTimer? timer;
-int contentIndex = 0;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
   void runTimer() {
-    timer = RestartableTimer(const Duration(seconds: 3), () {
-      print("timehasstarted");
-      setState(() {
-        if (timer != null &&
-            currentSlideIndex <=
-                widget.contentsList[contentIndex].content.length &&
-            isPaused == false) {
-          currentSlideIndex++;
-        }
-      });
-    });
-
-    if (timer != null &&
-        currentSlideIndex <=
-            widget.contentsList[contentIndex].content.length - 1) {
+    if (timer != null && currentSlideIndex <= widget.content.content.length) {
       setState(() {
         timer!.reset();
       });
       print("timer resetted");
     }
+    timer = RestartableTimer(const Duration(seconds: 30), () {
+      print("timehasstarted");
+      setState(() {
+        if (timer != null &&
+            currentSlideIndex < widget.content.content.length + 1 &&
+            isPaused == false) {
+          currentSlideIndex++;
+        }
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    int totalSlides = widget.contentsList[contentIndex].content.length + 1;
+    bool isLastScreen = false;
+    int totalSlides = widget.content.content.length + 2;
+    print(currentSlideIndex);
 
-    print(widget.contentsList[contentIndex].content.length);
-    if (currentSlideIndex <=
-        widget.contentsList[contentIndex].content.length - 1) {
+    print(widget.content.content.length);
+    if (currentSlideIndex < widget.content.content.length + 1) {
       runTimer();
     } else {
       isLastScreen = true;
@@ -61,14 +56,11 @@ class _DailyContentStoryState extends State<DailyContentStory> {
 
     if (currentSlideIndex == 0) {
       isTitleScreen = true;
-      print(isTitleScreen);
     } else {
       isTitleScreen = false;
     }
 
-    ContentModel content = widget.contentsList[contentIndex];
-    String contentTitleScreen = widget.contentsList[contentIndex].content[0];
-
+    ContentModel content = widget.content;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
 
@@ -105,7 +97,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                             width: 150,
                             child: Center(
                               child: Text(
-                                content.title,
+                                "Daily Content",
                                 style: TextStyle(
                                     color: custom_colors.primaryDarkPurple,
                                     fontSize: 18,
@@ -161,7 +153,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                     ),
                     SizedBox(height: 20),
                     isLastScreen
-                        ? ending_box(content)
+                        ? ending_box(content.title)
                         : content_box(content, isTitleScreen),
                     SizedBox(height: isTitleScreen ? 40 : 15),
                     Row(
@@ -255,7 +247,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              if (currentSlideIndex < totalSlides - 1) {
+                              if (currentSlideIndex <= totalSlides - 2) {
                                 setState(() {
                                   currentSlideIndex++;
                                   runTimer();
@@ -294,7 +286,9 @@ class content_box extends StatelessWidget {
       child: Container(
         alignment: isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
         child: AutoSizeText(
-          content.content[currentSlideIndex],
+          isTitleScreen
+              ? content.title
+              : content.content[currentSlideIndex - 1],
           style: TextStyle(
               fontSize: 40,
               color: Colors.white,
@@ -310,9 +304,9 @@ class content_box extends StatelessWidget {
 }
 
 class ending_box extends StatelessWidget {
-  ContentModel content;
+  String title;
 
-  ending_box(this.content);
+  ending_box(this.title);
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -345,7 +339,7 @@ class ending_box extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        content.content[contentIndex],
+                        title,
                         style: TextStyle(
                             fontSize: 32,
                             color: Colors.white,
