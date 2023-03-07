@@ -16,28 +16,25 @@ class CategoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(FoodBank.routeName),
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: buttonColor,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                BoxShadow(
-                  color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 2,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 36,
-            ),
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            color: buttonColor,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Icon(
+            icon,
+            color: iconColor,
+            size: 36,
           ),
         ),
         SizedBox(

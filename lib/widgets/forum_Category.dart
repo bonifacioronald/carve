@@ -2,9 +2,10 @@ import '../models/colors.dart' as custom_colors;
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
+  Color buttonColor;
   String category;
   int quantity;
-  Category(this.category, this.quantity);
+  Category(this.buttonColor, this.category, this.quantity);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class Category extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         height: 32,
         decoration: BoxDecoration(
-          color: Color(0XFF02084B),
+          color: buttonColor,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
