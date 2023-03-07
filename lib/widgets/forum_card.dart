@@ -46,17 +46,18 @@ class ForumCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              AutoSizeText(
-                '$authorName •',
-                style: TextStyle(
-                  color: Colors.grey.withOpacity(0.4),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              Container(
+                width: 60,
+                child: Text(
+                  '$authorName •',
+                  style: TextStyle(
+                    color: Colors.grey.withOpacity(0.4),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
-                overflow: TextOverflow.ellipsis,
-                minFontSize: 16,
-                maxFontSize: 16,
-                maxLines: 1,
               ),
               SizedBox(width: 4),
               Text(
