@@ -1,9 +1,11 @@
-
 import 'package:carve_app/screens/maps_resources.dart';
+import 'package:carve_app/screens/daily_content.dart';
+import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'local_parenting_class_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
+import 'package:url_launcher/url_launcher.dart';
 
 class ResourcesScreen extends StatelessWidget {
   const ResourcesScreen({super.key});
@@ -103,75 +105,79 @@ class ResourcesScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 12),
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CategoryButton(
-                                custom_colors.primaryDarkPurple,
-                                Colors.white,
-                                Icons.baby_changing_station_rounded,
-                                "Post-\npartum",
-                              ),
-                              CategoryButton(
-                                  custom_colors.primaryDarkPurple
-                                      .withOpacity(0.7),
+                          GestureDetector(
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(FoodBank.routeName),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CategoryButton(
+                                  custom_colors.primaryDarkPurple,
                                   Colors.white,
-                                  Icons.handshake_rounded,
-                                  "Therapy"),
-                              CategoryButton(
-                                custom_colors.secondaryLightPurple
-                                    .withOpacity(0.6),
-                                Colors.white,
-                                Icons.phone_in_talk_sharp,
-                                "Marriage\nCounseling",
-                              ),
-                              CategoryButton(
-                                custom_colors.secondaryLightPurple,
-                                Colors.white,
-                                Icons.school_outlined,
-                                "Daycare",
-                              ),
-                            ],
+                                  Icons.baby_changing_station_rounded,
+                                  "Post-\npartum",
+                                ),
+                                CategoryButton(
+                                    custom_colors.primaryDarkPurple
+                                        .withOpacity(0.7),
+                                    Colors.white,
+                                    Icons.handshake_rounded,
+                                    "Therapy"),
+                                CategoryButton(
+                                  custom_colors.secondaryLightPurple
+                                      .withOpacity(0.6),
+                                  Colors.white,
+                                  Icons.phone_in_talk_sharp,
+                                  "Marriage\nCounseling",
+                                ),
+                                CategoryButton(
+                                  custom_colors.secondaryLightPurple,
+                                  Colors.white,
+                                  Icons.school_outlined,
+                                  "Daycare",
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: 16,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CategoryButton(
-                                custom_colors.secondaryLightPurple,
-                                Colors.white,
-                                Icons.payments_outlined,
-                                "Charities",
-                              ),
-                              GestureDetector(
-                                onTap: (() => Navigator.of(context)
-                                    .pushNamed(mapsResources.routeName)),
-                                child: CategoryButton(
+                          GestureDetector(
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(FoodBank.routeName),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CategoryButton(
+                                  custom_colors.secondaryLightPurple,
+                                  Colors.white,
+                                  Icons.payments_outlined,
+                                  "Charities",
+                                ),
+                                CategoryButton(
                                   custom_colors.secondaryLightPurple
                                       .withOpacity(0.6),
                                   Colors.white,
                                   Icons.food_bank_outlined,
                                   "Food Bank",
                                 ),
-                              ),
-                              CategoryButton(
-                                custom_colors.primaryDarkPurple
-                                    .withOpacity(0.7),
-                                Colors.white,
-                                Icons.house_outlined,
-                                "Adoption\nAgency",
-                              ),
-                              CategoryButton(
-                                custom_colors.primaryDarkPurple,
-                                Colors.white,
-                                Icons.stroller_outlined,
-                                "Babysitter",
-                              ),
-                            ],
+                                CategoryButton(
+                                  custom_colors.primaryDarkPurple
+                                      .withOpacity(0.7),
+                                  Colors.white,
+                                  Icons.house_outlined,
+                                  "Adoption\nAgency",
+                                ),
+                                CategoryButton(
+                                  custom_colors.primaryDarkPurple,
+                                  Colors.white,
+                                  Icons.stroller_outlined,
+                                  "Babysitter",
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -318,36 +324,39 @@ class EmergencyHotlineBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      width: double.infinity,
-      height: 60,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "Call 15999\nPregnancy Hotline",
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          ),
-          Icon(
-            Icons.call,
-            size: 32,
-            color: custom_colors.secondaryLightPurple,
-          )
-        ],
+    return GestureDetector(
+      onTap: (){launch('tel:+15999');  } ,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        width: double.infinity,
+        height: 60,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "Call 15999\nPregnancy Hotline",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            Icon(
+              Icons.call,
+              size: 32,
+              color: custom_colors.secondaryLightPurple,
+            )
+          ],
+        ),
       ),
     );
   }
