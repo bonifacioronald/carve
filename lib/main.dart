@@ -9,7 +9,7 @@ import 'package:carve_app/screens/local_parenting_class_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
-import 'package:carve_app/widgets/current_location_screen.dart';
+import 'package:carve_app/widgets/map_screen_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
 import 'package:carve_app/screens/question_2_screen.dart';
