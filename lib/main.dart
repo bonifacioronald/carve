@@ -1,12 +1,13 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/Local_FoodBank_screen.dart';
+import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content.dart';
-import 'package:carve_app/screens/forum_all.dart';
+import 'package:carve_app/screens/forum_all_screen.dart';
 import 'package:carve_app/screens/local_parenting_class_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/screens/resources_screen.dart';
@@ -47,13 +48,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: ContentProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: ForumProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Carve',
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: ResourcesScreen(),
+        home: AuthWidgetTree(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),

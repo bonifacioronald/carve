@@ -1,6 +1,6 @@
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/content_library_screen.dart';
-import 'package:carve_app/screens/forum_screen.dart';
+import 'package:carve_app/screens/forum_home_screen.dart';
 import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/tracker_screen.dart';

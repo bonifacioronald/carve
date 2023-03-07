@@ -1,4 +1,4 @@
-import 'package:carve_app/widgets/forum_content.dart';
+import 'package:carve_app/widgets/forum_card.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/forum_category.dart';
@@ -53,41 +53,41 @@ class forumAll extends StatelessWidget {
                       ],
                     )),
                 SizedBox(height: 24),
-                ForumCard(
-                    "Benjamin",
-                    "12h ago",
-                    "Pregnancy",
-                    "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
-                    "120",
-                    "60"),
-                ForumCard(
-                    "Benjamin",
-                    "12h ago",
-                    "Pregnancy",
-                    "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
-                    "120",
-                    "60"),
-                ForumCard(
-                    "Benjamin",
-                    "12h ago",
-                    "Pregnancy",
-                    "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
-                    "120",
-                    "60"),
-                ForumCard(
-                    "Benjamin",
-                    "12h ago",
-                    "Pregnancy",
-                    "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
-                    "120",
-                    "60"),
-                ForumCard(
-                    "Benjamin",
-                    "12h ago",
-                    "Pregnancy",
-                    "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
-                    "120",
-                    "60"),
+                // ForumCard(
+                //     "Benjamin",
+                //     "12h ago",
+                //     "Pregnancy",
+                //     "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
+                //     "120",
+                //     "60"),
+                // ForumCard(
+                //     "Benjamin",
+                //     "12h ago",
+                //     "Pregnancy",
+                //     "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
+                //     "120",
+                //     "60"),
+                // ForumCard(
+                //     "Benjamin",
+                //     "12h ago",
+                //     "Pregnancy",
+                //     "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
+                //     "120",
+                //     "60"),
+                // ForumCard(
+                //     "Benjamin",
+                //     "12h ago",
+                //     "Pregnancy",
+                //     "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
+                //     "120",
+                //     "60"),
+                // ForumCard(
+                //     "Benjamin",
+                //     "12h ago",
+                //     "Pregnancy",
+                //     "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
+                //     "120",
+                //     "60"),
               ],
             ),
           )),
