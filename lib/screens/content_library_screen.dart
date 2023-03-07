@@ -11,8 +11,8 @@ class ContentLibraryScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          width: double.infinity,
-          height: 1430,
+          width: MediaQuery.of(context).size.width,
+          height: 1139,
           color: custom_colors.primaryDarkPurple,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,8 +94,8 @@ class ContentLibraryScreen extends StatelessWidget {
               SizedBox(height: 20),
               Container(
                 padding: EdgeInsets.only(left: 30, right: 30, top: 25),
-                width: double.infinity,
-                height: 1191,
+                width: MediaQuery.of(context).size.width,
+                height: 900,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
@@ -125,14 +125,82 @@ class ContentLibraryScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 10),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Container(
-                        width: 800,
-                        color: Colors.brown,
-                        child: Row(
-                          children: [ContentLibraryCard()],
-                        ),
+                    Container(
+                      height: 240,
+                      width: 800, //this sould be a variable
+                      // color: Colors.brown,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              ContentLibraryCard(
+                                  "category", "title", "image url"),
+                              SizedBox(
+                                width: 20,
+                              )
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Text("This should be a variable as well",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: custom_colors.primaryDarkPurple)),
+                    Container(
+                      height: 240,
+                      width: 800, //this sould be a variable
+                      // color: Colors.brown,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              ContentLibraryCard(
+                                  "category", "title", "image url"),
+                              SizedBox(
+                                width: 20,
+                              )
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Text("Popular",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: custom_colors.primaryDarkPurple)),
+                    Container(
+                      height: 240,
+                      width: 800, //this sould be a variable
+                      // color: Colors.brown,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              ContentLibraryCard(
+                                  "category", "title", "image url"),
+                              SizedBox(
+                                width: 20,
+                              )
+                            ],
+                          );
+                        },
                       ),
                     )
                   ],
