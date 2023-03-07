@@ -3,7 +3,7 @@ class ForumModel {
   String title;
   String authorName;
   String content;
-  int category;
+  String category;
   DateTime publishedDate;
   int totalLikes;
   int totalReplies;
