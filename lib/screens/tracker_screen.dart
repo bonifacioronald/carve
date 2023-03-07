@@ -30,7 +30,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Pregancy Tracker",
+                "Pregnancy Tracker",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,

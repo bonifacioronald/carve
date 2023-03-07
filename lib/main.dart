@@ -1,5 +1,6 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
+import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/Local_FoodBank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
@@ -12,6 +13,7 @@ import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:carve_app/widgets/map_screen_widgets.dart';
+import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
 import 'package:carve_app/screens/question_2_screen.dart';
@@ -41,6 +43,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: UserProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ContentProvider(),
         ),
       ],
       child: MaterialApp(
