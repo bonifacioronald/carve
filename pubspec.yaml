@@ -104,7 +104,8 @@ flutter:
     - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_7month.png
     - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_8month.png
     - lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_9month.png
-
+    - lib/assets/images/Content_Library_Assets/content_library_pregnant_mother.png
+    - lib/assets/images/Content_Library_Assets/content_library_background.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
