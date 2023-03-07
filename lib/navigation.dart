@@ -1,4 +1,4 @@
-import 'package:carve_app/loading_screen.dart';
+import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/content_library_screen.dart';
 import 'package:carve_app/screens/forum_screen.dart';

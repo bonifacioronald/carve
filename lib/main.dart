@@ -5,7 +5,7 @@ import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/maps_resources.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
-import 'package:carve_app/screens/daily_content.dart';
+import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/forum_all.dart';
 import 'package:carve_app/screens/local_parenting_class_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';

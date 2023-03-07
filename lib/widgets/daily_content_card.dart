@@ -1,4 +1,4 @@
-import 'package:carve_app/screens/daily_content.dart';
+import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 

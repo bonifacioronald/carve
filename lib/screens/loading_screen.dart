@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/colors.dart' as custom_colors;
+import '../models/colors.dart' as custom_colors;
 
 class LoadingScreen extends StatelessWidget {
   @override

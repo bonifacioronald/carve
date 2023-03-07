@@ -16,7 +16,6 @@ class DailyContentStory extends StatefulWidget {
 }
 
 int currentSlideIndex = 0;
-bool isLastScreen = false;
 bool isPaused = true;
 bool isPlaying = false;
 bool isTitleScreen = false;
@@ -30,7 +29,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
       });
       print("timer resetted");
     }
-    timer = RestartableTimer(const Duration(seconds: 5), () {
+    timer = RestartableTimer(const Duration(seconds: 30), () {
       print("timehasstarted");
       setState(() {
         if (timer != null &&
@@ -44,6 +43,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLastScreen = false;
     int totalSlides = widget.content.content.length + 2;
     print(currentSlideIndex);
 

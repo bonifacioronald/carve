@@ -1,5 +1,5 @@
 import 'package:carve_app/data/content_data.dart';
-import 'package:carve_app/loading_screen.dart';
+import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
+import '../models/content_model.dart';
 
 class DailyContent extends StatefulWidget {
   const DailyContent({super.key});
@@ -24,19 +26,32 @@ class _DailyContentState extends State<DailyContent> {
   @override
   void initState() {
     // TODO: implement initState
+
     var _provider = Provider.of<ContentProvider>(context, listen: false);
-    _provider
-        .fetchContentId()
-        .then(
-          (value) => _provider.fetchContentDataFromId(
-            _provider.contentIdList[0],
-          ),
-        )
-        .then((value) {
+    if (_provider.contentIdList.isEmpty) {
+      print('INIT STATE');
+      _provider
+          .fetchContentId()
+          .then(
+            (value) => _provider.fetchContentDataFromId(
+              _provider.contentIdList[0],
+            ),
+          )
+          .then(
+        (value) {
+          setState(
+            () {
+              _isLoading = false;
+            },
+          );
+        },
+      );
+    } else {
       setState(() {
         _isLoading = false;
       });
-    });
+    }
+
     super.initState();
   }
 
@@ -264,7 +279,7 @@ class _DailyContentState extends State<DailyContent> {
                                       color: custom_colors.primaryDarkPurple),
                                 ),
                                 SizedBox(width: 130),
-                                ToggleButton(true)
+                                ToggleButton(false)
                               ],
                             ),
                           ),
