@@ -33,7 +33,8 @@ packages:
     dependency: "direct main"
     description:
       name: auto_size_text
-      url: "https://pub.dartlang.org"
+      sha256: "3f5261cd3fb5f2a9ab4e2fc3fba84fd9fcaac8821f20a1d4e71f557521b22599"
+      url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
   boolean_selector:
@@ -533,7 +534,8 @@ packages:
     dependency: transitive
     description:
       name: simple_gesture_detector
-      url: "https://pub.dartlang.org"
+      sha256: "86d08f85f1f58583b7b4b941d989f48ea6ce08c1724a1d10954a277c2ec36592"
+      url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
   sky_engine:
@@ -587,7 +589,8 @@ packages:
     dependency: "direct main"
     description:
       name: table_calendar
-      url: "https://pub.dartlang.org"
+      sha256: "7f1270313c0cdb245b583ed8518982c01d4a7e95869b3c30abcbae3b642c45d0"
+      url: "https://pub.dev"
     source: hosted
     version: "3.0.8"
   term_glyph:
@@ -611,6 +614,70 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.1"
+  url_launcher:
+    dependency: "direct main"
+    description:
+      name: url_launcher
+      sha256: "75f2846facd11168d007529d6cd8fcb2b750186bea046af9711f10b907e1587e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.10"
+  url_launcher_android:
+    dependency: transitive
+    description:
+      name: url_launcher_android
+      sha256: "1f4d9ebe86f333c15d318f81dcdc08b01d45da44af74552608455ebdc08d9732"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.24"
+  url_launcher_ios:
+    dependency: transitive
+    description:
+      name: url_launcher_ios
+      sha256: c9cd648d2f7ab56968e049d4e9116f96a85517f1dd806b96a86ea1018a3a82e5
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.1"
+  url_launcher_linux:
+    dependency: transitive
+    description:
+      name: url_launcher_linux
+      sha256: e29039160ab3730e42f3d811dc2a6d5f2864b90a70fb765ea60144b03307f682
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.3"
+  url_launcher_macos:
+    dependency: transitive
+    description:
+      name: url_launcher_macos
+      sha256: "2dddb3291a57b074dade66b5e07e64401dd2487caefd4e9e2f467138d8c7eb06"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.3"
+  url_launcher_platform_interface:
+    dependency: transitive
+    description:
+      name: url_launcher_platform_interface
+      sha256: "6c9ca697a5ae218ce56cece69d46128169a58aa8653c1b01d26fcd4aad8c4370"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
+  url_launcher_web:
+    dependency: transitive
+    description:
+      name: url_launcher_web
+      sha256: "574cfbe2390666003c3a1d129bdc4574aaa6728f0c00a4829a81c316de69dd9b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.15"
+  url_launcher_windows:
+    dependency: transitive
+    description:
+      name: url_launcher_windows
+      sha256: "97c9067950a0d09cbd93e2e3f0383d1403989362b97102fbf446473a48079a4b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.4"
   vector_math:
     dependency: transitive
     description:

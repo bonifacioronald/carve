@@ -4,6 +4,7 @@ import 'package:carve_app/widgets/category_button.dart';
 import 'local_parenting_class_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
+import 'package:url_launcher/url_launcher.dart';
 
 class ResourcesScreen extends StatelessWidget {
   const ResourcesScreen({super.key});
@@ -322,36 +323,39 @@ class EmergencyHotlineBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      width: double.infinity,
-      height: 60,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "Call 15999\nPregnancy Hotline",
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          ),
-          Icon(
-            Icons.call,
-            size: 32,
-            color: custom_colors.secondaryLightPurple,
-          )
-        ],
+    return GestureDetector(
+      onTap: (){launch('tel:+15999');  } ,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        width: double.infinity,
+        height: 60,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "Call 15999\nPregnancy Hotline",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            Icon(
+              Icons.call,
+              size: 32,
+              color: custom_colors.secondaryLightPurple,
+            )
+          ],
+        ),
       ),
     );
   }
