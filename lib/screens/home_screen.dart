@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     UserModel currentUser =
-        Provider.of<UserProvider>(context, listen: false).currentUser;
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
     return SingleChildScrollView(
       child: Container(
         width: double.infinity,
