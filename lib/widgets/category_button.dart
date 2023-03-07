@@ -1,3 +1,5 @@
+import 'package:carve_app/screens/Local_FoodBank_screen.dart';
+import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
@@ -13,25 +15,28 @@ class CategoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            color: buttonColor,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-                spreadRadius: 2,
-                blurRadius: 2,
-                offset: Offset(0, 2),
-              ),
-            ],
-          ),
-          child: Icon(
-            icon,
-            color: iconColor,
-            size: 36,
+        GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed(FoodBank.routeName),
+          child: Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              color: buttonColor,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 2,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Icon(
+              icon,
+              color: iconColor,
+              size: 36,
+            ),
           ),
         ),
         SizedBox(
