@@ -2,11 +2,14 @@ class ResourcesModel {
   String id;
   String title;
   String location;
-  int categories;
+  String categories;
+  String URLDirection;
 
   ResourcesModel(
       {required this.id,
       required this.title,
       required this.location,
-      required this.categories});
+      required this.categories,
+      required this.URLDirection
+      });
 }

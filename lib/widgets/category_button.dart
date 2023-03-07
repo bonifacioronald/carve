@@ -9,15 +9,15 @@ class CategoryButton extends StatelessWidget {
   Color iconColor;
   IconData icon;
   String text;
-
   CategoryButton(this.buttonColor, this.iconColor, this.icon, this.text);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+
         GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(FoodBank.routeName),
+          onTap: () => Navigator.of(context).pushNamed(ResourceCategories.routeName),
           child: Container(
             width: 60,
             height: 60,
@@ -56,11 +56,35 @@ class CategoryButton extends StatelessWidget {
 
 class CategoriesButton extends StatelessWidget {
   String text;
+  String url;
 
-  CategoriesButton(this.text);
+  CategoriesButton(this.text, this.url);
 
   @override
   Widget build(BuildContext context) {
+    var gestureDetector = GestureDetector(
+                onTap: () {
+                  launch( url );
+                },
+                child: Container(
+                  width: 85,
+                  height: 25,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color(0xFFD9D9D9),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Direction",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF0000EE))),
+                    ],
+                  ),
+                ),
+              );
     return Column(
       children: [
         Container(
@@ -89,29 +113,7 @@ class CategoriesButton extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 17, color: custom_colors.primaryDarkPurple),
               ),
-              GestureDetector(
-                onTap: () {
-                  launch('https://www.google.com/maps/');
-                },
-                child: Container(
-                  width: 85,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFD9D9D9),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Direction",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF0000EE))),
-                    ],
-                  ),
-                ),
-              )
+              gestureDetector
             ],
           ),
         ),
