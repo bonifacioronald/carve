@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
-class ContentLibararyScreen extends StatelessWidget {
-  const ContentLibararyScreen({super.key});
+class ContentLibraryScreen extends StatelessWidget {
+  const ContentLibraryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

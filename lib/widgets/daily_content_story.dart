@@ -17,39 +17,38 @@ class DailyContentStory extends StatefulWidget {
 
 int currentSlideIndex = 0;
 bool isLastScreen = false;
-bool isPaused = false;
-bool isPlaying = true;
+bool isPaused = true;
+bool isPlaying = false;
 bool isTitleScreen = false;
 RestartableTimer? timer;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
   void runTimer() {
-    timer = RestartableTimer(const Duration(seconds: 3), () {
-      print("timehasstarted");
-      setState(() {
-        if (timer != null &&
-            currentSlideIndex <= widget.content.content.length &&
-            isPaused == false) {
-          currentSlideIndex++;
-        }
-      });
-    });
-
-    if (timer != null &&
-        currentSlideIndex <= widget.content.content.length - 1) {
+    if (timer != null && currentSlideIndex <= widget.content.content.length) {
       setState(() {
         timer!.reset();
       });
       print("timer resetted");
     }
+    timer = RestartableTimer(const Duration(seconds: 5), () {
+      print("timehasstarted");
+      setState(() {
+        if (timer != null &&
+            currentSlideIndex < widget.content.content.length + 1 &&
+            isPaused == false) {
+          currentSlideIndex++;
+        }
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    int totalSlides = widget.content.content.length + 1;
+    int totalSlides = widget.content.content.length + 2;
+    print(currentSlideIndex);
 
     print(widget.content.content.length);
-    if (currentSlideIndex <= widget.content.content.length - 1) {
+    if (currentSlideIndex < widget.content.content.length + 1) {
       runTimer();
     } else {
       isLastScreen = true;
@@ -57,7 +56,6 @@ class _DailyContentStoryState extends State<DailyContentStory> {
 
     if (currentSlideIndex == 0) {
       isTitleScreen = true;
-      print(isTitleScreen);
     } else {
       isTitleScreen = false;
     }
@@ -99,7 +97,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                             width: 150,
                             child: Center(
                               child: Text(
-                                content.title,
+                                "Daily Content",
                                 style: TextStyle(
                                     color: custom_colors.primaryDarkPurple,
                                     fontSize: 18,
@@ -249,7 +247,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              if (currentSlideIndex < totalSlides - 1) {
+                              if (currentSlideIndex <= totalSlides - 2) {
                                 setState(() {
                                   currentSlideIndex++;
                                   runTimer();
@@ -288,7 +286,9 @@ class content_box extends StatelessWidget {
       child: Container(
         alignment: isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
         child: AutoSizeText(
-          content.content[currentSlideIndex],
+          isTitleScreen
+              ? content.title
+              : content.content[currentSlideIndex - 1],
           style: TextStyle(
               fontSize: 40,
               color: Colors.white,

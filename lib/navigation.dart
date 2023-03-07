@@ -29,7 +29,7 @@ class NavigationState extends State<Navigation> {
   List<Widget> screens = [
     HomeScreen(),
     ResourcesScreen(),
-    ContentLibararyScreen(),
+    ContentLibraryScreen(),
     ForumScreen(),
     TrackerScreen(),
   ];

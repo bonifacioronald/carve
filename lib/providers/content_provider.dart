@@ -38,16 +38,17 @@ class ContentProvider with ChangeNotifier {
       (snapshot) {
         loadedContent.id = snapshot.data()!['id'];
         loadedContent.title = snapshot.data()!['title'];
-        List.from(snapshot.data()!['content']).forEach((slide) {
-          loadedContent.content.add(slide);
+        List.from(snapshot.data()!['content']).forEach((content) {
+          loadedContent.content.add(content);
         });
+        for (int i = 0; i < loadedContent.content.length; i++) {
+          String formattedString =
+              loadedContent.content[i].replaceAll('\\n', '\n');
+          loadedContent.content[i] = formattedString;
+        }
         List.from(snapshot.data()!['suitableCategories']).forEach((category) {
           loadedContent.suitableCategories.add(category);
         });
-        print(loadedContent.id);
-        print(loadedContent.title);
-        print(loadedContent.content);
-        print(loadedContent.suitableCategories);
       },
     );
   }
