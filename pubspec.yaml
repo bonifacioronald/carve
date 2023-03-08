@@ -51,6 +51,8 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   geolocator: ^9.0.2
   location: ^4.4.0
+  translator: ^0.1.7
+  string_translate: ^1.4.4
 
 dev_dependencies:
   flutter_test:

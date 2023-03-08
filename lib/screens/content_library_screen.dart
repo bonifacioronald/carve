@@ -50,7 +50,9 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
           : SingleChildScrollView(
               child: Container(
                 width: 1000,
+
                 height: 898,
+
                 padding: EdgeInsets.zero,
                 color: custom_colors.primaryDarkPurple,
                 child: Column(
@@ -133,7 +135,10 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                     SizedBox(height: 20),
                     Container(
                       width: double.infinity,
+
+
                       height: 650,
+
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),

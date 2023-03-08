@@ -67,7 +67,7 @@ class _DailyContentScreenState extends State<DailyContentScreen> {
           : SingleChildScrollView(
               child: Container(
                 width: double.infinity,
-                height: 1430,
+                height: 1461,
                 color: custom_colors.backgroundPurple,
                 child: Column(
                   children: [
@@ -78,30 +78,6 @@ class _DailyContentScreenState extends State<DailyContentScreen> {
                       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Column(
                         children: [
-                          Container(
-                              child: Row(children: [
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: custom_colors.primaryDarkPurple),
-                              child: Center(
-                                child: Icon(
-                                  Icons.ios_share,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              "Share",
-                              style: TextStyle(
-                                  color: custom_colors.primaryDarkPurple,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ])),
                           SizedBox(height: 20, width: 180),
                           Container(
                             padding: EdgeInsets.only(top: 15, left: 15),
