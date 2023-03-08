@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../models/colors.dart' as custom_colors;
+import '../providers/user_provider.dart';
 
 class CalendarSelection extends StatefulWidget {
   @override
   State<CalendarSelection> createState() => _CalendarSelectionState();
 }
+
 
 DateTime startOfPregnancy = DateTime(2022, 09, 03);
 DateTime targetDay = DateTime.now();
@@ -65,7 +68,9 @@ Widget unselectedTimePeriodContainer(String text) {
 }
 
 class _CalendarSelectionState extends State<CalendarSelection> {
+
   void showNotesDialog(BuildContext context) {
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -107,6 +112,19 @@ class _CalendarSelectionState extends State<CalendarSelection> {
 
   @override
   Widget build(BuildContext context) {
+    int childAge = int.parse(Provider.of<UserProvider>(context,listen:false).userProviderData.childAge);
+    int convertedAge=0;
+    try{ convertedAge= childAge*7;
+    startOfPregnancy = DateTime.now().subtract(Duration(days: convertedAge));
+    }
+    catch(Error){
+
+      startOfPregnancy=DateTime.utc(2023,01,01);
+      int convertedAge=84;
+
+    }
+
+
     if (displayedWeek <= 4) {
       [
         setState(() {
@@ -163,7 +181,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
               'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_8month.png';
         })
       ];
-    } else if (displayedWeek <= 40) {
+    } else {
       [
         setState(() {
           imageUrl =
@@ -348,8 +366,8 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                     ),
                     availableGestures: AvailableGestures.all,
                     focusedDay: targetDay,
-                    firstDay: DateTime.utc(2022, 08, 31),
-                    lastDay: DateTime.utc(2023, 07, 01),
+                    firstDay:startOfPregnancy,
+                    lastDay: DateTime.now().add(Duration(days:300-convertedAge)),
                     selectedDayPredicate: (day) => isSameDay(day, targetDay),
                     onDaySelected: (selectedDay, focusedDay) {
                       setState(

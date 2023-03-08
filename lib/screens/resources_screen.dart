@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../models/colors.dart';
 import '../providers/daily_content_provider.dart';
 
 class ResourcesScreen extends StatefulWidget {
@@ -85,21 +86,21 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                           ),
                           ResourcesMainCard(
                               '15% OFF Pregnancy Care',
-                              'https://www.pngmart.com/files/16/Vector-Happy-Pregnant-Woman-Transparent-PNG.png',
+                              'https://images.ctfassets.net/9wtva4vhlgxb/6QWEHMlC0gSnCAdZVYJuvJ/321f0c3ae02c30b4cf45cc7ec6037559/mask_3x.webp',
                               'Pregnancy Classes'),
                           SizedBox(
                             width: 20,
                           ),
                           ResourcesMainCard(
                               'Best Family Therapy in Town',
-                              'https://www.pngmart.com/files/21/Counseling-Transparent-Background.png',
+                              'https://www.arkansasrelationshipcenter.com/wp-content/uploads/2019/02/Family-therapy-family-counseling-little-rock-common-family-therapy-issues-1080x675.jpg',
                               'Therapy'),
                           SizedBox(
                             width: 20,
                           ),
                           ResourcesMainCard(
                               'Hunger Relief Near You',
-                              'https://cdn-icons-png.flaticon.com/512/1075/1075090.png',
+                              'https://assets.hmetro.com.my/images/articles/food_1585123849.jpg',
                               'Food Bank'),
                           SizedBox(
                             width: 20,
@@ -318,88 +319,28 @@ class ResourcesMainCard extends StatelessWidget {
   ResourcesMainCard(this.text, this.imageURL, this.launcher);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width - 80,
-      height: 160,
-      padding: EdgeInsets.only(top: 20, left: 15, bottom: 25, right: 10),
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('lib/assets/images/daily_content_card_bg.png'),
-              fit: BoxFit.cover),
-          borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: 2),
-                height: 60,
-                width: 187,
-                child: Column(children: [
-                  Text(
-                    text,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold),
-                  )
-                ]),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(
-                        ResourceDetailScreen.routeName,
-                        arguments: launcher),
-                    child: Container(
-                      width: 151,
-                      height: 40,
-                      padding: EdgeInsets.only(left: 8),
-                      decoration: BoxDecoration(
-                          color: Color(0xFF02084B),
-                          borderRadius: BorderRadiusDirectional.circular(15)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text("Book Now",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20)),
-                              SizedBox(
-                                width: 13,
-                              ),
-                              Icon(Icons.room_service_outlined,
-                                  color: Colors.white)
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-          Spacer(),
-          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Container(
-                height: 100,
-                width: 100,
-                alignment: Alignment.centerRight,
-                child: Image.network(imageURL))
-          ])
-          // second container
-        ],
-      ),
+    return GestureDetector(
+      onTap: () =>Navigator.of(context)
+            .pushNamed(ResourceDetailScreen.routeName, arguments: 'Pregnancy Classes'),
+      child: Container(
+        width: MediaQuery.of(context).size.width - 80,
+        height: 160,
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 20, left: 15, bottom: 25, right: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+            image: DecorationImage(
+                image: NetworkImage(imageURL),
+                opacity: 0.9,
+                fit: BoxFit.cover)),
+        child:
+        Container(
+          width:150,
+          padding:EdgeInsets.all(15),
+          decoration: BoxDecoration(borderRadius:BorderRadius.circular(20),color:secondaryLightPurple.withOpacity(0.7),),
+          child:Text(text, textAlign: TextAlign.center, style:TextStyle(fontWeight:FontWeight.w900,fontSize: 16,color: Colors.white,)))
+                
+        ),
     );
   }
 }
