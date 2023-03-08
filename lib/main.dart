@@ -12,6 +12,7 @@ import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/question_2_if_pregnant.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
+import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
 import 'package:provider/provider.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: AuthWidgetTree(),
+        home: ResourcesScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
