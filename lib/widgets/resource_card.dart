@@ -14,7 +14,7 @@ class ResourceCard extends StatelessWidget {
       onTap: (() => launch(url)),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12),
-        width: 350,
+        width: double.infinity,
         height: 60,
         decoration: BoxDecoration(
           color: Colors.white,

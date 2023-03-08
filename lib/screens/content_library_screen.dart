@@ -50,7 +50,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
           : SingleChildScrollView(
               child: Container(
                 width: 1000,
-                height: 809,
+                height: 898,
                 padding: EdgeInsets.zero,
                 color: custom_colors.primaryDarkPurple,
                 child: Column(
@@ -133,7 +133,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                     SizedBox(height: 20),
                     Container(
                       width: double.infinity,
-                      height: 600,
+                      height: 650,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
@@ -188,8 +188,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                                       index + 2])),
                                       child: ContentLibraryCard(
                                           contentTitle: _provider
-                                              .loadedContentList[index]
-                                              .title,
+                                              .loadedContentList[index].title,
                                           contentCategory: _provider
                                               .loadedContentList[index]
                                               .suitableCategories[0],
@@ -236,7 +235,8 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                                   .loadedContentList[index])),
                                       child: ContentLibraryCard(
                                           contentTitle: _provider
-                                              .loadedContentList[index + 2].title,
+                                              .loadedContentList[index + 2]
+                                              .title,
                                           contentCategory: _provider
                                               .loadedContentList[index + 2]
                                               .suitableCategories[0],

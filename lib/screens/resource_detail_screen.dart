@@ -72,8 +72,11 @@ class _ResourceDetailScreenState extends State<ResourceDetailScreen> {
                 height: 20,
               ),
               //search bar
-              SearchBar('Search for other resourcess..', Colors.white,
-                  custom_colors.primaryDarkPurple),
+              GestureDetector(
+                onTap: (() => Navigator.of(context).pop()),
+                child: SearchBar('Search for other resourcess..', Colors.white,
+                    custom_colors.primaryDarkPurple),
+              ),
 
               SizedBox(
                 height: 30,
@@ -98,7 +101,6 @@ class _ResourceDetailScreenState extends State<ResourceDetailScreen> {
               SizedBox(
                 height: 16,
               ),
-              //     ResourceCard('Title Title Title', 'resourceList[0].URLDirection'),
               ResourceCard(resourceList[0].title, resourceList[0].URLDirection),
               SizedBox(
                 height: 16,
