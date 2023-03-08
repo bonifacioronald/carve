@@ -4,9 +4,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ForumReplyProvider with ChangeNotifier {
+  final _firebaseReply = FirebaseFirestore.instance;
+
   List<String> forumReplyIdList = [];
   List<ForumReplyModel> loadedForumReplyList = [];
   List<ForumReplyModel> filteredForumReplyList = [];
+
+  Future<void>? createNewReply(String content) {
+    FirebaseFirestore.instance.collection('forumReply').doc().set({
+      "authorName": '',
+      "content": content,
+      'forumId': '',
+      'replyId': '',
+      'publishedDate': '',
+    });
+  }
 
   Future<void> fetchForumId() async {
     print('fetch');

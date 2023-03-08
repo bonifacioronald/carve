@@ -1,6 +1,8 @@
 import 'package:carve_app/models/forum_model.dart';
+import 'package:carve_app/models/user_model.dart';
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/forum_reply_provider.dart';
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/widgets/forum_content_page_card.dart';
 import 'package:carve_app/widgets/reply_button.dart';
 import 'package:carve_app/widgets/reply_widget.dart';
@@ -48,6 +50,8 @@ class _forumPageState extends State<forumPage> {
 
   @override
   Widget build(BuildContext context) {
+    UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
     ForumModel displayedContent =
         ModalRoute.of(context)!.settings.arguments as ForumModel;
 
@@ -131,25 +135,6 @@ class _forumPageState extends State<forumPage> {
                                   ],
                                 );
                               })),
-                      // Container(
-                      //   height: 106 * 3,
-                      //   width: double.infinity,
-                      //   child: ListView.builder(
-                      //     itemCount: 3,
-                      //     itemBuilder: (context, index) {
-                      //       return Column(
-                      //         children: [
-                      //           replyCard(
-                      //               "Benjamin",
-                      //               "1h ago",
-                      //               "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
-                      //               120),
-                      //           SizedBox(height: 16),
-                      //         ],
-                      //       );
-                      //     },
-                      //   ),
-                      // ),
                       SizedBox(height: 16),
                       ReplyButton(),
                     ]),
