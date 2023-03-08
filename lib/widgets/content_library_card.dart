@@ -14,18 +14,18 @@ class ContentLibraryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 220,
+        height: 240,
         child: Column(
           children: [
             Container(
-              width: 100,
-              height: 144,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.amber,
-              ),
-            ),
-            SizedBox(height: 20),
+                width: 100,
+                height: 144,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                        image: NetworkImage(contentImageUrl),
+                        fit: BoxFit.cover))),
+            SizedBox(height: 10),
             Container(
               width: 100,
               height: 20,
@@ -44,7 +44,7 @@ class ContentLibraryCard extends StatelessWidget {
             ),
             Container(
               width: 100,
-              height: 30,
+              height: 50,
               decoration: BoxDecoration(),
               child: Center(
                 child: AutoSizeText(
@@ -52,7 +52,7 @@ class ContentLibraryCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                   maxLines: 4,
-                  minFontSize: 12,
+                  minFontSize: 14,
                   style: TextStyle(
                       color: custom_colors.primaryDarkPurple,
                       fontWeight: FontWeight.bold),

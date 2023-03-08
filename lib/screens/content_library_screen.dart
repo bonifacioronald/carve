@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/screens/content_library_story_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/content_library_card.dart';
@@ -44,19 +45,20 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
   Widget build(BuildContext context) {
     var _provider = Provider.of<ContentProvider>(context, listen: false);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: _isLoading
-            ? LoadingScreen()
-            : Container(
-                width: MediaQuery.of(context).size.width,
-                height: 1139,
+      body: _isLoading
+          ? LoadingScreen()
+          : SingleChildScrollView(
+              child: Container(
+                width: 1000,
+                height: 809,
+                padding: EdgeInsets.zero,
                 color: custom_colors.primaryDarkPurple,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).padding.top + 50,
+                          top: MediaQuery.of(context).padding.top + 20,
                           left: 30,
                           right: 30),
                       child: Text(
@@ -91,7 +93,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                               Container(
                                 width: 250,
                                 child: AutoSizeText(
-                                  "This should be a variable that takes in the content title",
+                                  _provider.loadedContentList[0].title,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -111,13 +113,13 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                     color: custom_colors.secondaryLightPurple,
                                     backgroundColor: Colors.white,
                                     value:
-                                        0.8, //THIS SHOULD BE A VARIABLE THAT CHANGES BASED ON THE USER PROGRESS
+                                        0, //THIS SHOULD BE A VARIABLE THAT CHANGES BASED ON THE USER PROGRESS
                                   ),
                                 ),
                               ),
                               SizedBox(height: 4),
                               Text(
-                                "% the above progress bar",
+                                "0% completed",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -130,9 +132,8 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                     ),
                     SizedBox(height: 20),
                     Container(
-                      padding: EdgeInsets.only(left: 30, right: 30, top: 25),
-                      width: MediaQuery.of(context).size.width,
-                      height: 900,
+                      width: double.infinity,
+                      height: 600,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
@@ -140,129 +141,124 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                           image: DecorationImage(
                               image: AssetImage(
                                   "lib/assets/images/Content_Library_Assets/content_library_background.png"),
-                              fit: BoxFit.cover)),
+                              fit: BoxFit.fitWidth)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Recommendations for you",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: custom_colors.primaryDarkPurple),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.filter_alt_sharp,
-                                color: custom_colors.primaryDarkPurple,
-                                size: 21,
-                              )
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20.0, top: 15, right: 20),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Recommended",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: custom_colors.primaryDarkPurple),
+                                ),
+                                Spacer(),
+                                Icon(
+                                  Icons.filter_alt_sharp,
+                                  color: custom_colors.primaryDarkPurple,
+                                  size: 21,
+                                )
+                              ],
+                            ),
                           ),
                           SizedBox(height: 10),
                           Container(
+                            padding: EdgeInsets.only(left: 20),
                             height: 240,
-                            width: 800, //this sould be a variable
-                            // color: Colors.brown,
+                            width: 800,
                             child: ListView.builder(
                               padding: EdgeInsets.zero,
                               physics: BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
-                              itemCount: _provider.contentIdList.length,
+                              itemCount: _provider.contentIdList.length - 3,
                               itemBuilder: (_, index) {
                                 return Row(
                                   children: [
                                     GestureDetector(
                                       onTap: (() => Navigator.of(context)
-                                          .pushNamed(DailyContent.routeName,
+                                          .pushNamed(
+                                              ContentLibraryStory.routeName,
+                                              arguments:
+                                                  _provider.loadedContentList[
+                                                      index + 2])),
+                                      child: ContentLibraryCard(
+                                          contentTitle: _provider
+                                              .loadedContentList[index]
+                                              .title,
+                                          contentCategory: _provider
+                                              .loadedContentList[index]
+                                              .suitableCategories[0],
+                                          contentImageUrl: _provider
+                                              .loadedContentList[index]
+                                              .thumbnailUrl),
+                                    ),
+                                    SizedBox(
+                                      width: 25,
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20.0, right: 20, bottom: 10),
+                            child: Text("Popular",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: custom_colors.primaryDarkPurple)),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 20, right: 5),
+                            height: 240,
+                            width: 800, //this sould be a variable
+                            // color: Colors.brown,
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              physics: BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _provider.contentIdList.length - 2,
+                              itemBuilder: (_, index) {
+                                return Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: (() => Navigator.of(context)
+                                          .pushNamed(
+                                              DailyContentScreen.routeName,
                                               arguments: _provider
                                                   .loadedContentList[index])),
                                       child: ContentLibraryCard(
                                           contentTitle: _provider
-                                              .loadedContentList[index].title,
+                                              .loadedContentList[index + 2].title,
                                           contentCategory: _provider
-                                              .loadedContentList[index]
+                                              .loadedContentList[index + 2]
                                               .suitableCategories[0],
-                                          contentImageUrl: "image url"),
+                                          contentImageUrl: _provider
+                                              .loadedContentList[index + 2]
+                                              .thumbnailUrl),
                                     ),
                                     SizedBox(
-                                      width: 20,
+                                      width: 15,
                                     )
                                   ],
                                 );
                               },
                             ),
                           ),
-                          SizedBox(height: 20),
-                          Text("This should be a variable as well",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: custom_colors.primaryDarkPurple)),
-                          Container(
-                            height: 240,
-                            width: 800, //this sould be a variable
-                            // color: Colors.brown,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                return Row(
-                                  children: [
-                                    ContentLibraryCard(
-                                      contentCategory: "category",
-                                      contentTitle: "title",
-                                      contentImageUrl: "image url",
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    )
-                                  ],
-                                );
-                              },
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Text("Popular",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: custom_colors.primaryDarkPurple)),
-                          Container(
-                            height: 240,
-                            width: 800, //this sould be a variable
-                            // color: Colors.brown,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                return Row(
-                                  children: [
-                                    ContentLibraryCard(
-                                        contentCategory: "category",
-                                        contentTitle: "title",
-                                        contentImageUrl: "image url"),
-                                    SizedBox(
-                                      width: 20,
-                                    )
-                                  ],
-                                );
-                              },
-                            ),
-                          )
                         ],
                       ),
                     )
                   ],
                 ),
               ),
-      ),
+            ),
     );
   }
 }
