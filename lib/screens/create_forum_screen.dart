@@ -6,6 +6,7 @@ import 'package:carve_app/widgets/forum_create_page_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import '/models/colors.dart' as custom_colors;
 
 class createForum extends StatefulWidget {
   static const routeName = '/create-forum';
@@ -15,6 +16,8 @@ class createForum extends StatefulWidget {
 }
 
 class _createForumState extends State<createForum> {
+  bool isClicked = false;
+  // Color defaultColor = Colors.white;
   File? image;
   Future pickImage(ImageSource source) async {
     try {
@@ -31,6 +34,7 @@ class _createForumState extends State<createForum> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: custom_colors.backgroundPurple,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
           backgroundColor: Color(0XE8E9FE),
@@ -44,7 +48,7 @@ class _createForumState extends State<createForum> {
                 size: 32, color: Color(0XFF02084B)),
           )),
       body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 24, right: 24),
+          padding: EdgeInsets.only(left: 24, right: 24, bottom: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,36 +89,129 @@ class _createForumState extends State<createForum> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold)),
               SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CategoryButton(
-                    Colors.white,
-                    Color(0XFFFF8684),
-                    Icons.pregnant_woman,
-                    "Pregnancy",
-                  ),
-                  CategoryButton(
-                    Colors.white,
-                    Color(0XFFFF8684),
-                    Icons.pregnant_woman,
-                    "Pregnancy",
-                  ),
-                  CategoryButton(
-                    Colors.white,
-                    Color(0XFFFF8684),
-                    Icons.pregnant_woman,
-                    "Pregnancy",
-                  ),
-                  CategoryButton(
-                    Colors.white,
-                    Color(0XFFFF8684),
-                    Icons.pregnant_woman,
-                    "Pregnancy",
-                  ),
-                ],
-              ),
+              SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                      },
+                      child: CategoryButton(
+                          isClicked
+                              ? Colors.white
+                              : custom_colors.primaryDarkPurple,
+                          Colors.amber,
+                          Icons.pregnant_woman,
+                          "Pregnancy"),
+                    ),
+                    SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                      },
+                      child: CategoryButton(
+                          isClicked
+                              ? Colors.white
+                              : custom_colors.primaryDarkPurple,
+                          Colors.amber,
+                          Icons.child_care_rounded,
+                          "Growth"),
+                    ),
+                    SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                      },
+                      child: CategoryButton(
+                          isClicked
+                              ? Colors.white
+                              : custom_colors.primaryDarkPurple,
+                          Colors.amber,
+                          Icons.fastfood,
+                          "Nutrition"),
+                    ),
+                    SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                      },
+                      child: CategoryButton(
+                          isClicked
+                              ? Colors.white
+                              : custom_colors.primaryDarkPurple,
+                          Colors.amber,
+                          Icons.school,
+                          "Education"),
+                    ),
+                    SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                      },
+                      child: CategoryButton(
+                          isClicked
+                              ? Colors.white
+                              : custom_colors.primaryDarkPurple,
+                          Colors.amber,
+                          Icons.attach_money,
+                          "Financial"),
+                    ),
+                    SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                      },
+                      child: CategoryButton(
+                          isClicked
+                              ? Colors.white
+                              : custom_colors.primaryDarkPurple,
+                          Colors.amber,
+                          Icons.drag_indicator_sharp,
+                          "Others"),
+                    ),
+                    SizedBox(width: 20),
+                  ])),
+
+              // Container(
+              //   width: 10 * (68 + 100),
+              //   height: 88,
+              //   child: ListView.builder(
+              //     scrollDirection: Axis.horizontal,
+              //     itemCount: 5,
+              //     itemBuilder: (context, index) {
+              //       return Row(
+              //         children: [
+              //           CategoryButton(
+              //             Colors.white,
+              //             Color(0XFFFF8684),
+              //             Icons.pregnant_woman,
+              //             "Pregnancy",
+              //           ),
+              //           SizedBox(width: 20)
+              //         ],
+              //       );
+              //     },
+              //   ),
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+
+              //   ],
+              // ),
               SizedBox(height: 28),
               Text("Description",
                   style: TextStyle(

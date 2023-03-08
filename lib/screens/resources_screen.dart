@@ -1,5 +1,4 @@
-import 'package:carve_app/screens/maps_resources.dart';
-import 'package:carve_app/screens/daily_content.dart';
+import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'local_parenting_class_screen.dart';
@@ -325,7 +324,9 @@ class EmergencyHotlineBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){launch('tel:+15999');  } ,
+      onTap: () {
+        launch('tel:+15999');
+      },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
