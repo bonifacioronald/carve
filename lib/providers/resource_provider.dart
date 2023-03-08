@@ -5,11 +5,11 @@ import '../models/resources_model.dart';
 import '../models/user_model.dart';
 
 class ResourceProvider with ChangeNotifier {
- List<String> resourceIdList = [];
+  List<String> resourceIdList = [];
   List<ResourcesModel> loadedResourceList = [];
+  List<ResourcesModel> displayedResourceForACategory = [];
 
-//dasdad
-      Future<void> fetchResourceId() async {
+  Future<void> fetchResourceId() async {
     print('fetch');
     try {
       await FirebaseFirestore.instance.collection('resources').get().then(
@@ -35,7 +35,6 @@ class ResourceProvider with ChangeNotifier {
     print('all done');
   }
 
-
   Future<void> fetchResourceDataFromId(String resourceId) async {
     await FirebaseFirestore.instance
         .collection('resources')
@@ -44,7 +43,6 @@ class ResourceProvider with ChangeNotifier {
         .then(
       (snapshot) {
         ResourcesModel loadedResource = ResourcesModel(
-        
           categories: snapshot.data()!['category'],
           id: snapshot.data()!['id'],
           title: snapshot.data()!['title'],
@@ -53,6 +51,17 @@ class ResourceProvider with ChangeNotifier {
         );
         loadedResourceList.add(loadedResource);
         print('fetched ${snapshot.data()!['title']}');
+      },
+    );
+  }
+
+  void selectDisplayedResourcesBasedOnCategory(String category) {
+    displayedResourceForACategory = [];
+    loadedResourceList.forEach(
+      (resouces) {
+        if (resouces.categories == category) {
+          displayedResourceForACategory.add(resouces);
+        }
       },
     );
   }
