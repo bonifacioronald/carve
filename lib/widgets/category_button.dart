@@ -15,7 +15,6 @@ class CategoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         GestureDetector(
           onTap: () => Navigator.of(context).pushNamed(ResourceCategories.routeName),
           child: Container(
@@ -38,6 +37,7 @@ class CategoryButton extends StatelessWidget {
               color: iconColor,
               size: 36,
             ),
+
           ),
         ),
         SizedBox(

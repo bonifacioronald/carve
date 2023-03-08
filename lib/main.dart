@@ -3,6 +3,7 @@ import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/forum_all_screen.dart';
 import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
