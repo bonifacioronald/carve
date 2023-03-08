@@ -6,32 +6,39 @@ import 'package:carve_app/widgets/map_screen_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
+import '../models/colors.dart';
 import '../models/resources_model.dart';
 import '../providers/resource_provider.dart';
+import '../widgets/search_bar.dart';
 
 class ResourceCategories extends StatelessWidget {
   static const routeName = '/resources-categories';
   String categories = '';
-  String title1 = '';
-  String location1 = '';
-  String URLDirection1 = '';
-  String title2 = '';
-  String location2 = '';
-  String URLDirection2 = '';
-  String title3 = '';
-  String location3 = '';
-  String URLDirection3 = '';
+  String title = '';
+  String location = '';
+  String URLDirection = '';
+  
 
   List numbers = [];
 
   @override
   Widget build(BuildContext context) {
+
+    // ResourcesModel title =
+    //     ModalRoute.of(context)!.settings.arguments as ResourcesModel;
+    //     ResourcesModel URLDirection =
+    //     ModalRoute.of(context)!.settings.arguments as ResourcesModel;
+       
+
+        
+        
+
     return MaterialApp(
         home: Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Color(0xffe8e9fe),
             body: SingleChildScrollView(
-              padding: EdgeInsets.only(top: 40),
+              padding: EdgeInsets.only(top: 40, left:20,right:20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -61,45 +68,9 @@ class ResourceCategories extends StatelessWidget {
                       height: 5,
                     ),
                     //search bar
+                    SearchBar("Search for $categories",Colors.white,primaryDarkPurple),
+                    SizedBox(height:10),
                     Container(
-                        padding: EdgeInsets.only(),
-                        width: 400,
-                        height: 45,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(left: 15),
-                              height: 45,
-                              width: 350,
-                              decoration: BoxDecoration(
-                                border: Border.all(),
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.white,
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Search for $categories...",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                  SizedBox(
-                                    width: 135,
-                                  ),
-                                  Icon(
-                                    Icons.search,
-                                    size: 30,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        )),
-                    Container(
-                      padding: EdgeInsets.only(top: 20, left: 20),
                       width: double.infinity,
                       height: 700,
                       child: Column(
@@ -126,12 +97,37 @@ class ResourceCategories extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 23, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
-                            height: 15,
+                          SizedBox(height:20),
+                          Container(
+                            height: 205,
+                            width: double.infinity,
+                            color: backgroundPurple,
+                            child:ListView.builder(
+                              padding: EdgeInsets.zero,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: 3,
+                              itemBuilder: (_, index){
+
+                                return Column(
+                                  
+                                  children: [
+                                     CategoriesButton(title, URLDirection),
+                                ]);
+
+
+
+                              }
+
+
+                              
+                            
+                            
+                            )
+
                           ),
-                          CategoriesButton(title1, URLDirection1),
-                          CategoriesButton(title2, URLDirection2),
-                          CategoriesButton(title3, URLDirection3)
+                         
+                          // CategoriesButton(title, URLDirection),
+                          // CategoriesButton(title, URLDirection)
                         ],
                       ),
                     )

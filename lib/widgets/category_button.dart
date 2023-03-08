@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../models/colors.dart';
+
 class CategoryButton extends StatelessWidget {
   Color buttonColor;
   Color iconColor;
@@ -66,20 +68,16 @@ class CategoriesButton extends StatelessWidget {
         launch(url);
       },
       child: Container(
-        width: 85,
+        width: 50,
         height: 25,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Color(0xFFD9D9D9),
+          color: primaryDarkPurple,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Direction",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF0000EE))),
+           Icon(Icons.arrow_forward_outlined, color:Colors.white),
           ],
         ),
       ),
