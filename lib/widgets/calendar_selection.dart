@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../models/colors.dart' as custom_colors;
+import '../providers/user_provider.dart';
 
 class CalendarSelection extends StatefulWidget {
   @override
@@ -107,6 +109,21 @@ class _CalendarSelectionState extends State<CalendarSelection> {
 
   @override
   Widget build(BuildContext context) {
+    int childAge = 0;
+    int convertedAge = 0;
+    if (Provider.of<UserProvider>(context, listen: false)
+        .userProviderData
+        .isPregnant) {
+      childAge = int.parse(Provider.of<UserProvider>(context, listen: false)
+          .userProviderData
+          .childAge);
+      convertedAge = childAge * 7;
+      startOfPregnancy = DateTime.now().subtract(Duration(days: convertedAge));
+    } else {
+      startOfPregnancy = DateTime.utc(2023, 1, 1);
+      convertedAge = 84;
+    }
+
     if (displayedWeek <= 4) {
       [
         setState(() {
@@ -163,7 +180,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
               'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_8month.png';
         })
       ];
-    } else if (displayedWeek <= 40) {
+    } else {
       [
         setState(() {
           imageUrl =
@@ -348,8 +365,9 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                     ),
                     availableGestures: AvailableGestures.all,
                     focusedDay: targetDay,
-                    firstDay: DateTime.utc(2022, 08, 31),
-                    lastDay: DateTime.utc(2023, 07, 01),
+                    firstDay: startOfPregnancy,
+                    lastDay:
+                        DateTime.now().add(Duration(days: 300 - convertedAge)),
                     selectedDayPredicate: (day) => isSameDay(day, targetDay),
                     onDaySelected: (selectedDay, focusedDay) {
                       setState(

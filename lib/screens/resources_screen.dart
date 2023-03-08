@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../models/colors.dart';
 import '../providers/daily_content_provider.dart';
 
 class ResourcesScreen extends StatefulWidget {
@@ -18,88 +19,66 @@ class ResourcesScreen extends StatefulWidget {
 }
 
 class _ResourcesScreenState extends State<ResourcesScreen> {
-  bool _isLoading = true;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    var _provider = Provider.of<ResourceProvider>(context, listen: false);
-    _provider.fetchResourceId().then(
-      (_) {
-        print('Successfuly fetched ${_provider.resourceIdList.length} ids');
-        _provider.fetchAllResourceData().then(
-          (_) {
-            setState(
-              () {
-                _isLoading = false;
-              },
-            );
-          },
-        );
-      },
-    );
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: custom_colors.backgroundPurple,
-      body: _isLoading
-          ? LoadingScreen()
-          : SingleChildScrollView(
-              child: Container(
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                    top: MediaQuery.of(context).padding.top + 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Nearby Resources",
+                      style: TextStyle(
+                        color: custom_colors.primaryDarkPurple,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              //Local Pregnancy
+
+              Container(
+                padding: EdgeInsets.only(left: 20, right: 20, bottom: 60),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                          top: MediaQuery.of(context).padding.top + 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Nearby Resources",
-                            style: TextStyle(
-                              color: custom_colors.primaryDarkPurple,
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    //Local Pregnancy
                     SingleChildScrollView(
+                      clipBehavior: Clip.none,
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          SizedBox(
-                            width: 20,
-                          ),
                           ResourcesMainCard(
                               '15% OFF Pregnancy Care',
-                              'https://www.pngmart.com/files/16/Vector-Happy-Pregnant-Woman-Transparent-PNG.png',
+                              'https://images.ctfassets.net/9wtva4vhlgxb/6QWEHMlC0gSnCAdZVYJuvJ/321f0c3ae02c30b4cf45cc7ec6037559/mask_3x.webp',
                               'Pregnancy Classes'),
                           SizedBox(
                             width: 20,
                           ),
                           ResourcesMainCard(
                               'Best Family Therapy in Town',
-                              'https://www.pngmart.com/files/21/Counseling-Transparent-Background.png',
+                              'https://www.arkansasrelationshipcenter.com/wp-content/uploads/2019/02/Family-therapy-family-counseling-little-rock-common-family-therapy-issues-1080x675.jpg',
                               'Therapy'),
                           SizedBox(
                             width: 20,
                           ),
                           ResourcesMainCard(
                               'Hunger Relief Near You',
-                              'https://cdn-icons-png.flaticon.com/512/1075/1075090.png',
+                              'https://assets.hmetro.com.my/images/articles/food_1585123849.jpg',
                               'Food Bank'),
                           SizedBox(
                             width: 20,
@@ -107,206 +86,190 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Categories',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: custom_colors.primaryDarkPurple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+
+                    //Local Pregnancy
+
+                    SizedBox(
+                      height: 16,
+                    ),
+                    //Categories Buttons
                     Container(
-                      padding: EdgeInsets.only(left: 20, right: 20, bottom: 60),
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(horizontal: 12),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 30,
-                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Categories',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: custom_colors.primaryDarkPurple,
-                                    fontWeight: FontWeight.bold),
+                              GestureDetector(
+                                onTap: (() => Navigator.of(context).pushNamed(
+                                    ResourceDetailScreen.routeName,
+                                    arguments: 'Pregnancy Classes')),
+                                child: CategoryButton(
+                                  custom_colors.primaryDarkPurple,
+                                  Colors.white,
+                                  Icons.baby_changing_station_rounded,
+                                  "Post-\npartum",
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: (() => Navigator.of(context).pushNamed(
+                                    ResourceDetailScreen.routeName,
+                                    arguments: 'Therapy')),
+                                child: CategoryButton(
+                                    custom_colors.primaryDarkPurple
+                                        .withOpacity(0.7),
+                                    Colors.white,
+                                    Icons.handshake_rounded,
+                                    "Therapy"),
+                              ),
+                              GestureDetector(
+                                onTap: (() => Navigator.of(context).pushNamed(
+                                    ResourceDetailScreen.routeName,
+                                    arguments: 'Marriage Counselling')),
+                                child: CategoryButton(
+                                  custom_colors.secondaryLightPurple
+                                      .withOpacity(0.6),
+                                  Colors.white,
+                                  Icons.phone_in_talk_sharp,
+                                  "Marriage\nCounseling",
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: (() => Navigator.of(context).pushNamed(
+                                    ResourceDetailScreen.routeName,
+                                    arguments: 'Daycare')),
+                                child: CategoryButton(
+                                  custom_colors.secondaryLightPurple,
+                                  Colors.white,
+                                  Icons.school_outlined,
+                                  "Daycare",
+                                ),
                               ),
                             ],
                           ),
                           SizedBox(
                             height: 16,
                           ),
-                          //Categories Buttons
-                          Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(horizontal: 12),
-                            child: Column(
+                          GestureDetector(
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(ResourceDetailScreen.routeName),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: (() => Navigator.of(context)
-                                          .pushNamed(
-                                              ResourceDetailScreen.routeName,
-                                              arguments: 'Pregnancy Classes')),
-                                      child: CategoryButton(
-                                        custom_colors.primaryDarkPurple,
-                                        Colors.white,
-                                        Icons.baby_changing_station_rounded,
-                                        "Post-\npartum",
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: (() => Navigator.of(context)
-                                          .pushNamed(
-                                              ResourceDetailScreen.routeName,
-                                              arguments: 'Therapy')),
-                                      child: CategoryButton(
-                                          custom_colors.primaryDarkPurple
-                                              .withOpacity(0.7),
-                                          Colors.white,
-                                          Icons.handshake_rounded,
-                                          "Therapy"),
-                                    ),
-                                    GestureDetector(
-                                      onTap: (() => Navigator.of(context)
-                                          .pushNamed(
-                                              ResourceDetailScreen.routeName,
-                                              arguments:
-                                                  'Marriage Counselling')),
-                                      child: CategoryButton(
-                                        custom_colors.secondaryLightPurple
-                                            .withOpacity(0.6),
-                                        Colors.white,
-                                        Icons.phone_in_talk_sharp,
-                                        "Marriage\nCounseling",
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: (() => Navigator.of(context)
-                                          .pushNamed(
-                                              ResourceDetailScreen.routeName,
-                                              arguments: 'Daycare')),
-                                      child: CategoryButton(
-                                        custom_colors.secondaryLightPurple,
-                                        Colors.white,
-                                        Icons.school_outlined,
-                                        "Daycare",
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 16,
+                                GestureDetector(
+                                  onTap: (() => Navigator.of(context).pushNamed(
+                                      ResourceDetailScreen.routeName,
+                                      arguments: 'Charities')),
+                                  child: CategoryButton(
+                                    custom_colors.secondaryLightPurple,
+                                    Colors.white,
+                                    Icons.payments_outlined,
+                                    "Charities",
+                                  ),
                                 ),
                                 GestureDetector(
-                                  onTap: () => Navigator.of(context).pushNamed(
-                                      ResourceDetailScreen.routeName),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: (() => Navigator.of(context)
-                                            .pushNamed(
-                                                ResourceDetailScreen.routeName,
-                                                arguments: 'Charities')),
-                                        child: CategoryButton(
-                                          custom_colors.secondaryLightPurple,
-                                          Colors.white,
-                                          Icons.payments_outlined,
-                                          "Charities",
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: (() => Navigator.of(context)
-                                            .pushNamed(
-                                                ResourceDetailScreen.routeName,
-                                                arguments: 'Food Bank')),
-                                        child: CategoryButton(
-                                          custom_colors.secondaryLightPurple
-                                              .withOpacity(0.6),
-                                          Colors.white,
-                                          Icons.food_bank_outlined,
-                                          "Food Bank",
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: (() => Navigator.of(context)
-                                            .pushNamed(
-                                                ResourceDetailScreen.routeName,
-                                                arguments: 'Adoption Agency')),
-                                        child: CategoryButton(
-                                          custom_colors.primaryDarkPurple
-                                              .withOpacity(0.7),
-                                          Colors.white,
-                                          Icons.house_outlined,
-                                          "Adoption\nAgency",
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: (() => Navigator.of(context)
-                                            .pushNamed(
-                                                ResourceDetailScreen.routeName,
-                                                arguments: 'Daycare')),
-                                        child: CategoryButton(
-                                          custom_colors.primaryDarkPurple,
-                                          Colors.white,
-                                          Icons.stroller_outlined,
-                                          "Babysitter",
-                                        ),
-                                      ),
-                                    ],
+                                  onTap: (() => Navigator.of(context).pushNamed(
+                                      ResourceDetailScreen.routeName,
+                                      arguments: 'Food Bank')),
+                                  child: CategoryButton(
+                                    custom_colors.secondaryLightPurple
+                                        .withOpacity(0.6),
+                                    Colors.white,
+                                    Icons.food_bank_outlined,
+                                    "Food Bank",
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: (() => Navigator.of(context).pushNamed(
+                                      ResourceDetailScreen.routeName,
+                                      arguments: 'Adoption Agency')),
+                                  child: CategoryButton(
+                                    custom_colors.primaryDarkPurple
+                                        .withOpacity(0.7),
+                                    Colors.white,
+                                    Icons.house_outlined,
+                                    "Adoption\nAgency",
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: (() => Navigator.of(context).pushNamed(
+                                      ResourceDetailScreen.routeName,
+                                      arguments: 'Daycare')),
+                                  child: CategoryButton(
+                                    custom_colors.primaryDarkPurple,
+                                    Colors.white,
+                                    Icons.stroller_outlined,
+                                    "Babysitter",
                                   ),
                                 ),
                               ],
                             ),
                           ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "Recommended For You",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: custom_colors.primaryDarkPurple),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    //Recommended For You
+                    Container(
+                      width: double.infinity,
+                      height: 140,
+                      child: Row(
+                        children: [
+                          PregnantDietConsultationBox(),
                           SizedBox(
-                            height: 30,
+                            width: 20,
                           ),
-                          Text(
-                            "Recommended For You",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: custom_colors.primaryDarkPurple),
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          //Recommended For You
-                          Container(
-                            width: double.infinity,
-                            height: 140,
-                            child: Row(
-                              children: [
-                                PregnantDietConsultationBox(),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        FreePrenatalCareBox(),
-                                        EmergencyHotlineBox(),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
+                          Expanded(
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  FreePrenatalCareBox(),
+                                  EmergencyHotlineBox(),
+                                ],
+                              ),
                             ),
                           )
                         ],
                       ),
-                    )
-                    //categories
+                    ),
                   ],
                 ),
-              ),
-            ),
+              )
+              //categories
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -318,87 +281,47 @@ class ResourcesMainCard extends StatelessWidget {
   ResourcesMainCard(this.text, this.imageURL, this.launcher);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width - 80,
-      height: 160,
-      padding: EdgeInsets.only(top: 20, left: 15, bottom: 25, right: 10),
-      decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () => Navigator.of(context)
+          .pushNamed(ResourceDetailScreen.routeName, arguments: launcher),
+      child: Container(
+        clipBehavior: Clip.none,
+        width: MediaQuery.of(context).size.width - 80,
+        height: 160,
+        alignment: Alignment.center,
+        //    padding: EdgeInsets.only(top: 20, left: 15, bottom: 25, right: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
-              image: AssetImage('lib/assets/images/daily_content_card_bg.png'),
-              fit: BoxFit.cover),
-          borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: 2),
-                height: 60,
-                width: 187,
-                child: Column(children: [
-                  Text(
-                    text,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold),
-                  )
-                ]),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(
-                        ResourceDetailScreen.routeName,
-                        arguments: launcher),
-                    child: Container(
-                      width: 151,
-                      height: 40,
-                      padding: EdgeInsets.only(left: 8),
-                      decoration: BoxDecoration(
-                          color: Color(0xFF02084B),
-                          borderRadius: BorderRadiusDirectional.circular(15)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text("Book Now",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20)),
-                              SizedBox(
-                                width: 13,
-                              ),
-                              Icon(Icons.room_service_outlined,
-                                  color: Colors.white)
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ],
+              image: NetworkImage(imageURL), opacity: 1, fit: BoxFit.cover),
+          boxShadow: [
+            BoxShadow(
+              color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: double.infinity,
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: secondaryLightPurple.withOpacity(0.7),
           ),
-          Spacer(),
-          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Container(
-                height: 100,
-                width: 100,
-                alignment: Alignment.centerRight,
-                child: Image.network(imageURL))
-          ])
-          // second container
-        ],
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: 30,
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -459,8 +382,9 @@ class FreePrenatalCareBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () => Navigator.of(context)
-            .pushNamed(ResourceDetailScreen.routeName, arguments: 'Charities'),
+        onTap: () => Navigator.of(context).pushNamed(
+            ResourceDetailScreen.routeName,
+            arguments: 'Pregnancy Classes'),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(

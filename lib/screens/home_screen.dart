@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../models/colors.dart';
+import '../providers/resource_provider.dart';
 import '../widgets/main_menu_category_section.dart';
 import '../widgets/main_menu_video_course_section.dart';
 
@@ -25,16 +26,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    var _provider = Provider.of<VideoProvider>(context, listen: false);
-    if (_provider.loadedVideoList.isEmpty) {
-      _provider.fetchVideoId().then(
+    var _userProvider = Provider.of<VideoProvider>(context, listen: false);
+    var _resourcesProvider =
+        Provider.of<ResourceProvider>(context, listen: false);
+
+    if (_userProvider.loadedVideoList.isEmpty) {
+      _userProvider.fetchVideoId().then(
         (_) {
-          print('Successfuly fetched ${_provider.videoIdList.length} ids');
-          _provider.fetchAllVideoData().then(
-            (_) {
-              setState(
-                () {
-                  _isLoading = false;
+          print('Successfuly fetched ${_userProvider.videoIdList.length} ids');
+          _userProvider.fetchAllVideoData().then(
+            (value) {
+              _resourcesProvider.fetchResourceId().then(
+                (_) {
+                  print(
+                      'Successfuly fetched ${_resourcesProvider.resourceIdList.length} ids');
+                  _resourcesProvider.fetchAllResourceData().then(
+                    (_) {
+                      setState(
+                        () {
+                          _isLoading = false;
+                        },
+                      );
+                    },
+                  );
                 },
               );
             },
@@ -90,9 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 30,
                         ),
                         GestureDetector(
-                          onTap: (){},
-                          child:SearchBar("Ask parenting questions here...", Colors.white,
-                            primaryDarkPurple)),
+                            onTap: () {},
+                            child: SearchBar("Ask parenting questions here...",
+                                Colors.white, primaryDarkPurple)),
                       ],
                     ),
                   ),

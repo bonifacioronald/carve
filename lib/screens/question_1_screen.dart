@@ -1,7 +1,9 @@
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/question_2_if_pregnant.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import 'question_2_screen.dart';
 
@@ -12,6 +14,44 @@ class Question1Screen extends StatefulWidget {
   State<Question1Screen> createState() => _Question1ScreenState();
 
   int selectedAnswerIndex = 0;
+}
+
+void _updateUserParentType(int selectedIndex, BuildContext context) {
+  String userParentType = '';
+  switch (selectedIndex) {
+    case 1:
+      {
+        userParentType = "parentType-young-new-parent";
+      }
+      break;
+    case 2:
+      {
+        userParentType = 'parentType-soon-to-be-parent';
+      }
+      break;
+    case 3:
+      {
+        userParentType = 'parentType-experienced-parent';
+      }
+      break;
+    case 4:
+      {
+        userParentType = 'parentType-single-parent';
+      }
+      break;
+    case 5:
+      {
+        userParentType = 'parentType-pregnant-mother';
+      }
+      break;
+  }
+
+  Provider.of<UserProvider>(context, listen: false)
+      .setParentType(userParentType);
+
+  if (selectedIndex == 5) {
+    Provider.of<UserProvider>(context, listen: false).setIsPregnant(true);
+  }
 }
 
 class _Question1ScreenState extends State<Question1Screen> {
@@ -131,6 +171,8 @@ class _Question1ScreenState extends State<Question1Screen> {
                                   .pushNamed(Question2PregnantScreen.routeName)
                               : Navigator.of(context)
                                   .pushNamed(Question2Screen.routeName);
+                          _updateUserParentType(
+                              widget.selectedAnswerIndex, context);
                         }
                       }),
                       child: Container(
