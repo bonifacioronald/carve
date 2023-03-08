@@ -6,6 +6,7 @@ class UserModel {
   String childGender;
   String appUsageDuration;
   String parentingStyle;
+  String parentType;
   bool isPregnant;
 
   UserModel(
@@ -16,5 +17,6 @@ class UserModel {
       required this.childGender,
       required this.appUsageDuration,
       required this.parentingStyle,
+      required this.parentType,
       required this.isPregnant});
 }
