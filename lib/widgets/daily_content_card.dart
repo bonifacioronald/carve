@@ -72,8 +72,9 @@ class DailyContentCard extends StatelessWidget {
               )
             ],
           ),
+          Spacer(),
           Container(
-            width: 100,
+            width: 120,
             height: double.infinity,
             child: Image.asset(
               Provider.of<UserProvider>(context, listen: false)
