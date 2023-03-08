@@ -1,15 +1,19 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
+
 import 'package:carve_app/screens/forum_all_screen.dart';
 import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
+
 import 'package:carve_app/screens/forum_all_screen.dart';
+
 import 'package:carve_app/screens/local_parenting_class_screen.dart';
 import 'package:carve_app/screens/question_3_if_pregnant.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
@@ -49,14 +53,18 @@ class MyApp extends StatelessWidget {
           value: UserProvider(),
         ),
         ChangeNotifierProvider.value(
-          value: ContentProvider(),
+          value: DailyContentProvider(),
         ),
         ChangeNotifierProvider.value(
           value: ForumProvider(),
         ),
         ChangeNotifierProvider.value(
+          value: ContentProvider(),
+        ),
+        ChangeNotifierProvider.value(
           value: VideoProvider(),
         ),
+
       ],
       child: MaterialApp(
         title: 'Carve',
