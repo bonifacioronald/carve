@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carve_app/models/content_model.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
 import 'package:async/async.dart';
@@ -34,7 +35,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
       });
       print("timer resetted");
     }
-    timer = RestartableTimer(const Duration(seconds: 30), () {
+    timer = RestartableTimer(const Duration(seconds: 30000), () {
       print("timehasstarted");
       setState(() {
         if (timer != null &&
@@ -341,17 +342,22 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                         ),
                       ),
                       SizedBox(width: 135),
-                      Container(
-                        width: 35,
-                        height: 35,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: custom_colors.primaryDarkPurple),
-                        child: Center(
-                          child: Icon(
-                            Icons.ios_share,
-                            color: Colors.white,
-                            size: 20,
+                      GestureDetector(
+                        onTap: () {
+                          launch('https://www.instagram.com/');
+                        },
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: custom_colors.primaryDarkPurple),
+                          child: Center(
+                            child: Icon(
+                              Icons.ios_share,
+                              color: Colors.white,
+                              size: 20,
+                            ),
                           ),
                         ),
                       ),
