@@ -212,7 +212,7 @@ class _createForumState extends State<createForum> {
                           currentCLickIndex == 3
                               ? Colors.white
                               : custom_colors.primaryDarkPurple,
-                          Icons.fastfood,
+                          Icons.restaurant,
                           "Nutrition"),
                     ),
                     SizedBox(width: 20),
