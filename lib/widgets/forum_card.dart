@@ -27,7 +27,7 @@ class ForumCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 200,
-      padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 8),
+      padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -129,23 +129,13 @@ class ForumCard extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               Spacer(),
-              TextButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0XFFFFFFFF)),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => forumPage()));
-                },
-                child: Container(
-                  alignment: Alignment.bottomRight,
-                  child: Text("Read more >",
-                      style: TextStyle(
-                          color: Color(0XFF02084B),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600)),
-                ),
+              Container(
+                alignment: Alignment.bottomRight,
+                child: Text("Read more >",
+                    style: TextStyle(
+                        color: Color(0XFF02084B),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600)),
               ),
             ],
           )

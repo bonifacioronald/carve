@@ -1,17 +1,23 @@
 import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:flutter/material.dart';
 import '/models/colors.dart' as custom_colors;
+import 'package:intl/intl.dart';
 
 class forumContentCard extends StatelessWidget {
-  String username;
-  String time;
-  String title;
-  String content;
+  String authorName;
+  DateTime publishedDate;
   String category;
-  int likes;
-  forumContentCard(this.username, this.time, this.title, this.content,
-      this.category, this.likes,
-      {super.key});
+  String content;
+  String title;
+  int totalLikes;
+
+  forumContentCard(
+      {required this.authorName,
+      required this.publishedDate,
+      required this.category,
+      required this.content,
+      required this.title,
+      required this.totalLikes});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +56,7 @@ class forumContentCard extends StatelessWidget {
                     children: [
                       // Username
                       Text(
-                        username,
+                        '$authorName •',
                         style: TextStyle(
                           color: Color(0XFF000000).withOpacity(0.4),
                           fontSize: 16,
@@ -60,7 +66,7 @@ class forumContentCard extends StatelessWidget {
                       ),
                       // Time
                       Text(
-                        time,
+                        DateFormat('MMM dd').format(publishedDate).toString(),
                         style: TextStyle(
                           color: Color(0XFF000000).withOpacity(0.4),
                           fontSize: 16,
@@ -129,7 +135,7 @@ class forumContentCard extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        category,
+                        category.toString(),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -147,7 +153,7 @@ class forumContentCard extends StatelessWidget {
                         size: 24,
                       ),
                       Text(
-                        "$likes",
+                        totalLikes.toString(),
                         style: TextStyle(
                           color: Color(0XFF5B5B5B5B).withOpacity(0.5),
                           fontSize: 16,

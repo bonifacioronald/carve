@@ -199,35 +199,6 @@ class _createForumState extends State<createForum> {
                     ),
                     SizedBox(width: 20),
                   ])),
-
-              // Container(
-              //   width: 10 * (68 + 100),
-              //   height: 88,
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.horizontal,
-              //     itemCount: 5,
-              //     itemBuilder: (context, index) {
-              //       return Row(
-              //         children: [
-              //           CategoryButton(
-              //             Colors.white,
-              //             Color(0XFFFF8684),
-              //             Icons.pregnant_woman,
-              //             "Pregnancy",
-              //           ),
-              //           SizedBox(width: 20)
-              //         ],
-              //       );
-              //     },
-              //   ),
-              // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-
-              //   ],
-              // ),
               SizedBox(height: 28),
               Text("Description",
                   style: TextStyle(
