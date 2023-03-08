@@ -1,219 +1,303 @@
+import 'package:carve_app/providers/resource_provider.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
-import 'package:carve_app/screens/resource_categories_screen.dart';
+import 'package:carve_app/screens/loading_screen.dart';
+import 'package:carve_app/screens/resource_detail_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
-class ResourcesScreen extends StatelessWidget {
+import '../providers/daily_content_provider.dart';
+
+class ResourcesScreen extends StatefulWidget {
   ResourcesScreen({super.key});
+
+  @override
+  State<ResourcesScreen> createState() => _ResourcesScreenState();
+}
+
+class _ResourcesScreenState extends State<ResourcesScreen> {
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    var _provider = Provider.of<ResourceProvider>(context, listen: false);
+    _provider.fetchResourceId().then(
+      (_) {
+        print('Successfuly fetched ${_provider.resourceIdList.length} ids');
+        _provider.fetchAllResourceData().then(
+          (_) {
+            setState(
+              () {
+                _isLoading = false;
+              },
+            );
+          },
+        );
+      },
+    );
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: custom_colors.backgroundPurple,
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: MediaQuery.of(context).padding.top + 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Nearby Resources",
-                      style: TextStyle(
-                        color: custom_colors.primaryDarkPurple,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              //Local Pregnancy
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ResourcesMainCard('Attend Local \nPregnancy Class'),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ResourcesMainCard('Attend Local \nTherapy'),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ResourcesMainCard('Check Out \nLocal Food Bank'),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20, bottom: 60),
+      body: _isLoading
+          ? LoadingScreen()
+          : SingleChildScrollView(
+              child: Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Categories',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: custom_colors.primaryDarkPurple,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    //Categories Buttons
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      child: Column(
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                          top: MediaQuery.of(context).padding.top + 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(ResourceCategories.routeName),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CategoryButton(
-                                  custom_colors.primaryDarkPurple,
-                                  Colors.white,
-                                  Icons.baby_changing_station_rounded,
-                                  "Post-\npartum",
-                                ),
-                                CategoryButton(
-                                    custom_colors.primaryDarkPurple
-                                        .withOpacity(0.7),
-                                    Colors.white,
-                                    Icons.handshake_rounded,
-                                    "Therapy"),
-                                CategoryButton(
-                                  custom_colors.secondaryLightPurple
-                                      .withOpacity(0.6),
-                                  Colors.white,
-                                  Icons.phone_in_talk_sharp,
-                                  "Marriage\nCounseling",
-                                ),
-                                CategoryButton(
-                                  custom_colors.secondaryLightPurple,
-                                  Colors.white,
-                                  Icons.school_outlined,
-                                  "Daycare",
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          GestureDetector(
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(ResourceCategories.routeName),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CategoryButton(
-                                  custom_colors.secondaryLightPurple,
-                                  Colors.white,
-                                  Icons.payments_outlined,
-                                  "Charities",
-                                ),
-                                CategoryButton(
-                                  custom_colors.secondaryLightPurple
-                                      .withOpacity(0.6),
-                                  Colors.white,
-                                  Icons.food_bank_outlined,
-                                  "Food Bank",
-                                ),
-                                CategoryButton(
-                                  custom_colors.primaryDarkPurple
-                                      .withOpacity(0.7),
-                                  Colors.white,
-                                  Icons.house_outlined,
-                                  "Adoption\nAgency",
-                                ),
-                                CategoryButton(
-                                  custom_colors.primaryDarkPurple,
-                                  Colors.white,
-                                  Icons.stroller_outlined,
-                                  "Babysitter",
-                                ),
-                              ],
+                          Text(
+                            "Nearby Resources",
+                            style: TextStyle(
+                              color: custom_colors.primaryDarkPurple,
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
+                    const SizedBox(
+                      height: 20,
                     ),
-                    Text(
-                      "Recommended For You",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: custom_colors.primaryDarkPurple),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    //Recommended For You
-                    Container(
-                      width: double.infinity,
-                      height: 140,
+                    //Local Pregnancy
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          PregnantDietConsultationBox(),
                           SizedBox(
                             width: 20,
                           ),
-                          Expanded(
-                            child: Container(
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  FreePrenatalCareBox(),
-                                  EmergencyHotlineBox(),
-                                ],
+                          ResourcesMainCard('Attend Local \nPregnancy Class'),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          ResourcesMainCard('Attend Local \nTherapy'),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          ResourcesMainCard('Check Out \nLocal Food Bank'),
+                          SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20, right: 20, bottom: 60),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Categories',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: custom_colors.primaryDarkPurple,
+                                    fontWeight: FontWeight.bold),
                               ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          //Categories Buttons
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: (() => Navigator.of(context)
+                                          .pushNamed(
+                                              ResourceDetailScreen.routeName,
+                                              arguments: 'Pregnancy Classes')),
+                                      child: CategoryButton(
+                                        custom_colors.primaryDarkPurple,
+                                        Colors.white,
+                                        Icons.baby_changing_station_rounded,
+                                        "Post-\npartum",
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (() => Navigator.of(context)
+                                          .pushNamed(
+                                              ResourceDetailScreen.routeName,
+                                              arguments: 'Therapy')),
+                                      child: CategoryButton(
+                                          custom_colors.primaryDarkPurple
+                                              .withOpacity(0.7),
+                                          Colors.white,
+                                          Icons.handshake_rounded,
+                                          "Therapy"),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (() => Navigator.of(context)
+                                          .pushNamed(
+                                              ResourceDetailScreen.routeName,
+                                              arguments:
+                                                  'Marriage Counselling')),
+                                      child: CategoryButton(
+                                        custom_colors.secondaryLightPurple
+                                            .withOpacity(0.6),
+                                        Colors.white,
+                                        Icons.phone_in_talk_sharp,
+                                        "Marriage\nCounseling",
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (() => Navigator.of(context)
+                                          .pushNamed(
+                                              ResourceDetailScreen.routeName,
+                                              arguments: 'Daycare')),
+                                      child: CategoryButton(
+                                        custom_colors.secondaryLightPurple,
+                                        Colors.white,
+                                        Icons.school_outlined,
+                                        "Daycare",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                GestureDetector(
+                                  onTap: () => Navigator.of(context).pushNamed(
+                                      ResourceDetailScreen.routeName),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (() => Navigator.of(context)
+                                            .pushNamed(
+                                                ResourceDetailScreen.routeName,
+                                                arguments: 'Charities')),
+                                        child: CategoryButton(
+                                          custom_colors.secondaryLightPurple,
+                                          Colors.white,
+                                          Icons.payments_outlined,
+                                          "Charities",
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: (() => Navigator.of(context)
+                                            .pushNamed(
+                                                ResourceDetailScreen.routeName,
+                                                arguments: 'Food Bank')),
+                                        child: CategoryButton(
+                                          custom_colors.secondaryLightPurple
+                                              .withOpacity(0.6),
+                                          Colors.white,
+                                          Icons.food_bank_outlined,
+                                          "Food Bank",
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: (() => Navigator.of(context)
+                                            .pushNamed(
+                                                ResourceDetailScreen.routeName,
+                                                arguments: 'Adoption Agency')),
+                                        child: CategoryButton(
+                                          custom_colors.primaryDarkPurple
+                                              .withOpacity(0.7),
+                                          Colors.white,
+                                          Icons.house_outlined,
+                                          "Adoption\nAgency",
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: (() => Navigator.of(context)
+                                            .pushNamed(
+                                                ResourceDetailScreen.routeName,
+                                                arguments: 'Daycare')),
+                                        child: CategoryButton(
+                                          custom_colors.primaryDarkPurple,
+                                          Colors.white,
+                                          Icons.stroller_outlined,
+                                          "Babysitter",
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            "Recommended For You",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: custom_colors.primaryDarkPurple),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          //Recommended For You
+                          Container(
+                            width: double.infinity,
+                            height: 140,
+                            child: Row(
+                              children: [
+                                PregnantDietConsultationBox(),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        FreePrenatalCareBox(),
+                                        EmergencyHotlineBox(),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           )
                         ],
                       ),
                     )
+                    //categories
                   ],
                 ),
-              )
-              //categories
-            ],
-          ),
-        ),
-      ),
+              ),
+            ),
     );
   }
 }
@@ -259,7 +343,7 @@ class ResourcesMainCard extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.of(context)
-                        .pushNamed(ResourceCategories.routeName),
+                        .pushNamed(ResourceDetailScreen.routeName),
                     child: Container(
                       width: 151,
                       height: 40,
