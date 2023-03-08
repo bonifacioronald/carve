@@ -27,7 +27,9 @@ class ResourceCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     
+     ResourcesModel currentResource =
+        Provider.of<ResourceProvider>(context, listen: false).resourceProviderData;
+      
       
     return MaterialApp(
         home: Scaffold(
