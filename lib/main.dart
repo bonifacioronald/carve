@@ -6,6 +6,7 @@ import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/resource_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
+import 'package:carve_app/screens/content_library_story_screen.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
           ResourceDetailScreen.routeName: (context) => ResourceDetailScreen(),
-          
+          ContentLibraryStory.routeName: (context) => ContentLibraryStory()
         },
       ),
     );
