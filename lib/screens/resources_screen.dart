@@ -1,45 +1,16 @@
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
-import 'package:provider/provider.dart';
-import '../providers/resource_provider.dart';
 import 'local_parenting_class_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
-class ResourcesScreen extends StatefulWidget {
+class ResourcesScreen extends StatelessWidget {
     
     ResourcesScreen({super.key});
 
   @override
-  
-  State<ResourcesScreen> createState() => _ResourcesScreenState();
-}
-
-class _ResourcesScreenState extends State<ResourcesScreen> {
-  bool _isLoading = true;
-  void initState() {
-    var _provider = Provider.of<ResourceProvider>(context, listen: false);
-    _provider.fetchResourceId().then(
-      (_) {
-        print('Successfuly fetched ${_provider.resourceIdList.length} ids');
-        _provider.fetchAllResourceData().then(
-          (_) {
-            setState(
-              () {
-                _isLoading = false;
-              },
-            );
-          },
-        );
-      },
-    );
-
-    super.initState();
-  }
-  @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: custom_colors.backgroundPurple,
