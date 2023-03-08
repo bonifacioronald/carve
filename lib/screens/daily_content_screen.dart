@@ -1,6 +1,6 @@
 import 'package:carve_app/data/content_data.dart';
 import 'package:carve_app/screens/loading_screen.dart';
-import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:carve_app/widgets/toggle_button.dart';
@@ -27,13 +27,13 @@ class _DailyContentState extends State<DailyContent> {
   void initState() {
     // TODO: implement initState
 
-    var _provider = Provider.of<ContentProvider>(context, listen: false);
+    var _provider = Provider.of<DailyContentProvider>(context, listen: false);
     if (_provider.contentIdList.isEmpty) {
       print('INIT STATE');
       _provider
           .fetchContentId()
           .then(
-            (value) => _provider.fetchContentDataFromId(
+            (value) => _provider.fetchDailyContentDataFromId(
               _provider.contentIdList[0],
             ),
           )
@@ -57,6 +57,9 @@ class _DailyContentState extends State<DailyContent> {
 
   @override
   Widget build(BuildContext context) {
+    ContentModel displayedContent =
+        ModalRoute.of(context)!.settings.arguments as ContentModel;
+
     imageCache.clear;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
@@ -71,9 +74,10 @@ class _DailyContentState extends State<DailyContent> {
                 color: custom_colors.backgroundPurple,
                 child: Column(
                   children: [
-                    DailyContentStory(
-                        Provider.of<ContentProvider>(context, listen: false)
-                            .loadedContent),
+                    DailyContentStory(displayedContent),
+                    // DailyContentStory(Provider.of<DailyContentProvider>(context,
+                    //         listen: false)
+                    //     .loadedContent),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Column(

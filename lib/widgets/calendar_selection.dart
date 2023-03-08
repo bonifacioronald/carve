@@ -125,7 +125,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
       [
         setState(() {
           imageUrl =
-              'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_3month.pngg';
+              'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_3month.png';
         })
       ];
     } else if (displayedWeek <= 16) {
@@ -349,7 +349,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                     availableGestures: AvailableGestures.all,
                     focusedDay: targetDay,
                     firstDay: DateTime.utc(2022, 08, 31),
-                    lastDay: DateTime.utc(2032, 08, 31),
+                    lastDay: DateTime.utc(2023, 07, 01),
                     selectedDayPredicate: (day) => isSameDay(day, targetDay),
                     onDaySelected: (selectedDay, focusedDay) {
                       setState(
