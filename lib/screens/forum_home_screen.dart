@@ -22,20 +22,26 @@ class _ForumScreenState extends State<ForumScreen> {
   void initState() {
     // TODO: implement initState
     var _provider = Provider.of<ForumProvider>(context, listen: false);
-    _provider.fetchForumId().then(
-      (_) {
-        print('Successfuly fetched ${_provider.forumIdList.length} ids');
-        _provider.fetchAllForumData().then(
-          (_) {
-            setState(
-              () {
-                _isLoading = false;
-              },
-            );
-          },
-        );
-      },
-    );
+    if (_provider.forumIdList.isEmpty) {
+      _provider.fetchForumId().then(
+        (_) {
+          print('Successfuly fetched ${_provider.forumIdList.length} ids');
+          _provider.fetchAllForumData().then(
+            (_) {
+              setState(
+                () {
+                  _isLoading = false;
+                },
+              );
+            },
+          );
+        },
+      );
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
 
     super.initState();
   }
@@ -125,7 +131,8 @@ class _ForumScreenState extends State<ForumScreen> {
 
                   Container(
                     width: double.infinity,
-                    height: 500,
+                    height: _provider.forumIdList.length * 200 +
+                        _provider.forumIdList.length * 20,
                     child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: _provider.forumIdList.length,
