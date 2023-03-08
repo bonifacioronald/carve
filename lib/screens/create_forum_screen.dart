@@ -43,7 +43,7 @@ class _createForumState extends State<createForum> {
   int currentCLickIndex = 0;
   String title = '';
   String description = '';
-  String category = '';
+  String Category = '';
 
   // Color defaultColor = Colors.white;
   File? image;
@@ -58,6 +58,41 @@ class _createForumState extends State<createForum> {
       print("Failed to pick image: $e");
     }
   }
+
+  // void _updateCategory(int currentCLickIndex, BuildContext context) {
+  //   switch (currentCLickIndex) {
+  //     case 1:
+  //       {
+  //         Category = 'Pregnancy';
+  //       }
+  //       break;
+  //     case 2:
+  //       {
+  //         Category = 'Growth';
+  //       }
+  //       break;
+  //     case 3:
+  //       {
+  //         Category = 'Nutrition';
+  //       }
+  //       break;
+  //     case 4:
+  //       {
+  //         Category = 'Education';
+  //       }
+  //       break;
+  //     case 5:
+  //       {
+  //         Category = 'Financial';
+  //       }
+  //       break;
+  //     case 6:
+  //       {
+  //         Category = 'Others';
+  //       }
+  //       break;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +162,10 @@ class _createForumState extends State<createForum> {
                       onTap: () {
                         setState(() {
                           currentCLickIndex = 1;
+                          Category = "Pregnancy";
+                          print(Category);
                         });
+                        // _updateCategory(currentCLickIndex, context);
                       },
                       child: CategoryButton(
                           currentCLickIndex == 1
@@ -144,6 +182,8 @@ class _createForumState extends State<createForum> {
                       onTap: () {
                         setState(() {
                           currentCLickIndex = 2;
+                          Category = "Growth";
+                          print(Category);
                         });
                       },
                       child: CategoryButton(
@@ -161,6 +201,8 @@ class _createForumState extends State<createForum> {
                       onTap: () {
                         setState(() {
                           currentCLickIndex = 3;
+                          Category = "Nutrition";
+                          print(Category);
                         });
                       },
                       child: CategoryButton(
@@ -178,6 +220,8 @@ class _createForumState extends State<createForum> {
                       onTap: () {
                         setState(() {
                           currentCLickIndex = 4;
+                          Category = "Education";
+                          print(Category);
                         });
                       },
                       child: CategoryButton(
@@ -195,6 +239,8 @@ class _createForumState extends State<createForum> {
                       onTap: () {
                         setState(() {
                           currentCLickIndex = 5;
+                          Category = "Financial";
+                          print(Category);
                         });
                       },
                       child: CategoryButton(
@@ -212,6 +258,8 @@ class _createForumState extends State<createForum> {
                       onTap: () {
                         setState(() {
                           currentCLickIndex = 6;
+                          Category = "Others";
+                          print(Category);
                         });
                       },
                       child: CategoryButton(
@@ -289,7 +337,7 @@ class _createForumState extends State<createForum> {
                 onTap: () {
                   createNewForum(
                       currentUser.name,
-                      "category",
+                      Category,
                       _descriptionController.text,
                       DateTime.now(),
                       _titleController.text);
@@ -297,6 +345,7 @@ class _createForumState extends State<createForum> {
                   print(currentUser.name);
                   print(_titleController.text);
                   print(_descriptionController.text);
+                  print(Category);
                 },
                 child: Container(
                   width: 352,
@@ -313,22 +362,6 @@ class _createForumState extends State<createForum> {
                               fontWeight: FontWeight.bold))),
                 ),
               ),
-              //           GestureDetector(
-              //   onTap: () => Navigator.of(context).pushNamed(createForum.routeName),
-
-              //   child: Container(
-              //     width:352,
-              //     height: 60,
-              //     decoration: BoxDecoration(
-              //       color: Color(0XFF02084B),
-              //       borderRadius: BorderRadius.circular(20),
-              //     ),
-
-              //          child:Center(child: Text(widget.title, style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)))
-
-              //     ),
-              // );
-              // createButton("Publish Forum")
             ],
           )),
     );

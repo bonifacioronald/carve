@@ -1,4 +1,3 @@
-import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;

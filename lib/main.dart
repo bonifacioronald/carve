@@ -8,7 +8,6 @@ import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
 import 'package:carve_app/screens/forum_detail_screen.dart';
-import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
@@ -90,7 +89,6 @@ class MyApp extends StatelessWidget {
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
           ResourceCategories.routeName: (context) => ResourceCategories(),
-          LocalFoodBank.routeName: (context) => LocalFoodBank(),
           forumPage.routeName: (context) => forumPage(),
         },
       ),
