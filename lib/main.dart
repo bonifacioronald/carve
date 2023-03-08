@@ -1,6 +1,7 @@
 import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
@@ -46,11 +47,14 @@ class MyApp extends StatelessWidget {
           value: UserProvider(),
         ),
         ChangeNotifierProvider.value(
-          value: ContentProvider(),
+          value: DailyContentProvider(),
         ),
         ChangeNotifierProvider.value(
           value: ForumProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: ContentProvider(),
+        )
       ],
       child: MaterialApp(
         title: 'Carve',

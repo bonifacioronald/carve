@@ -7,7 +7,9 @@ class ContentLibraryCard extends StatelessWidget {
   String contentTitle;
   String contentImageUrl;
   ContentLibraryCard(
-      this.contentCategory, this.contentTitle, this.contentImageUrl);
+      {required this.contentCategory,
+      required this.contentTitle,
+      required this.contentImageUrl});
 
   @override
   Widget build(BuildContext context) {

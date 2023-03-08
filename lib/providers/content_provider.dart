@@ -4,14 +4,10 @@ import 'package:flutter/material.dart';
 
 class ContentProvider with ChangeNotifier {
   List<String> contentIdList = [];
-  ContentModel loadedContent = ContentModel(
-    id: '',
-    title: '',
-    content: [],
-    suitableCategories: [],
-  );
+  List<ContentModel> loadedContentList = [];
 
   Future<void> fetchContentId() async {
+    print('fetch');
     try {
       await FirebaseFirestore.instance.collection('content').get().then(
         (snapshot) {
@@ -29,6 +25,13 @@ class ContentProvider with ChangeNotifier {
     }
   }
 
+  Future<void> fetchAllContentData() async {
+    for (int i = 0; i < contentIdList.length; i++) {
+      await fetchContentDataFromId(contentIdList[i]);
+    }
+    print('all done');
+  }
+
   Future<void> fetchContentDataFromId(String contentId) async {
     await FirebaseFirestore.instance
         .collection('content')
@@ -36,19 +39,29 @@ class ContentProvider with ChangeNotifier {
         .get()
         .then(
       (snapshot) {
-        loadedContent.id = snapshot.data()!['id'];
-        loadedContent.title = snapshot.data()!['title'];
+        List<String> loadedCategory = [];
+        List<String> loadedSlides = [];
+        List.from(snapshot.data()!['suitableCategories']).forEach(
+          (category) {
+            loadedCategory.add(category);
+          },
+        );
         List.from(snapshot.data()!['content']).forEach((content) {
-          loadedContent.content.add(content);
+          loadedSlides.add(content);
         });
-        for (int i = 0; i < loadedContent.content.length; i++) {
-          String formattedString =
-              loadedContent.content[i].replaceAll('\\n', '\n');
-          loadedContent.content[i] = formattedString;
+        for (int i = 0; i < loadedSlides.length; i++) {
+          String formattedString = loadedSlides[i].replaceAll('\\n', '\n');
+          loadedSlides[i] = formattedString;
         }
-        List.from(snapshot.data()!['suitableCategories']).forEach((category) {
-          loadedContent.suitableCategories.add(category);
-        });
+
+        ContentModel loadedContent = ContentModel(
+          id: snapshot.data()!['id'],
+          title: snapshot.data()!['title'],
+          suitableCategories: loadedCategory,
+          content: loadedSlides,
+        );
+        loadedContentList.add(loadedContent);
+        print('fetched ${snapshot.data()!['title']}');
       },
     );
   }
