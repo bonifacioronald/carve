@@ -41,8 +41,8 @@ class DailyContentCard extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               GestureDetector(
-                onTap: () =>
-                    Navigator.of(context).pushNamed(DailyContent.routeName),
+                onTap: () => Navigator.of(context)
+                    .pushNamed(DailyContentScreen.routeName),
                 child: Container(
                   width: 140,
                   height: 40,

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/screens/content_library_story_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/content_library_card.dart';
@@ -176,7 +177,8 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                   children: [
                                     GestureDetector(
                                       onTap: (() => Navigator.of(context)
-                                          .pushNamed(DailyContent.routeName,
+                                          .pushNamed(
+                                              ContentLibraryStory.routeName,
                                               arguments: _provider
                                                   .loadedContentList[index])),
                                       child: ContentLibraryCard(
@@ -217,7 +219,8 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                   children: [
                                     GestureDetector(
                                       onTap: (() => Navigator.of(context)
-                                          .pushNamed(DailyContent.routeName,
+                                          .pushNamed(
+                                              DailyContentScreen.routeName,
                                               arguments: _provider
                                                   .loadedContentList[index])),
                                       child: ContentLibraryCard(

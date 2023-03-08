@@ -12,15 +12,15 @@ import 'package:provider/provider.dart';
 
 import '../models/content_model.dart';
 
-class DailyContent extends StatefulWidget {
-  const DailyContent({super.key});
+class DailyContentScreen extends StatefulWidget {
+  const DailyContentScreen({super.key});
   static const routeName = '/dailyContent-1';
 
   @override
-  State<DailyContent> createState() => _DailyContentState();
+  State<DailyContentScreen> createState() => _DailyContentScreenState();
 }
 
-class _DailyContentState extends State<DailyContent> {
+class _DailyContentScreenState extends State<DailyContentScreen> {
   bool _isLoading = true;
 
   @override
@@ -57,9 +57,6 @@ class _DailyContentState extends State<DailyContent> {
 
   @override
   Widget build(BuildContext context) {
-    ContentModel displayedContent =
-        ModalRoute.of(context)!.settings.arguments as ContentModel;
-
     imageCache.clear;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
@@ -74,10 +71,9 @@ class _DailyContentState extends State<DailyContent> {
                 color: custom_colors.backgroundPurple,
                 child: Column(
                   children: [
-                    DailyContentStory(displayedContent),
-                    // DailyContentStory(Provider.of<DailyContentProvider>(context,
-                    //         listen: false)
-                    //     .loadedContent),
+                    DailyContentStory(Provider.of<DailyContentProvider>(context,
+                            listen: false)
+                        .loadedContent),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Column(

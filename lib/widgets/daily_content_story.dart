@@ -23,22 +23,22 @@ RestartableTimer? timer;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
   void runTimer() {
-    if (timer != null && currentSlideIndex <= widget.content.content.length) {
-      setState(() {
-        timer!.reset();
-      });
-      print("timer resetted");
-    }
-    timer = RestartableTimer(const Duration(seconds: 30), () {
-      print("timehasstarted");
-      setState(() {
-        if (timer != null &&
-            currentSlideIndex < widget.content.content.length + 1 &&
-            isPaused == false) {
-          currentSlideIndex++;
-        }
-      });
-    });
+    // if (timer != null && currentSlideIndex <= widget.content.content.length) {
+    //   setState(() {
+    //     timer!.reset();
+    //   });
+    //   print("timer resetted");
+    // }
+    // timer = RestartableTimer(const Duration(seconds: 30), () {
+    //   print("timehasstarted");
+    //   setState(() {
+    //     if (timer != null &&
+    //         currentSlideIndex < widget.content.content.length + 1 &&
+    //         isPaused == false) {
+    //       currentSlideIndex++;
+    //     }
+    //   });
+    // });
   }
 
   @override
@@ -198,7 +198,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               )),
                         ),
                         SizedBox(width: 5),
-                        IconSwitchingButton(Icons.volume_up, Icons.volume_off)
+                        IconSwitchingButton(Icons.volume_off, Icons.volume_up)
                       ],
                     )
                   ],
