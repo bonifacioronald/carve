@@ -1,5 +1,6 @@
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
+import 'package:carve_app/screens/forum_detail_screen.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:flutter/material.dart';
@@ -139,18 +140,23 @@ class _ForumScreenState extends State<ForumScreen> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            ForumCard(
-                              authorName:
-                                  _provider.loadedForumList[index].authorName,
-                              publishedDate: _provider
-                                  .loadedForumList[index].publishedDate,
-                              category:
-                                  _provider.loadedForumList[index].category,
-                              title: _provider.loadedForumList[index].title,
-                              totalLikes:
-                                  _provider.loadedForumList[index].totalLikes,
-                              totalReplies:
-                                  _provider.loadedForumList[index].totalReplies,
+                            GestureDetector(
+                              onTap: (() => Navigator.of(context).pushNamed(
+                                  forumPage.routeName,
+                                  arguments: _provider.loadedForumList[index])),
+                              child: ForumCard(
+                                authorName:
+                                    _provider.loadedForumList[index].authorName,
+                                publishedDate: _provider
+                                    .loadedForumList[index].publishedDate,
+                                category:
+                                    _provider.loadedForumList[index].category,
+                                title: _provider.loadedForumList[index].title,
+                                totalLikes:
+                                    _provider.loadedForumList[index].totalLikes,
+                                totalReplies: _provider
+                                    .loadedForumList[index].totalReplies,
+                              ),
                             ),
                             SizedBox(
                               height: 20,

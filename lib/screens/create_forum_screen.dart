@@ -16,7 +16,11 @@ class createForum extends StatefulWidget {
 }
 
 class _createForumState extends State<createForum> {
-  bool isClicked = false;
+  int currentCLickIndex = 0;
+  String title = '';
+  String description = '';
+  String category = '';
+
   // Color defaultColor = Colors.white;
   File? image;
   Future pickImage(ImageSource source) async {
@@ -95,14 +99,16 @@ class _createForumState extends State<createForum> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          isClicked = !isClicked;
+                          currentCLickIndex = 1;
                         });
                       },
                       child: CategoryButton(
-                          isClicked
+                          currentCLickIndex == 1
+                              ? custom_colors.primaryDarkPurple
+                              : Colors.white,
+                          currentCLickIndex == 1
                               ? Colors.white
                               : custom_colors.primaryDarkPurple,
-                          Colors.amber,
                           Icons.pregnant_woman,
                           "Pregnancy"),
                     ),
@@ -110,14 +116,16 @@ class _createForumState extends State<createForum> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          isClicked = !isClicked;
+                          currentCLickIndex = 2;
                         });
                       },
                       child: CategoryButton(
-                          isClicked
+                          currentCLickIndex == 2
+                              ? custom_colors.primaryDarkPurple
+                              : Colors.white,
+                          currentCLickIndex == 2
                               ? Colors.white
                               : custom_colors.primaryDarkPurple,
-                          Colors.amber,
                           Icons.child_care_rounded,
                           "Growth"),
                     ),
@@ -125,14 +133,16 @@ class _createForumState extends State<createForum> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          isClicked = !isClicked;
+                          currentCLickIndex = 3;
                         });
                       },
                       child: CategoryButton(
-                          isClicked
+                          currentCLickIndex == 3
+                              ? custom_colors.primaryDarkPurple
+                              : Colors.white,
+                          currentCLickIndex == 3
                               ? Colors.white
                               : custom_colors.primaryDarkPurple,
-                          Colors.amber,
                           Icons.fastfood,
                           "Nutrition"),
                     ),
@@ -140,14 +150,16 @@ class _createForumState extends State<createForum> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          isClicked = !isClicked;
+                          currentCLickIndex = 4;
                         });
                       },
                       child: CategoryButton(
-                          isClicked
+                          currentCLickIndex == 4
+                              ? custom_colors.primaryDarkPurple
+                              : Colors.white,
+                          currentCLickIndex == 4
                               ? Colors.white
                               : custom_colors.primaryDarkPurple,
-                          Colors.amber,
                           Icons.school,
                           "Education"),
                     ),
@@ -155,14 +167,16 @@ class _createForumState extends State<createForum> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          isClicked = !isClicked;
+                          currentCLickIndex = 5;
                         });
                       },
                       child: CategoryButton(
-                          isClicked
+                          currentCLickIndex == 5
+                              ? custom_colors.primaryDarkPurple
+                              : Colors.white,
+                          currentCLickIndex == 5
                               ? Colors.white
                               : custom_colors.primaryDarkPurple,
-                          Colors.amber,
                           Icons.attach_money,
                           "Financial"),
                     ),
@@ -170,14 +184,16 @@ class _createForumState extends State<createForum> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          isClicked = !isClicked;
+                          currentCLickIndex = 6;
                         });
                       },
                       child: CategoryButton(
-                          isClicked
+                          currentCLickIndex == 6
+                              ? custom_colors.primaryDarkPurple
+                              : Colors.white,
+                          currentCLickIndex == 6
                               ? Colors.white
                               : custom_colors.primaryDarkPurple,
-                          Colors.amber,
                           Icons.drag_indicator_sharp,
                           "Others"),
                     ),
