@@ -10,7 +10,6 @@ class CalendarSelection extends StatefulWidget {
   State<CalendarSelection> createState() => _CalendarSelectionState();
 }
 
-
 DateTime startOfPregnancy = DateTime(2022, 09, 03);
 DateTime targetDay = DateTime.now();
 Duration? diff;
@@ -68,9 +67,7 @@ Widget unselectedTimePeriodContainer(String text) {
 }
 
 class _CalendarSelectionState extends State<CalendarSelection> {
-
   void showNotesDialog(BuildContext context) {
-    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -112,26 +109,20 @@ class _CalendarSelectionState extends State<CalendarSelection> {
 
   @override
   Widget build(BuildContext context) {
-        int childAge = 0;
-        int convertedAge=0;
-    if(Provider.of<UserProvider>(context,listen:false).userProviderData.isPregnant)
-    {
-    childAge=int.parse(Provider.of<UserProvider>(context,listen:false).userProviderData.childAge);
-     convertedAge= childAge*7;
-     startOfPregnancy = DateTime.now().subtract(Duration(days: convertedAge));}
-     
-    else{
-        startOfPregnancy= DateTime.utc(2023,1,1);
-        convertedAge=84;
-     }
-
-    
-    
-
-    
-
-    
-
+    int childAge = 0;
+    int convertedAge = 0;
+    if (Provider.of<UserProvider>(context, listen: false)
+        .userProviderData
+        .isPregnant) {
+      childAge = int.parse(Provider.of<UserProvider>(context, listen: false)
+          .userProviderData
+          .childAge);
+      convertedAge = childAge * 7;
+      startOfPregnancy = DateTime.now().subtract(Duration(days: convertedAge));
+    } else {
+      startOfPregnancy = DateTime.utc(2023, 1, 1);
+      convertedAge = 84;
+    }
 
     if (displayedWeek <= 4) {
       [
@@ -374,8 +365,9 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                     ),
                     availableGestures: AvailableGestures.all,
                     focusedDay: targetDay,
-                    firstDay:startOfPregnancy,
-                    lastDay: DateTime.now().add(Duration(days:300-convertedAge)),
+                    firstDay: startOfPregnancy,
+                    lastDay:
+                        DateTime.now().add(Duration(days: 300 - convertedAge)),
                     selectedDayPredicate: (day) => isSameDay(day, targetDay),
                     onDaySelected: (selectedDay, focusedDay) {
                       setState(

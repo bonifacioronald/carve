@@ -51,66 +51,17 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                 height: 20,
               ),
               //Local Pregnancy
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ResourcesMainCard(
-                        '15% OFF Pregnancy Care',
-                        'https://www.pngmart.com/files/16/Vector-Happy-Pregnant-Woman-Transparent-PNG.png',
-                        'Pregnancy Classes'),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ResourcesMainCard(
-                        'Best Family Therapy in Town',
-                        'https://www.pngmart.com/files/21/Counseling-Transparent-Background.png',
-                        'Therapy'),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ResourcesMainCard(
-                        'Hunger Relief Near You',
-                        'https://cdn-icons-png.flaticon.com/512/1075/1075090.png',
-                        'Food Bank'),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
+
               Container(
                 padding: EdgeInsets.only(left: 20, right: 20, bottom: 60),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Categories',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: custom_colors.primaryDarkPurple,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-
-                    //Local Pregnancy
                     SingleChildScrollView(
+                      clipBehavior: Clip.none,
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          SizedBox(
-                            width: 20,
-                          ),
                           ResourcesMainCard(
                               '15% OFF Pregnancy Care',
                               'https://images.ctfassets.net/9wtva4vhlgxb/6QWEHMlC0gSnCAdZVYJuvJ/321f0c3ae02c30b4cf45cc7ec6037559/mask_3x.webp',
@@ -134,10 +85,25 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Categories',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: custom_colors.primaryDarkPurple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+
+                    //Local Pregnancy
 
                     SizedBox(
                       height: 16,
-
                     ),
                     //Categories Buttons
                     Container(
@@ -295,7 +261,7 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                           )
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               )
@@ -316,27 +282,47 @@ class ResourcesMainCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>Navigator.of(context)
-            .pushNamed(ResourceDetailScreen.routeName, arguments: 'Pregnancy Classes'),
+      onTap: () => Navigator.of(context)
+          .pushNamed(ResourceDetailScreen.routeName, arguments: launcher),
       child: Container(
+        clipBehavior: Clip.none,
         width: MediaQuery.of(context).size.width - 80,
         height: 160,
         alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 20, left: 15, bottom: 25, right: 10),
+        //    padding: EdgeInsets.only(top: 20, left: 15, bottom: 25, right: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-                image: NetworkImage(imageURL),
-                opacity: 0.9,
-                fit: BoxFit.cover)),
-        child:
-        Container(
-          width:150,
-          padding:EdgeInsets.all(15),
-          decoration: BoxDecoration(borderRadius:BorderRadius.circular(20),color:secondaryLightPurple.withOpacity(0.7),),
-          child:Text(text, textAlign: TextAlign.center, style:TextStyle(fontWeight:FontWeight.w900,fontSize: 16,color: Colors.white,)))
-                
+          image: DecorationImage(
+              image: NetworkImage(imageURL), opacity: 1, fit: BoxFit.cover),
+          boxShadow: [
+            BoxShadow(
+              color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, 2),
+            ),
+          ],
         ),
+        child: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: double.infinity,
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: secondaryLightPurple.withOpacity(0.7),
+          ),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: 30,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

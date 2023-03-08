@@ -23,7 +23,7 @@ class QuestionTitleScreen extends StatelessWidget {
               image: AssetImage(
                 'lib/assets/images/question_screen_bg.png',
               ),
-              fit: BoxFit.none),
+              fit: BoxFit.cover),
         ),
         child: Column(
           children: [
