@@ -34,6 +34,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
+                  color:primaryDarkPurple
                 ),
               ),
               SizedBox(height: 20),

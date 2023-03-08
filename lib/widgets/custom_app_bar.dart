@@ -27,10 +27,6 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
           Spacer(),
-          Icon(
-            Icons.notifications_active_outlined,
-            color: Colors.white,
-          ),
           SizedBox(
             width: 12,
           ),
