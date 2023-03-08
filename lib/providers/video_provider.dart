@@ -45,7 +45,6 @@ class VideoProvider with ChangeNotifier {
           title: snapshot.data()!['title'],
           rating: snapshot.data()!['rating'],
           thumbnailUrl: snapshot.data()!['thumbnailUrl'],
-          isForPregnancy: snapshot.data()!['isForPregnancy'],
         );
 
         loadedVideoList.add(loadedVideo);
