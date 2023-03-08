@@ -3,6 +3,7 @@ import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/providers/forum_provider.dart';
+import 'package:carve_app/providers/resource_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
 
@@ -58,6 +59,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: ForumProvider(),
         ),
+         ChangeNotifierProvider.value(
+          value: ResourceProvider(),
+        ),  
         ChangeNotifierProvider.value(
           value: ContentProvider(),
         ),
