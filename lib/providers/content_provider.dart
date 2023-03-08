@@ -55,11 +55,11 @@ class ContentProvider with ChangeNotifier {
         }
 
         ContentModel loadedContent = ContentModel(
-            id: snapshot.data()!['id'],
-            title: snapshot.data()!['title'],
-            suitableCategories: loadedCategory,
-            content: loadedSlides,
-            thumbnailUrl: snapshot.data()!['thumbnailUrl']);
+          id: snapshot.data()!['id'],
+          title: snapshot.data()!['title'],
+          suitableCategories: loadedCategory,
+          content: loadedSlides,
+        );
         loadedContentList.add(loadedContent);
         print('fetched ${snapshot.data()!['title']}');
       },
