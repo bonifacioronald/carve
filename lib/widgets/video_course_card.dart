@@ -82,13 +82,21 @@ class VideoCourseCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "By $authorName",
-                        style: TextStyle(
-                            color: custom_colors.primaryDarkPurple
-                                .withOpacity(0.5),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Container(
+                          child: Text(
+                            "By $authorName",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: custom_colors.primaryDarkPurple
+                                    .withOpacity(0.5),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4,
                       ),
                       Icon(
                         Icons.play_circle_filled_rounded,
