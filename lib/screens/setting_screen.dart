@@ -68,7 +68,10 @@ class SettingScreen extends StatelessWidget {
                   onTap: () => Auth().signOut(context),
                   child: SettingWidget(Icons.logout, "Log Out", false),
                 ),
+                Spacer(),
+                Align(alignment: Alignment.center,child:Text('@ 2023 Carve, All rights reserved',style:TextStyle(color:Colors.black.withOpacity(0.5))))              
               ],
-            )));
+            )
+            ));
   }
 }
