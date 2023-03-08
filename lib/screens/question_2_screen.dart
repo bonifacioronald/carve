@@ -1,3 +1,4 @@
+import 'package:carve_app/screens/question_2_if_pregnant.dart';
 import 'package:carve_app/screens/question_3_screen.dart';
 import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
@@ -138,10 +139,10 @@ class _Question2ScreenState extends State<Question2Screen> {
                     ),
                     Spacer(),
                     GestureDetector(
-                      onTap: (() => widget.selectedAnswerIndex != 0 
-                          ? Navigator.of(context)
-                              .pushNamed(Question3Screen.routeName)
-                          : null),
+                      onTap: (() {
+                        Navigator.of(context)
+                            .pushNamed(Question3Screen.routeName);
+                      }),
                       child: Container(
                         width: 200,
                         height: 50,

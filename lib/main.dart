@@ -8,23 +8,15 @@ import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/screens/content_library_screen.dart';
 import 'package:carve_app/screens/content_library_story_screen.dart';
-
 import 'package:carve_app/screens/forum_all_screen.dart';
-import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
-
-import 'package:carve_app/screens/forum_all_screen.dart';
-
-import 'package:carve_app/screens/local_parenting_class_screen.dart';
-import 'package:carve_app/screens/question_3_if_pregnant.dart';
+import 'package:carve_app/screens/question_2_if_pregnant.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
-import 'package:carve_app/widgets/map_screen_widgets.dart';
-import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
 import 'package:carve_app/screens/question_2_screen.dart';
@@ -76,7 +68,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: AuthWidgetTree(),
+        home: ResourcesScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
@@ -84,8 +76,8 @@ class MyApp extends StatelessWidget {
           QuestionTitleScreen.routeName: (context) => QuestionTitleScreen(),
           Question1Screen.routeName: (context) => Question1Screen(),
           Question2Screen.routeName: (context) => Question2Screen(),
-          Question3PregnantScreen.routeName: (context) =>
-              Question3PregnantScreen(),
+          Question2PregnantScreen.routeName: (context) =>
+              Question2PregnantScreen(),
           Question3Screen.routeName: (context) => Question3Screen(),
           Question4Screen.routeName: (context) => Question4Screen(),
           Question5Screen.routeName: (context) => Question5Screen(),
@@ -94,10 +86,9 @@ class MyApp extends StatelessWidget {
           DailyContentScreen.routeName: (context) => DailyContentScreen(),
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
-          LocalParentingClass.routeName: (context) => LocalParentingClass(),
           ResourceCategories.routeName: (context) => ResourceCategories(),
-          LocalFoodBank.routeName: (context) => LocalFoodBank(),
           ContentLibraryStory.routeName: (context) => ContentLibraryStory()
+
         },
       ),
     );

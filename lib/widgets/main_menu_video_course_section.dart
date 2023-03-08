@@ -13,25 +13,14 @@ class MainMenuVideoCourseSection extends StatelessWidget {
     List<VideoModel> loadedVideoList =
         Provider.of<VideoProvider>(context, listen: false).loadedVideoList;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Video Courses',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: custom_colors.primaryDarkPurple,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'See All',
-              style: TextStyle(
-                  fontSize: 14,
-                  color: custom_colors.secondaryLightPurple,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
+        Text(
+          'Video Materials',
+          style: TextStyle(
+              fontSize: 20,
+              color: custom_colors.primaryDarkPurple,
+              fontWeight: FontWeight.bold),
         ),
         SizedBox(
           height: 16,

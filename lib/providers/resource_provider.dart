@@ -5,26 +5,55 @@ import '../models/resources_model.dart';
 import '../models/user_model.dart';
 
 class ResourceProvider with ChangeNotifier {
-  ResourcesModel resourceProviderData = ResourcesModel(
-      id: '',
-      title: '',
-      location: '',
-      categories: '',
-      URLDirection: '',
+ List<String> resourceIdList = [];
+  List<ResourcesModel> loadedResourceList = [];
+
+//dasdad
+      Future<void> fetchResourceId() async {
+    print('fetch');
+    try {
+      await FirebaseFirestore.instance.collection('resources').get().then(
+        (snapshot) {
+          snapshot.docs.forEach(
+            (resource) {
+              resourceIdList.add(resource.reference.id);
+            },
+          );
+        },
       );
+      print('Success! fetched resourceId List: ${resourceIdList}');
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
-  Future<void> fetchResourceData() async {
+  Future<void> fetchAllResourceData() async {
+    for (int i = 0; i < resourceIdList.length; i++) {
+      await fetchResourceDataFromId(resourceIdList[i]);
+    }
+    print('all done');
+  }
+
+
+  Future<void> fetchResourceDataFromId(String resourceId) async {
     await FirebaseFirestore.instance
-        .collection('user')
-        .doc(Auth().currentUser!.uid)
+        .collection('resources')
+        .doc(resourceId)
         .get()
-        .then((snapshot) {
-      resourceProviderData.id = snapshot.data()!['id'];
-      resourceProviderData.title = snapshot.data()!['title'];
-      resourceProviderData.location = snapshot.data()!['location'];
-      resourceProviderData.categories = snapshot.data()!['category'];
-      resourceProviderData.URLDirection = snapshot.data()!['URLDirection'];
-
-    });
+        .then(
+      (snapshot) {
+        ResourcesModel loadedResource = ResourcesModel(
+        
+          categories: snapshot.data()!['category'],
+          id: snapshot.data()!['id'],
+          title: snapshot.data()!['title'],
+          URLDirection: snapshot.data()!['URLDirection'],
+          location: snapshot.data()!['location'],
+        );
+        loadedResourceList.add(loadedResource);
+        print('fetched ${snapshot.data()!['title']}');
+      },
+    );
   }
 }

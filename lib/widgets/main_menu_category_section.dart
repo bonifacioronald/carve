@@ -1,9 +1,14 @@
 import 'package:carve_app/widgets/category_button.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
+import '../navigation.dart';
 
 class MainMenuCategorySection extends StatelessWidget {
   const MainMenuCategorySection({super.key});
+
+  BottomNavigationBar get navigationBar {
+    return NavigationState.globalKey.currentWidget as BottomNavigationBar;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +19,23 @@ class MainMenuCategorySection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Categories',
+              'Your Resources',
               style: TextStyle(
                   fontSize: 20,
                   color: custom_colors.primaryDarkPurple,
                   fontWeight: FontWeight.bold),
             ),
-            Text(
-              'See All',
-              style: TextStyle(
-                  fontSize: 14,
-                  color: custom_colors.secondaryLightPurple,
-                  fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: (() => navigationBar.onTap!(1)),
+              child: Container(
+                child: Text(
+                  'See All',
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: custom_colors.secondaryLightPurple,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           ],
         ),

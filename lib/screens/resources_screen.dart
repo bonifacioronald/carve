@@ -1,14 +1,12 @@
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
-import 'local_parenting_class_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
 class ResourcesScreen extends StatelessWidget {
-    
-    ResourcesScreen({super.key});
+  ResourcesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class ResourcesScreen extends StatelessWidget {
                 padding: EdgeInsets.only(
                     left: 20,
                     right: 20,
-                    top: MediaQuery.of(context).padding.top + 40),
+                    top: MediaQuery.of(context).padding.top + 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -34,11 +32,6 @@ class ResourcesScreen extends StatelessWidget {
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    Icon(
-                      Icons.search,
-                      size: 28,
-                      color: custom_colors.primaryDarkPurple,
                     ),
                   ],
                 ),
@@ -87,13 +80,6 @@ class ResourcesScreen extends StatelessWidget {
                               color: custom_colors.primaryDarkPurple,
                               fontWeight: FontWeight.bold),
                         ),
-                        Text(
-                          'See All',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: custom_colors.secondaryLightPurple,
-                              fontWeight: FontWeight.bold),
-                        ),
                       ],
                     ),
                     SizedBox(
@@ -106,10 +92,8 @@ class ResourcesScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           GestureDetector(
-                            onTap: () => 
-                            
-                            Navigator.of(context)
-                            .pushNamed(ResourceCategories.routeName),
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(ResourceCategories.routeName),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +172,7 @@ class ResourcesScreen extends StatelessWidget {
                       height: 30,
                     ),
                     Text(
-                      "Recommended for you",
+                      "Recommended For You",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -235,12 +219,10 @@ class ResourcesScreen extends StatelessWidget {
 }
 
 class ResourcesMainCard extends StatelessWidget {
-  
   String text;
   ResourcesMainCard(this.text);
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: MediaQuery.of(context).size.width - 80,
       height: 160,
