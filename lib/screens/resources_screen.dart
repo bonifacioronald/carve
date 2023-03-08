@@ -21,7 +21,7 @@ class ResourcesScreen extends StatelessWidget {
                 padding: EdgeInsets.only(
                     left: 20,
                     right: 20,
-                    top: MediaQuery.of(context).padding.top + 40),
+                    top: MediaQuery.of(context).padding.top + 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -32,11 +32,6 @@ class ResourcesScreen extends StatelessWidget {
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    Icon(
-                      Icons.search,
-                      size: 28,
-                      color: custom_colors.primaryDarkPurple,
                     ),
                   ],
                 ),
@@ -83,13 +78,6 @@ class ResourcesScreen extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 20,
                               color: custom_colors.primaryDarkPurple,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'See All',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: custom_colors.secondaryLightPurple,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -184,7 +172,7 @@ class ResourcesScreen extends StatelessWidget {
                       height: 30,
                     ),
                     Text(
-                      "Recommended for you",
+                      "Recommended For You",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
