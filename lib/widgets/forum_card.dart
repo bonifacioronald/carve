@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carve_app/screens/forum_detail_screen.dart';
+import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:flutter/material.dart';
 import '/models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
@@ -26,7 +27,7 @@ class ForumCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 200,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -41,20 +42,22 @@ class ForumCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              AutoSizeText(
-                '$authorName •',
-                style: TextStyle(
-                  color: Colors.grey.withOpacity(0.4),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              Container(
+                width: 60,
+                child: Text(
+                  '$authorName •',
+                  style: TextStyle(
+                    color: Colors.grey.withOpacity(0.4),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
-                overflow: TextOverflow.ellipsis,
-                minFontSize: 16,
-                maxFontSize: 16,
-                maxLines: 1,
               ),
               SizedBox(width: 4),
               Text(
@@ -83,20 +86,22 @@ class ForumCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Icon(Icons.bookmark_add_outlined,
-                  color: Colors.grey.withOpacity(0.5), size: 28),
+              SizedBox(width: 8),
+              iconSwitching(
+                  Icons.bookmark_add_outlined, Icons.bookmark, 28, Colors.grey),
             ],
           ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              color: custom_colors.primaryDarkPurple,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
+          Container(
+            alignment: Alignment.centerLeft,
+            height: 60,
+            child: Text(title,
+                style: TextStyle(
+                  color: custom_colors.primaryDarkPurple,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis),
           ),
           Divider(
             color: Color(0XFF02084B).withOpacity(0.1),
@@ -104,8 +109,8 @@ class ForumCard extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(Icons.thumb_up_alt_outlined,
-                  color: Color(0XFF5B5B5B5B).withOpacity(0.5), size: 24),
+              iconSwitching(Icons.thumb_up_alt_outlined, Icons.thumb_up, 24,
+                  Color(0XFF5B5B5B5B).withOpacity(0.5)),
               SizedBox(
                 width: 4,
               ),
@@ -115,8 +120,8 @@ class ForumCard extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               SizedBox(width: 16),
-              Icon(Icons.comment_outlined,
-                  color: Color(0XFF5B5B5B5B).withOpacity(0.5), size: 24),
+              iconSwitching(Icons.comment_outlined, Icons.comment, 24,
+                  Color(0XFF5B5B5B5B).withOpacity(0.5)),
               SizedBox(width: 4),
               Text(totalReplies.toString(),
                   style: TextStyle(
