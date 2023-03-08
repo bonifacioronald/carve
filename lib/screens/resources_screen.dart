@@ -1,14 +1,12 @@
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
-import 'local_parenting_class_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
 class ResourcesScreen extends StatelessWidget {
-    
-    ResourcesScreen({super.key});
+  ResourcesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,10 +104,8 @@ class ResourcesScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           GestureDetector(
-                            onTap: () => 
-                            
-                            Navigator.of(context)
-                            .pushNamed(ResourceCategories.routeName),
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(ResourceCategories.routeName),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,12 +231,10 @@ class ResourcesScreen extends StatelessWidget {
 }
 
 class ResourcesMainCard extends StatelessWidget {
-  
   String text;
   ResourcesMainCard(this.text);
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: MediaQuery.of(context).size.width - 80,
       height: 160,

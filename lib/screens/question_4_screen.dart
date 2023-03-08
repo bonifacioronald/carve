@@ -68,7 +68,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                     Container(
                       width: double.infinity,
                       alignment: Alignment.centerLeft,
-                      child: Text("What is your parenting style?",
+                      child: Text("What is your approach to parenting?",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: custom_colors.primaryDarkPurple,
@@ -82,7 +82,8 @@ class _Question4ScreenState extends State<Question4Screen> {
                           widget.selectedAnswerIndex = 1;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Permissive Parent',
+                      child: QuestionScreenAnswerOptions(
+                          'Lenient and a lot of freedom',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -92,7 +93,8 @@ class _Question4ScreenState extends State<Question4Screen> {
                           widget.selectedAnswerIndex = 2;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Authoritative Parent',
+                      child: QuestionScreenAnswerOptions(
+                          "Strong bond and closeness",
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -102,7 +104,8 @@ class _Question4ScreenState extends State<Question4Screen> {
                           widget.selectedAnswerIndex = 3;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Neglectful Parent',
+                      child: QuestionScreenAnswerOptions(
+                          'Busy and hands-off approach',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -112,10 +115,20 @@ class _Question4ScreenState extends State<Question4Screen> {
                           widget.selectedAnswerIndex = 4;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Authoritarian Parent',
+                      child: QuestionScreenAnswerOptions(
+                          'Strict rules and expectations',
                           widget.selectedAnswerIndex == 4 ? true : false),
                     ),
                     SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          widget.selectedAnswerIndex = 5;
+                        });
+                      },
+                      child: QuestionScreenAnswerOptions('Other',
+                          widget.selectedAnswerIndex == 5 ? true : false),
+                    ),
                     Spacer(),
                     GestureDetector(
                       onTap: (() => widget.selectedAnswerIndex != 0
