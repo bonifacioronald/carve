@@ -57,6 +57,9 @@ class _DailyContentState extends State<DailyContent> {
 
   @override
   Widget build(BuildContext context) {
+    ContentModel displayedContent =
+        ModalRoute.of(context)!.settings.arguments as ContentModel;
+
     imageCache.clear;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
@@ -71,9 +74,10 @@ class _DailyContentState extends State<DailyContent> {
                 color: custom_colors.backgroundPurple,
                 child: Column(
                   children: [
-                    DailyContentStory(Provider.of<DailyContentProvider>(context,
-                            listen: false)
-                        .loadedContent),
+                    DailyContentStory(displayedContent),
+                    // DailyContentStory(Provider.of<DailyContentProvider>(context,
+                    //         listen: false)
+                    //     .loadedContent),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Column(

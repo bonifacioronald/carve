@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/content_library_card.dart';
 import 'package:flutter/material.dart';
@@ -173,13 +174,19 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                               itemBuilder: (_, index) {
                                 return Row(
                                   children: [
-                                    ContentLibraryCard(
-                                        contentTitle: _provider
-                                            .loadedContentList[index].title,
-                                        contentCategory: _provider
-                                            .loadedContentList[index]
-                                            .suitableCategories[0],
-                                        contentImageUrl: "image url"),
+                                    GestureDetector(
+                                      onTap: (() => Navigator.of(context)
+                                          .pushNamed(DailyContent.routeName,
+                                              arguments: _provider
+                                                  .loadedContentList[index])),
+                                      child: ContentLibraryCard(
+                                          contentTitle: _provider
+                                              .loadedContentList[index].title,
+                                          contentCategory: _provider
+                                              .loadedContentList[index]
+                                              .suitableCategories[0],
+                                          contentImageUrl: "image url"),
+                                    ),
                                     SizedBox(
                                       width: 20,
                                     )
