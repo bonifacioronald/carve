@@ -157,22 +157,15 @@ class CustomAppBar extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      actions: [
-        Icon(
-          Icons.notifications_active_outlined,
-          color: Colors.white,
-        ),
-        SizedBox(
-          width: 12,
-        ),
-        Icon(
-          Icons.account_circle_outlined,
-          size: 40,
-        ),
-        SizedBox(
-          width: 20,
-        ),
-      ],
+      // actions: [
+      //   Icon(
+      //     Icons.account_circle_outlined,
+      //     size: 40,
+      //   ),
+      //   SizedBox(
+      //     width: 20,
+      //   ),
+      // ],
     );
   }
 }

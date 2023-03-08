@@ -124,13 +124,13 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                         onTap: (() {
                           if (widget.ageController.text.isNotEmpty &&
                               int.parse(widget.ageController.text) > 0 &&
-                              int.parse(widget.ageController.text) < 42) {
+                              int.parse(widget.ageController.text) <= 42) {
                             Navigator.of(context)
                                 .pushNamed(Question4Screen.routeName);
                           } else {
                             setState(() {
                               errorMessage =
-                                  'Please Input A Valid Time Period!';
+                                  'Please Input A Valid Time Period! (1-42 weeks)';
                             });
                           }
                         }),
