@@ -1,4 +1,5 @@
 import 'package:carve_app/providers/forum_provider.dart';
+import 'package:carve_app/screens/forum_detail_screen.dart';
 import 'package:carve_app/widgets/forum_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +52,7 @@ class _forumAllState extends State<forumAll> {
   Widget build(BuildContext context) {
     var _provider = Provider.of<ForumProvider>(context, listen: false);
     return Scaffold(
+      backgroundColor: custom_colors.backgroundPurple,
       appBar: AppBar(
           backgroundColor: Color(0XE8E9FE),
           elevation: 0,
@@ -95,17 +97,23 @@ class _forumAllState extends State<forumAll> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          ForumCard(
-                            authorName:
-                                _provider.loadedForumList[index].authorName,
-                            publishedDate:
-                                _provider.loadedForumList[index].publishedDate,
-                            category: _provider.loadedForumList[index].category,
-                            title: _provider.loadedForumList[index].title,
-                            totalLikes:
-                                _provider.loadedForumList[index].totalLikes,
-                            totalReplies:
-                                _provider.loadedForumList[index].totalReplies,
+                          GestureDetector(
+                            onTap: (() => Navigator.of(context).pushNamed(
+                                forumPage.routeName,
+                                arguments: _provider.loadedForumList[index])),
+                            child: ForumCard(
+                              authorName:
+                                  _provider.loadedForumList[index].authorName,
+                              publishedDate: _provider
+                                  .loadedForumList[index].publishedDate,
+                              category:
+                                  _provider.loadedForumList[index].category,
+                              title: _provider.loadedForumList[index].title,
+                              totalLikes:
+                                  _provider.loadedForumList[index].totalLikes,
+                              totalReplies:
+                                  _provider.loadedForumList[index].totalReplies,
+                            ),
                           ),
                           SizedBox(
                             height: 20,

@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ForumReplyProvider with ChangeNotifier {
-  final _firebaseReply = FirebaseFirestore.instance;
-
   List<String> forumReplyIdList = [];
   List<ForumReplyModel> loadedForumReplyList = [];
   List<ForumReplyModel> filteredForumReplyList = [];
@@ -73,5 +71,9 @@ class ForumReplyProvider with ChangeNotifier {
         filteredForumReplyList.add(forumReply);
       }
     });
+  }
+
+  void updateForumReplyList() {
+    notifyListeners();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:carve_app/models/forum_model.dart';
 import 'package:carve_app/models/user_model.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/forum_detail_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:carve_app/providers/forum_reply_provider.dart';
@@ -34,7 +35,7 @@ class ReplyButton extends StatelessWidget {
     ForumModel displayedContent =
         ModalRoute.of(context)!.settings.arguments as ForumModel;
 
-    var _provider = Provider.of<ForumReplyProvider>(context, listen: false);
+    var _provider = Provider.of<ForumReplyProvider>(context);
     _provider.selectDisplayedForumReplybyId(displayedContent.id);
 
     return Container(
@@ -50,8 +51,13 @@ class ReplyButton extends StatelessWidget {
         decoration: InputDecoration(
           suffixIcon: GestureDetector(
               onTap: () {
-                createNewReply(currentUser.name, _content.text,
-                    displayedContent.id, DateTime.now());
+                // createNewReply(currentUser.name, _content.text,
+                //     displayedContent.id, DateTime.now());
+
+                print(currentUser.name);
+                print(displayedContent.id);
+                print(_content.text);
+                _provider.updateForumReplyList();
               },
               child: Icon(Icons.send, color: kFocusBorderColor)),
           contentPadding: EdgeInsets.only(left: 16, right: 16),

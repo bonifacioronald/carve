@@ -1,11 +1,17 @@
 import 'dart:io';
+import 'package:carve_app/models/user_model.dart';
+import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/forum_all_screen.dart';
+import 'package:carve_app/screens/forum_home_screen.dart';
 import 'package:carve_app/widgets/add_image.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'package:carve_app/widgets/create_button.dart';
 import 'package:carve_app/widgets/forum_create_page_description.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import '/models/colors.dart' as custom_colors;
 
 class createForum extends StatefulWidget {
@@ -16,6 +22,24 @@ class createForum extends StatefulWidget {
 }
 
 class _createForumState extends State<createForum> {
+  var _counterText = "";
+  Future<void>? createNewForum(String authorName, String category,
+      String content, DateTime publishedDate, String title) {
+    FirebaseFirestore.instance.collection('forum').doc().set({
+      "authorName": authorName,
+      "category": category,
+      "content": content,
+      'id': '',
+      'publishedDate': publishedDate,
+      'title': title,
+      'totalLikes': 0,
+      'totalReplies': 0,
+    });
+  }
+
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+
   int currentCLickIndex = 0;
   String title = '';
   String description = '';
@@ -37,6 +61,8 @@ class _createForumState extends State<createForum> {
 
   @override
   Widget build(BuildContext context) {
+    UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
     return Scaffold(
       backgroundColor: custom_colors.backgroundPurple,
       resizeToAvoidBottomInset: false,
@@ -70,6 +96,7 @@ class _createForumState extends State<createForum> {
               ),
               SizedBox(height: 28),
               TextField(
+                controller: _titleController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Color(0XFFFFFFFF),
@@ -206,7 +233,38 @@ class _createForumState extends State<createForum> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
-              Container(height: 120, child: descriptionForum()),
+              Container(
+                  height: 120,
+                  child: Container(
+                      height: 5 * 24.0,
+                      child: TextField(
+                        controller: _descriptionController,
+                        textInputAction: TextInputAction.go,
+                        // expands: true,
+                        maxLines: 5,
+                        onChanged: (value) {
+                          setState(() {
+                            _counterText = (100 - value.length).toString();
+                          });
+                        },
+                        maxLength: 100,
+                        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0XFFFFFFFF),
+                          hintText: "Description",
+                          hintStyle: TextStyle(
+                              color: Color(0XFF02084B).withOpacity(0.3),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                  color: Color(0XFF02084B).withOpacity(0.2))),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0XFF02084B))),
+                        ),
+                      ))),
               SizedBox(height: 8),
               Text("Add Media",
                   style: TextStyle(
@@ -227,7 +285,50 @@ class _createForumState extends State<createForum> {
                 ),
               ),
               SizedBox(height: 20),
-              createButton("Publish Forum")
+              GestureDetector(
+                onTap: () {
+                  createNewForum(
+                      currentUser.name,
+                      "category",
+                      _descriptionController.text,
+                      DateTime.now(),
+                      _titleController.text);
+                  Navigator.of(context).pushNamed(forumAll.routeName);
+                  print(currentUser.name);
+                  print(_titleController.text);
+                  print(_descriptionController.text);
+                },
+                child: Container(
+                  width: 352,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: Color(0XFF02084B),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Center(
+                      child: Text("Publish Forum",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold))),
+                ),
+              ),
+              //           GestureDetector(
+              //   onTap: () => Navigator.of(context).pushNamed(createForum.routeName),
+
+              //   child: Container(
+              //     width:352,
+              //     height: 60,
+              //     decoration: BoxDecoration(
+              //       color: Color(0XFF02084B),
+              //       borderRadius: BorderRadius.circular(20),
+              //     ),
+
+              //          child:Center(child: Text(widget.title, style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)))
+
+              //     ),
+              // );
+              // createButton("Publish Forum")
             ],
           )),
     );

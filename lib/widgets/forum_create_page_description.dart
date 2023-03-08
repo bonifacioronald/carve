@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class descriptionForum extends StatefulWidget {
-  const descriptionForum({super.key});
+  final TextEditingController _descriptionController = TextEditingController();
+  descriptionForum(_descriptionController);
 
   @override
   State<descriptionForum> createState() => _descriptionForumState();
@@ -14,11 +15,12 @@ class _descriptionForumState extends State<descriptionForum> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: maxLines * 24.0,
+        height: 5 * 24.0,
         child: TextField(
+          controller: widget._descriptionController,
           textInputAction: TextInputAction.go,
           // expands: true,
-          maxLines: maxLines,
+          maxLines: 5,
           onChanged: (value) {
             setState(() {
               _counterText = (100 - value.length).toString();
