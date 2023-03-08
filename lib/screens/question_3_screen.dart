@@ -3,9 +3,7 @@ import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
-import '../providers/user_provider.dart';
 
 class Question3Screen extends StatefulWidget {
   static const routeName = '/question-3';
@@ -14,24 +12,6 @@ class Question3Screen extends StatefulWidget {
   State<Question3Screen> createState() => _Question3ScreenState();
 
   int selectedAnswerIndex = 0;
-}
-
-void _updateUserChildGender(int selectedIndex, BuildContext context) {
-  String childGender = '';
-  switch (selectedIndex) {
-    case 1:
-      {
-        childGender = "childGender-male";
-      }
-      break;
-    case 2:
-      {
-        childGender = 'chhildGender-female';
-      }
-      break;
-  }
-
-  Provider.of<UserProvider>(context, listen: false).setChildGender(childGender);
 }
 
 class _Question3ScreenState extends State<Question3Screen> {
@@ -119,14 +99,10 @@ class _Question3ScreenState extends State<Question3Screen> {
                     SizedBox(height: 12),
                     Spacer(),
                     GestureDetector(
-                      onTap: (() {
-                        if (widget.selectedAnswerIndex != 0) {
-                          Navigator.of(context)
-                              .pushNamed(Question4Screen.routeName);
-                          _updateUserChildGender(
-                              widget.selectedAnswerIndex, context);
-                        }
-                      }),
+                      onTap: (() => widget.selectedAnswerIndex != 0
+                          ? Navigator.of(context)
+                              .pushNamed(Question4Screen.routeName)
+                          : null),
                       child: Container(
                         width: 200,
                         height: 50,
