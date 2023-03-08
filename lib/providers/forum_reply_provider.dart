@@ -8,17 +8,21 @@ class ForumReplyProvider with ChangeNotifier {
   List<ForumReplyModel> loadedForumReplyList = [];
   List<ForumReplyModel> filteredForumReplyList = [];
 
-  Future<void>? createNewReply(String content) {
-    FirebaseFirestore.instance.collection('forumReply').doc().set({
-      "authorName": '',
-      "content": content,
-      'forumId': '',
-      'replyId': '',
-      'publishedDate': '',
-    });
+  Future<void>? submitNewReplyToFirebase(String authorName, String content,
+      String forumId, String replyId, String date) {
+    FirebaseFirestore.instance.collection('forumReply').doc().set(
+      {
+        "authorName": authorName,
+        "content": content,
+        'forumId': forumId,
+        'replyId': '',
+        'publishedDate': date,
+      },
+    );
+    notifyListeners();
   }
 
-  Future<void> fetchForumId() async {
+  Future<void> fetchForumReplyId() async {
     print('fetch');
     try {
       await FirebaseFirestore.instance.collection('forumReply').get().then(
@@ -59,7 +63,7 @@ class ForumReplyProvider with ChangeNotifier {
           publishedDate: snapshot.data()!['publishedDate'],
         );
         loadedForumReplyList.add(loadedForum);
-        print('fetched ${snapshot.data()!['title']}');
+        print('fetched ${snapshot.data()!['content']}');
       },
     );
   }

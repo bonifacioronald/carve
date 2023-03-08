@@ -13,7 +13,6 @@ import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
-import 'package:carve_app/screens/local_parenting_class_screen.dart';
 import 'package:carve_app/screens/question_3_if_pregnant.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/screens/resources_screen.dart';
@@ -90,7 +89,6 @@ class MyApp extends StatelessWidget {
           DailyContent.routeName: (context) => DailyContent(),
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
-          LocalParentingClass.routeName: (context) => LocalParentingClass(),
           ResourceCategories.routeName: (context) => ResourceCategories(),
           LocalFoodBank.routeName: (context) => LocalFoodBank(),
           forumPage.routeName: (context) => forumPage(),

@@ -3,12 +3,17 @@ import 'package:carve_app/models/user_model.dart';
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/forum_reply_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/forum_home_screen.dart';
+import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/forum_content_page_card.dart';
 import 'package:carve_app/widgets/reply_button.dart';
 import 'package:carve_app/widgets/reply_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/forum_reply_model.dart';
 import '/models/colors.dart' as custom_colors;
+import 'package:intl/intl.dart';
 
 class forumPage extends StatefulWidget {
   static const routeName = '/forum-detail';
@@ -19,13 +24,14 @@ class forumPage extends StatefulWidget {
 }
 
 class _forumPageState extends State<forumPage> {
+  final TextEditingController _content = TextEditingController();
   bool _isLoading = true;
-  @override
+
   void initState() {
     // TODO: implement initState
-    var _provider = Provider.of<ForumReplyProvider>(context, listen: false);
+    var _provider = Provider.of<ForumReplyProvider>(context, listen: true);
     if (_provider.forumReplyIdList.isEmpty) {
-      _provider.fetchForumId().then(
+      _provider.fetchForumReplyId().then(
         (_) {
           print('Successfuly fetched ${_provider.forumReplyIdList.length} ids');
           _provider.fetchAllForumReplyData().then(
@@ -40,9 +46,11 @@ class _forumPageState extends State<forumPage> {
         },
       );
     } else {
-      setState(() {
-        _isLoading = false;
-      });
+      setState(
+        () {
+          _isLoading = false;
+        },
+      );
     }
 
     super.initState();
@@ -50,16 +58,18 @@ class _forumPageState extends State<forumPage> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('MMM dd').format(now);
     UserModel currentUser =
         Provider.of<UserProvider>(context, listen: false).userProviderData;
     ForumModel displayedContent =
         ModalRoute.of(context)!.settings.arguments as ForumModel;
-
-    var _provider = Provider.of<ForumReplyProvider>(context, listen: false);
+    var _provider = Provider.of<ForumReplyProvider>(context);
     _provider.selectDisplayedForumReplybyId(displayedContent.id);
+
     return Scaffold(
         backgroundColor: custom_colors.backgroundPurple,
-        // resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Color(0XE8E9FE),
           elevation: 0,
@@ -78,67 +88,125 @@ class _forumPageState extends State<forumPage> {
                   fontSize: 24,
                   fontWeight: FontWeight.bold)),
         ),
-        body: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Column(children: [
-                      forumContentCard(
-                          authorName: displayedContent.authorName,
-                          category: displayedContent.category,
-                          title: displayedContent.title,
-                          content: displayedContent.content,
-                          totalLikes: displayedContent.totalLikes,
-                          publishedDate: displayedContent.publishedDate),
-                      SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Text("Replies (24)",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
-                          SizedBox(width: 120),
-                          Text("See all replies",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0XFF02084B))),
-                        ],
-                      ),
-                      SizedBox(height: 16),
+        body: _isLoading
+            ? LoadingScreen()
+            : SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Container(
-                          width: double.infinity,
-                          height:
-                              _provider.filteredForumReplyList.length * 106 +
+                        child: Column(children: [
+                          forumContentCard(
+                              authorName: displayedContent.authorName,
+                              category: displayedContent.category,
+                              title: displayedContent.title,
+                              content: displayedContent.content,
+                              totalLikes: displayedContent.totalLikes,
+                              publishedDate: displayedContent.publishedDate),
+                          SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Text("Replies (24)",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              SizedBox(width: 120),
+                              Text("See all replies",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0XFF02084B))),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          Container(
+                              width: double.infinity,
+                              height: _provider.filteredForumReplyList.length *
+                                      106 +
                                   _provider.filteredForumReplyList.length * 16 +
                                   168,
-                          child: ListView.builder(
-                              itemCount:
-                                  _provider.filteredForumReplyList.length,
-                              itemBuilder: (context, index) {
-                                return Column(
-                                  children: [
-                                    replyCard(
-                                      authorName: _provider
-                                          .filteredForumReplyList[index]
-                                          .authorName,
-                                      content: _provider
-                                          .filteredForumReplyList[index]
-                                          .content,
-                                      publishedDate: _provider
-                                          .filteredForumReplyList[index]
-                                          .publishedDate,
-                                    ),
-                                    SizedBox(height: 16)
-                                  ],
-                                );
-                              })),
-                      SizedBox(height: 16),
-                      ReplyButton(),
-                    ]),
-                  )
-                ])));
+                              child: ListView.builder(
+                                  itemCount:
+                                      _provider.filteredForumReplyList.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        replyCard(
+                                          authorName: _provider
+                                              .filteredForumReplyList[index]
+                                              .authorName,
+                                          content: _provider
+                                              .filteredForumReplyList[index]
+                                              .content,
+                                          publishedDate: _provider
+                                              .filteredForumReplyList[index]
+                                              .publishedDate,
+                                        ),
+                                        SizedBox(height: 16)
+                                      ],
+                                    );
+                                  })),
+                          SizedBox(height: 16),
+                          Container(
+                            width: 348,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: TextField(
+                              controller: _content,
+                              textAlign: TextAlign.left,
+                              decoration: InputDecoration(
+                                suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      _provider.submitNewReplyToFirebase(
+                                          currentUser.name,
+                                          _content.text,
+                                          displayedContent.id,
+                                          '',
+                                          formattedDate);
+                                      _content.clear();
+                                      Navigator.of(context).pop();
+                                      // setState() {
+
+                                      //   _provider.updateForumReplyList();
+                                      //   _isLoading = true;
+                                      //   print('IS LOADINGG: $_isLoading');
+                                      // }
+
+                                      // print(currentUser.name);
+                                      // print(displayedContent.id);
+                                      // print(_content.text);
+                                    },
+                                    child: Icon(Icons.send,
+                                        color: Color(0XFF02084B))),
+                                contentPadding:
+                                    EdgeInsets.only(left: 16, right: 16),
+                                fillColor: Color(0XFF02084B).withOpacity(0.1),
+                                hintText: "Well, I think...",
+                                hintStyle: TextStyle(
+                                  color: Color(0XFF02084B).withOpacity(0.3),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color(0XFF02084B).withOpacity(0.2)),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Color(0XFF02084B)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
+                      )
+                    ])));
   }
 }

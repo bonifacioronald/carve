@@ -6,10 +6,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:carve_app/providers/forum_reply_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class ReplyButton extends StatelessWidget {
   Future<void>? createNewReply(
-      String authorName, String content, String forumId, DateTime replyId) {
+      String authorName, String content, String forumId, String replyId) {
     FirebaseFirestore.instance.collection('forumReply').doc().set({
       "authorName": authorName,
       "content": content,
@@ -30,6 +31,8 @@ class ReplyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('MMM dd').format(now);
     UserModel currentUser =
         Provider.of<UserProvider>(context, listen: false).userProviderData;
     ForumModel displayedContent =
@@ -51,29 +54,29 @@ class ReplyButton extends StatelessWidget {
         decoration: InputDecoration(
           suffixIcon: GestureDetector(
               onTap: () {
-                // createNewReply(currentUser.name, _content.text,
-                //     displayedContent.id, DateTime.now());
+                createNewReply(currentUser.name, _content.text,
+                    displayedContent.id, formattedDate);
 
                 print(currentUser.name);
                 print(displayedContent.id);
                 print(_content.text);
                 _provider.updateForumReplyList();
               },
-              child: Icon(Icons.send, color: kFocusBorderColor)),
+              child: Icon(Icons.send, color: Color(0XFF02084B))),
           contentPadding: EdgeInsets.only(left: 16, right: 16),
-          fillColor: kHintFillColor,
+          fillColor: Color(0XFF02084B).withOpacity(0.1),
           hintText: "Well, I think...",
           hintStyle: TextStyle(
-            color: kHintTextColor,
+            color: Color(0XFF02084B).withOpacity(0.3),
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(kBorderRadius),
-            borderSide: BorderSide(color: kBorderColor),
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Color(0XFF02084B).withOpacity(0.2)),
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: kFocusBorderColor),
+            borderSide: BorderSide(color: Color(0XFF02084B)),
           ),
         ),
       ),

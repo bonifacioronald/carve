@@ -9,14 +9,14 @@ import '../models/colors.dart' as custom_colors;
 import 'package:carve_app/widgets/create_button.dart';
 import 'package:carve_app/widgets/forum_card.dart';
 
-class ForumScreen extends StatefulWidget {
-  const ForumScreen({super.key});
+class ForumHomeScreen extends StatefulWidget {
+  const ForumHomeScreen({super.key});
 
   @override
-  State<ForumScreen> createState() => _ForumScreenState();
+  State<ForumHomeScreen> createState() => _ForumHomeScreenState();
 }
 
-class _ForumScreenState extends State<ForumScreen> {
+class _ForumHomeScreenState extends State<ForumHomeScreen> {
   bool _isLoading = true;
 
   @override
