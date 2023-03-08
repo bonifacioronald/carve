@@ -83,15 +83,15 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                           SizedBox(
                             width: 20,
                           ),
-                          ResourcesMainCard('Attend Local \nPregnancy Class'),
+                          ResourcesMainCard('15% OFF Pregnancy Care','https://www.pngmart.com/files/16/Vector-Happy-Pregnant-Woman-Transparent-PNG.png'),
                           SizedBox(
                             width: 20,
                           ),
-                          ResourcesMainCard('Attend Local \nTherapy'),
+                          ResourcesMainCard('Best Family Therapy in Town', 'https://www.pngmart.com/files/21/Counseling-Transparent-Background.png'),
                           SizedBox(
                             width: 20,
                           ),
-                          ResourcesMainCard('Check Out \nLocal Food Bank'),
+                          ResourcesMainCard('Hunger Relief Near You', 'https://cdn-icons-png.flaticon.com/512/1075/1075090.png'),
                           SizedBox(
                             width: 20,
                           ),
@@ -304,7 +304,8 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
 
 class ResourcesMainCard extends StatelessWidget {
   String text;
-  ResourcesMainCard(this.text);
+  String imageURL;
+  ResourcesMainCard(this.text, this.imageURL);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -317,7 +318,7 @@ class ResourcesMainCard extends StatelessWidget {
               fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(20)),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Column(
@@ -377,7 +378,14 @@ class ResourcesMainCard extends StatelessWidget {
               ),
             ],
           ),
-
+          Spacer(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:[Container(
+            height:100,
+            width:100,
+            alignment:Alignment.centerRight,
+            child:Image.network(imageURL))])
           // second container
         ],
       ),
@@ -457,7 +465,7 @@ class FreePrenatalCareBox extends StatelessWidget {
       height: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Find Free\nPrenatal Care",
