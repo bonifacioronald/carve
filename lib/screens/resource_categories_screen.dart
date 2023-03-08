@@ -4,33 +4,14 @@ import 'package:carve_app/main.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'package:carve_app/widgets/map_screen_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
-import '../models/resources_model.dart';
-import '../providers/resource_provider.dart';
 
-class ResourceCategories extends StatelessWidget {
+class FoodBank extends StatelessWidget {
+  const FoodBank({super.key});
   static const routeName = '/resources-categories';
-  String categories='';
-  String title1='';
-  String location1='';
-  String URLDirection1='';
-  String title2='';
-  String location2='';
-  String URLDirection2='';
-  String title3='';
-  String location3='';
-  String URLDirection3='';
-
-  List numbers = [];
-  
 
   @override
   Widget build(BuildContext context) {
-     ResourcesModel currentResource =
-        Provider.of<ResourceProvider>(context, listen: false).resourceProviderData;
-      
-      
     return MaterialApp(
         home: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -55,7 +36,7 @@ class ResourceCategories extends StatelessWidget {
                                 size: 60,
                               ),
                               Text(
-                                categories,
+                                "Local Food Bank",
                                 style: TextStyle(
                                     fontSize: 23, fontWeight: FontWeight.bold),
                               )
@@ -88,7 +69,7 @@ class ResourceCategories extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Search for $categories...",
+                                    "Search for Food Bank...",
                                     style: TextStyle(fontSize: 15),
                                   ),
                                   SizedBox(
@@ -128,16 +109,16 @@ class ResourceCategories extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            "Nearest $categories",
+                            "Nearest Food Bank",
                             style: TextStyle(
                                 fontSize: 23, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 15,
                           ),
-                          CategoriesButton(title1, URLDirection1),
-                          CategoriesButton(title2,URLDirection2),
-                          CategoriesButton(title3,URLDirection3)
+                          CategoriesButton("Pj City Food Bank"),
+                          CategoriesButton("Provider for All"),
+                          CategoriesButton("Food Bank Malaysia")
                         ],
                       ),
                     )

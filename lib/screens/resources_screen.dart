@@ -1,4 +1,5 @@
-import 'package:carve_app/screens/daily_content_screen.dart';
+import 'package:carve_app/screens/maps_resources.dart';
+import 'package:carve_app/screens/daily_content.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:carve_app/widgets/category_button.dart';
 import 'local_parenting_class_screen.dart';
@@ -7,8 +8,7 @@ import '../models/colors.dart' as custom_colors;
 import 'package:url_launcher/url_launcher.dart';
 
 class ResourcesScreen extends StatelessWidget {
-    
-    ResourcesScreen({super.key});
+  const ResourcesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +54,15 @@ class ResourcesScreen extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
-                    ResourcesMainCard('Attend Local \nPregnancy Class'),
+                    ResourcesMainCard(),
                     SizedBox(
                       width: 20,
                     ),
-                    ResourcesMainCard('Attend Local \nTherapy'),
+                    ResourcesMainCard(),
                     SizedBox(
                       width: 20,
                     ),
-                    ResourcesMainCard('Check Out \nLocal Food Bank'),
+                    ResourcesMainCard(),
                     SizedBox(
                       width: 20,
                     ),
@@ -106,10 +106,8 @@ class ResourcesScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           GestureDetector(
-                            onTap: () => 
-                            
-                            Navigator.of(context)
-                            .pushNamed(ResourceCategories.routeName),
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(FoodBank.routeName),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +145,7 @@ class ResourcesScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () => Navigator.of(context)
-                                .pushNamed(ResourceCategories.routeName),
+                                .pushNamed(FoodBank.routeName),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,12 +233,12 @@ class ResourcesScreen extends StatelessWidget {
 }
 
 class ResourcesMainCard extends StatelessWidget {
-  
-  String text;
-  ResourcesMainCard(this.text);
+  const ResourcesMainCard({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: MediaQuery.of(context).size.width - 80,
       height: 160,
@@ -264,7 +262,7 @@ class ResourcesMainCard extends StatelessWidget {
                 width: 187,
                 child: Column(children: [
                   Text(
-                    text,
+                    "Attend Local\nPregnancy Class",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 23,
@@ -277,7 +275,7 @@ class ResourcesMainCard extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.of(context)
-                        .pushNamed(ResourceCategories.routeName),
+                        .pushNamed(LocalParentingClass.routeName),
                     child: Container(
                       width: 151,
                       height: 40,

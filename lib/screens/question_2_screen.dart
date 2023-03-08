@@ -138,7 +138,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                     ),
                     Spacer(),
                     GestureDetector(
-                      onTap: (() => widget.selectedAnswerIndex != 0 
+                      onTap: (() => widget.selectedAnswerIndex != 0
                           ? Navigator.of(context)
                               .pushNamed(Question3Screen.routeName)
                           : null),
