@@ -1,5 +1,7 @@
 import 'package:carve_app/models/user_model.dart';
+import 'package:carve_app/models/video_model.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/widgets/custom_app_bar.dart';
 import 'package:carve_app/widgets/daily_content_card.dart';
 import 'package:carve_app/widgets/search_bar.dart';
@@ -18,6 +20,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    var _provider = Provider.of<VideoProvider>(context, listen: false);
+    if (_provider.loadedVideoList.isEmpty) {
+      _provider.fetchVideoId().then(
+        (_) {
+          print('Successfuly fetched ${_provider.videoIdList.length} ids');
+          _provider.fetchAllVideoData().then(
+            (_) {
+              setState(
+                () {
+                  _isLoading = false;
+                },
+              );
+            },
+          );
+        },
+      );
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     UserModel currentUser =

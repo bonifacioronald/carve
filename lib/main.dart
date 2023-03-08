@@ -3,6 +3,7 @@ import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
 import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
@@ -27,7 +28,7 @@ import 'package:carve_app/screens/question_6_screen.dart';
 import 'package:carve_app/screens/question_title_screen.dart';
 import 'package:flutter/material.dart';
 import './models/colors.dart' as custom_colors;
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';2 conflicts  
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,13 +54,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: ForumProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: VideoProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Carve',
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: ResourcesScreen(),
+        home: AuthWidgetTree(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
