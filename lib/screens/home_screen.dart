@@ -89,10 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        GestureDetector(
-                          onTap: (){},
-                          child:SearchBar("Search for content", Colors.white,
-                            primaryDarkPurple)),
+                        SearchBar("Search for content", Colors.white,
+                            primaryDarkPurple),
                       ],
                     ),
                   ),
