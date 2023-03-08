@@ -32,7 +32,7 @@ import 'package:carve_app/screens/question_6_screen.dart';
 import 'package:carve_app/screens/question_title_screen.dart';
 import 'package:flutter/material.dart';
 import './models/colors.dart' as custom_colors;
-import 'package:firebase_core/firebase_core.dart';2 conflicts  
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -64,7 +64,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: VideoProvider(),
         ),
-
       ],
       child: MaterialApp(
         title: 'Carve',
@@ -79,7 +78,8 @@ class MyApp extends StatelessWidget {
           QuestionTitleScreen.routeName: (context) => QuestionTitleScreen(),
           Question1Screen.routeName: (context) => Question1Screen(),
           Question2Screen.routeName: (context) => Question2Screen(),
-          Question3PregnantScreen.routeName: (context) => Question3PregnantScreen(),
+          Question3PregnantScreen.routeName: (context) =>
+              Question3PregnantScreen(),
           Question3Screen.routeName: (context) => Question3Screen(),
           Question4Screen.routeName: (context) => Question4Screen(),
           Question5Screen.routeName: (context) => Question5Screen(),
@@ -91,7 +91,6 @@ class MyApp extends StatelessWidget {
           LocalParentingClass.routeName: (context) => LocalParentingClass(),
           ResourceCategories.routeName: (context) => ResourceCategories(),
           LocalFoodBank.routeName: (context) => LocalFoodBank(),
-
         },
       ),
     );
