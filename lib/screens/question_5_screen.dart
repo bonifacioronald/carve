@@ -2,7 +2,9 @@ import 'package:carve_app/screens/question_6_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
+import '../providers/user_provider.dart';
 
 class Question5Screen extends StatefulWidget {
   static const routeName = '/question-5';
@@ -11,6 +13,30 @@ class Question5Screen extends StatefulWidget {
   State<Question5Screen> createState() => _Question5ScreenState();
 
   int selectedAnswerIndex = 0;
+}
+
+void _updateUserAppUsageDuration(int selectedIndex, BuildContext context) {
+  String appUsageDuration = '';
+  switch (selectedIndex) {
+    case 1:
+      {
+        appUsageDuration = "appUsageDuration-ten-to-fifteen";
+      }
+      break;
+    case 2:
+      {
+        appUsageDuration = 'appUsageDuration-fifteen-to-thirty';
+      }
+      break;
+    case 3:
+      {
+        appUsageDuration = 'appUsageDuration-more-than-thirty';
+      }
+      break;
+  }
+
+  Provider.of<UserProvider>(context, listen: false)
+      .setAppUsageDuration(appUsageDuration);
 }
 
 class _Question5ScreenState extends State<Question5Screen> {
@@ -103,8 +129,14 @@ class _Question5ScreenState extends State<Question5Screen> {
                     ),
                     Spacer(),
                     GestureDetector(
-                      onTap: (() => Navigator.of(context)
-                          .pushNamed(Question6Screen.routeName)),
+                      onTap: (() {
+                        if (widget.selectedAnswerIndex != 0) {
+                          Navigator.of(context)
+                              .pushNamed(Question6Screen.routeName);
+                          _updateUserAppUsageDuration(
+                              widget.selectedAnswerIndex, context);
+                        }
+                      }),
                       child: Container(
                         width: 200,
                         height: 50,
