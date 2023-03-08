@@ -230,6 +230,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -653,6 +658,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  string_translate:
+    dependency: "direct main"
+    description:
+      name: string_translate
+      sha256: "9cfd471d19360ef184edd9a60cf56a4b532ddc4e3bab0e54163997469e31f5f0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.4"
   table_calendar:
     dependency: "direct main"
     description:

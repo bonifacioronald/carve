@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carve_app/widgets/toggle_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carve_app/models/content_model.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
@@ -25,6 +26,7 @@ bool isEnglish = true;
 RestartableTimer? timer;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
+  String translatedDateToChinese = 'loading...';
   void runTimer() {
     if (timer != null && currentSlideIndex <= widget.content.content.length) {
       setState(() {
@@ -46,8 +48,27 @@ class _DailyContentStoryState extends State<DailyContentStory> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = GoogleTranslator();
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('dd MMMM yyyy').format(now);
+
+    Future<void> translateDate(String input) async {
+      final translator = GoogleTranslator();
+      try {
+        await translator
+            .translate(input, from: 'en', to: 'zh-cn')
+            .then((value) {
+          setState(() {
+            translatedDateToChinese = value.toString();
+          });
+        });
+      } catch (e) {
+        throw (e);
+      }
+    }
+
+    translateDate(formattedDate);
     bool isLastScreen = false;
+
     int totalSlides = widget.content.content.length + 2;
     print(currentSlideIndex);
 
@@ -65,8 +86,6 @@ class _DailyContentStoryState extends State<DailyContentStory> {
     }
 
     ContentModel content = widget.content;
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('dd MMMM yyyy').format(now);
 
     return Container(
       child: Column(
@@ -105,7 +124,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                   width: 150,
                                   child: Center(
                                     child: Text(
-                                      "Daily Content",
+                                      isEnglish ? "Daily Content" : "日常内容",
                                       style: TextStyle(
                                           color:
                                               custom_colors.primaryDarkPurple,
@@ -178,7 +197,9 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Center(
                                   child: Text(
-                                    formattedDate,
+                                    isEnglish
+                                        ? formattedDate
+                                        : translatedDateToChinese,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -301,7 +322,14 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                         ),
                       ),
                       SizedBox(width: 5),
-                      ToggleButton(false),
+                      CupertinoSwitch(
+                          activeColor: custom_colors.secondaryLightPurple,
+                          value: !isEnglish,
+                          onChanged: (_) {
+                            setState(() {
+                              isEnglish = !isEnglish;
+                            });
+                          }),
                       SizedBox(width: 5),
                       Container(
                         child: Text(
@@ -312,7 +340,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               fontSize: 16),
                         ),
                       ),
-                      SizedBox(width: 140),
+                      SizedBox(width: 135),
                       Container(
                         width: 35,
                         height: 35,
@@ -344,28 +372,82 @@ class _DailyContentStoryState extends State<DailyContentStory> {
   }
 }
 
-class content_box extends StatelessWidget {
+// Future<String> translateToChinese(String input) async {
+//   final translator = GoogleTranslator();
+
+//   var translation =
+//       await translator.translate(input, from: 'en', to: 'cn').then((value) {setState});
+
+//   return translation.toString();
+// }
+
+class content_box extends StatefulWidget {
   ContentModel content;
   bool isTitleScreen;
 
   content_box(this.content, this.isTitleScreen);
 
   @override
+  State<content_box> createState() => _content_boxState();
+}
+
+class _content_boxState extends State<content_box> {
+  String translatedTitleToChinese = 'loading...';
+  String translatedContentToChinese = 'loading...';
+
+  Future<void> translateTitle(String input) async {
+    final translator = GoogleTranslator();
+    try {
+      await translator.translate(input, from: 'en', to: 'zh-cn').then((value) {
+        setState(() {
+          translatedTitleToChinese = value.toString();
+        });
+      });
+    } catch (e) {
+      throw (e);
+    }
+  }
+
+  Future<void> translateContent(String input) async {
+    final translator = GoogleTranslator();
+    try {
+      await translator.translate(input, from: 'en', to: 'zh-cn').then((value) {
+        setState(() {
+          translatedContentToChinese = value.toString();
+        });
+      });
+    } catch (e) {
+      throw (e);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final translator = GoogleTranslator();
+    translateTitle(widget.content.title);
+    isTitleScreen
+        ? null
+        : translateContent(widget.content.content[currentSlideIndex - 1]);
     return Expanded(
       child: Container(
-        alignment: isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
+        alignment:
+            widget.isTitleScreen ? Alignment.bottomLeft : Alignment.centerLeft,
         child: AutoSizeText(
-          isTitleScreen
-              ? content.title
-              : content.content[currentSlideIndex - 1],
+          widget.isTitleScreen
+              ? isEnglish
+                  ? widget.content.title
+                  : translatedTitleToChinese
+              : isEnglish
+                  ? widget.content.content[currentSlideIndex - 1]
+                  : translatedContentToChinese,
           style: TextStyle(
               fontSize: 40,
               color: Colors.white,
-              fontWeight: isTitleScreen ? FontWeight.w900 : FontWeight.w600,
+              fontWeight:
+                  widget.isTitleScreen ? FontWeight.w900 : FontWeight.w600,
               height: 1.5),
           minFontSize: 23,
-          maxFontSize: isTitleScreen ? 40 : 23,
+          maxFontSize: widget.isTitleScreen ? 40 : 23,
           maxLines: 13,
         ),
       ),
@@ -373,12 +455,34 @@ class content_box extends StatelessWidget {
   }
 }
 
-class ending_box extends StatelessWidget {
+class ending_box extends StatefulWidget {
   String title;
 
   ending_box(this.title);
+
+  @override
+  State<ending_box> createState() => _ending_boxState();
+}
+
+class _ending_boxState extends State<ending_box> {
+  String translatedTitleToChinese = 'loading...';
+
+  Future<void> translateTitle(String input) async {
+    final translator = GoogleTranslator();
+    try {
+      await translator.translate(input, from: 'en', to: 'zh-cn').then((value) {
+        setState(() {
+          translatedTitleToChinese = value.toString();
+        });
+      });
+    } catch (e) {
+      throw (e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    translateTitle(widget.title);
     return Expanded(
       child: Container(
         child: Column(
@@ -386,7 +490,9 @@ class ending_box extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Text(
-                "Excellent work on completing\nyour daily content!",
+                isEnglish
+                    ? "Excellent work on completing\nyour daily content!"
+                    : '恭喜您完成你的日常内容',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20,
@@ -409,7 +515,7 @@ class ending_box extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        title,
+                        isEnglish ? widget.title : translatedTitleToChinese,
                         style: TextStyle(
                             fontSize: 32,
                             color: Colors.white,
@@ -421,7 +527,7 @@ class ending_box extends StatelessWidget {
                       height: 60,
                     ),
                     Text(
-                      "Rate this summary",
+                      isEnglish ? "Rate this summary" : '评价这个概括',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
