@@ -15,29 +15,25 @@ class CategoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(ResourceCategories.routeName),
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: buttonColor,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                BoxShadow(
-                  color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 2,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 36,
-            ),
-
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            color: buttonColor,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Icon(
+            icon,
+            color: iconColor,
+            size: 36,
           ),
         ),
         SizedBox(
@@ -63,28 +59,28 @@ class CategoriesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var gestureDetector = GestureDetector(
-                onTap: () {
-                  launch( url );
-                },
-                child: Container(
-                  width: 85,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFD9D9D9),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Direction",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF0000EE))),
-                    ],
-                  ),
-                ),
-              );
+      onTap: () {
+        launch(url);
+      },
+      child: Container(
+        width: 85,
+        height: 25,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Color(0xFFD9D9D9),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Direction",
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF0000EE))),
+          ],
+        ),
+      ),
+    );
     return Column(
       children: [
         Container(

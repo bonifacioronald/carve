@@ -2,9 +2,11 @@ import 'package:carve_app/auth_widget_tree.dart';
 import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/providers/forum_provider.dart';
+import 'package:carve_app/providers/resource_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
+import 'package:carve_app/screens/forum_detail_screen.dart';
 import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
@@ -28,7 +30,7 @@ import 'package:carve_app/screens/question_6_screen.dart';
 import 'package:carve_app/screens/question_title_screen.dart';
 import 'package:flutter/material.dart';
 import './models/colors.dart' as custom_colors;
-import 'package:firebase_core/firebase_core.dart';2 conflicts  
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +59,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: VideoProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: ResourceProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Carve',
@@ -71,7 +76,8 @@ class MyApp extends StatelessWidget {
           QuestionTitleScreen.routeName: (context) => QuestionTitleScreen(),
           Question1Screen.routeName: (context) => Question1Screen(),
           Question2Screen.routeName: (context) => Question2Screen(),
-          Question3PregnantScreen.routeName: (context) => Question3PregnantScreen(),
+          Question3PregnantScreen.routeName: (context) =>
+              Question3PregnantScreen(),
           Question3Screen.routeName: (context) => Question3Screen(),
           Question4Screen.routeName: (context) => Question4Screen(),
           Question5Screen.routeName: (context) => Question5Screen(),
@@ -83,7 +89,7 @@ class MyApp extends StatelessWidget {
           LocalParentingClass.routeName: (context) => LocalParentingClass(),
           ResourceCategories.routeName: (context) => ResourceCategories(),
           LocalFoodBank.routeName: (context) => LocalFoodBank(),
-
+          forumPage.routeName: (context) => forumPage(),
         },
       ),
     );

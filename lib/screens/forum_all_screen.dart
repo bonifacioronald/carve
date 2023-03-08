@@ -16,7 +16,8 @@ class forumAll extends StatefulWidget {
 
 class _forumAllState extends State<forumAll> {
   bool _isLoading = true;
-  bool isClicked = true;
+  // bool isClicked = false;
+  int currentClickedIndex = 1;
 
   @override
   void initState() {
@@ -83,106 +84,7 @@ class _forumAllState extends State<forumAll> {
                         fontSize: 32,
                         fontWeight: FontWeight.bold)),
                 SizedBox(height: 12),
-                Container(
-                    padding: EdgeInsets.only(top: 8),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                              },
-                              child: Category(
-                                  isClicked
-                                      ? Colors.white
-                                      : custom_colors.primaryDarkPurple,
-                                  "All",
-                                  7)),
-                          SizedBox(width: 12),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                              },
-                              child: Category(
-                                  isClicked
-                                      ? Colors.white
-                                      : custom_colors.primaryDarkPurple,
-                                  "Nutrition",
-                                  3)),
-                          SizedBox(width: 12),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                              },
-                              child: Category(
-                                  isClicked
-                                      ? Colors.white
-                                      : custom_colors.primaryDarkPurple,
-                                  "Growth",
-                                  7)),
-                          SizedBox(width: 12),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                              },
-                              child: Category(
-                                  isClicked
-                                      ? Colors.white
-                                      : custom_colors.primaryDarkPurple,
-                                  "Education",
-                                  7)),
-                          SizedBox(width: 12),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                              },
-                              child: Category(
-                                  isClicked
-                                      ? Colors.white
-                                      : custom_colors.primaryDarkPurple,
-                                  "Pregnancy",
-                                  7)),
-                          SizedBox(width: 12),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                              },
-                              child: Category(
-                                  isClicked
-                                      ? Colors.white
-                                      : custom_colors.primaryDarkPurple,
-                                  "Financial",
-                                  7)),
-                          SizedBox(width: 12),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isClicked = !isClicked;
-                                });
-                              },
-                              child: Category(
-                                  isClicked
-                                      ? Colors.white
-                                      : custom_colors.primaryDarkPurple,
-                                  "Others",
-                                  7))
-                        ],
-                      ),
-                    )),
-                SizedBox(height: 24),
+
                 Container(
                   width: double.infinity,
                   height: _provider.forumIdList.length * 200 +

@@ -11,26 +11,25 @@ import '../providers/resource_provider.dart';
 
 class ResourceCategories extends StatelessWidget {
   static const routeName = '/resources-categories';
-  String categories='';
-  String title1='';
-  String location1='';
-  String URLDirection1='';
-  String title2='';
-  String location2='';
-  String URLDirection2='';
-  String title3='';
-  String location3='';
-  String URLDirection3='';
+  String categories = '';
+  String title1 = '';
+  String location1 = '';
+  String URLDirection1 = '';
+  String title2 = '';
+  String location2 = '';
+  String URLDirection2 = '';
+  String title3 = '';
+  String location3 = '';
+  String URLDirection3 = '';
 
   List numbers = [];
-  
 
   @override
   Widget build(BuildContext context) {
-     ResourcesModel currentResource =
-        Provider.of<ResourceProvider>(context, listen: false).resourceProviderData;
-      
-      
+    ResourcesModel currentResource =
+        Provider.of<ResourceProvider>(context, listen: false)
+            .resourceProviderData;
+
     return MaterialApp(
         home: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -92,7 +91,7 @@ class ResourceCategories extends StatelessWidget {
                                     style: TextStyle(fontSize: 15),
                                   ),
                                   SizedBox(
-                                    width: 135,
+                                    width: 200,
                                   ),
                                   Icon(
                                     Icons.search,
@@ -112,7 +111,6 @@ class ResourceCategories extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white,
@@ -136,8 +134,8 @@ class ResourceCategories extends StatelessWidget {
                             height: 15,
                           ),
                           CategoriesButton(title1, URLDirection1),
-                          CategoriesButton(title2,URLDirection2),
-                          CategoriesButton(title3,URLDirection3)
+                          CategoriesButton(title2, URLDirection2),
+                          CategoriesButton(title3, URLDirection3)
                         ],
                       ),
                     )

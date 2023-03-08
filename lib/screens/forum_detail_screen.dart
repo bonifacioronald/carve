@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '/models/colors.dart' as custom_colors;
 
 class forumPage extends StatelessWidget {
+  static const routeName = '/forum-detail';
   const forumPage({super.key});
 
   @override
