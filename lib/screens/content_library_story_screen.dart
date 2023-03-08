@@ -47,12 +47,6 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                     Container(
                         child: Row(children: [
                       SizedBox(width: 5),
-                      Text(
-                        "Share",
-                        style: TextStyle(
-                            color: custom_colors.primaryDarkPurple,
-                            fontWeight: FontWeight.bold),
-                      )
                     ])),
                     SizedBox(height: 20, width: 180),
                     Container(

@@ -125,7 +125,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                   width: 150,
                                   child: Center(
                                     child: Text(
-                                      isEnglish ? "Daily Content" : "日常内容",
+                                      isEnglish ? "Content" : "内容",
                                       style: TextStyle(
                                           color:
                                               custom_colors.primaryDarkPurple,
@@ -377,15 +377,6 @@ class _DailyContentStoryState extends State<DailyContentStory> {
     );
   }
 }
-
-// Future<String> translateToChinese(String input) async {
-//   final translator = GoogleTranslator();
-
-//   var translation =
-//       await translator.translate(input, from: 'en', to: 'cn').then((value) {setState});
-
-//   return translation.toString();
-// }
 
 class content_box extends StatefulWidget {
   ContentModel content;

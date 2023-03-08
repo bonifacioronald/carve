@@ -1,5 +1,7 @@
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 
 class DailyContentCard extends StatelessWidget {
@@ -74,7 +76,11 @@ class DailyContentCard extends StatelessWidget {
             width: 100,
             height: double.infinity,
             child: Image.asset(
-              'lib/assets/images/family_image.png',
+              Provider.of<UserProvider>(context, listen: false)
+                      .userProviderData
+                      .isPregnant
+                  ? 'lib/assets/images/Pregnancy 4.png'
+                  : 'lib/assets/images/family_image.png',
               fit: BoxFit.cover,
             ),
           ),

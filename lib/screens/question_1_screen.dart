@@ -51,6 +51,8 @@ void _updateUserParentType(int selectedIndex, BuildContext context) {
 
   if (selectedIndex == 5) {
     Provider.of<UserProvider>(context, listen: false).setIsPregnant(true);
+  } else {
+    Provider.of<UserProvider>(context, listen: false).setIsPregnant(false);
   }
 }
 

@@ -50,9 +50,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
           : SingleChildScrollView(
               child: Container(
                 width: 1000,
-
-                height: 898,
-
+                height: 895,
                 padding: EdgeInsets.zero,
                 color: custom_colors.primaryDarkPurple,
                 child: Column(
@@ -135,10 +133,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                     SizedBox(height: 20),
                     Container(
                       width: double.infinity,
-
-
                       height: 650,
-
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
@@ -171,10 +166,10 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Container(
                             padding: EdgeInsets.only(left: 20),
-                            height: 240,
+                            height: 280,
                             width: 800,
                             child: ListView.builder(
                               padding: EdgeInsets.zero,
@@ -209,7 +204,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                               },
                             ),
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 10),
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 20.0, right: 20, bottom: 10),

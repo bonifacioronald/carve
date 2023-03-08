@@ -1,4 +1,5 @@
 import 'package:carve_app/data/content_data.dart';
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
@@ -34,7 +35,12 @@ class _DailyContentScreenState extends State<DailyContentScreen> {
           .fetchContentId()
           .then(
             (value) => _provider.fetchDailyContentDataFromId(
-              _provider.contentIdList[0],
+              _provider.contentIdList[
+                  Provider.of<UserProvider>(context, listen: false)
+                          .userProviderData
+                          .isPregnant
+                      ? 0
+                      : 3],
             ),
           )
           .then(
