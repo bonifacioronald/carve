@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             accentColor: custom_colors.secondaryLightPurple),
-        home: ResourcesScreen(),
+        home: AuthWidgetTree(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),
