@@ -1,20 +1,23 @@
-import 'package:carve_app/screens/question_3_screen.dart';
+import 'package:carve_app/screens/question_4_screen.dart';
 import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
+import '../models/colors.dart';
 
-class Question2Screen extends StatefulWidget {
-  static const routeName = '/question-2';
+class Question3PregnantScreen extends StatefulWidget {
+  static const routeName = '/question-3-pregnant';
 
   @override
-  State<Question2Screen> createState() => _Question2ScreenState();
+  State<Question3PregnantScreen> createState() => _Question3PregnantScreenState();
 
   int selectedAnswerIndex = 0;
+    TextEditingController ageController = TextEditingController();
+
 }
 
-class _Question2ScreenState extends State<Question2Screen> {
+class _Question3PregnantScreenState extends State<Question3PregnantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +39,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Tell Us...",
+                    "Just A Few More...",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -45,7 +48,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                   SizedBox(
                     height: 20,
                   ),
-                  QuestionProgressBar(2, 6)
+                  QuestionProgressBar(3, 6)
                 ],
               ),
             ),
@@ -69,7 +72,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                     Container(
                       width: double.infinity,
                       alignment: Alignment.centerLeft,
-                      child: Text("How old is your child?",
+                      child: Text("How long weeks you been pregnant?",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: custom_colors.primaryDarkPurple,
@@ -77,70 +80,36 @@ class _Question2ScreenState extends State<Question2Screen> {
                               fontWeight: FontWeight.w900)),
                     ),
                     SizedBox(height: 30),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 1;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('<1 year old',
-                          widget.selectedAnswerIndex == 1 ? true : false),
-                    ),
+                    
+                    TextField(
+                            cursorColor: custom_colors.primaryDarkPurple,
+                            controller: widget.ageController,
+                            decoration: InputDecoration(
+                              filled: true,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    color: custom_colors.primaryDarkPurple,
+                                    width: 4.0),
+                              ),
+                              fillColor: Colors.white,
+                              hintText: 'enter week ...',
+                              hintStyle: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: custom_colors.primaryDarkPurple
+                                      .withOpacity(0.2)),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none,
+                              ),
+                            )),
                     SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 2;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('1-2 years old',
-                          widget.selectedAnswerIndex == 2 ? true : false),
-                    ),
-                    SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 3;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('3-5 years old',
-                          widget.selectedAnswerIndex == 3 ? true : false),
-                    ),
-                    SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 4;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('6-12 years old',
-                          widget.selectedAnswerIndex == 4 ? true : false),
-                    ),
-                    SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 5;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('12+ years old',
-                          widget.selectedAnswerIndex == 5 ? true : false),
-                    ),
-                    SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 6;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('Expecting',
-                          widget.selectedAnswerIndex == 6 ? true : false),
-                    ),
                     Spacer(),
                     GestureDetector(
-                      onTap: (() => widget.selectedAnswerIndex != 0 
+                      onTap: (() => widget.selectedAnswerIndex != 0
                           ? Navigator.of(context)
-                              .pushNamed(Question3Screen.routeName)
+                              .pushNamed(Question4Screen.routeName)
                           : null),
                       child: Container(
                         width: 200,
