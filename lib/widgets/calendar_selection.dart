@@ -112,17 +112,25 @@ class _CalendarSelectionState extends State<CalendarSelection> {
 
   @override
   Widget build(BuildContext context) {
-    int childAge = int.parse(Provider.of<UserProvider>(context,listen:false).userProviderData.childAge);
-    int convertedAge=0;
-    try{ convertedAge= childAge*7;
-    startOfPregnancy = DateTime.now().subtract(Duration(days: convertedAge));
-    }
-    catch(Error){
+        int childAge = 0;
+        int convertedAge=0;
+    if(Provider.of<UserProvider>(context,listen:false).userProviderData.isPregnant)
+    {
+    childAge=int.parse(Provider.of<UserProvider>(context,listen:false).userProviderData.childAge);
+     convertedAge= childAge*7;
+     startOfPregnancy = DateTime.now().subtract(Duration(days: convertedAge));}
+     
+    else{
+        startOfPregnancy= DateTime.utc(2023,1,1);
+        convertedAge=84;
+     }
 
-      startOfPregnancy=DateTime.utc(2023,01,01);
-      int convertedAge=84;
+    
+    
 
-    }
+    
+
+    
 
 
     if (displayedWeek <= 4) {
