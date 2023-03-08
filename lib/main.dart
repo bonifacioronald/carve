@@ -81,10 +81,11 @@ class MyApp extends StatelessWidget {
           Question5Screen.routeName: (context) => Question5Screen(),
           Question6Screen.routeName: (context) => Question6Screen(),
           SettingScreen.routeName: (context) => SettingScreen(),
-          DailyContent.routeName: (context) => DailyContent(),
+          DailyContentScreen.routeName: (context) => DailyContentScreen(),
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
           ResourceDetailScreen.routeName: (context) => ResourceDetailScreen(),
+          
         },
       ),
     );
