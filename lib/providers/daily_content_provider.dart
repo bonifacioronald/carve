@@ -9,6 +9,7 @@ class DailyContentProvider with ChangeNotifier {
     title: '',
     content: [],
     suitableCategories: [],
+    thumbnailUrl: ''
   );
 
   Future<void> fetchContentId() async {

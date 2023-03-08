@@ -18,13 +18,13 @@ class ContentLibraryCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: 100,
-              height: 144,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.amber,
-              ),
-            ),
+                width: 100,
+                height: 144,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                        image: NetworkImage(contentImageUrl),
+                        fit: BoxFit.cover))),
             SizedBox(height: 20),
             Container(
               width: 100,
