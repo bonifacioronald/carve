@@ -7,7 +7,6 @@ import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import './models/colors.dart' as custom_colors;
 
 class Navigation extends StatefulWidget {
