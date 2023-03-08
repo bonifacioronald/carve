@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         GestureDetector(
                           onTap: (){},
-                          child:SearchBar("Search for content", Colors.white,
+                          child:SearchBar("Ask parenting questions here...", Colors.white,
                             primaryDarkPurple)),
                       ],
                     ),
