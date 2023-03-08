@@ -40,7 +40,8 @@ class Auth {
         'childAge': '',
         'childGender': '',
         'isPregnant': false,
-        'parentingStyle': ''
+        'parentingStyle': '',
+        'parentType': ''
       });
     });
     return null;

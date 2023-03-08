@@ -3,8 +3,10 @@ import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../models/colors.dart';
+import '../providers/user_provider.dart';
 
 class Question2PregnantScreen extends StatefulWidget {
   static const routeName = '/question-2-pregnant';
@@ -18,6 +20,10 @@ class Question2PregnantScreen extends StatefulWidget {
 }
 
 String errorMessage = '';
+
+void _updateUserChildAge(String childAge, BuildContext context) {
+  Provider.of<UserProvider>(context, listen: false).setChildAge(childAge);
+}
 
 class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
   @override
@@ -127,6 +133,8 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                               int.parse(widget.ageController.text) <= 42) {
                             Navigator.of(context)
                                 .pushNamed(Question4Screen.routeName);
+                            _updateUserChildAge(
+                                widget.ageController.text, context);
                           } else {
                             setState(() {
                               errorMessage =
