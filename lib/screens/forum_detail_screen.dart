@@ -1,5 +1,6 @@
 import 'package:carve_app/models/forum_model.dart';
 import 'package:carve_app/providers/forum_provider.dart';
+import 'package:carve_app/providers/forum_reply_provider.dart';
 import 'package:carve_app/widgets/forum_content_page_card.dart';
 import 'package:carve_app/widgets/reply_button.dart';
 import 'package:carve_app/widgets/reply_widget.dart';
@@ -16,10 +17,42 @@ class forumPage extends StatefulWidget {
 }
 
 class _forumPageState extends State<forumPage> {
+  bool _isLoading = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    var _provider = Provider.of<ForumReplyProvider>(context, listen: false);
+    if (_provider.forumReplyIdList.isEmpty) {
+      _provider.fetchForumId().then(
+        (_) {
+          print('Successfuly fetched ${_provider.forumReplyIdList.length} ids');
+          _provider.fetchAllForumReplyData().then(
+            (_) {
+              setState(
+                () {
+                  _isLoading = false;
+                },
+              );
+            },
+          );
+        },
+      );
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     ForumModel displayedContent =
         ModalRoute.of(context)!.settings.arguments as ForumModel;
+
+    var _provider = Provider.of<ForumReplyProvider>(context, listen: false);
+    _provider.selectDisplayedForumReplybyId(displayedContent.id);
     return Scaffold(
         backgroundColor: custom_colors.backgroundPurple,
         // resizeToAvoidBottomInset: false,
@@ -72,24 +105,51 @@ class _forumPageState extends State<forumPage> {
                       ),
                       SizedBox(height: 16),
                       Container(
-                        height: 106 * 3,
-                        width: double.infinity,
-                        child: ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                replyCard(
-                                    "Benjamin",
-                                    "1h ago",
-                                    "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
-                                    120),
-                                SizedBox(height: 16),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
+                          width: double.infinity,
+                          height:
+                              _provider.filteredForumReplyList.length * 106 +
+                                  _provider.filteredForumReplyList.length * 16 +
+                                  168,
+                          child: ListView.builder(
+                              itemCount:
+                                  _provider.filteredForumReplyList.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    replyCard(
+                                      authorName: _provider
+                                          .filteredForumReplyList[index]
+                                          .authorName,
+                                      content: _provider
+                                          .filteredForumReplyList[index]
+                                          .content,
+                                      publishedDate: _provider
+                                          .filteredForumReplyList[index]
+                                          .publishedDate,
+                                    ),
+                                    SizedBox(height: 16)
+                                  ],
+                                );
+                              })),
+                      // Container(
+                      //   height: 106 * 3,
+                      //   width: double.infinity,
+                      //   child: ListView.builder(
+                      //     itemCount: 3,
+                      //     itemBuilder: (context, index) {
+                      //       return Column(
+                      //         children: [
+                      //           replyCard(
+                      //               "Benjamin",
+                      //               "1h ago",
+                      //               "Is it considered rude to ask who the father is when a woman announces her pregnancy?",
+                      //               120),
+                      //           SizedBox(height: 16),
+                      //         ],
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
                       SizedBox(height: 16),
                       ReplyButton(),
                     ]),
