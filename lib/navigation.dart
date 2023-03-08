@@ -110,7 +110,7 @@ class NavigationState extends State<Navigation> {
               BottomNavigationBarItem(
                   label: '',
                   icon: Icon(
-                    Icons.group_outlined,
+                    Icons.handshake_rounded,
                     size: NavBarIconSize,
                   )),
               BottomNavigationBarItem(

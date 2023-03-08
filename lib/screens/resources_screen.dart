@@ -83,15 +83,24 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                           SizedBox(
                             width: 20,
                           ),
-                          ResourcesMainCard('15% OFF Pregnancy Care','https://www.pngmart.com/files/16/Vector-Happy-Pregnant-Woman-Transparent-PNG.png'),
+                          ResourcesMainCard(
+                              '15% OFF Pregnancy Care',
+                              'https://www.pngmart.com/files/16/Vector-Happy-Pregnant-Woman-Transparent-PNG.png',
+                              'Pregnancy Classes'),
                           SizedBox(
                             width: 20,
                           ),
-                          ResourcesMainCard('Best Family Therapy in Town', 'https://www.pngmart.com/files/21/Counseling-Transparent-Background.png'),
+                          ResourcesMainCard(
+                              'Best Family Therapy in Town',
+                              'https://www.pngmart.com/files/21/Counseling-Transparent-Background.png',
+                              'Therapy'),
                           SizedBox(
                             width: 20,
                           ),
-                          ResourcesMainCard('Hunger Relief Near You', 'https://cdn-icons-png.flaticon.com/512/1075/1075090.png'),
+                          ResourcesMainCard(
+                              'Hunger Relief Near You',
+                              'https://cdn-icons-png.flaticon.com/512/1075/1075090.png',
+                              'Food Bank'),
                           SizedBox(
                             width: 20,
                           ),
@@ -305,7 +314,8 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
 class ResourcesMainCard extends StatelessWidget {
   String text;
   String imageURL;
-  ResourcesMainCard(this.text, this.imageURL);
+  String launcher;
+  ResourcesMainCard(this.text, this.imageURL, this.launcher);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -343,8 +353,9 @@ class ResourcesMainCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(ResourceDetailScreen.routeName),
+                    onTap: () => Navigator.of(context).pushNamed(
+                        ResourceDetailScreen.routeName,
+                        arguments: launcher),
                     child: Container(
                       width: 151,
                       height: 40,
@@ -379,13 +390,13 @@ class ResourcesMainCard extends StatelessWidget {
             ],
           ),
           Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:[Container(
-            height:100,
-            width:100,
-            alignment:Alignment.centerRight,
-            child:Image.network(imageURL))])
+          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Container(
+                height: 100,
+                width: 100,
+                alignment: Alignment.centerRight,
+                child: Image.network(imageURL))
+          ])
           // second container
         ],
       ),
@@ -447,41 +458,44 @@ class FreePrenatalCareBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: Offset(0, 2),
+    return GestureDetector(
+        onTap: () => Navigator.of(context)
+            .pushNamed(ResourceDetailScreen.routeName, arguments: 'Charities'),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(0, 2),
+              ),
+            ],
           ),
-        ],
-      ),
-      width: double.infinity,
-      height: 60,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Find Free\nPrenatal Care",
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: custom_colors.primaryDarkPurple),
+          width: double.infinity,
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Find Free\nPrenatal Care",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: custom_colors.primaryDarkPurple),
+              ),
+              Icon(
+                Icons.free_breakfast,
+                color: custom_colors.secondaryLightPurple,
+                size: 40,
+              )
+            ],
           ),
-          Icon(
-            Icons.free_breakfast,
-            color: custom_colors.secondaryLightPurple,
-            size: 40,
-          )
-        ],
-      ),
-    );
+        ));
   }
 }
 
@@ -492,53 +506,57 @@ class PregnantDietConsultationBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      width: 140,
-      height: 140,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('lib/assets/images/food_icon.png'),
-                      fit: BoxFit.cover),
-                ),
-                height: 80,
-                width: 80,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                ),
+    return GestureDetector(
+        onTap: () => Navigator.of(context).pushNamed(
+            ResourceDetailScreen.routeName,
+            arguments: 'Pregnancy Classes'),
+        child: Container(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(0, 2),
               ),
             ],
           ),
-          Text(
-            "Pregnant Diet\nConsultation",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: custom_colors.primaryDarkPurple),
-          )
-        ],
-      ),
-    );
+          width: 140,
+          height: 140,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('lib/assets/images/food_icon.png'),
+                          fit: BoxFit.cover),
+                    ),
+                    height: 80,
+                    width: 80,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                  ),
+                ],
+              ),
+              Text(
+                "Pregnant Diet\nConsultation",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: custom_colors.primaryDarkPurple),
+              )
+            ],
+          ),
+        ));
   }
 }
