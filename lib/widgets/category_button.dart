@@ -1,4 +1,3 @@
-import 'package:carve_app/screens/local_foodbank_screen.dart';
 import 'package:carve_app/screens/resource_categories_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
@@ -16,7 +15,8 @@ class CategoryButton extends StatelessWidget {
     return Column(
       children: [
         GestureDetector(
-          onTap: () => Navigator.of(context).pushNamed(ResourceCategories.routeName),
+          onTap: () =>
+              Navigator.of(context).pushNamed(ResourceCategories.routeName),
           child: Container(
             width: 60,
             height: 60,
@@ -37,7 +37,6 @@ class CategoryButton extends StatelessWidget {
               color: iconColor,
               size: 36,
             ),
-
           ),
         ),
         SizedBox(
@@ -63,28 +62,28 @@ class CategoriesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var gestureDetector = GestureDetector(
-                onTap: () {
-                  launch( url );
-                },
-                child: Container(
-                  width: 85,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFD9D9D9),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Direction",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF0000EE))),
-                    ],
-                  ),
-                ),
-              );
+      onTap: () {
+        launch(url);
+      },
+      child: Container(
+        width: 85,
+        height: 25,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Color(0xFFD9D9D9),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Direction",
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF0000EE))),
+          ],
+        ),
+      ),
+    );
     return Column(
       children: [
         Container(
