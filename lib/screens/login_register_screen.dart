@@ -49,15 +49,19 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
-      await Auth().createUserWithEmailAndPassword(
-        _controllerEmail.text,
-        _controllerPassword.text,
-      );
-      await Navigator.of(context).pushNamed(QuestionTitleScreen.routeName);
+      await Auth()
+          .createUserWithEmailAndPassword(
+            _controllerEmail.text,
+            _controllerPassword.text,
+          )!
+          .then((value) =>
+              Navigator.of(context).pushNamed(QuestionTitleScreen.routeName));
     } on FirebaseAuthException catch (e) {
       setState(
         () {
+          print(errorMessage);
           errorMessage = e.message;
+          print(errorMessage);
         },
       );
     }

@@ -25,8 +25,8 @@ class Auth {
   Future<void>? createUserWithEmailAndPassword(
     String email,
     String password,
-  ) {
-    _firebaseAuth
+  ) async {
+    await _firebaseAuth
         .createUserWithEmailAndPassword(
       email: email,
       password: password,
