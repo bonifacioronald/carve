@@ -150,62 +150,62 @@ class _forumPageState extends State<forumPage> {
                                     );
                                   })),
                           SizedBox(height: 16),
-                          Container(
-                            width: 348,
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: TextField(
-                              controller: _content,
-                              textAlign: TextAlign.left,
-                              decoration: InputDecoration(
-                                suffixIcon: GestureDetector(
-                                    onTap: () {
-                                      _provider2.submitNewReplyToFirebase(
-                                          currentUser.name,
-                                          _content.text,
-                                          displayedContent.id,
-                                          '',
-                                          formattedDate);
-                                      _content.clear();
-                                      Navigator.of(context).pop();
-                                      // setState() {
+                          // Container(
+                          //   width: 348,
+                          //   height: 48,
+                          //   decoration: BoxDecoration(
+                          //     color: Colors.white,
+                          //     borderRadius: BorderRadius.circular(16),
+                          //   ),
+                          //   child: TextField(
+                          //     controller: _content,
+                          //     textAlign: TextAlign.left,
+                          //     decoration: InputDecoration(
+                          //       suffixIcon: GestureDetector(
+                          //           onTap: () {
+                          //             _provider2.submitNewReplyToFirebase(
+                          //                 currentUser.name,
+                          //                 _content.text,
+                          //                 displayedContent.id,
+                          //                 '',
+                          //                 formattedDate);
+                          //             _content.clear();
+                          //             Navigator.of(context).pop();
+                          //             // setState() {
 
-                                      //   _provider.updateForumReplyList();
-                                      //   _isLoading = true;
-                                      //   print('IS LOADINGG: $_isLoading');
-                                      // }
+                          //             //   _provider.updateForumReplyList();
+                          //             //   _isLoading = true;
+                          //             //   print('IS LOADINGG: $_isLoading');
+                          //             // }
 
-                                      // print(currentUser.name);
-                                      // print(displayedContent.id);
-                                      // print(_content.text);
-                                    },
-                                    child: Icon(Icons.send,
-                                        color: Color(0XFF02084B))),
-                                contentPadding:
-                                    EdgeInsets.only(left: 16, right: 16),
-                                fillColor: Color(0XFF02084B).withOpacity(0.1),
-                                hintText: "Well, I think...",
-                                hintStyle: TextStyle(
-                                  color: Color(0XFF02084B).withOpacity(0.3),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(
-                                      color:
-                                          Color(0XFF02084B).withOpacity(0.2)),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Color(0XFF02084B)),
-                                ),
-                              ),
-                            ),
-                          ),
+                          //             // print(currentUser.name);
+                          //             // print(displayedContent.id);
+                          //             // print(_content.text);
+                          //           },
+                          //           child: Icon(Icons.send,
+                          //               color: Color(0XFF02084B))),
+                          //       contentPadding:
+                          //           EdgeInsets.only(left: 16, right: 16),
+                          //       fillColor: Color(0XFF02084B).withOpacity(0.1),
+                          //       hintText: "Well, I think...",
+                          //       hintStyle: TextStyle(
+                          //         color: Color(0XFF02084B).withOpacity(0.3),
+                          //         fontSize: 16,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //       enabledBorder: OutlineInputBorder(
+                          //         borderRadius: BorderRadius.circular(12),
+                          //         borderSide: BorderSide(
+                          //             color:
+                          //                 Color(0XFF02084B).withOpacity(0.2)),
+                          //       ),
+                          //       focusedBorder: UnderlineInputBorder(
+                          //         borderSide:
+                          //             BorderSide(color: Color(0XFF02084B)),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ]),
                       )
                     ])));
