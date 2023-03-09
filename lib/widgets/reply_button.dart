@@ -1,6 +1,26 @@
+import 'package:carve_app/models/forum_model.dart';
+import 'package:carve_app/models/user_model.dart';
+import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/forum_detail_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:carve_app/providers/forum_reply_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class ReplyButton extends StatelessWidget {
+  Future<void>? createNewReply(
+      String authorName, String content, String forumId, String replyId) {
+    FirebaseFirestore.instance.collection('forumReply').doc().set({
+      "authorName": authorName,
+      "content": content,
+      'forumId': forumId,
+      'replyId': replyId,
+      'publishedDate': DateTime.now(),
+    });
+  }
+
+  final TextEditingController _content = TextEditingController();
   ReplyButton({Key? key}) : super(key: key);
 
   Color kBorderColor = Color(0XFF02084B).withOpacity(0.2);
@@ -11,6 +31,16 @@ class ReplyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('MMM dd').format(now);
+    UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
+    ForumModel displayedContent =
+        ModalRoute.of(context)!.settings.arguments as ForumModel;
+
+    var _provider = Provider.of<ForumReplyProvider>(context);
+    _provider.selectDisplayedForumReplybyId(displayedContent.id);
+
     return Container(
       width: 348,
       height: 48,
@@ -19,23 +49,34 @@ class ReplyButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: TextField(
+        controller: _content,
         textAlign: TextAlign.left,
         decoration: InputDecoration(
-          suffixIcon: Icon(Icons.send, color: kFocusBorderColor),
+          suffixIcon: GestureDetector(
+              onTap: () {
+                createNewReply(currentUser.name, _content.text,
+                    displayedContent.id, formattedDate);
+
+                print(currentUser.name);
+                print(displayedContent.id);
+                print(_content.text);
+                _provider.updateForumReplyList();
+              },
+              child: Icon(Icons.send, color: Color(0XFF02084B))),
           contentPadding: EdgeInsets.only(left: 16, right: 16),
-          fillColor: kHintFillColor,
+          fillColor: Color(0XFF02084B).withOpacity(0.1),
           hintText: "Well, I think...",
           hintStyle: TextStyle(
-            color: kHintTextColor,
+            color: Color(0XFF02084B).withOpacity(0.3),
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(kBorderRadius),
-            borderSide: BorderSide(color: kBorderColor),
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Color(0XFF02084B).withOpacity(0.2)),
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: kFocusBorderColor),
+            borderSide: BorderSide(color: Color(0XFF02084B)),
           ),
         ),
       ),

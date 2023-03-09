@@ -29,7 +29,7 @@ class NavigationState extends State<Navigation> {
     HomeScreen(),
     ResourcesScreen(),
     ContentLibraryScreen(),
-    ForumScreen(),
+    ForumHomeScreen(),
     TrackerScreen(),
   ];
 

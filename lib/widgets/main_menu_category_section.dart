@@ -73,17 +73,15 @@ class MainMenuCategorySection extends StatelessWidget {
                 onTap: (() => Navigator.of(context).pushNamed(
                     ResourceDetailScreen.routeName,
                     arguments: _userDataProvider.isPregnant
-                        ? 'Adoption Agency'
-                        : 'Marriage Counseling')),
+                        ? 'Daycare'
+                        : 'Charities')),
                 child: CategoryButton(
-                  custom_colors.primaryDarkPurple.withOpacity(0.7),
+                  custom_colors.secondaryLightPurple,
                   Colors.white,
                   _userDataProvider.isPregnant
-                      ? Icons.house_outlined
-                      : Icons.phone_in_talk_sharp,
-                  _userDataProvider.isPregnant
-                      ? 'Adoption\nAgency'
-                      : 'Marriage\nCounseling',
+                      ? Icons.stroller_outlined
+                      : Icons.payments_outlined,
+                  _userDataProvider.isPregnant ? 'Babysitter' : 'Charities',
                 ),
               ),
               GestureDetector(
@@ -105,15 +103,17 @@ class MainMenuCategorySection extends StatelessWidget {
                 onTap: (() => Navigator.of(context).pushNamed(
                     ResourceDetailScreen.routeName,
                     arguments: _userDataProvider.isPregnant
-                        ? 'Daycare'
-                        : 'Charities')),
+                        ? 'Adoption Agency'
+                        : 'Marriage Counseling')),
                 child: CategoryButton(
-                  custom_colors.secondaryLightPurple,
+                  custom_colors.primaryDarkPurple.withOpacity(0.7),
                   Colors.white,
                   _userDataProvider.isPregnant
-                      ? Icons.stroller_outlined
-                      : Icons.payments_outlined,
-                  _userDataProvider.isPregnant ? 'Babysitter' : 'Charities',
+                      ? Icons.house_outlined
+                      : Icons.phone_in_talk_sharp,
+                  _userDataProvider.isPregnant
+                      ? 'Adoption\nAgency'
+                      : 'Marriage\nCounseling',
                 ),
               ),
             ],

@@ -3,11 +3,13 @@ import 'package:carve_app/navigation.dart';
 import 'package:carve_app/providers/content_provider.dart';
 import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/providers/forum_provider.dart';
+import 'package:carve_app/providers/forum_reply_provider.dart';
 import 'package:carve_app/providers/resource_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/screens/content_library_story_screen.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
+import 'package:carve_app/screens/forum_detail_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
 import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
@@ -60,6 +62,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: ResourceProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ForumReplyProvider(),
         ),
       ],
       child: MaterialApp(

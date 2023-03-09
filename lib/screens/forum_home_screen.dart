@@ -1,5 +1,6 @@
 import 'package:carve_app/providers/forum_provider.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
+import 'package:carve_app/screens/forum_detail_screen.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,14 @@ import '../models/colors.dart' as custom_colors;
 import 'package:carve_app/widgets/create_button.dart';
 import 'package:carve_app/widgets/forum_card.dart';
 
-class ForumScreen extends StatefulWidget {
-  const ForumScreen({super.key});
+class ForumHomeScreen extends StatefulWidget {
+  const ForumHomeScreen({super.key});
 
   @override
-  State<ForumScreen> createState() => _ForumScreenState();
+  State<ForumHomeScreen> createState() => _ForumHomeScreenState();
 }
 
-class _ForumScreenState extends State<ForumScreen> {
+class _ForumHomeScreenState extends State<ForumHomeScreen> {
   bool _isLoading = true;
 
   @override
@@ -139,18 +140,23 @@ class _ForumScreenState extends State<ForumScreen> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            ForumCard(
-                              authorName:
-                                  _provider.loadedForumList[index].authorName,
-                              publishedDate: _provider
-                                  .loadedForumList[index].publishedDate,
-                              category:
-                                  _provider.loadedForumList[index].category,
-                              title: _provider.loadedForumList[index].title,
-                              totalLikes:
-                                  _provider.loadedForumList[index].totalLikes,
-                              totalReplies:
-                                  _provider.loadedForumList[index].totalReplies,
+                            GestureDetector(
+                              onTap: (() => Navigator.of(context).pushNamed(
+                                  forumPage.routeName,
+                                  arguments: _provider.loadedForumList[index])),
+                              child: ForumCard(
+                                authorName:
+                                    _provider.loadedForumList[index].authorName,
+                                publishedDate: _provider
+                                    .loadedForumList[index].publishedDate,
+                                category:
+                                    _provider.loadedForumList[index].category,
+                                title: _provider.loadedForumList[index].title,
+                                totalLikes:
+                                    _provider.loadedForumList[index].totalLikes,
+                                totalReplies: _provider
+                                    .loadedForumList[index].totalReplies,
+                              ),
                             ),
                             SizedBox(
                               height: 20,

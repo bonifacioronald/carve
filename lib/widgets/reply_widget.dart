@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import '/models/colors.dart' as custom_colors;
 
 class replyCard extends StatelessWidget {
-  String username;
-  String time;
+  String authorName;
   String content;
-  int likes;
-  replyCard(this.username, this.time, this.content, this.likes, {super.key});
+  String publishedDate;
+
+  replyCard(
+      {required this.authorName,
+      required this.content,
+      required this.publishedDate});
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +54,17 @@ class replyCard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(username,
-                                    style: TextStyle(
-                                        color:
-                                            Color(0XFF000000).withOpacity(0.4),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
-                                    overflow: TextOverflow.ellipsis),
-                                Text(time,
+                                Container(
+                                  width: 68,
+                                  child: Text(authorName,
+                                      style: TextStyle(
+                                          color: Color(0XFF000000)
+                                              .withOpacity(0.4),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                      overflow: TextOverflow.ellipsis),
+                                ),
+                                Text(publishedDate,
                                     style: TextStyle(
                                         color:
                                             Color(0XFF000000).withOpacity(0.4),
@@ -67,7 +73,7 @@ class replyCard extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis),
                               ],
                             )),
-                        SizedBox(width: 140),
+                        SizedBox(width: 132),
                         Container(
                           alignment: Alignment.topRight,
                           child: iconSwitching(
@@ -91,24 +97,6 @@ class replyCard extends StatelessWidget {
                   fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 16),
-            Row(
-              children: [
-                Container(
-                    child: Row(
-                  children: [
-                    Icon(Icons.thumb_up_alt_outlined,
-                        color: Color(0XFF5B5B5B5B).withOpacity(0.5), size: 24),
-                    Text("$likes",
-                        style: TextStyle(
-                            color: Color(0XFF5B5B5B5B).withOpacity(0.5),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600)),
-                    SizedBox(width: 220),
-                    Icon(Icons.more_vert),
-                  ],
-                )),
-              ],
-            )
           ],
         ));
   }

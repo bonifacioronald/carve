@@ -6,6 +6,19 @@ class ForumProvider with ChangeNotifier {
   List<String> forumIdList = [];
   List<ForumModel> loadedForumList = [];
 
+  Future<void>? createNewForum(String content) {
+    FirebaseFirestore.instance.collection('forum').doc().set({
+      "authorName": '',
+      "category": '',
+      "content": content,
+      'id': '',
+      'publishedDate': '',
+      'title': '',
+      'totalLikes': '',
+      'totalReplies': '',
+    });
+  }
+
   Future<void> fetchForumId() async {
     print('fetch');
     try {

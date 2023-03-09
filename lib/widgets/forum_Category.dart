@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
   Color buttonColor;
+  Color textColor1;
+  Color circleColor2;
+  Color quantityColor;
   String category;
   int quantity;
-  Category(this.buttonColor, this.category, this.quantity);
+  Category(this.buttonColor, this.textColor1, this.circleColor2,
+      this.quantityColor, this.category, this.quantity);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class Category extends StatelessWidget {
             children: [
               Text(category,
                   style: TextStyle(
-                      color: Colors.white,
+                      color: textColor1,
                       fontSize: 16,
                       fontWeight: FontWeight.bold)),
               SizedBox(width: 4),
@@ -30,11 +34,11 @@ class Category extends StatelessWidget {
                   height: 20,
                   width: 20,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
+                      shape: BoxShape.circle, color: circleColor2),
                   child: Center(
                       child: Text("$quantity",
                           style: TextStyle(
-                              color: custom_colors.primaryDarkPurple,
+                              color: quantityColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold)))),
             ]));
