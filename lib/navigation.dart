@@ -140,23 +140,3 @@ class NavigationState extends State<Navigation> {
     );
   }
 }
-
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: custom_colors.primaryDarkPurple,
-      elevation: 0,
-      title: Container(
-        width: 40,
-        height: 40,
-        child: Image.asset(
-          'lib/assets/images/app_logo.png',
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}

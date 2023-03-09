@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../models/colors.dart';
+import '../navigation.dart';
 import '../providers/resource_provider.dart';
 import '../widgets/main_menu_category_section.dart';
 import '../widgets/main_menu_video_course_section.dart';
@@ -18,6 +19,10 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+}
+
+BottomNavigationBar get navigationBar {
+  return NavigationState.globalKey.currentWidget as BottomNavigationBar;
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -104,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 30,
                         ),
                         GestureDetector(
-                            onTap: () {},
+                            onTap: () => navigationBar.onTap!(3),
                             child: SearchBar("Ask parenting questions here...",
                                 Colors.white, primaryDarkPurple)),
                       ],

@@ -175,7 +175,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                               padding: EdgeInsets.zero,
                               physics: BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
-                              itemCount: _provider.contentIdList.length - 3,
+                              itemCount: 3,
                               itemBuilder: (_, index) {
                                 return Row(
                                   children: [
@@ -183,9 +183,8 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                       onTap: (() => Navigator.of(context)
                                           .pushNamed(
                                               ContentLibraryStory.routeName,
-                                              arguments:
-                                                  _provider.loadedContentList[
-                                                      index + 2])),
+                                              arguments: _provider
+                                                  .loadedContentList[index])),
                                       child: ContentLibraryCard(
                                           contentTitle: _provider
                                               .loadedContentList[index].title,
@@ -215,24 +214,24 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                     color: custom_colors.primaryDarkPurple)),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 20, right: 5),
-                            height: 240,
-                            width: 800, //this sould be a variable
-                            // color: Colors.brown,
+                            padding: EdgeInsets.only(left: 20),
+                            height: 280,
+                            width: 800,
                             child: ListView.builder(
                               padding: EdgeInsets.zero,
                               physics: BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
-                              itemCount: _provider.contentIdList.length - 2,
+                              itemCount: _provider.loadedContentList.length - 2,
                               itemBuilder: (_, index) {
                                 return Row(
                                   children: [
                                     GestureDetector(
                                       onTap: (() => Navigator.of(context)
                                           .pushNamed(
-                                              DailyContentScreen.routeName,
-                                              arguments: _provider
-                                                  .loadedContentList[index])),
+                                              ContentLibraryStory.routeName,
+                                              arguments:
+                                                  _provider.loadedContentList[
+                                                      index + 2])),
                                       child: ContentLibraryCard(
                                           contentTitle: _provider
                                               .loadedContentList[index + 2]
@@ -245,7 +244,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                               .thumbnailUrl),
                                     ),
                                     SizedBox(
-                                      width: 15,
+                                      width: 25,
                                     )
                                   ],
                                 );
