@@ -131,127 +131,129 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Container(
-                      width: double.infinity,
-                      height: 650,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30)),
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  "lib/assets/images/Content_Library_Assets/content_library_background.png"),
-                              fit: BoxFit.fitWidth)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 20.0, top: 15, right: 20),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Recommended",
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30)),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    "lib/assets/images/Content_Library_Assets/content_library_background.png"),
+                                fit: BoxFit.fitWidth)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, top: 15, right: 20),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Recommended",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: custom_colors.primaryDarkPurple),
+                                  ),
+                                  Spacer(),
+                                  Icon(
+                                    Icons.filter_alt_sharp,
+                                    color: custom_colors.primaryDarkPurple,
+                                    size: 21,
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Container(
+                              padding: EdgeInsets.only(left: 20),
+                              height: 280,
+                              width: 800,
+                              child: ListView.builder(
+                                padding: EdgeInsets.zero,
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 3,
+                                itemBuilder: (_, index) {
+                                  return Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (() => Navigator.of(context)
+                                            .pushNamed(
+                                                ContentLibraryStory.routeName,
+                                                arguments: _provider
+                                                    .loadedContentList[index])),
+                                        child: ContentLibraryCard(
+                                            contentTitle: _provider
+                                                .loadedContentList[index].title,
+                                            contentCategory: _provider
+                                                .loadedContentList[index]
+                                                .suitableCategories[0],
+                                            contentImageUrl: _provider
+                                                .loadedContentList[index]
+                                                .thumbnailUrl),
+                                      ),
+                                      SizedBox(
+                                        width: 25,
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, right: 20, bottom: 10),
+                              child: Text("Popular",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
-                                      color: custom_colors.primaryDarkPurple),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.filter_alt_sharp,
-                                  color: custom_colors.primaryDarkPurple,
-                                  size: 21,
-                                )
-                              ],
+                                      color: custom_colors.primaryDarkPurple)),
                             ),
-                          ),
-                          SizedBox(height: 5),
-                          Container(
-                            padding: EdgeInsets.only(left: 20),
-                            height: 280,
-                            width: 800,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 3,
-                              itemBuilder: (_, index) {
-                                return Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: (() => Navigator.of(context)
-                                          .pushNamed(
-                                              ContentLibraryStory.routeName,
-                                              arguments: _provider
-                                                  .loadedContentList[index])),
-                                      child: ContentLibraryCard(
-                                          contentTitle: _provider
-                                              .loadedContentList[index].title,
-                                          contentCategory: _provider
-                                              .loadedContentList[index]
-                                              .suitableCategories[0],
-                                          contentImageUrl: _provider
-                                              .loadedContentList[index]
-                                              .thumbnailUrl),
-                                    ),
-                                    SizedBox(
-                                      width: 25,
-                                    )
-                                  ],
-                                );
-                              },
+                            Container(
+                              padding: EdgeInsets.only(left: 20),
+                              height: 280,
+                              width: 800,
+                              child: ListView.builder(
+                                padding: EdgeInsets.zero,
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount:
+                                    _provider.loadedContentList.length - 2,
+                                itemBuilder: (_, index) {
+                                  return Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (() => Navigator.of(context)
+                                            .pushNamed(
+                                                ContentLibraryStory.routeName,
+                                                arguments:
+                                                    _provider.loadedContentList[
+                                                        index + 2])),
+                                        child: ContentLibraryCard(
+                                            contentTitle: _provider
+                                                .loadedContentList[index + 2]
+                                                .title,
+                                            contentCategory: _provider
+                                                .loadedContentList[index + 2]
+                                                .suitableCategories[0],
+                                            contentImageUrl: _provider
+                                                .loadedContentList[index + 2]
+                                                .thumbnailUrl),
+                                      ),
+                                      SizedBox(
+                                        width: 25,
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 10),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 20.0, right: 20, bottom: 10),
-                            child: Text("Popular",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: custom_colors.primaryDarkPurple)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 20),
-                            height: 280,
-                            width: 800,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: _provider.loadedContentList.length - 2,
-                              itemBuilder: (_, index) {
-                                return Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: (() => Navigator.of(context)
-                                          .pushNamed(
-                                              ContentLibraryStory.routeName,
-                                              arguments:
-                                                  _provider.loadedContentList[
-                                                      index + 2])),
-                                      child: ContentLibraryCard(
-                                          contentTitle: _provider
-                                              .loadedContentList[index + 2]
-                                              .title,
-                                          contentCategory: _provider
-                                              .loadedContentList[index + 2]
-                                              .suitableCategories[0],
-                                          contentImageUrl: _provider
-                                              .loadedContentList[index + 2]
-                                              .thumbnailUrl),
-                                    ),
-                                    SizedBox(
-                                      width: 25,
-                                    )
-                                  ],
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     )
                   ],

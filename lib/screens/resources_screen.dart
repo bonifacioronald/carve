@@ -146,7 +146,7 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
                                       .withOpacity(0.6),
                                   Colors.white,
                                   Icons.phone_in_talk_sharp,
-                                  "Marriage\nCounseling",
+                                  "Marriage\nCounselling",
                                 ),
                               ),
                               GestureDetector(

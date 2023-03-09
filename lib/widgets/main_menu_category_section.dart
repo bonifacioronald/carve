@@ -104,7 +104,7 @@ class MainMenuCategorySection extends StatelessWidget {
                     ResourceDetailScreen.routeName,
                     arguments: _userDataProvider.isPregnant
                         ? 'Adoption Agency'
-                        : 'Marriage Counseling')),
+                        : 'Marriage Counselling')),
                 child: CategoryButton(
                   custom_colors.primaryDarkPurple.withOpacity(0.7),
                   Colors.white,
@@ -113,7 +113,7 @@ class MainMenuCategorySection extends StatelessWidget {
                       : Icons.phone_in_talk_sharp,
                   _userDataProvider.isPregnant
                       ? 'Adoption\nAgency'
-                      : 'Marriage\nCounseling',
+                      : 'Marriage\nCounselling',
                 ),
               ),
             ],
