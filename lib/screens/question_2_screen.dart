@@ -1,9 +1,12 @@
+import 'package:carve_app/screens/question_2_if_pregnant.dart';
 import 'package:carve_app/screens/question_3_screen.dart';
 import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
+import '../providers/user_provider.dart';
 
 class Question2Screen extends StatefulWidget {
   static const routeName = '/question-2';
@@ -12,6 +15,39 @@ class Question2Screen extends StatefulWidget {
   State<Question2Screen> createState() => _Question2ScreenState();
 
   int selectedAnswerIndex = 0;
+}
+
+void _updateUserChildAge(int selectedIndex, BuildContext context) {
+  String childAge = '';
+  switch (selectedIndex) {
+    case 1:
+      {
+        childAge = "childAge-less-than-one";
+      }
+      break;
+    case 2:
+      {
+        childAge = 'childAge-one-to-two';
+      }
+      break;
+    case 3:
+      {
+        childAge = 'childAge-three-to-five';
+      }
+      break;
+    case 4:
+      {
+        childAge = 'childAge-six-to-twelve';
+      }
+      break;
+    case 5:
+      {
+        childAge = 'childAge-more-than-twelve';
+      }
+      break;
+  }
+
+  Provider.of<UserProvider>(context, listen: false).setChildAge(childAge);
 }
 
 class _Question2ScreenState extends State<Question2Screen> {
@@ -126,22 +162,16 @@ class _Question2ScreenState extends State<Question2Screen> {
                       child: QuestionScreenAnswerOptions('12+ years old',
                           widget.selectedAnswerIndex == 5 ? true : false),
                     ),
-                    SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 6;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('Expecting',
-                          widget.selectedAnswerIndex == 6 ? true : false),
-                    ),
                     Spacer(),
                     GestureDetector(
-                      onTap: (() => widget.selectedAnswerIndex != 0 
-                          ? Navigator.of(context)
-                              .pushNamed(Question3Screen.routeName)
-                          : null),
+                      onTap: (() {
+                        if (widget.selectedAnswerIndex != 0) {
+                          Navigator.of(context)
+                              .pushNamed(Question3Screen.routeName);
+                          _updateUserChildAge(
+                              widget.selectedAnswerIndex, context);
+                        }
+                      }),
                       child: Container(
                         width: 200,
                         height: 50,

@@ -8,6 +8,7 @@ class QuestionTitleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         padding: EdgeInsets.only(
             left: 32,
@@ -22,7 +23,7 @@ class QuestionTitleScreen extends StatelessWidget {
               image: AssetImage(
                 'lib/assets/images/question_screen_bg.png',
               ),
-              fit: BoxFit.none),
+              fit: BoxFit.cover),
         ),
         child: Column(
           children: [

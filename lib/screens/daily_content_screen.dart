@@ -1,6 +1,7 @@
 import 'package:carve_app/data/content_data.dart';
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/loading_screen.dart';
-import 'package:carve_app/providers/content_provider.dart';
+import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:carve_app/widgets/toggle_button.dart';
@@ -12,29 +13,34 @@ import 'package:provider/provider.dart';
 
 import '../models/content_model.dart';
 
-class DailyContent extends StatefulWidget {
-  const DailyContent({super.key});
+class DailyContentScreen extends StatefulWidget {
+  const DailyContentScreen({super.key});
   static const routeName = '/dailyContent-1';
 
   @override
-  State<DailyContent> createState() => _DailyContentState();
+  State<DailyContentScreen> createState() => _DailyContentScreenState();
 }
 
-class _DailyContentState extends State<DailyContent> {
+class _DailyContentScreenState extends State<DailyContentScreen> {
   bool _isLoading = true;
 
   @override
   void initState() {
     // TODO: implement initState
 
-    var _provider = Provider.of<ContentProvider>(context, listen: false);
+    var _provider = Provider.of<DailyContentProvider>(context, listen: false);
     if (_provider.contentIdList.isEmpty) {
       print('INIT STATE');
       _provider
           .fetchContentId()
           .then(
-            (value) => _provider.fetchContentDataFromId(
-              _provider.contentIdList[0],
+            (value) => _provider.fetchDailyContentDataFromId(
+              _provider.contentIdList[
+                  Provider.of<UserProvider>(context, listen: false)
+                          .userProviderData
+                          .isPregnant
+                      ? 0
+                      : 3],
             ),
           )
           .then(
@@ -67,41 +73,17 @@ class _DailyContentState extends State<DailyContent> {
           : SingleChildScrollView(
               child: Container(
                 width: double.infinity,
-                height: 1430,
+                height: 1461,
                 color: custom_colors.backgroundPurple,
                 child: Column(
                   children: [
-                    DailyContentStory(
-                        Provider.of<ContentProvider>(context, listen: false)
-                            .loadedContent),
+                    DailyContentStory(Provider.of<DailyContentProvider>(context,
+                            listen: false)
+                        .loadedContent),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Column(
                         children: [
-                          Container(
-                              child: Row(children: [
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: custom_colors.primaryDarkPurple),
-                              child: Center(
-                                child: Icon(
-                                  Icons.ios_share,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              "Share",
-                              style: TextStyle(
-                                  color: custom_colors.primaryDarkPurple,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ])),
                           SizedBox(height: 20, width: 180),
                           Container(
                             padding: EdgeInsets.only(top: 15, left: 15),

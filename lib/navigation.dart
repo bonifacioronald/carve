@@ -110,7 +110,7 @@ class NavigationState extends State<Navigation> {
               BottomNavigationBarItem(
                   label: '',
                   icon: Icon(
-                    Icons.group_outlined,
+                    Icons.handshake_rounded,
                     size: NavBarIconSize,
                   )),
               BottomNavigationBarItem(
@@ -157,22 +157,6 @@ class CustomAppBar extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      actions: [
-        Icon(
-          Icons.notifications_active_outlined,
-          color: Colors.white,
-        ),
-        SizedBox(
-          width: 12,
-        ),
-        Icon(
-          Icons.account_circle_outlined,
-          size: 40,
-        ),
-        SizedBox(
-          width: 20,
-        ),
-      ],
     );
   }
 }

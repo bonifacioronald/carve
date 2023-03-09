@@ -1,5 +1,7 @@
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 
 class DailyContentCard extends StatelessWidget {
@@ -41,8 +43,8 @@ class DailyContentCard extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               GestureDetector(
-                onTap: () =>
-                    Navigator.of(context).pushNamed(DailyContent.routeName),
+                onTap: () => Navigator.of(context)
+                    .pushNamed(DailyContentScreen.routeName),
                 child: Container(
                   width: 140,
                   height: 40,
@@ -70,11 +72,16 @@ class DailyContentCard extends StatelessWidget {
               )
             ],
           ),
+          Spacer(),
           Container(
-            width: 100,
+            width: 120,
             height: double.infinity,
             child: Image.asset(
-              'lib/assets/images/family_image.png',
+              Provider.of<UserProvider>(context, listen: false)
+                      .userProviderData
+                      .isPregnant
+                  ? 'lib/assets/images/Pregnancy 4.png'
+                  : 'lib/assets/images/family_image.png',
               fit: BoxFit.cover,
             ),
           ),

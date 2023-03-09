@@ -1,4 +1,5 @@
 import 'package:carve_app/models/video_model.dart';
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/widgets/video_course_card.dart';
 import 'package:flutter/material.dart';
@@ -10,48 +11,50 @@ class MainMenuVideoCourseSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _userProvider = Provider.of<UserProvider>(context, listen: false);
     List<VideoModel> loadedVideoList =
         Provider.of<VideoProvider>(context, listen: false).loadedVideoList;
+    List<VideoModel> loadedVideoFilteredIsForPregancyList =
+        _userProvider.userProviderData.isPregnant
+            ? loadedVideoList
+                .where((video) => video.isForPregnancy == true)
+                .toList()
+            : loadedVideoList
+                .where((video) => video.isForPregnancy == false)
+                .toList();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Video Courses',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: custom_colors.primaryDarkPurple,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'See All',
-              style: TextStyle(
-                  fontSize: 14,
-                  color: custom_colors.secondaryLightPurple,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
+        Text(
+          'Video Materials',
+          style: TextStyle(
+              fontSize: 20,
+              color: custom_colors.primaryDarkPurple,
+              fontWeight: FontWeight.bold),
         ),
         SizedBox(
           height: 16,
         ),
         Container(
           width: double.infinity,
-          height: loadedVideoList.length * 140 + loadedVideoList.length * 16,
+          height: loadedVideoFilteredIsForPregancyList.length * 140 +
+              loadedVideoFilteredIsForPregancyList.length * 16,
           child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
-            itemCount: loadedVideoList.length,
+            itemCount: loadedVideoFilteredIsForPregancyList.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
                   VideoCourseCard(
-                      thumbnailUrl: loadedVideoList[index].thumbnailUrl,
-                      videoUrl: loadedVideoList[index].id,
-                      rating: loadedVideoList[index].rating,
-                      title: loadedVideoList[index].title,
-                      authorName: loadedVideoList[index].authorName),
+                      thumbnailUrl: loadedVideoFilteredIsForPregancyList[index]
+                          .thumbnailUrl,
+                      videoUrl: loadedVideoFilteredIsForPregancyList[index].id,
+                      rating:
+                          loadedVideoFilteredIsForPregancyList[index].rating,
+                      title: loadedVideoFilteredIsForPregancyList[index].title,
+                      authorName: loadedVideoFilteredIsForPregancyList[index]
+                          .authorName),
                   SizedBox(
                     height: 16,
                   ),
