@@ -29,7 +29,7 @@ class _forumPageState extends State<forumPage> {
 
   void initState() {
     // TODO: implement initState
-    var _provider = Provider.of<ForumReplyProvider>(context, listen: true);
+    var _provider = Provider.of<ForumReplyProvider>(context, listen: false);
     if (_provider.forumReplyIdList.isEmpty) {
       _provider.fetchForumReplyId().then(
         (_) {
@@ -64,8 +64,8 @@ class _forumPageState extends State<forumPage> {
         Provider.of<UserProvider>(context, listen: false).userProviderData;
     ForumModel displayedContent =
         ModalRoute.of(context)!.settings.arguments as ForumModel;
-    var _provider = Provider.of<ForumReplyProvider>(context);
-    _provider.selectDisplayedForumReplybyId(displayedContent.id);
+    var _provider2 = Provider.of<ForumReplyProvider>(context);
+    _provider2.selectDisplayedForumReplybyId(displayedContent.id);
 
     return Scaffold(
         backgroundColor: custom_colors.backgroundPurple,
@@ -108,7 +108,8 @@ class _forumPageState extends State<forumPage> {
                           SizedBox(height: 16),
                           Row(
                             children: [
-                              Text("Replies (24)",
+                              Text(
+                                  "Replies (${_provider2.filteredForumReplyList.length})",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
@@ -123,24 +124,25 @@ class _forumPageState extends State<forumPage> {
                           SizedBox(height: 16),
                           Container(
                               width: double.infinity,
-                              height: _provider.filteredForumReplyList.length *
+                              height: _provider2.filteredForumReplyList.length *
                                       106 +
-                                  _provider.filteredForumReplyList.length * 16 +
+                                  _provider2.filteredForumReplyList.length *
+                                      16 +
                                   168,
                               child: ListView.builder(
                                   itemCount:
-                                      _provider.filteredForumReplyList.length,
+                                      _provider2.filteredForumReplyList.length,
                                   itemBuilder: (context, index) {
                                     return Column(
                                       children: [
                                         replyCard(
-                                          authorName: _provider
+                                          authorName: _provider2
                                               .filteredForumReplyList[index]
                                               .authorName,
-                                          content: _provider
+                                          content: _provider2
                                               .filteredForumReplyList[index]
                                               .content,
-                                          publishedDate: _provider
+                                          publishedDate: _provider2
                                               .filteredForumReplyList[index]
                                               .publishedDate,
                                         ),
@@ -162,7 +164,7 @@ class _forumPageState extends State<forumPage> {
                               decoration: InputDecoration(
                                 suffixIcon: GestureDetector(
                                     onTap: () {
-                                      _provider.submitNewReplyToFirebase(
+                                      _provider2.submitNewReplyToFirebase(
                                           currentUser.name,
                                           _content.text,
                                           displayedContent.id,

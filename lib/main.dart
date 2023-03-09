@@ -91,7 +91,8 @@ class MyApp extends StatelessWidget {
           forumAll.routeName: (context) => forumAll(),
           createForum.routeName: (context) => createForum(),
           ResourceDetailScreen.routeName: (context) => ResourceDetailScreen(),
-          ContentLibraryStory.routeName: (context) => ContentLibraryStory()
+          ContentLibraryStory.routeName: (context) => ContentLibraryStory(),
+          forumPage.routeName: (context) => forumPage(),
         },
       ),
     );
