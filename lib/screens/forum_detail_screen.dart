@@ -125,11 +125,10 @@ class _forumPageState extends State<forumPage> {
                           Container(
                               width: double.infinity,
                               height: _provider2.filteredForumReplyList.length *
-                                      106 +
-                                  _provider2.filteredForumReplyList.length *
-                                      16 +
-                                  168,
+                                      360 +
+                                  _provider2.filteredForumReplyList.length * 16,
                               child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
                                   itemCount:
                                       _provider2.filteredForumReplyList.length,
                                   itemBuilder: (context, index) {

@@ -16,7 +16,7 @@ class replyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        width: 348,
+        width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -28,61 +28,57 @@ class replyCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: custom_colors.primaryDarkPurple),
-                          // Changed the icons to the user profile
-                          child: Center(
-                            child: Icon(
-                              Icons.supervised_user_circle,
-                              color: Colors.white,
-                              size: 36,
-                            ),
-                          ),
+                  child: Row(children: [
+                    Container(
+                      width: 60,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: custom_colors.primaryDarkPurple),
+                      // Changed the icons to the user profile
+                      child: Center(
+                        child: Icon(
+                          Icons.supervised_user_circle,
+                          color: Colors.white,
+                          size: 36,
                         ),
-                        SizedBox(width: 8),
-                        Container(
-                            height: 40,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 68,
-                                  child: Text(authorName,
-                                      style: TextStyle(
-                                          color: Color(0XFF000000)
-                                              .withOpacity(0.4),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600),
-                                      overflow: TextOverflow.ellipsis),
-                                ),
-                                Text(publishedDate,
-                                    style: TextStyle(
-                                        color:
-                                            Color(0XFF000000).withOpacity(0.4),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
-                                    overflow: TextOverflow.ellipsis),
-                              ],
-                            )),
-                        SizedBox(width: 132),
-                        Container(
-                          alignment: Alignment.topRight,
-                          child: iconSwitching(
-                              Icons.bookmark_border,
-                              Icons.bookmark,
-                              40,
-                              custom_colors.primaryDarkPurple),
-                        )
-                      ]),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Container(
+                        height: 40,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 68,
+                              child: Text(authorName,
+                                  style: TextStyle(
+                                      color: custom_colors.primaryDarkPurple
+                                          .withOpacity(0.4),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                            Text(publishedDate,
+                                style: TextStyle(
+                                    color: custom_colors.primaryDarkPurple
+                                        .withOpacity(0.4),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                                overflow: TextOverflow.ellipsis),
+                          ],
+                        )),
+                    SizedBox(width: 124),
+                    // Bookmark icon
+                    iconSwitching(
+                      Icons.bookmark_border,
+                      Icons.bookmark,
+                      40,
+                      custom_colors.primaryDarkPurple,
+                    ),
+                  ]),
                 ),
               ],
             ),
@@ -92,7 +88,7 @@ class replyCard extends StatelessWidget {
             Text(
               content,
               style: TextStyle(
-                  color: Color(0XFF000000),
+                  color: custom_colors.primaryDarkPurple,
                   fontSize: 16,
                   fontWeight: FontWeight.w600),
             ),
