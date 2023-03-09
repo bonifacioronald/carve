@@ -54,100 +54,105 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
       backgroundColor: custom_colors.backgroundPurple,
       body: _isLoading
           ? LoadingScreen()
-          : SingleChildScrollView(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).padding.top + 20,
-                  left: 20,
-                  right: 20,
-                  bottom: 40),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Need Any Support?\nAsk Here!",
-                      style: TextStyle(
-                          color: Color(0XFF02084B),
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold)),
-                  SizedBox(height: 20),
-                  Text("Join and connect with parents in the community nearby",
-                      style: TextStyle(
-                          color: Color(0XFF02084B).withOpacity(0.5),
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)),
-                  SizedBox(height: 20),
-                  // Create forum button
-                  createButton("Create Forum"),
-                  SizedBox(height: 20),
-                  Divider(
-                    color: Color(0XFF02084B).withOpacity(0.1),
-                    thickness: 2,
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Recommended Forums',
+          : RefreshIndicator(
+              onRefresh: () async {},
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).padding.top + 20,
+                    left: 20,
+                    right: 20,
+                    bottom: 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Need Any Support?\nAsk Here!",
                         style: TextStyle(
-                            fontSize: 20,
-                            color: custom_colors.primaryDarkPurple,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      GestureDetector(
-                        onTap: (() => Navigator.of(context)
-                            .pushNamed(ForumAllScreen.routeName)),
-                        child: Container(
-                          child: Text(
-                            'See All',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: custom_colors.secondaryLightPurple,
-                                fontWeight: FontWeight.bold),
+                            color: Color(0XFF02084B),
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(height: 20),
+                    Text(
+                        "Join and connect with parents in the community nearby",
+                        style: TextStyle(
+                            color: Color(0XFF02084B).withOpacity(0.5),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(height: 20),
+                    // Create forum button
+                    createButton("Create Forum"),
+                    SizedBox(height: 20),
+                    Divider(
+                      color: Color(0XFF02084B).withOpacity(0.1),
+                      thickness: 2,
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Recommended Forums',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: custom_colors.primaryDarkPurple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        GestureDetector(
+                          onTap: (() => Navigator.of(context)
+                              .pushNamed(ForumAllScreen.routeName)),
+                          child: Container(
+                            child: Text(
+                              'See All',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: custom_colors.secondaryLightPurple,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: double.infinity,
-                    height: _provider.forumIdList.length * 200 +
-                        _provider.forumIdList.length * 20,
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: _provider.forumIdList.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            GestureDetector(
-                              onTap: (() => Navigator.of(context).pushNamed(
-                                  forumPage.routeName,
-                                  arguments: _provider.loadedForumList[index])),
-                              child: ForumCard(
-                                authorName:
-                                    _provider.loadedForumList[index].authorName,
-                                publishedDate: _provider
-                                    .loadedForumList[index].publishedDate,
-                                category:
-                                    _provider.loadedForumList[index].category,
-                                title: _provider.loadedForumList[index].title,
-                                totalLikes:
-                                    _provider.loadedForumList[index].totalLikes,
-                                totalReplies: _provider
-                                    .loadedForumList[index].totalReplies,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            )
-                          ],
-                        );
-                      },
+                      ],
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20),
+                    Container(
+                      width: double.infinity,
+                      height: _provider.forumIdList.length * 200 +
+                          _provider.forumIdList.length * 20,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: _provider.forumIdList.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              GestureDetector(
+                                onTap: (() => Navigator.of(context).pushNamed(
+                                    forumPage.routeName,
+                                    arguments:
+                                        _provider.loadedForumList[index])),
+                                child: ForumCard(
+                                  authorName: _provider
+                                      .loadedForumList[index].authorName,
+                                  publishedDate: _provider
+                                      .loadedForumList[index].publishedDate,
+                                  category:
+                                      _provider.loadedForumList[index].category,
+                                  title: _provider.loadedForumList[index].title,
+                                  totalLikes: _provider
+                                      .loadedForumList[index].totalLikes,
+                                  totalReplies: _provider
+                                      .loadedForumList[index].totalReplies,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
     );

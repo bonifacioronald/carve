@@ -21,6 +21,18 @@ class createForum extends StatefulWidget {
   State<createForum> createState() => _createForumState();
 }
 
+final _forumAddedSnackBar = SnackBar(
+    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    padding: EdgeInsets.all(20),
+    backgroundColor: custom_colors.secondaryLightPurple,
+    behavior: SnackBarBehavior.floating,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8))),
+    content: const Text(
+      'Successfuly created a new forum!',
+      style: TextStyle(color: Colors.white),
+    ));
+
 class _createForumState extends State<createForum> {
   var _counterText = "";
   Future<void>? createNewForum(String authorName, String category,
@@ -315,6 +327,9 @@ class _createForumState extends State<createForum> {
                       _descriptionController.text,
                       DateTime.now(),
                       _titleController.text);
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(_forumAddedSnackBar);
+
                   Navigator.of(context).pop();
                 },
                 child: Container(
