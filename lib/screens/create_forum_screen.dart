@@ -315,7 +315,7 @@ class _createForumState extends State<createForum> {
                       _descriptionController.text,
                       DateTime.now(),
                       _titleController.text);
-                  Navigator.of(context).pushNamed(ForumAllScreen.routeName);
+                  Navigator.of(context).pop();
                 },
                 child: Container(
                   width: 352,
