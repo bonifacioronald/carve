@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 
 class DailyContentProvider with ChangeNotifier {
   List<String> contentIdList = [];
-  ContentModel loadedContent = ContentModel(
-    id: '',
-    title: '',
-    content: [],
-    suitableCategories: [],
-    thumbnailUrl: ''
-  );
+  ContentModel loadedPregnantContent = ContentModel(
+      id: '', title: '', content: [], suitableCategories: [], thumbnailUrl: '');
+  ContentModel loadedNonPregnantContent = ContentModel(
+      id: '', title: '', content: [], suitableCategories: [], thumbnailUrl: '');
 
   Future<void> fetchContentId() async {
     try {
@@ -30,25 +27,49 @@ class DailyContentProvider with ChangeNotifier {
     }
   }
 
-  Future<void> fetchDailyContentDataFromId(String contentId) async {
+  Future<void> fetchDailyPregnancyContentDataFromId(String contentId) async {
     await FirebaseFirestore.instance
         .collection('content')
         .doc(contentId)
         .get()
         .then(
       (snapshot) {
-        loadedContent.id = snapshot.data()!['id'];
-        loadedContent.title = snapshot.data()!['title'];
+        loadedPregnantContent.id = snapshot.data()!['id'];
+        loadedPregnantContent.title = snapshot.data()!['title'];
         List.from(snapshot.data()!['content']).forEach((content) {
-          loadedContent.content.add(content);
+          loadedPregnantContent.content.add(content);
         });
-        for (int i = 0; i < loadedContent.content.length; i++) {
+        for (int i = 0; i < loadedPregnantContent.content.length; i++) {
           String formattedString =
-              loadedContent.content[i].replaceAll('\\n', '\n');
-          loadedContent.content[i] = formattedString;
+              loadedPregnantContent.content[i].replaceAll('\\n', '\n');
+          loadedPregnantContent.content[i] = formattedString;
         }
         List.from(snapshot.data()!['suitableCategories']).forEach((category) {
-          loadedContent.suitableCategories.add(category);
+          loadedPregnantContent.suitableCategories.add(category);
+        });
+      },
+    );
+  }
+
+  Future<void> fetchDailyNonPregnancyContentDataFromId(String contentId) async {
+    await FirebaseFirestore.instance
+        .collection('content')
+        .doc(contentId)
+        .get()
+        .then(
+      (snapshot) {
+        loadedNonPregnantContent.id = snapshot.data()!['id'];
+        loadedNonPregnantContent.title = snapshot.data()!['title'];
+        List.from(snapshot.data()!['content']).forEach((content) {
+          loadedNonPregnantContent.content.add(content);
+        });
+        for (int i = 0; i < loadedNonPregnantContent.content.length; i++) {
+          String formattedString =
+              loadedNonPregnantContent.content[i].replaceAll('\\n', '\n');
+          loadedNonPregnantContent.content[i] = formattedString;
+        }
+        List.from(snapshot.data()!['suitableCategories']).forEach((category) {
+          loadedNonPregnantContent.suitableCategories.add(category);
         });
       },
     );

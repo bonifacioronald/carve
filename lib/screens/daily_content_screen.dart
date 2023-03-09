@@ -28,19 +28,20 @@ class _DailyContentScreenState extends State<DailyContentScreen> {
   void initState() {
     // TODO: implement initState
 
+    super.initState();
     var _provider = Provider.of<DailyContentProvider>(context, listen: false);
     if (_provider.contentIdList.isEmpty) {
       print('INIT STATE');
       _provider
           .fetchContentId()
           .then(
-            (value) => _provider.fetchDailyContentDataFromId(
-              _provider.contentIdList[
-                  Provider.of<UserProvider>(context, listen: false)
-                          .userProviderData
-                          .isPregnant
-                      ? 0
-                      : 3],
+            (value) => _provider.fetchDailyPregnancyContentDataFromId(
+              _provider.contentIdList[0],
+            ),
+          )
+          .then(
+            (value) => _provider.fetchDailyNonPregnancyContentDataFromId(
+              _provider.contentIdList[3],
             ),
           )
           .then(
@@ -57,8 +58,6 @@ class _DailyContentScreenState extends State<DailyContentScreen> {
         _isLoading = false;
       });
     }
-
-    super.initState();
   }
 
   @override
@@ -77,9 +76,16 @@ class _DailyContentScreenState extends State<DailyContentScreen> {
                 color: custom_colors.backgroundPurple,
                 child: Column(
                   children: [
-                    DailyContentStory(Provider.of<DailyContentProvider>(context,
-                            listen: false)
-                        .loadedContent),
+                    DailyContentStory(
+                        Provider.of<UserProvider>(context, listen: false)
+                                .userProviderData
+                                .isPregnant
+                            ? Provider.of<DailyContentProvider>(context,
+                                    listen: false)
+                                .loadedPregnantContent
+                            : Provider.of<DailyContentProvider>(context,
+                                    listen: false)
+                                .loadedNonPregnantContent),
                     Container(
                       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Column(
