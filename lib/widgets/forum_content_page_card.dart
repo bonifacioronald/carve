@@ -23,7 +23,7 @@ class forumContentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        width: 348,
+        width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -36,7 +36,7 @@ class forumContentCard extends StatelessWidget {
                 children: [
                   // User icon
                   Container(
-                    width: 40,
+                    width: 60,
                     height: 40,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -110,14 +110,6 @@ class forumContentCard extends StatelessWidget {
                       ),
                     ),
                     const TextSpan(text: ' '),
-                    TextSpan(
-                      text: 'Read more',
-                      style: TextStyle(
-                        color: custom_colors.primaryDarkPurple,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
                   ],
                 ),
               ),

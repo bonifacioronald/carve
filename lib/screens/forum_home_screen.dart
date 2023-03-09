@@ -52,48 +52,25 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
     var _provider = Provider.of<ForumProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: custom_colors.backgroundPurple,
-      appBar: AppBar(
-        backgroundColor: Color(0XE8E9FE),
-        elevation: 0,
-        actions: [
-          IconButton(
-              padding: EdgeInsets.only(right: 16),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: iconSwitching(
-                  Icons.notifications_none,
-                  Icons.notifications_active,
-                  36.0,
-                  custom_colors.primaryDarkPurple))
-        ],
-      ),
       body: _isLoading
           ? LoadingScreen()
           : SingleChildScrollView(
-              padding:
-                  EdgeInsets.only(top: 16, left: 20, right: 20, bottom: 60),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top + 20,
+                  left: 20,
+                  right: 20,
+                  bottom: 40),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Need Any Support?",
+                  Text("Need Any Support?\nAsk Here!",
                       style: TextStyle(
                           color: Color(0XFF02084B),
                           fontSize: 32,
                           fontWeight: FontWeight.bold)),
-                  Text("Ask Here!",
-                      style: TextStyle(
-                          color: Color(0XFF02084B),
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold)),
-                  SizedBox(height: 16),
-                  Text("Join and connect with parents in the",
-                      style: TextStyle(
-                          color: Color(0XFF02084B).withOpacity(0.5),
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)),
-                  Text("community nearby",
+                  SizedBox(height: 20),
+                  Text("Join and connect with parents in the community nearby",
                       style: TextStyle(
                           color: Color(0XFF02084B).withOpacity(0.5),
                           fontSize: 16,
@@ -110,31 +87,35 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Recommended Forums",
-                          style: TextStyle(
-                              color: Color(0XFF02084B),
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold)),
-                      Container(
-                          child: TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed(forumAll.routeName);
-                        },
-                        child: Text("See All Posts",
+                      Text(
+                        'Recommended Forums',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: custom_colors.primaryDarkPurple,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      GestureDetector(
+                        onTap: (() => Navigator.of(context)
+                            .pushNamed(ForumAllScreen.routeName)),
+                        child: Container(
+                          child: Text(
+                            'See All',
                             style: TextStyle(
-                                color: Color(0XFF8E93FB),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600)),
-                      )),
+                                fontSize: 14,
+                                color: custom_colors.secondaryLightPurple,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 20),
-
                   Container(
                     width: double.infinity,
                     height: _provider.forumIdList.length * 200 +
                         _provider.forumIdList.length * 20,
                     child: ListView.builder(
+                      padding: EdgeInsets.zero,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: _provider.forumIdList.length,
                       itemBuilder: (context, index) {

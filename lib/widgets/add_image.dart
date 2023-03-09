@@ -1,41 +1,46 @@
 import 'package:flutter/material.dart';
-class inputButton extends StatefulWidget {
+import '../models/colors.dart' as custom_colors;
+
+class AddImageInputButton extends StatefulWidget {
   final String title;
   final IconData icon;
   final VoidCallback onCLicked;
-  const inputButton(this.title,this.icon,this.onCLicked,{super.key});
+  const AddImageInputButton(this.title, this.icon, this.onCLicked, {super.key});
 
   @override
-  State<inputButton> createState() => _inputButtonState();
+  State<AddImageInputButton> createState() => _AddImageInputButtonState();
 }
 
-class _inputButtonState extends State<inputButton> {
+class _AddImageInputButtonState extends State<AddImageInputButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onCLicked,
-      child: Container(
-        width: 168,
-        height: 84,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          
-        ),
-        child:Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-          Icon(widget.icon),
-          SizedBox(width: 12),
-          Text(widget.title),
-          ]
-              ),
-        )
-      ));
+        onTap: widget.onCLicked,
+        child: Container(
+            width: double.infinity,
+            height: 84,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      widget.icon,
+                      color: custom_colors.secondaryLightPurple,
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      widget.title,
+                      style: TextStyle(
+                          color: custom_colors.primaryDarkPurple, fontSize: 14),
+                    ),
+                  ]),
+            )));
   }
-        
 }
 
 // Widget inputButtons({

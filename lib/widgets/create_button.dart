@@ -15,18 +15,20 @@ class _createButtonState extends State<createButton> {
     return GestureDetector(
       onTap: () => Navigator.of(context).pushNamed(createForum.routeName),
       child: Container(
-          width: 352,
-          height: 60,
-          decoration: BoxDecoration(
-            color: Color(0XFF02084B),
-            borderRadius: BorderRadius.circular(20),
+        width: 352,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Color(0XFF02084B),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Text(
+            widget.title,
+            style: TextStyle(
+                color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          child: Center(
-              child: Text(widget.title,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold)))),
+        ),
+      ),
     );
   }
 }
