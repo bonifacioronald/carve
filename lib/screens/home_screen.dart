@@ -2,6 +2,7 @@ import 'package:carve_app/models/user_model.dart';
 import 'package:carve_app/models/video_model.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
+import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/custom_app_bar.dart';
 import 'package:carve_app/widgets/daily_content_card.dart';
 import 'package:carve_app/widgets/search_bar.dart';
@@ -73,80 +74,86 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     UserModel currentUser =
         Provider.of<UserProvider>(context, listen: false).userProviderData;
-    return SingleChildScrollView(
-      child: Container(
-        width: double.infinity,
-        color: custom_colors.backgroundPurple,
-        child: Column(
-          children: [
-            CustomAppBar(),
-            //First Half Until Content Card
-            Container(
-              // color: Colors.red,
-              height: 364,
-              child: Stack(
+    return _isLoading
+        ? LoadingScreen()
+        : SingleChildScrollView(
+            child: Container(
+              width: double.infinity,
+              color: custom_colors.backgroundPurple,
+              child: Column(
                 children: [
+                  CustomAppBar(),
+                  //First Half Until Content Card
                   Container(
-                    height: 320,
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    decoration: BoxDecoration(
-                        color: custom_colors.primaryDarkPurple,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(60),
-                            bottomRight: Radius.circular(60))),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    // color: Colors.red,
+                    height: 364,
+                    child: Stack(
                       children: [
-                        Text(
-                          'Welcome Back,\n${currentUser.name}',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold),
+                        Container(
+                          height: 320,
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          decoration: BoxDecoration(
+                              color: custom_colors.primaryDarkPurple,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(60),
+                                  bottomRight: Radius.circular(60))),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Welcome Back,\n${currentUser.name}',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              GestureDetector(
+                                  onTap: () => navigationBar.onTap!(3),
+                                  child: SearchBar(
+                                      "Ask parenting questions here...",
+                                      Colors.white,
+                                      primaryDarkPurple)),
+                            ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 30,
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: DailyContentCard(),
+                          ),
                         ),
-                        GestureDetector(
-                            onTap: () => navigationBar.onTap!(3),
-                            child: SearchBar("Ask parenting questions here...",
-                                Colors.white, primaryDarkPurple)),
                       ],
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: DailyContentCard(),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    //color: Colors.red,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        MainMenuCategorySection(),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        MainMenuVideoCourseSection(),
+                        SizedBox(
+                          height: 30,
+                        ),
+                      ],
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              //color: Colors.red,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  MainMenuCategorySection(),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  MainMenuVideoCourseSection(),
-                  SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+          );
   }
 }

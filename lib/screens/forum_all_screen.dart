@@ -7,15 +7,15 @@ import 'package:provider/provider.dart';
 import '../widgets/forum_Category.dart';
 import '/models/colors.dart' as custom_colors;
 
-class forumAll extends StatefulWidget {
+class ForumAllScreen extends StatefulWidget {
   static const routeName = '/forum-all';
-  const forumAll({super.key});
+  const ForumAllScreen({super.key});
 
   @override
-  State<forumAll> createState() => _forumAllState();
+  State<ForumAllScreen> createState() => _ForumAllScreenState();
 }
 
-class _forumAllState extends State<forumAll> {
+class _ForumAllScreenState extends State<ForumAllScreen> {
   bool _isLoading = true;
   // bool isClicked = false;
   int currentClickedIndex = 1;
@@ -53,40 +53,38 @@ class _forumAllState extends State<forumAll> {
     var _provider = Provider.of<ForumProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: custom_colors.backgroundPurple,
-      appBar: AppBar(
-          backgroundColor: Color(0XE8E9FE),
-          elevation: 0,
-          actions: [
-            IconButton(
-              padding: EdgeInsets.only(right: 28),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: Icon(Icons.search, size: 36, color: Color(0XFF02084B)),
-            )
-          ],
-          leading: IconButton(
-            padding: EdgeInsets.only(left: 8),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: Icon(Icons.arrow_back_ios_new,
-                size: 32, color: Color(0XFF02084B)),
-          )),
       body: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 16, left: 24, right: 24),
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top + 20,
+              left: 20,
+              right: 20,
+              bottom: 60),
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("All Forums",
-                    style: TextStyle(
-                        color: Color(0XFF02084B),
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold)),
-                SizedBox(height: 12),
-
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
+                  onPressed: (() => Navigator.of(context).pop()),
+                  icon: Icon(
+                    Icons.keyboard_arrow_left_rounded,
+                    size: 40,
+                    color: custom_colors.primaryDarkPurple,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'All Forum',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: custom_colors.primaryDarkPurple,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
                 Container(
                   width: double.infinity,
                   height: _provider.forumIdList.length * 200 +

@@ -59,41 +59,6 @@ class _createForumState extends State<createForum> {
     }
   }
 
-  // void _updateCategory(int currentCLickIndex, BuildContext context) {
-  //   switch (currentCLickIndex) {
-  //     case 1:
-  //       {
-  //         Category = 'Pregnancy';
-  //       }
-  //       break;
-  //     case 2:
-  //       {
-  //         Category = 'Growth';
-  //       }
-  //       break;
-  //     case 3:
-  //       {
-  //         Category = 'Nutrition';
-  //       }
-  //       break;
-  //     case 4:
-  //       {
-  //         Category = 'Education';
-  //       }
-  //       break;
-  //     case 5:
-  //       {
-  //         Category = 'Financial';
-  //       }
-  //       break;
-  //     case 6:
-  //       {
-  //         Category = 'Others';
-  //       }
-  //       break;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     UserModel currentUser =
@@ -101,35 +66,39 @@ class _createForumState extends State<createForum> {
     return Scaffold(
       backgroundColor: custom_colors.backgroundPurple,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          backgroundColor: Color(0XE8E9FE),
-          elevation: 0,
-          leading: IconButton(
-            padding: EdgeInsets.only(left: 8),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: Icon(Icons.arrow_back_ios_new,
-                size: 32, color: Color(0XFF02084B)),
-          )),
-      body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 24, right: 24, bottom: 20),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              bottom: 20,
+              top: MediaQuery.of(context).padding.top + 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Create a Forum",
-                      style: TextStyle(
-                          color: Color(0XFF02084B),
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold)),
-                ],
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: BoxConstraints(),
+                onPressed: (() => Navigator.of(context).pop()),
+                icon: Icon(
+                  Icons.keyboard_arrow_left_rounded,
+                  size: 40,
+                  color: custom_colors.primaryDarkPurple,
+                ),
               ),
-              SizedBox(height: 28),
+              SizedBox(height: 20),
+              Text(
+                'Create A Forum',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: custom_colors.primaryDarkPurple,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
               TextField(
                 controller: _titleController,
                 decoration: InputDecoration(
@@ -137,9 +106,9 @@ class _createForumState extends State<createForum> {
                   fillColor: Color(0XFFFFFFFF),
                   hintText: "Forum Title",
                   hintStyle: TextStyle(
-                      color: Color(0XFF02084B).withOpacity(0.3),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                    color: Color(0XFF02084B).withOpacity(0.3),
+                    fontSize: 16,
+                  ),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
@@ -148,13 +117,13 @@ class _createForumState extends State<createForum> {
                       borderSide: BorderSide(color: Color(0XFF02084B))),
                 ),
               ),
-              SizedBox(height: 28),
+              SizedBox(height: 30),
               Text("Categories",
                   style: TextStyle(
                       color: Color(0XFF02084B),
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              SizedBox(height: 20),
+              SizedBox(height: 16),
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(children: [
@@ -169,11 +138,11 @@ class _createForumState extends State<createForum> {
                       },
                       child: CategoryButton(
                           currentCLickIndex == 1
-                              ? custom_colors.primaryDarkPurple
+                              ? custom_colors.secondaryLightPurple
                               : Colors.white,
                           currentCLickIndex == 1
                               ? Colors.white
-                              : custom_colors.primaryDarkPurple,
+                              : custom_colors.secondaryLightPurple,
                           Icons.pregnant_woman,
                           "Pregnancy"),
                     ),
@@ -188,11 +157,11 @@ class _createForumState extends State<createForum> {
                       },
                       child: CategoryButton(
                           currentCLickIndex == 2
-                              ? custom_colors.primaryDarkPurple
+                              ? custom_colors.secondaryLightPurple
                               : Colors.white,
                           currentCLickIndex == 2
                               ? Colors.white
-                              : custom_colors.primaryDarkPurple,
+                              : custom_colors.secondaryLightPurple,
                           Icons.child_care_rounded,
                           "Growth"),
                     ),
@@ -207,11 +176,11 @@ class _createForumState extends State<createForum> {
                       },
                       child: CategoryButton(
                           currentCLickIndex == 3
-                              ? custom_colors.primaryDarkPurple
+                              ? custom_colors.secondaryLightPurple
                               : Colors.white,
                           currentCLickIndex == 3
                               ? Colors.white
-                              : custom_colors.primaryDarkPurple,
+                              : custom_colors.secondaryLightPurple,
                           Icons.restaurant,
                           "Nutrition"),
                     ),
@@ -226,11 +195,11 @@ class _createForumState extends State<createForum> {
                       },
                       child: CategoryButton(
                           currentCLickIndex == 4
-                              ? custom_colors.primaryDarkPurple
+                              ? custom_colors.secondaryLightPurple
                               : Colors.white,
                           currentCLickIndex == 4
                               ? Colors.white
-                              : custom_colors.primaryDarkPurple,
+                              : custom_colors.secondaryLightPurple,
                           Icons.school,
                           "Education"),
                     ),
@@ -245,11 +214,11 @@ class _createForumState extends State<createForum> {
                       },
                       child: CategoryButton(
                           currentCLickIndex == 5
-                              ? custom_colors.primaryDarkPurple
+                              ? custom_colors.secondaryLightPurple
                               : Colors.white,
                           currentCLickIndex == 5
                               ? Colors.white
-                              : custom_colors.primaryDarkPurple,
+                              : custom_colors.secondaryLightPurple,
                           Icons.attach_money,
                           "Financial"),
                     ),
@@ -264,23 +233,23 @@ class _createForumState extends State<createForum> {
                       },
                       child: CategoryButton(
                           currentCLickIndex == 6
-                              ? custom_colors.primaryDarkPurple
+                              ? custom_colors.secondaryLightPurple
                               : Colors.white,
                           currentCLickIndex == 6
                               ? Colors.white
-                              : custom_colors.primaryDarkPurple,
+                              : custom_colors.secondaryLightPurple,
                           Icons.drag_indicator_sharp,
                           "Others"),
                     ),
                     SizedBox(width: 20),
                   ])),
-              SizedBox(height: 28),
+              SizedBox(height: 30),
               Text("Description",
                   style: TextStyle(
                       color: Color(0XFF02084B),
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              SizedBox(height: 8),
+              SizedBox(height: 16),
               Container(
                   height: 120,
                   child: Container(
@@ -302,9 +271,9 @@ class _createForumState extends State<createForum> {
                           fillColor: Color(0XFFFFFFFF),
                           hintText: "Description",
                           hintStyle: TextStyle(
-                              color: Color(0XFF02084B).withOpacity(0.3),
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                            color: Color(0XFF02084B).withOpacity(0.3),
+                            fontSize: 16,
+                          ),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
@@ -317,22 +286,27 @@ class _createForumState extends State<createForum> {
               Text("Add Media",
                   style: TextStyle(
                       color: Color(0XFF02084B),
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold)),
               SizedBox(height: 12),
-              Container(
-                height: 82,
-                child: Row(
-                  children: [
-                    inputButton("Pick from Gallery", Icons.photo_album_rounded,
+              Row(
+                children: [
+                  Expanded(
+                    child: AddImageInputButton(
+                        "Pick from Gallery",
+                        Icons.photo_album_rounded,
                         () => pickImage(ImageSource.gallery)),
-                    SizedBox(width: 8),
-                    inputButton("Take a Photo", Icons.camera_alt_rounded,
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: AddImageInputButton(
+                        "Take a Photo",
+                        Icons.camera_alt_rounded,
                         () => pickImage(ImageSource.camera)),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
                   createNewForum(
@@ -341,11 +315,7 @@ class _createForumState extends State<createForum> {
                       _descriptionController.text,
                       DateTime.now(),
                       _titleController.text);
-                  Navigator.of(context).pushNamed(forumAll.routeName);
-                  print(currentUser.name);
-                  print(_titleController.text);
-                  print(_descriptionController.text);
-                  print(Category);
+                  Navigator.of(context).pushNamed(ForumAllScreen.routeName);
                 },
                 child: Container(
                   width: 352,
@@ -355,15 +325,20 @@ class _createForumState extends State<createForum> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Center(
-                      child: Text("Publish Forum",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold))),
+                    child: Text(
+                      "Publish Forum",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ),
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
