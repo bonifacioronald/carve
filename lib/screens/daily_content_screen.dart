@@ -3,6 +3,7 @@ import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
+import 'package:carve_app/widgets/daily_content_story_fixing.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
 import 'package:carve_app/widgets/toggle_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -76,7 +77,7 @@ class _DailyContentScreenState extends State<DailyContentScreen> {
                 color: custom_colors.backgroundPurple,
                 child: Column(
                   children: [
-                    DailyContentStory(
+                    DailyContentStoryFixing(
                         Provider.of<UserProvider>(context, listen: false)
                                 .userProviderData
                                 .isPregnant

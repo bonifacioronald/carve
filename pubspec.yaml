@@ -52,7 +52,7 @@ dependencies:
   geolocator: ^9.0.2
   location: ^4.4.0
   translator: ^0.1.7
-  string_translate: ^1.4.4
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
