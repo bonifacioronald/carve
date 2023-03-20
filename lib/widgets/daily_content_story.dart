@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carve_app/models/content_model.dart';
 import 'package:carve_app/widgets/icon_switching_button.dart';
@@ -7,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
-import 'package:async/async.dart';
 import 'package:translator/translator.dart';
 
 class DailyContentStory extends StatefulWidget {
@@ -19,35 +20,59 @@ class DailyContentStory extends StatefulWidget {
 }
 
 int currentSlideIndex = 0;
-bool isPaused = true;
-bool isPlaying = false;
+
 bool isTitleScreen = false;
+
 bool isEnglish = true;
-RestartableTimer? timer;
+Timer? storyAutoPlayTimer;
+Timer? storyAutoPlayProgressIndicatorTimer;
 
 class _DailyContentStoryState extends State<DailyContentStory> {
   String translatedDateToChinese = 'loading...';
-  void runTimer() {
-    if (timer != null && currentSlideIndex <= widget.content.content.length) {
+  bool isPlaying = false;
+  bool timerIsStarted = false;
+  double storyAutoPlayProgressIndicatorValue = 0;
+
+  @override
+  void startAutoPlayTimer() {
+    storyAutoPlayProgressIndicatorTimer =
+        new Timer.periodic(Duration(milliseconds: 80), (Timer t) {
       setState(() {
-        timer!.reset();
+        if (storyAutoPlayProgressIndicatorValue < 1) {
+          storyAutoPlayProgressIndicatorValue += 0.016;
+        }
       });
-      print("timer resetted");
-    }
-    timer = RestartableTimer(const Duration(seconds: 30000), () {
-      print("timehasstarted");
+    });
+
+    storyAutoPlayTimer = new Timer.periodic(Duration(seconds: 5), (Timer t) {
+      print('timer started n finished operation');
       setState(() {
-        if (timer != null &&
-            currentSlideIndex < widget.content.content.length + 1 &&
-            isPaused == false) {
+        if (currentSlideIndex < widget.content.content.length + 1) {
           currentSlideIndex++;
+          storyAutoPlayProgressIndicatorValue = 0;
+        } else {
+          cancelAutoPlayTimer();
         }
       });
     });
   }
 
   @override
+  void cancelAutoPlayTimer() {
+    setState(() {
+      storyAutoPlayTimer!.cancel();
+      storyAutoPlayProgressIndicatorTimer!.cancel();
+      storyAutoPlayProgressIndicatorValue = 0;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("timer is started = " + timerIsStarted.toString());
+    if (timerIsStarted == false && isPlaying == true) {
+      startAutoPlayTimer();
+      timerIsStarted = true;
+    }
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd MMMM yyyy').format(now);
 
@@ -70,11 +95,8 @@ class _DailyContentStoryState extends State<DailyContentStory> {
     bool isLastScreen = false;
 
     int totalSlides = widget.content.content.length + 2;
-    print(currentSlideIndex);
 
-    print(widget.content.content.length);
     if (currentSlideIndex < widget.content.content.length + 1) {
-      runTimer();
     } else {
       isLastScreen = true;
     }
@@ -117,7 +139,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
                                   height: 30,
@@ -143,6 +165,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                     Navigator.of(context).pop();
                                     setState(() {
                                       currentSlideIndex = 0;
+                                      cancelAutoPlayTimer();
                                     });
                                   },
                                   child: Container(
@@ -162,6 +185,26 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                           SizedBox(
                             height: 21,
                           ),
+                          Container(
+                              padding: EdgeInsets.zero,
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                child: LinearProgressIndicator(
+                                  minHeight: 5,
+                                  value: storyAutoPlayProgressIndicatorValue,
+                                  backgroundColor: isPlaying
+                                      ? isLastScreen
+                                          ? Colors.transparent
+                                          : Colors.white
+                                      : Colors.transparent,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      isLastScreen
+                                          ? Colors.transparent
+                                          : custom_colors.secondaryLightPurple),
+                                ),
+                              )),
+                          //SizedBox(height: 2),
                           Container(
                             height: 10,
                             width: MediaQuery.of(context).size.width - 40,
@@ -211,8 +254,11 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    isPaused = !isPaused;
-                                    print(isPaused);
+                                    if (timerIsStarted == true) {
+                                      cancelAutoPlayTimer();
+                                      timerIsStarted = false;
+                                    }
+
                                     isPlaying = !isPlaying;
                                   });
                                 },
@@ -231,7 +277,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               ),
                               SizedBox(width: 5),
                               IconSwitchingButton(
-                                  Icons.volume_up, Icons.volume_off)
+                                  Icons.volume_off, Icons.volume_up)
                             ],
                           )
                         ],
@@ -250,7 +296,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                         ),
                         Container(
                           width: double.infinity,
-                          height: 540,
+                          height: 510,
                           child: Row(
                             children: [
                               Expanded(
@@ -260,7 +306,10 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                     if (currentSlideIndex != 0) {
                                       setState(() {
                                         currentSlideIndex--;
-                                        runTimer();
+                                        if (timerIsStarted == true) {
+                                          cancelAutoPlayTimer();
+                                          timerIsStarted = false;
+                                        }
                                       });
                                     }
                                   },
@@ -283,7 +332,10 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                     if (currentSlideIndex <= totalSlides - 2) {
                                       setState(() {
                                         currentSlideIndex++;
-                                        runTimer();
+                                        if (timerIsStarted == true) {
+                                          cancelAutoPlayTimer();
+                                          timerIsStarted = false;
+                                        }
                                       });
                                     }
                                   },
