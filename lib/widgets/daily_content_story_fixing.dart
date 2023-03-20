@@ -190,15 +190,24 @@ class _DailyContentStoryFixingState extends State<DailyContentStoryFixing> {
                           ),
                           Container(
                               padding: EdgeInsets.zero,
-                              child: LinearProgressIndicator(
-                                value: storyAutoPlayProgressIndicatorValue,
-                                backgroundColor: isPlaying
-                                    ? Colors.white
-                                    : Colors.transparent,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                    custom_colors.secondaryLightPurple),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                child: LinearProgressIndicator(
+                                  minHeight: 5,
+                                  value: storyAutoPlayProgressIndicatorValue,
+                                  backgroundColor: isPlaying
+                                      ? isLastScreen
+                                          ? Colors.transparent
+                                          : Colors.white
+                                      : Colors.transparent,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      isLastScreen
+                                          ? Colors.transparent
+                                          : custom_colors.secondaryLightPurple),
+                                ),
                               )),
-                          SizedBox(height: 2),
+                          //SizedBox(height: 2),
                           Container(
                             height: 10,
                             width: MediaQuery.of(context).size.width - 40,
