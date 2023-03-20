@@ -201,10 +201,9 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                       isLastScreen
                                           ? Colors.transparent
-                                          : custom_colors.secondaryLightPurple),
+                                          : custom_colors.primaryDarkPurple),
                                 ),
                               )),
-                          //SizedBox(height: 2),
                           Container(
                             height: 10,
                             width: MediaQuery.of(context).size.width - 40,
