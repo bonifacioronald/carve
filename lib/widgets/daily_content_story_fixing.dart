@@ -28,19 +28,31 @@ bool isTitleScreen = false;
 
 bool isEnglish = true;
 Timer? storyAutoPlayTimer;
+Timer? storyAutoPlayProgressIndicatorTimer;
 
 class _DailyContentStoryFixingState extends State<DailyContentStoryFixing> {
   String translatedDateToChinese = 'loading...';
   bool isPlaying = false;
   bool timerIsStarted = false;
+  double storyAutoPlayProgressIndicatorValue = 0;
 
   @override
   void startAutoPlayTimer() {
+    storyAutoPlayProgressIndicatorTimer =
+        new Timer.periodic(Duration(milliseconds: 80), (Timer t) {
+      setState(() {
+        if (storyAutoPlayProgressIndicatorValue < 1) {
+          storyAutoPlayProgressIndicatorValue += 0.016;
+        }
+      });
+    });
+
     storyAutoPlayTimer = new Timer.periodic(Duration(seconds: 5), (Timer t) {
       print('timer started n finished operation');
       setState(() {
         if (currentSlideIndex < widget.content.content.length + 1) {
           currentSlideIndex++;
+          storyAutoPlayProgressIndicatorValue = 0;
         } else {
           cancelAutoPlayTimer();
         }
@@ -50,7 +62,11 @@ class _DailyContentStoryFixingState extends State<DailyContentStoryFixing> {
 
   @override
   void cancelAutoPlayTimer() {
-    setState(() => storyAutoPlayTimer!.cancel());
+    setState(() {
+      storyAutoPlayTimer!.cancel();
+      storyAutoPlayProgressIndicatorTimer!.cancel();
+      storyAutoPlayProgressIndicatorValue = 0;
+    });
   }
 
   @override
@@ -126,7 +142,7 @@ class _DailyContentStoryFixingState extends State<DailyContentStoryFixing> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
                                   height: 30,
@@ -172,6 +188,17 @@ class _DailyContentStoryFixingState extends State<DailyContentStoryFixing> {
                           SizedBox(
                             height: 21,
                           ),
+                          Container(
+                              padding: EdgeInsets.zero,
+                              child: LinearProgressIndicator(
+                                value: storyAutoPlayProgressIndicatorValue,
+                                backgroundColor: isPlaying
+                                    ? Colors.white
+                                    : Colors.transparent,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    custom_colors.secondaryLightPurple),
+                              )),
+                          SizedBox(height: 2),
                           Container(
                             height: 10,
                             width: MediaQuery.of(context).size.width - 40,
