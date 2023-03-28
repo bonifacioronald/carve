@@ -1,6 +1,6 @@
 # Carve
 
-An inclusive parenting application made for GSDC Malaysia's KitaHack 2023 aimed to tackle the UN's SDG 3.7, SDG 4.2, and SDG 10.2.
+An inclusive parenting application made for Google Solution Challenge 2023 aimed to tackle the UN's SDG 3.7, SDG 4.2, and SDG 10.2.
 
 ## Table Of Contents
 
@@ -13,9 +13,11 @@ An inclusive parenting application made for GSDC Malaysia's KitaHack 2023 aimed 
 
 ## Application Overview
 
-https://www.youtube.com/watch?v=Zqdd10nh5HA
+https://www.youtube.com/watch?v=icWvPHag3ic
 
-According to the World Health Organization (WHO), approximately 50% of pregnancies are unplanned. This statistic underscores the significant challenges many parents face in raising their children. These challenges are particularly pronounced for single, young, and underprivileged parents, who often lack the necessary resources, knowledge, and preparation to provide their children with the best possible upbringing. Even parents with the means to provide for their children may struggle to find the time to research parenting information and resources on their own, despite having adequate financial means.
+According to the World Health Organization, more than 50% of all pregnancies are unplanned. On top of this, almost 30 percent of all pregnancies end in abortion. Furthermore, locally, In Malaysia alone, nearly half of the parents admit they are not financially prepared to have a kid and 25% of teens are growing up in unhappy family homes.
+
+The above statistics from various sources indicate that in all parenting stages, from the initial pregnancies to the child’s infancy to birth, to childhood, all the way to adolescence, there are parents who are unprepared and struggling. Furthermore, if parents are unprepared for the initial pregnancies, they are also more likely to be unprepared for the upcoming parenting stages in the future. 
 
 In light of these challenges, Carve is an innovative mobile application that seeks to help parents tackle these issues by providing them with personalized content and resources on essential parenting skills. With Carve, parents can access this information in as little as 10 minutes per day, making it possible for even the busiest parents to stay informed and up-to-date on the latest parenting trends and practices.
 
@@ -25,8 +27,8 @@ On the technical front, Carve leverages the power of Flutter for its front-end d
 
 ## Getting Started
 
-1. Download the source code
-2. Open the source code on your IDE
+1. Download the source code and unzip it 
+2. Open the source code folder on your IDE (Visal Studio Code Recommended)
 3. Run the source code on any physical / virtual device, [online documentation](https://www.fluttercampus.com/tutorial/4/run-first-application/)
 4. Start navigating and using the application's features.
 
