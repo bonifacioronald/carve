@@ -63,8 +63,9 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
         _currentLongitude = position!.longitude;
         _isloading = false;
         markers.add(Marker(
-            markerId: const MarkerId('currentLocation'),
-            position: LatLng(3.06392335, 101.600783398793)));
+          markerId: const MarkerId('currentLocation'),
+          position: LatLng(_currentLatitude, _currentLongitude),
+        ));
       });
     });
     super.initState();
@@ -103,7 +104,8 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
               myLocationEnabled: true,
               scrollGesturesEnabled: true,
               initialCameraPosition: CameraPosition(
-                  target: LatLng(3.06392335, 101.600783398793), zoom: 16),
+                  target: LatLng(_currentLatitude, _currentLongitude),
+                  zoom: 16),
               markers: markers,
               zoomControlsEnabled: false,
               mapType: MapType.normal,
