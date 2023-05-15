@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
         title: 'Carve',
         theme: ThemeData(
             fontFamily: 'Livvic',
-            accentColor: custom_colors.secondaryLightPurple),
+            hintColor: custom_colors.secondaryLightPurple),
         home: AuthWidgetTree(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),

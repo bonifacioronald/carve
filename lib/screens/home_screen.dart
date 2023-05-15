@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               GestureDetector(
                                   onTap: () => navigationBar.onTap!(3),
-                                  child: SearchBar(
+                                  child: CustomSearchBar(
                                       "Ask parenting questions here...",
                                       Colors.white,
                                       primaryDarkPurple)),

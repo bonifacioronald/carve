@@ -74,8 +74,8 @@ class _ResourceDetailScreenState extends State<ResourceDetailScreen> {
               //search bar
               GestureDetector(
                 onTap: (() => Navigator.of(context).pop()),
-                child: SearchBar('Search for other resourcess..', Colors.white,
-                    custom_colors.primaryDarkPurple),
+                child: CustomSearchBar('Search for other resourcess..',
+                    Colors.white, custom_colors.primaryDarkPurple),
               ),
 
               SizedBox(
