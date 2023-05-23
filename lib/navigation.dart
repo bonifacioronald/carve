@@ -1,3 +1,4 @@
+import 'package:carve_app/screens/discover_screen.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/content_library_screen.dart';
@@ -27,7 +28,7 @@ class NavigationState extends State<Navigation> {
 
   List<Widget> screens = [
     HomeScreen(),
-    ResourcesScreen(),
+    DiscoverScreen(),
     ContentLibraryScreen(),
     ForumHomeScreen(),
     TrackerScreen(),

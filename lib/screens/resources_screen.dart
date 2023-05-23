@@ -14,6 +14,7 @@ import '../providers/daily_content_provider.dart';
 class ResourcesScreen extends StatefulWidget {
   ResourcesScreen({super.key});
 
+  static const routeName = '/resourcesScreen';
   @override
   State<ResourcesScreen> createState() => _ResourcesScreenState();
 }

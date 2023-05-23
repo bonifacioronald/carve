@@ -10,6 +10,5 @@ class ResourcesModel {
       required this.title,
       required this.location,
       required this.categories,
-      required this.URLDirection
-      });
+      required this.URLDirection});
 }
