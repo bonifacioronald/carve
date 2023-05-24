@@ -6,6 +6,7 @@ import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/widgets/custom_app_bar.dart';
 import 'package:carve_app/widgets/daily_content_card.dart';
 import 'package:carve_app/widgets/search_bar.dart';
+import 'package:carve_app/widgets/timeline_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
@@ -140,7 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        MainMenuCategorySection(),
+                        timelineCard(),
+                        // MainMenuCategorySection(),
                         SizedBox(
                           height: 30,
                         ),
