@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:location/location.dart';
 import '/models/colors.dart' as custom_colors;
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 class CurrentLocationScreen extends StatefulWidget {
   const CurrentLocationScreen({Key? key}) : super(key: key);
@@ -20,6 +21,17 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   double _currentLatitude = 0;
   double _currentLongitude = 0;
   Position? position;
+
+  // void getNearbyPlaces() async {
+  //   var url = Uri.parse(
+  //       "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=daycare&location=" +
+  //           _currentLatitude.toString() +
+  //           "," +
+  //           _currentLongitude.toString() +
+  //           "&radius=20000&type=charity&key=AIzaSyAiOYlxasmVetg6yEhINO__TfyVb7wpLwE");
+
+  //   var response = await http.post(url);
+  // }
 
   Future<void> _determinePosition() async {
     bool serviceEnabled;
@@ -63,8 +75,9 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
         _currentLongitude = position!.longitude;
         _isloading = false;
         markers.add(Marker(
-            markerId: const MarkerId('currentLocation'),
-            position: LatLng(3.06392335, 101.600783398793)));
+          markerId: const MarkerId('currentLocation'),
+          position: LatLng(_currentLatitude, _currentLongitude),
+        ));
       });
     });
     super.initState();
@@ -103,7 +116,8 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
               myLocationEnabled: true,
               scrollGesturesEnabled: true,
               initialCameraPosition: CameraPosition(
-                  target: LatLng(3.06392335, 101.600783398793), zoom: 16),
+                  target: LatLng(_currentLatitude, _currentLongitude),
+                  zoom: 16),
               markers: markers,
               zoomControlsEnabled: false,
               mapType: MapType.normal,
