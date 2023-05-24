@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Shopping extends StatefulWidget {
-  const Shopping({super.key});
+  final String text;
+  const Shopping(this.text, {super.key});
 
   @override
   State<Shopping> createState() => _ShoppingState();
@@ -10,14 +11,15 @@ class Shopping extends StatefulWidget {
 class _ShoppingState extends State<Shopping> {
   bool toBuy = false;
   bool gotIt = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 200,
+      height: 60,
       child: Row(
         children: [
-          Text('hello'),
+          Text(widget.text),
           Spacer(),
           Container(
               child: Row(

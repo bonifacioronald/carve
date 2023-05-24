@@ -66,21 +66,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 controller: _controller,
                 children: [
                   WelcomePageView(
+                    imageUrl:
+                        'lib/assets/images/welcome_screen_pregnant_image.png',
+                    title: "Personalized Tracker",
+                    description:
+                        "Monitor your baby's growth, keep track of important milestones, and ensure you never miss an appointment. From conception all the way until after your baby is born",
+                  ),
+                  WelcomePageView(
                       imageUrl: 'lib/assets/images/onboarding_1_image.png',
                       title: "Parenting Simplified",
                       description:
-                          "Learn essential parenting skills in just 10 minutes with our personalized content and resources for busy parents."),
-                  WelcomePageView(
-                    imageUrl: 'lib/assets/images/onboarding_2_image.png',
-                    title: "Inclusive Parenting",
-                    description:
-                        "We believe in inclusivity and welcome all types of parents, including those who are often overlooked or underprivileged.",
-                  ),
+                          "Learn essential parenting skills in just 10 minutes with our personalized pregnancy-related content"),
                   WelcomePageView(
                     imageUrl: 'lib/assets/images/onboarding_3_image.png',
-                    title: "Connecting Parents Globally",
+                    title: "Resources Provided",
                     description:
-                        "We offer reliable information and connect you with diverse communities - locally and globally.",
+                        "We offer you access to all the pregnancy resources near you with just one click",
                   ),
                 ],
               ),

@@ -1,13 +1,13 @@
-import 'package:carve_app/screens/discover_screen.dart';
-import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/content_library_screen.dart';
+import 'package:carve_app/screens/discover_screen.dart';
 import 'package:carve_app/screens/forum_home_screen.dart';
-import 'package:carve_app/screens/resources_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
+import 'package:carve_app/screens/loading_screen.dart';
+import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import './models/colors.dart' as custom_colors;
 
 class Navigation extends StatefulWidget {
@@ -29,9 +29,9 @@ class NavigationState extends State<Navigation> {
   List<Widget> screens = [
     HomeScreen(),
     DiscoverScreen(),
-    ContentLibraryScreen(),
-    ForumHomeScreen(),
     TrackerScreen(),
+    ForumHomeScreen(),
+    SettingScreen(),
   ];
 
   @override
@@ -59,7 +59,7 @@ class NavigationState extends State<Navigation> {
           backgroundColor: custom_colors.secondaryLightPurple,
           onPressed: () => navigationBar.onTap!(2),
           child: Icon(
-            Icons.local_library_outlined,
+            Icons.calendar_month,
             size: NavBarIconSize,
             color: Colors.white,
           ),
@@ -111,7 +111,7 @@ class NavigationState extends State<Navigation> {
               BottomNavigationBarItem(
                   label: '',
                   icon: Icon(
-                    Icons.handshake_rounded,
+                    Icons.explore,
                     size: NavBarIconSize,
                   )),
               BottomNavigationBarItem(
@@ -130,7 +130,7 @@ class NavigationState extends State<Navigation> {
               BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
-                  Icons.bar_chart_rounded,
+                  Icons.account_circle_rounded,
                   size: NavBarIconSize,
                 ),
               ),

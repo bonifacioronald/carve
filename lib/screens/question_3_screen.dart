@@ -1,9 +1,9 @@
 import 'package:carve_app/screens/question_4_screen.dart';
-import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 
@@ -26,7 +26,7 @@ void _updateUserChildGender(int selectedIndex, BuildContext context) {
       break;
     case 2:
       {
-        childGender = 'chhildGender-female';
+        childGender = 'childGender-female';
       }
       break;
   }
@@ -103,7 +103,7 @@ class _Question3ScreenState extends State<Question3Screen> {
                           widget.selectedAnswerIndex = 1;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Male',
+                      child: QuestionScreenAnswerOptions(true, 'Male',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -113,7 +113,7 @@ class _Question3ScreenState extends State<Question3Screen> {
                           widget.selectedAnswerIndex = 2;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Female',
+                      child: QuestionScreenAnswerOptions(true, 'Female',
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
                     SizedBox(height: 12),

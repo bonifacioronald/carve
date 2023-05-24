@@ -1,12 +1,11 @@
 import 'package:carve_app/models/colors.dart';
-import 'package:carve_app/screens/resources_screen.dart';
+import 'package:carve_app/screens/shopping_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:carve_app/widgets/to_buy_lists.dart';
+import '../widgets/resources_main_card.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
-
   @override
   State<DiscoverScreen> createState() => _DiscoverScreenState();
 }
@@ -32,27 +31,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     fontSize: 32,
                     color: primaryDarkPurple)),
             SizedBox(height: 20),
-            Row(children: [
-              Text("Resources",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: primaryDarkPurple)),
-              Spacer(),
-              GestureDetector(
-                onTap: () =>
-                    Navigator.of(context).pushNamed(ResourcesScreen.routeName),
-                child: Container(
-                  child: Text(
-                    'see more>>',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: primaryDarkPurple),
-                  ),
-                ),
-              ),
-            ]),
+            Text("Resources",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: primaryDarkPurple)),
+
             SizedBox(height: 20),
             Container(
               child: SingleChildScrollView(
@@ -61,21 +45,21 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 child: Row(
                   children: [
                     ResourcesMainCard(
-                        '15% OFF Pregnancy Care',
+                        'Pregnancy Classes',
                         'https://images.ctfassets.net/9wtva4vhlgxb/6QWEHMlC0gSnCAdZVYJuvJ/321f0c3ae02c30b4cf45cc7ec6037559/mask_3x.webp',
                         'Pregnancy Classes'),
                     SizedBox(
                       width: 20,
                     ),
                     ResourcesMainCard(
-                        'Best Family Therapy in Town',
+                        'Family Therapy',
                         'https://www.arkansasrelationshipcenter.com/wp-content/uploads/2019/02/Family-therapy-family-counseling-little-rock-common-family-therapy-issues-1080x675.jpg',
                         'Therapy'),
                     SizedBox(
                       width: 20,
                     ),
                     ResourcesMainCard(
-                        'Hunger Relief Near You',
+                        'Food Bank',
                         'https://assets.hmetro.com.my/images/articles/food_1585123849.jpg',
                         'Food Bank'),
                     SizedBox(
@@ -96,19 +80,20 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               Spacer(),
               GestureDetector(
                 onTap: () =>
-                    Navigator.of(context).pushNamed(ResourcesScreen.routeName),
+                    Navigator.of(context).pushNamed(ShoppingScreen.routeName),
                 child: Container(
-                  child: Text(
-                    'see more>>',
+                    child: Row(children: [
+                  Text(
+                    'see more',
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: primaryDarkPurple),
                   ),
-                ),
+                  Icon(Icons.keyboard_arrow_right_outlined)
+                ])),
               ),
             ]), //planning tools texts
-            Shopping(),
             Container(
               child: Text(
                 'Articles',

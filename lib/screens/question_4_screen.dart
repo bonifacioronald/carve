@@ -3,6 +3,7 @@ import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 
@@ -16,37 +17,37 @@ class Question4Screen extends StatefulWidget {
 }
 
 void _updateUserParentingStyle(int selectedIndex, BuildContext context) {
-  String parentingStyle = '';
+  String pregnantTimes = '';
   switch (selectedIndex) {
     case 1:
       {
-        parentingStyle = "parentingStyle-lenient-and-freedom";
+        pregnantTimes = "pregnantTimes-1";
       }
       break;
     case 2:
       {
-        parentingStyle = 'parentingStyle-strong-bond-and-closeness';
+        pregnantTimes = 'pregnantTimes-2';
       }
       break;
     case 3:
       {
-        parentingStyle = 'parentingStyle-busy-and-hand-off';
+        pregnantTimes = 'pregnantTimes-3';
       }
       break;
     case 4:
       {
-        parentingStyle = 'parentingStyle-strict-rules-and-expectations';
+        pregnantTimes = 'pregnantTimes-4';
       }
       break;
     case 5:
       {
-        parentingStyle = 'parentingStyle-other';
+        pregnantTimes = 'pregnantTimes-more-than-4';
       }
       break;
   }
 
   Provider.of<UserProvider>(context, listen: false)
-      .setParentingStyle(parentingStyle);
+      .setParentingStyle(pregnantTimes);
 }
 
 class _Question4ScreenState extends State<Question4Screen> {
@@ -104,7 +105,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                     Container(
                       width: double.infinity,
                       alignment: Alignment.centerLeft,
-                      child: Text("What is your approach to parenting?",
+                      child: Text("How many times have you been pregnant?",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: custom_colors.primaryDarkPurple,
@@ -119,7 +120,8 @@ class _Question4ScreenState extends State<Question4Screen> {
                         });
                       },
                       child: QuestionScreenAnswerOptions(
-                          'Lenient and a lot of freedom',
+                          true,
+                          'First pregnancy.',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -130,7 +132,8 @@ class _Question4ScreenState extends State<Question4Screen> {
                         });
                       },
                       child: QuestionScreenAnswerOptions(
-                          "Strong bond and closeness",
+                          true,
+                          "Second pregnancy.",
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -141,7 +144,8 @@ class _Question4ScreenState extends State<Question4Screen> {
                         });
                       },
                       child: QuestionScreenAnswerOptions(
-                          'Busy and hands-off approach',
+                          true,
+                          'Third pregnancy.',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -152,7 +156,8 @@ class _Question4ScreenState extends State<Question4Screen> {
                         });
                       },
                       child: QuestionScreenAnswerOptions(
-                          'Strict rules and expectations',
+                          true,
+                          'Fourth pregnancy.',
                           widget.selectedAnswerIndex == 4 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -162,7 +167,9 @@ class _Question4ScreenState extends State<Question4Screen> {
                           widget.selectedAnswerIndex = 5;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Other',
+                      child: QuestionScreenAnswerOptions(
+                          true,
+                          'More than four times.',
                           widget.selectedAnswerIndex == 5 ? true : false),
                     ),
                     Spacer(),

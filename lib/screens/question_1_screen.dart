@@ -115,45 +115,17 @@ class _Question1ScreenState extends State<Question1Screen> {
                             fontSize: 24,
                             fontWeight: FontWeight.w900)),
                     SizedBox(height: 30),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 1;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('Young/New Parent',
-                          widget.selectedAnswerIndex == 1 ? true : false),
-                    ),
+                    QuestionScreenAnswerOptions(false, 'Young/New Parent',
+                        widget.selectedAnswerIndex == 1 ? true : false),
                     SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 2;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('Soon-to-be Parent',
-                          widget.selectedAnswerIndex == 2 ? true : false),
-                    ),
+                    QuestionScreenAnswerOptions(false, 'Soon-to-be Parent',
+                        widget.selectedAnswerIndex == 2 ? true : false),
                     SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 3;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('Experienced Parent',
-                          widget.selectedAnswerIndex == 3 ? true : false),
-                    ),
+                    QuestionScreenAnswerOptions(false, 'Experienced Parent',
+                        widget.selectedAnswerIndex == 3 ? true : false),
                     SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.selectedAnswerIndex = 4;
-                        });
-                      },
-                      child: QuestionScreenAnswerOptions('Single Parent',
-                          widget.selectedAnswerIndex == 4 ? true : false),
-                    ),
+                    QuestionScreenAnswerOptions(false, 'Single Parent',
+                        widget.selectedAnswerIndex == 4 ? true : false),
                     SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
@@ -161,7 +133,9 @@ class _Question1ScreenState extends State<Question1Screen> {
                           widget.selectedAnswerIndex = 5;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('Pregnant Mother',
+                      child: QuestionScreenAnswerOptions(
+                          true,
+                          'Pregnant Mother',
                           widget.selectedAnswerIndex == 5 ? true : false),
                     ),
                     Spacer(),

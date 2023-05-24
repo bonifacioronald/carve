@@ -3,6 +3,7 @@ import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 
@@ -20,19 +21,23 @@ void _updateUserAppUsageDuration(int selectedIndex, BuildContext context) {
   switch (selectedIndex) {
     case 1:
       {
-        appUsageDuration = "appUsageDuration-ten-to-fifteen";
+        appUsageDuration = "pregnantComplication-no";
       }
       break;
     case 2:
       {
-        appUsageDuration = 'appUsageDuration-fifteen-to-thirty';
+        appUsageDuration = 'appUsageDuration-yes-complications';
       }
       break;
     case 3:
       {
-        appUsageDuration = 'appUsageDuration-more-than-thirty';
+        appUsageDuration = 'appUsageDuration-yes-medical-condition';
       }
       break;
+    case 4:
+      {
+        appUsageDuration = 'appUsageDuration-prefer-not-to-disclose';
+      }
   }
 
   Provider.of<UserProvider>(context, listen: false)
@@ -92,7 +97,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                        "How much time are you willing to spend in a day to learn about parenting skills?",
+                        "Are you experiencing any pregnancy complications or medical conditions during this pregnancy?",
                         style: TextStyle(
                             color: custom_colors.primaryDarkPurple,
                             fontSize: 24,
@@ -104,17 +109,23 @@ class _Question5ScreenState extends State<Question5Screen> {
                           widget.selectedAnswerIndex = 1;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('10 to 15 minutes',
+                      child: QuestionScreenAnswerOptions(
+                          true,
+                          'No, it has been smooth.',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
-                    SizedBox(height: 12),
+                    SizedBox(
+                      height: 12,
+                    ),
                     GestureDetector(
                       onTap: () {
                         setState(() {
                           widget.selectedAnswerIndex = 2;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('15 to 30 minutes',
+                      child: QuestionScreenAnswerOptions(
+                          true,
+                          'Yes, I have complications.',
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -124,9 +135,24 @@ class _Question5ScreenState extends State<Question5Screen> {
                           widget.selectedAnswerIndex = 3;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('More than 30 minutes',
+                      child: QuestionScreenAnswerOptions(
+                          true,
+                          'Yes, I have a medical condition.',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
+                    SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          widget.selectedAnswerIndex = 4;
+                        });
+                      },
+                      child: QuestionScreenAnswerOptions(
+                          true,
+                          'Prefer not to disclose.',
+                          widget.selectedAnswerIndex == 4 ? true : false),
+                    ),
+                    SizedBox(height: 12),
                     Spacer(),
                     GestureDetector(
                       onTap: (() {
