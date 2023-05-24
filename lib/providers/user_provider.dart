@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 import '../auth.dart';
 import '../models/user_model.dart';
 
@@ -12,7 +13,7 @@ class UserProvider with ChangeNotifier {
       childAge: '',
       childGender: '',
       isPregnant: false,
-      parentingStyle: '',
+      numOfTimesPregnant: '',
       parentType: '');
 
   Future<void> setUserName(String name) async {
@@ -55,7 +56,7 @@ class UserProvider with ChangeNotifier {
     print('Done gender');
   }
 
-  Future<void> setParentingStyle(String parentingStyle) async {
+  Future<void> setNumOfTimesPregnant(String parentingStyle) async {
     await FirebaseFirestore.instance
         .collection('user')
         .doc(Auth().currentUser!.uid)
@@ -83,7 +84,7 @@ class UserProvider with ChangeNotifier {
       userProviderData.appUsageDuration = snapshot.data()!['appUsageDuration'];
       userProviderData.childAge = snapshot.data()!['childAge'];
       userProviderData.childGender = snapshot.data()!['childGender'];
-      userProviderData.parentingStyle = snapshot.data()!['parentingStyle'];
+      userProviderData.numOfTimesPregnant = snapshot.data()!['parentingStyle'];
       userProviderData.parentType = snapshot.data()!['parentType'];
       userProviderData.isPregnant = snapshot.data()!['isPregnant'];
     });
