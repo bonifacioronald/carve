@@ -5,7 +5,8 @@ import '../models/colors.dart' as custom_colors;
 class QuestionScreenAnswerOptions extends StatelessWidget {
   String text;
   bool isSelected;
-  QuestionScreenAnswerOptions(this.text, this.isSelected);
+  bool isAvailable;
+  QuestionScreenAnswerOptions(this.isAvailable, this.text, this.isSelected);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class QuestionScreenAnswerOptions extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: Color(0xFFFFFFFF),
+        color: isAvailable ? Color(0xFFFFFFFF) : Color(0xFF919191),
         border: Border.all(
             color: isSelected
                 ? custom_colors.primaryDarkPurple

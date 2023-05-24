@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
-class SearchBar extends StatelessWidget {
+class CustomSearchBar extends StatelessWidget {
   String text;
   Color bgColor;
   Color textColor;
 
-  SearchBar(this.text, this.bgColor,this.textColor);
-
-
+  CustomSearchBar(this.text, this.bgColor, this.textColor);
 
   @override
   Widget build(BuildContext context) {

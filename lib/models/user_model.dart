@@ -4,8 +4,8 @@ class UserModel {
   String email;
   String childAge;
   String childGender;
-  String appUsageDuration;
-  String parentingStyle;
+  String complication;
+  String numOfTimesPregnant;
   String parentType;
   bool isPregnant;
 
@@ -15,8 +15,8 @@ class UserModel {
       required this.email,
       required this.childAge,
       required this.childGender,
-      required this.appUsageDuration,
-      required this.parentingStyle,
+      required this.complication,
+      required this.numOfTimesPregnant,
       required this.parentType,
       required this.isPregnant});
 }

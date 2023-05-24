@@ -119,7 +119,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                           widget.selectedAnswerIndex = 1;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('<1 year old',
+                      child: QuestionScreenAnswerOptions(true, '<1 year old',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -129,7 +129,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                           widget.selectedAnswerIndex = 2;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('1-2 years old',
+                      child: QuestionScreenAnswerOptions(true, '1-2 years old',
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -139,7 +139,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                           widget.selectedAnswerIndex = 3;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('3-5 years old',
+                      child: QuestionScreenAnswerOptions(true, '3-5 years old',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -149,7 +149,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                           widget.selectedAnswerIndex = 4;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('6-12 years old',
+                      child: QuestionScreenAnswerOptions(true, '6-12 years old',
                           widget.selectedAnswerIndex == 4 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -159,7 +159,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                           widget.selectedAnswerIndex = 5;
                         });
                       },
-                      child: QuestionScreenAnswerOptions('12+ years old',
+                      child: QuestionScreenAnswerOptions(true, '12+ years old',
                           widget.selectedAnswerIndex == 5 ? true : false),
                     ),
                     Spacer(),

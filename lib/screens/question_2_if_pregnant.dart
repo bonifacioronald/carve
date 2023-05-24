@@ -1,11 +1,9 @@
 import 'package:carve_app/screens/question_4_screen.dart';
-import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
-import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/colors.dart' as custom_colors;
-import '../models/colors.dart';
 import '../providers/user_provider.dart';
 
 class Question2PregnantScreen extends StatefulWidget {
@@ -126,6 +124,16 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                                 color: custom_colors.primaryDarkPurple),
                           )),
                       Spacer(),
+                      SizedBox(height: 30),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            errorMessage,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: custom_colors.primaryDarkPurple),
+                          )),
                       GestureDetector(
                         onTap: (() {
                           if (widget.ageController.text.isNotEmpty &&
