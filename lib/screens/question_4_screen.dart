@@ -16,7 +16,7 @@ class Question4Screen extends StatefulWidget {
   int selectedAnswerIndex = 0;
 }
 
-void _updateUserParentingStyle(int selectedIndex, BuildContext context) {
+void _updateUserNumberOfTimesPregnant(int selectedIndex, BuildContext context) {
   String pregnantTimes = '';
   switch (selectedIndex) {
     case 1:
@@ -47,7 +47,7 @@ void _updateUserParentingStyle(int selectedIndex, BuildContext context) {
   }
 
   Provider.of<UserProvider>(context, listen: false)
-      .setParentingStyle(pregnantTimes);
+      .setNumberOfTimesPregnant(pregnantTimes);
 }
 
 class _Question4ScreenState extends State<Question4Screen> {
@@ -121,7 +121,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'First pregnancy.',
+                          'First pregnancy',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -133,7 +133,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          "Second pregnancy.",
+                          "Second pregnancy",
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -145,7 +145,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'Third pregnancy.',
+                          'Third pregnancy',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -157,7 +157,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'Fourth pregnancy.',
+                          'Fourth pregnancy',
                           widget.selectedAnswerIndex == 4 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -169,7 +169,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'More than four times.',
+                          'More than four times',
                           widget.selectedAnswerIndex == 5 ? true : false),
                     ),
                     Spacer(),
@@ -178,7 +178,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                         if (widget.selectedAnswerIndex != 0) {
                           Navigator.of(context)
                               .pushNamed(Question5Screen.routeName);
-                          _updateUserParentingStyle(
+                          _updateUserNumberOfTimesPregnant(
                               widget.selectedAnswerIndex, context);
                         }
                       }),

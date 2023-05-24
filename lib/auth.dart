@@ -36,11 +36,11 @@ class Auth {
         "email": value.user!.email,
         "id": value.user!.uid,
         'name': '',
-        'appUsageDuration': '',
+        'complication': '',
         'childAge': '',
         'childGender': '',
         'isPregnant': false,
-        'parentingStyle': '',
+        'numberOfTimesPregnant': '',
         'parentType': ''
       });
     });
