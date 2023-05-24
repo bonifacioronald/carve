@@ -53,6 +53,7 @@ dependencies:
   location: ^4.4.0
   translator: ^0.1.7
   percent_indicator: ^4.2.3
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:

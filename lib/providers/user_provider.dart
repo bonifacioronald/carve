@@ -9,7 +9,7 @@ class UserProvider with ChangeNotifier {
       id: '',
       name: '',
       email: '',
-      appUsageDuration: '',
+      complication: '',
       childAge: '',
       childGender: '',
       isPregnant: false,
@@ -56,19 +56,19 @@ class UserProvider with ChangeNotifier {
     print('Done gender');
   }
 
-  Future<void> setNumOfTimesPregnant(String parentingStyle) async {
+  Future<void> setNumberOfTimesPregnant(String numberOfTimesPregnant) async {
     await FirebaseFirestore.instance
         .collection('user')
         .doc(Auth().currentUser!.uid)
-        .update({"parentingStyle": parentingStyle});
-    print('Done style');
+        .update({"numberOfTimesPregnant": numberOfTimesPregnant});
+    print('Done num times');
   }
 
-  Future<void> setAppUsageDuration(String appUsageDuration) async {
+  Future<void> setComplication(String complication) async {
     await FirebaseFirestore.instance
         .collection('user')
         .doc(Auth().currentUser!.uid)
-        .update({"appUsageDuration": appUsageDuration});
+        .update({"complication": complication});
     print('Done usage');
   }
 
@@ -81,10 +81,11 @@ class UserProvider with ChangeNotifier {
       userProviderData.id = snapshot.data()!['id'];
       userProviderData.name = snapshot.data()!['name'];
       userProviderData.email = snapshot.data()!['email'];
-      userProviderData.appUsageDuration = snapshot.data()!['appUsageDuration'];
+      userProviderData.complication = snapshot.data()!['complication'];
       userProviderData.childAge = snapshot.data()!['childAge'];
       userProviderData.childGender = snapshot.data()!['childGender'];
-      userProviderData.numOfTimesPregnant = snapshot.data()!['parentingStyle'];
+      userProviderData.numOfTimesPregnant =
+          snapshot.data()!['numberOfTimesPregnant'];
       userProviderData.parentType = snapshot.data()!['parentType'];
       userProviderData.isPregnant = snapshot.data()!['isPregnant'];
     });

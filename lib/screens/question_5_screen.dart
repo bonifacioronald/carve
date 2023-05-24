@@ -16,32 +16,32 @@ class Question5Screen extends StatefulWidget {
   int selectedAnswerIndex = 0;
 }
 
-void _updateUserAppUsageDuration(int selectedIndex, BuildContext context) {
-  String appUsageDuration = '';
+void _updateUserComplication(int selectedIndex, BuildContext context) {
+  String complication = '';
   switch (selectedIndex) {
     case 1:
       {
-        appUsageDuration = "pregnantComplication-no";
+        complication = "pregnantComplication-no";
       }
       break;
     case 2:
       {
-        appUsageDuration = 'appUsageDuration-yes-complications';
+        complication = 'pregnantComplication-yes-complications';
       }
       break;
     case 3:
       {
-        appUsageDuration = 'appUsageDuration-yes-medical-condition';
+        complication = 'pregnantComplication-yes-medical-condition';
       }
       break;
     case 4:
       {
-        appUsageDuration = 'appUsageDuration-prefer-not-to-disclose';
+        complication = 'pregnantComplication-prefer-not-to-disclose';
       }
   }
 
   Provider.of<UserProvider>(context, listen: false)
-      .setAppUsageDuration(appUsageDuration);
+      .setComplication(complication);
 }
 
 class _Question5ScreenState extends State<Question5Screen> {
@@ -111,7 +111,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'No, it has been smooth.',
+                          'No, it has been smooth',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
                     SizedBox(
@@ -125,7 +125,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'Yes, I have complications.',
+                          'Yes, I have complications',
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -137,7 +137,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'Yes, I have a medical condition.',
+                          'Yes, I have a medical condition',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -149,7 +149,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                       },
                       child: QuestionScreenAnswerOptions(
                           true,
-                          'Prefer not to disclose.',
+                          'Prefer not to disclose',
                           widget.selectedAnswerIndex == 4 ? true : false),
                     ),
                     SizedBox(height: 12),
@@ -159,7 +159,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                         if (widget.selectedAnswerIndex != 0) {
                           Navigator.of(context)
                               .pushNamed(Question6Screen.routeName);
-                          _updateUserAppUsageDuration(
+                          _updateUserComplication(
                               widget.selectedAnswerIndex, context);
                         }
                       }),
