@@ -16,32 +16,33 @@ class Question4Screen extends StatefulWidget {
   int selectedAnswerIndex = 0;
 }
 
+
 void _updateUserNumberOfTimesPregnant(int selectedIndex, BuildContext context) {
   String pregnantTimes = '';
   switch (selectedIndex) {
     case 1:
       {
-        pregnantTimes = "pregnantTimes-1";
+        numOfTimesPregnant = "pregnantTimes-1";
       }
       break;
     case 2:
       {
-        pregnantTimes = 'pregnantTimes-2';
+        numOfTimesPregnant = 'pregnantTimes-2';
       }
       break;
     case 3:
       {
-        pregnantTimes = 'pregnantTimes-3';
+        numOfTimesPregnant = 'pregnantTimes-3';
       }
       break;
     case 4:
       {
-        pregnantTimes = 'pregnantTimes-4';
+        numOfTimesPregnant = 'pregnantTimes-4';
       }
       break;
     case 5:
       {
-        pregnantTimes = 'pregnantTimes-more-than-4';
+        numOfTimesPregnant = 'pregnantTimes-more-than-4';
       }
       break;
   }
@@ -178,6 +179,7 @@ class _Question4ScreenState extends State<Question4Screen> {
                         if (widget.selectedAnswerIndex != 0) {
                           Navigator.of(context)
                               .pushNamed(Question5Screen.routeName);
+
                           _updateUserNumberOfTimesPregnant(
                               widget.selectedAnswerIndex, context);
                         }

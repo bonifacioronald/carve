@@ -34,14 +34,17 @@ class ResourcesMainCard extends StatelessWidget {
             ],
           ),
           child: Container(
-            color: backgroundPurple,
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            decoration: BoxDecoration(
+                color: backgroundPurple,
+                borderRadius: BorderRadius.circular(20)),
             child: Text(
               text,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
-                color: Colors.white,
+                color: primaryDarkPurple,
               ),
             ),
           )),

@@ -26,6 +26,11 @@ import 'package:carve_app/screens/question_4_screen.dart';
 import 'package:carve_app/screens/question_5_screen.dart';
 import 'package:carve_app/screens/question_6_screen.dart';
 import 'package:carve_app/screens/question_title_screen.dart';
+import 'package:carve_app/screens/resource_detail_screen.dart';
+import 'package:carve_app/screens/setting_screen.dart';
+import 'package:carve_app/screens/shopping_screen.dart';
+import 'package:carve_app/screens/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './models/colors.dart' as custom_colors;
 import 'package:firebase_core/firebase_core.dart';
@@ -72,7 +77,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'Livvic',
             hintColor: custom_colors.secondaryLightPurple),
-        home: WelcomeScreen(),
+        home: AuthWidgetTree(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),

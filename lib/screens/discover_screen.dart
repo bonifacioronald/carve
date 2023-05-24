@@ -1,5 +1,4 @@
 import 'package:carve_app/models/colors.dart';
-import 'package:carve_app/screens/shopping_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/resources_main_card.dart';
@@ -65,35 +64,53 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     SizedBox(
                       width: 20,
                     ),
-                    SizedBox(height: 20),
+                    ResourcesMainCard(
+                      'Daycare',
+                      'https://media.istockphoto.com/id/1402700264/photo/teacher-with-a-group-of-elementary-students-playing-with-toy-blocks.jpg?b=1&s=170667a&w=0&k=20&c=pC8b5jyKPBJoOr0_kjHFMEtKARgjPrF_HUkvpoPF8pw=',
+                      'Daycare',
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ResourcesMainCard(
+                      'Adoption Agency',
+                      'https://www.holtinternational.org/wp-content/uploads/2022/02/2882ebac5a32-4ae7-4d37-be6b-bcbcd74627f8-8894-000004ae1a480abd.jpg',
+                      'Adoption Agency',
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ResourcesMainCard(
+                      'Marriage Counselling',
+                      'https://media.istockphoto.com/id/1148848093/photo/marriage-therapy.jpg?s=612x612&w=0&k=20&c=95sWBPdDCIhj1fOg33L4Zm0Rt4kwFqu33fFbFBtCm_Q=',
+                      'Marriage Counselling',
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ResourcesMainCard(
+                      'Charities',
+                      'https://media.istockphoto.com/id/1017183652/photo/team-teamwork-business-join-hand-together-concept-power-of-volunteer-charity-work-stack-of.jpg?b=1&s=612x612&w=0&k=20&c=3Zm8E7nSUPInwDswufGx9kyA_sj8MmasH-2_yggC_z0=',
+                      'Charities',
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ResourcesMainCard(
+                      'Babysitter',
+                      'https://media.istockphoto.com/id/1402700264/photo/teacher-with-a-group-of-elementary-students-playing-with-toy-blocks.jpg?b=1&s=170667a&w=0&k=20&c=pC8b5jyKPBJoOr0_kjHFMEtKARgjPrF_HUkvpoPF8pw=',
+                      'Daycare',
+                    ),
                   ],
                 ),
               ),
             ), //resources cards
             SizedBox(height: 20),
-            Row(children: [
-              Text("Planning Tools",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: primaryDarkPurple)),
-              Spacer(),
-              GestureDetector(
-                onTap: () =>
-                    Navigator.of(context).pushNamed(ShoppingScreen.routeName),
-                child: Container(
-                    child: Row(children: [
-                  Text(
-                    'see more',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: primaryDarkPurple),
-                  ),
-                  Icon(Icons.keyboard_arrow_right_outlined)
-                ])),
-              ),
-            ]), //planning tools texts
+            Text("Planning Tools",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: primaryDarkPurple)), //planning tools texts
             Container(
               child: Text(
                 'Articles',
