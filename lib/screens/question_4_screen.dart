@@ -16,9 +16,8 @@ class Question4Screen extends StatefulWidget {
   int selectedAnswerIndex = 0;
 }
 
-
 void _updateUserNumberOfTimesPregnant(int selectedIndex, BuildContext context) {
-  String pregnantTimes = '';
+  String numOfTimesPregnant = '';
   switch (selectedIndex) {
     case 1:
       {
@@ -48,7 +47,7 @@ void _updateUserNumberOfTimesPregnant(int selectedIndex, BuildContext context) {
   }
 
   Provider.of<UserProvider>(context, listen: false)
-      .setNumberOfTimesPregnant(pregnantTimes);
+      .setNumberOfTimesPregnant(numOfTimesPregnant);
 }
 
 class _Question4ScreenState extends State<Question4Screen> {
