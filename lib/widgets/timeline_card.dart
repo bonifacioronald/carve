@@ -1,7 +1,10 @@
 import 'package:carve_app/models/colors.dart';
 import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../models/user_model.dart';
+import '../providers/user_provider.dart';
 import 'calendar_selection.dart';
 
 class timelineCard extends StatelessWidget {
@@ -9,8 +12,9 @@ class timelineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int displayedWeek =
-        (DateTime.now().difference(startOfPregnancy).inDays / 7).ceil();
+    UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
+    int displayedWeek = int.parse(currentUser.childAge);
 
     return GestureDetector(
       onTap: (() => Navigator.of(context).pushNamed(TrackerScreen.routeName)),
