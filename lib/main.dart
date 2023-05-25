@@ -17,6 +17,7 @@ import 'package:carve_app/screens/question_2_if_pregnant.dart';
 import 'package:carve_app/screens/resource_detail_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
+import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
@@ -98,6 +99,8 @@ class MyApp extends StatelessWidget {
           ResourceDetailScreen.routeName: (context) => ResourceDetailScreen(),
           ContentLibraryStory.routeName: (context) => ContentLibraryStory(),
           forumPage.routeName: (context) => forumPage(),
+          TrackerScreen.routeName: (context) => forumPage(),
+          TrackerScreen.routeName: (context) => TrackerScreen(),
         },
       ),
     );

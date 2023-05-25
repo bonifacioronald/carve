@@ -1,4 +1,4 @@
 {
-    "cmake.sourceDirectory": "/Users/hansandreanto/Development/carve/windows",
-    "java.configuration.updateBuildConfiguration": "interactive"
+  "cmake.sourceDirectory": "/Users/hansandreanto/Development/carve/windows",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

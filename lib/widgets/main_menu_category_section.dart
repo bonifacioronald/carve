@@ -21,35 +21,11 @@ class MainMenuCategorySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Your Resources',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: custom_colors.primaryDarkPurple,
-                  fontWeight: FontWeight.bold),
-            ),
-            GestureDetector(
-              onTap: (() => navigationBar.onTap!(1)),
-              child: Container(
-                child: Text(
-                  'See All',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: custom_colors.secondaryLightPurple,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
         SizedBox(
-          height: 16,
+          height: 24,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
