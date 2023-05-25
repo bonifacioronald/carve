@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   CustomAppBar(),
                   //First Half Until Content Card
                   Container(
-                    // color: Colors.red,
+                    //color: Colors.red,
                     height: 364,
                     child: Stack(
                       children: [
