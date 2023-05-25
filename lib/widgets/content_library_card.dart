@@ -54,7 +54,7 @@ class ContentLibraryCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                        fontSize: 16,
                         color: primaryDarkPurple,
                       ),
                     ),

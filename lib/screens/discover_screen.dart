@@ -53,7 +53,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           ? LoadingScreen()
           : SingleChildScrollView(
               child: Container(
-                height: 3000,
                 padding: EdgeInsets.only(
                     left: 20,
                     right: 20,
@@ -63,19 +62,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Discover",
+                    Text("Explore",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 32,
                             color: primaryDarkPurple)),
-                    SizedBox(height: 20),
-                    Text("Resources",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: primaryDarkPurple)),
-
-                    SizedBox(height: 20),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
                       child: SingleChildScrollView(
                         clipBehavior: Clip.none,
@@ -144,12 +138,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                     ), //resources cards
-                    SizedBox(height: 20),
-                    Text("Planning Tools",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: primaryDarkPurple)),
                     SizedBox(height: 20), //planning tools texts
                     Text(
                       'Articles',
