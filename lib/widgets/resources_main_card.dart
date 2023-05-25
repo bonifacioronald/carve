@@ -48,10 +48,10 @@ class ResourcesMainCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: secondaryLightPurple.withOpacity(0.7),
+                color: secondaryLightPurple.withOpacity(0.5),
               ),
               child: Align(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.bottomLeft,
                 child: Text(
                   text,
                   style: TextStyle(
