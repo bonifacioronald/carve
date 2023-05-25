@@ -1,5 +1,6 @@
 import 'package:carve_app/widgets/calendar_selection.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
+import 'package:carve_app/widgets/tracker_baby.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:table_calendar/table_calendar.dart';
@@ -21,23 +22,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
       body: SingleChildScrollView(
           child: Container(
         color: custom_colors.backgroundPurple,
-        height: 1000,
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              height: 420,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xffE5E6FE), Color(0xff8F94FC)]),
-                  boxShadow: [BoxShadow(blurRadius: 10)],
-                  color: custom_colors.secondaryLightPurple,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40))),
-            ),
+            TrackerBabyCard(),
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -140,6 +127,30 @@ class _TrackerScreenState extends State<TrackerScreen> {
     );
   }
 }
+
+// class TrackerBabyCard extends StatelessWidget {
+//   const TrackerBabyCard({
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: double.infinity,
+//       height: 420,
+//       decoration: BoxDecoration(
+//           gradient: LinearGradient(
+//               begin: Alignment.topCenter,
+//               end: Alignment.bottomCenter,
+//               colors: [Color(0xffE5E6FE), Color(0xff8F94FC)]),
+//           boxShadow: [BoxShadow(blurRadius: 10)],
+//           color: custom_colors.secondaryLightPurple,
+//           borderRadius: BorderRadius.only(
+//               bottomLeft: Radius.circular(40),
+//               bottomRight: Radius.circular(40))),
+//     );
+//   }
+// }
 
 class TrackerInfo extends StatelessWidget {
   String description1;
