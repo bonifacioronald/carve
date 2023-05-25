@@ -7,10 +7,12 @@ class ContentLibraryCard extends StatelessWidget {
   String contentCategory;
   String contentTitle;
   String contentImageUrl;
+  String contentDesc;
   ContentLibraryCard({
     required this.contentCategory,
     required this.contentTitle,
     required this.contentImageUrl,
+    required this.contentDesc,
   });
 
   @override
@@ -21,6 +23,14 @@ class ContentLibraryCard extends StatelessWidget {
         padding: EdgeInsets.zero,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: primaryDarkPurple.withOpacity(0.2),
+                spreadRadius: 3,
+                blurRadius: 2,
+                offset: Offset(0, 3),
+              )
+            ],
             borderRadius: BorderRadius.circular(12),
             image: DecorationImage(
                 image: NetworkImage(contentImageUrl), fit: BoxFit.cover)),
@@ -31,7 +41,7 @@ class ContentLibraryCard extends StatelessWidget {
                   color: Colors.white,
                   image: DecorationImage(
                       image: NetworkImage(contentImageUrl), fit: BoxFit.cover)),
-              height: 240,
+              height: 200,
               child: Align(
                   alignment: Alignment.topLeft,
                   child: Container(
@@ -54,18 +64,32 @@ class ContentLibraryCard extends StatelessWidget {
               padding: EdgeInsets.all(10),
               width: double.infinity,
               color: Colors.white,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: AutoSizeText(
-                  contentTitle,
-                  textAlign: TextAlign.start,
-                  maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: primaryDarkPurple,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  AutoSizeText(
+                    contentTitle,
+                    textAlign: TextAlign.start,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: primaryDarkPurple,
+                    ),
                   ),
-                ),
+                  SizedBox(height: 5),
+                  Text(
+                    contentDesc,
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: primaryDarkPurple,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

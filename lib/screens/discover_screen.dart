@@ -167,6 +167,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       padding: EdgeInsets.zero,
                       width: double.infinity,
                       child: ListView.builder(
+                        clipBehavior: Clip.none,
                         padding: EdgeInsets.zero,
                         primary: false,
                         physics: NeverScrollableScrollPhysics(),
@@ -186,7 +187,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                         .loadedContentList[index]
                                         .suitableCategories[0],
                                     contentImageUrl: _provider
-                                        .loadedContentList[index].thumbnailUrl),
+                                        .loadedContentList[index].thumbnailUrl,
+                                    contentDesc: _provider
+                                        .loadedContentList[index].content[0]),
                               ),
                               SizedBox(height: 20),
                             ],
