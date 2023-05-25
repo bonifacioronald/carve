@@ -10,12 +10,15 @@ class QuestionScreenAnswerOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (text == 'Pregnant Mother') {
+      (isSelected = true);
+    }
     return Container(
       height: 55,
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: isAvailable ? Color(0xFFFFFFFF) : Color(0xFF919191),
+        color: isAvailable ? Colors.white : Colors.white.withOpacity(0.6),
         border: Border.all(
             color: isSelected
                 ? custom_colors.primaryDarkPurple
@@ -30,7 +33,9 @@ class QuestionScreenAnswerOptions extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-                color: primaryDarkPurple,
+                color: isAvailable
+                    ? primaryDarkPurple
+                    : primaryDarkPurple.withOpacity(0.4),
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
           ),
