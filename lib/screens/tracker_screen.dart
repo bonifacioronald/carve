@@ -6,6 +6,7 @@ import 'package:table_calendar/table_calendar.dart';
 import '../models/colors.dart';
 
 class TrackerScreen extends StatefulWidget {
+  static const routeName = '/tracker-screen';
   @override
   State<TrackerScreen> createState() => _TrackerScreenState();
 }
@@ -32,10 +33,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
               Text(
                 "Pregnancy Tracker",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color:primaryDarkPurple
-                ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: primaryDarkPurple),
               ),
               SizedBox(height: 20),
               CalendarSelection()

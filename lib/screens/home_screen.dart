@@ -141,10 +141,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 30,
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Support',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: custom_colors.primaryDarkPurple,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 24),
+                        //Put gesture detector here please
                         timelineCard(),
-                        // MainMenuCategorySection(),
+                        MainMenuCategorySection(),
                         SizedBox(
-                          height: 30,
+                          height: 24,
                         ),
                         MainMenuVideoCourseSection(),
                         SizedBox(
