@@ -186,14 +186,18 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                                 arguments: _provider
                                                     .loadedContentList[index])),
                                         child: ContentLibraryCard(
-                                            contentTitle: _provider
-                                                .loadedContentList[index].title,
-                                            contentCategory: _provider
-                                                .loadedContentList[index]
-                                                .suitableCategories[0],
-                                            contentImageUrl: _provider
-                                                .loadedContentList[index]
-                                                .thumbnailUrl),
+                                          contentTitle: _provider
+                                              .loadedContentList[index].title,
+                                          contentCategory: _provider
+                                              .loadedContentList[index]
+                                              .suitableCategories[0],
+                                          contentImageUrl: _provider
+                                              .loadedContentList[index]
+                                              .thumbnailUrl,
+                                          contentDesc: _provider
+                                              .loadedContentList[index]
+                                              .content[0],
+                                        ),
                                       ),
                                       SizedBox(
                                         width: 25,
@@ -234,15 +238,18 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                                     _provider.loadedContentList[
                                                         index + 2])),
                                         child: ContentLibraryCard(
-                                            contentTitle: _provider
-                                                .loadedContentList[index + 2]
-                                                .title,
-                                            contentCategory: _provider
-                                                .loadedContentList[index + 2]
-                                                .suitableCategories[0],
-                                            contentImageUrl: _provider
-                                                .loadedContentList[index + 2]
-                                                .thumbnailUrl),
+                                          contentTitle: _provider
+                                              .loadedContentList[index].title,
+                                          contentCategory: _provider
+                                              .loadedContentList[index]
+                                              .suitableCategories[0],
+                                          contentImageUrl: _provider
+                                              .loadedContentList[index]
+                                              .thumbnailUrl,
+                                          contentDesc: _provider
+                                              .loadedContentList[index]
+                                              .content[0],
+                                        ),
                                       ),
                                       SizedBox(
                                         width: 25,

@@ -162,8 +162,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     Container(
                       height: 300 *
                               _provider.loadedContentList.length.toDouble() +
-                          (20 * _provider.loadedContentList.length.toDouble() -
-                              1), //Chnage this to the specific height needed (totalArticles * heightOfEach + spacing)
+                          (20 *
+                              (_provider.loadedContentList.length.toDouble() -
+                                  1)), //Chnage this to the specific height needed (totalArticles * heightOfEach + spacing)
                       padding: EdgeInsets.zero,
                       width: double.infinity,
                       child: ListView.builder(

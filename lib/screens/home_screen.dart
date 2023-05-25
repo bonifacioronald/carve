@@ -135,17 +135,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    //color: Colors.red,
+                    // color: Colors.red,
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 30,
+                          height: 34,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Support',
+                              'Recommended',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: custom_colors.primaryDarkPurple,
@@ -153,12 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
+                        SizedBox(height: 20),
+                        TimelineCard(),
                         SizedBox(height: 24),
-                        //Put gesture detector here please
-                        timelineCard(),
                         MainMenuCategorySection(),
                         SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
                         MainMenuVideoCourseSection(),
                         SizedBox(

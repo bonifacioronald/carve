@@ -39,9 +39,12 @@ class Auth {
         'complication': '',
         'childAge': '',
         'childGender': '',
-        'isPregnant': false,
+        'isPregnant': true,
         'numberOfTimesPregnant': '',
-        'parentType': ''
+        'parentType': '',
+        'weight': '',
+        'medicalHistory': FieldValue.arrayUnion([]),
+        'notes': FieldValue.arrayUnion([])
       });
     });
     return null;

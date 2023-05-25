@@ -12,9 +12,13 @@ class UserProvider with ChangeNotifier {
       complication: '',
       childAge: '',
       childGender: '',
-      isPregnant: false,
+      isPregnant: true,
       numOfTimesPregnant: '',
-      parentType: '');
+      parentType: '',
+      dueDate: DateTime.now(),
+      medicalHistory: [],
+      notes: [],
+      weight: '');
 
   Future<void> setUserName(String name) async {
     await FirebaseFirestore.instance
@@ -72,6 +76,33 @@ class UserProvider with ChangeNotifier {
     print('Done usage');
   }
 
+  Future<void> setMedicalHistory(String medHis) async {
+    await FirebaseFirestore.instance
+        .collection('user')
+        .doc(Auth().currentUser!.uid)
+        .update({"medicalHistory": medHis});
+    print('Done medicalHistory');
+  }
+
+  Future<void> setWeight(double weight) async {
+    await FirebaseFirestore.instance
+        .collection('user')
+        .doc(Auth().currentUser!.uid)
+        .update({"weight": weight});
+    print('Done weight');
+  }
+
+  Future<void> setNotes(String notes) async {
+    await FirebaseFirestore.instance
+        .collection('user')
+        .doc(Auth().currentUser!.uid)
+        .update({"notes": notes});
+    print('Done notes');
+  }
+
+  List<String> tempMedicalHistory = <String>[];
+  List<String> tempNotes = <String>[];
+
   Future<void> fetchUserData() async {
     await FirebaseFirestore.instance
         .collection('user')
@@ -88,6 +119,17 @@ class UserProvider with ChangeNotifier {
           snapshot.data()!['numberOfTimesPregnant'];
       userProviderData.parentType = snapshot.data()!['parentType'];
       userProviderData.isPregnant = snapshot.data()!['isPregnant'];
+      userProviderData.weight = snapshot.data()!['weight'];
+      List.from(snapshot.data()!['medicalHistory']).forEach((medHis) {
+        String data = medHis;
+        tempMedicalHistory.add(data);
+      });
+      userProviderData.medicalHistory = tempMedicalHistory;
+      List.from(snapshot.data()!['notes']).forEach((notes) {
+        String data = notes;
+        tempNotes.add(data);
+      });
+      userProviderData.notes = tempNotes;
     });
   }
 }

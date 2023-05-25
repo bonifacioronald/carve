@@ -48,12 +48,6 @@ void _updateUserParentType(int selectedIndex, BuildContext context) {
 
   Provider.of<UserProvider>(context, listen: false)
       .setParentType(userParentType);
-
-  if (selectedIndex == 5) {
-    Provider.of<UserProvider>(context, listen: false).setIsPregnant(true);
-  } else {
-    Provider.of<UserProvider>(context, listen: false).setIsPregnant(false);
-  }
 }
 
 class _Question1ScreenState extends State<Question1Screen> {
@@ -132,15 +126,10 @@ class _Question1ScreenState extends State<Question1Screen> {
                     Spacer(),
                     GestureDetector(
                       onTap: (() {
-                        if (widget.selectedAnswerIndex != 0) {
-                          widget.selectedAnswerIndex == 1
-                              ? Navigator.of(context)
-                                  .pushNamed(Question2PregnantScreen.routeName)
-                              : Navigator.of(context)
-                                  .pushNamed(Question2Screen.routeName);
-                          _updateUserParentType(
-                              widget.selectedAnswerIndex, context);
-                        }
+                        Navigator.of(context)
+                            .pushNamed(Question2PregnantScreen.routeName);
+                        _updateUserParentType(
+                            widget.selectedAnswerIndex, context);
                       }),
                       child: Container(
                         width: 200,
