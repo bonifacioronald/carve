@@ -33,7 +33,7 @@ class MainMenuVideoCourseSection extends StatelessWidget {
               fontWeight: FontWeight.bold),
         ),
         SizedBox(
-          height: 16,
+          height: 20,
         ),
         Container(
           width: double.infinity,

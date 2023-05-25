@@ -1,21 +1,25 @@
 import 'package:carve_app/models/colors.dart';
 import 'package:carve_app/screens/tracker_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../models/user_model.dart';
+import '../providers/user_provider.dart';
 import 'calendar_selection.dart';
 
-class timelineCard extends StatelessWidget {
-  const timelineCard({super.key});
+class TimelineCard extends StatelessWidget {
+  const TimelineCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    int displayedWeek =
-        (DateTime.now().difference(startOfPregnancy).inDays / 7).ceil();
+    UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
+    int displayedWeek = int.parse(currentUser.childAge);
 
     return GestureDetector(
       onTap: (() => Navigator.of(context).pushNamed(TrackerScreen.routeName)),
       child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: EdgeInsets.all(12),
           decoration: BoxDecoration(boxShadow: [
             BoxShadow(
               color: primaryDarkPurple.withOpacity(0.2),
@@ -36,7 +40,7 @@ class timelineCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       color: secondaryLightPurple.withOpacity(1)),
                   child: Icon(
-                    Icons.calendar_today,
+                    Icons.child_friendly_rounded,
                     size: 30.0,
                     color: Colors.white,
                   )),
@@ -65,9 +69,9 @@ class timelineCard extends StatelessWidget {
               ),
               Expanded(child: SizedBox()),
               Icon(
-                Icons.arrow_forward_ios,
-                size: 32,
-                color: primaryDarkPurple.withOpacity(0.6),
+                Icons.arrow_forward_ios_rounded,
+                size: 24,
+                color: secondaryLightPurple,
               )
             ],
           )),

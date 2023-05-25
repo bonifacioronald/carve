@@ -20,83 +20,86 @@ class _TrackerScreenState extends State<TrackerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-        color: custom_colors.backgroundPurple,
-        child: Column(
-          children: [
-            TrackerBabyCard(),
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TrackerInfo("19 Jan ", "2024", "Due Date",
-                          "lib/assets/images/tracker_pregnant_icon.png", 18),
-                      TrackerInfo(
-                          "10 ",
-                          "/day",
-                          "Contractions",
-                          "lib/assets/images/tracker_contractions_icon.png",
-                          16),
-                    ],
-                  ),
-                  SizedBox(height: 40),
-                  TrackerOptions(
-                      "My Medical History",
-                      "Your previous visit/check-up",
-                      Icons.medical_information),
-                  SizedBox(height: 20),
-                  TrackerOptions(
-                      "My Milestones", "Your previous activites", Icons.list),
-                  SizedBox(height: 20),
-                  TrackerOptions("My Notes", "Your memories recorded",
-                      Icons.my_library_books_outlined),
-                  SizedBox(height: 50),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    height: 45,
-                    width: 175,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color:
-                              custom_colors.primaryDarkPurple.withOpacity(0.2),
-                          spreadRadius: 3,
-                          blurRadius: 5,
-                          offset: Offset(1, 5),
-                        )
-                      ],
-                      color: custom_colors.secondaryLightPurple,
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    child: Row(
+        child: Container(
+          color: custom_colors.backgroundPurple,
+          child: Column(
+            children: [
+              TrackerBabyCard(),
+              SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Add Note",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        TrackerInfo(
+                          "Jan 2024",
+                          "Due Date",
+                          Icons.pregnant_woman_rounded,
                         ),
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 20,
-                          weight: 200,
-                        )
+                        TrackerInfo(
+                          "10/day",
+                          "Contractions",
+                          Icons.child_friendly,
+                        ),
                       ],
                     ),
-                  )
-                ],
-              ),
-            )
-          ],
+                    SizedBox(height: 50),
+                    TrackerOptions(
+                        "Milestones", "Your important dates", Icons.list),
+                    SizedBox(height: 20),
+                    TrackerOptions(
+                        "Medical History",
+                        "Your previous visit/check-up",
+                        Icons.medical_information),
+                    SizedBox(height: 20),
+                    TrackerOptions("My Notes", "Your memories recorded",
+                        Icons.my_library_books_outlined),
+                    SizedBox(height: 50),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      height: 45,
+                      width: 175,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: custom_colors.primaryDarkPurple
+                                .withOpacity(0.2),
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          )
+                        ],
+                        color: custom_colors.secondaryLightPurple,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "Add Notes",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          Icon(
+                            Icons.add_circle_outlined,
+                            color: Colors.white,
+                            size: 24,
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 50),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
-      )),
+      ),
       // body: SingleChildScrollView(
       //   child: Container(
       //     width: double.infinity,
@@ -153,22 +156,24 @@ class _TrackerScreenState extends State<TrackerScreen> {
 // }
 
 class TrackerInfo extends StatelessWidget {
-  String description1;
-  String description2;
+  String description;
   String header;
-  String imagePath;
-  double alternateFontSize;
+  IconData icon;
 
-  TrackerInfo(this.description1, this.description2, this.header, this.imagePath,
-      this.alternateFontSize);
+  TrackerInfo(
+    this.description,
+    this.header,
+    this.icon,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 160,
-      height: 90,
+      height: 80,
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -179,46 +184,31 @@ class TrackerInfo extends StatelessWidget {
             )
           ]),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(width: 12),
-          Container(
-            height: 45,
-            width: 25,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(imagePath), fit: BoxFit.cover)),
+          Icon(
+            icon,
+            size: 40,
+            color: custom_colors.secondaryLightPurple,
           ),
-          SizedBox(width: 10),
+          SizedBox(width: 4),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 25),
               Text(
                 header,
                 style: TextStyle(
-                    fontSize: 12, color: Color(0xFF02084B).withOpacity(0.3)),
+                    fontSize: 14,
+                    color: custom_colors.primaryDarkPurple.withOpacity(0.4)),
               ),
-              SizedBox(height: 5),
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black,
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: description1,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 18)),
-                    TextSpan(
-                        text: description2,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: alternateFontSize)),
-                  ],
-                ),
-              )
+              Text(
+                description,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: custom_colors.primaryDarkPurple),
+              ),
             ],
           )
         ],
@@ -237,7 +227,8 @@ class TrackerOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 75,
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      height: 60,
       width: double.infinity,
       //color: Colors.blue,
       child: Row(
@@ -255,20 +246,27 @@ class TrackerOptions extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(
+                      color: custom_colors.primaryDarkPurple,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
                 ),
                 Text(
                   description,
-                  style: TextStyle(color: custom_colors.secondaryLightPurple),
+                  style: TextStyle(
+                      fontSize: 14, color: custom_colors.secondaryLightPurple),
                 )
               ],
             ),
           ),
           Spacer(),
-          Padding(
-            padding: EdgeInsets.zero,
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: Colors.white.withOpacity(0.5)),
             child: Icon(Icons.navigate_next,
-                color: custom_colors.primaryDarkPurple, size: 55),
+                color: custom_colors.primaryDarkPurple, size: 30),
           )
         ],
       ),
