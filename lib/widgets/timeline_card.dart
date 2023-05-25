@@ -13,11 +13,17 @@ class timelineCard extends StatelessWidget {
         (DateTime.now().difference(startOfPregnancy).inDays / 7).ceil();
 
     return GestureDetector(
-      // onTap: (() => Navigator.of(context).pushNamed(TrackerScreen.routeName)),
+      onTap: (() => Navigator.of(context).pushNamed(TrackerScreen.routeName)),
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: primaryDarkPurple.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, 2),
+            ),
+          ], color: Colors.white, borderRadius: BorderRadius.circular(12)),
           width: 350,
           height: 80,
           child: Row(
@@ -28,9 +34,9 @@ class timelineCard extends StatelessWidget {
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: secondaryLightPurple.withOpacity(0.6)),
+                      color: secondaryLightPurple.withOpacity(1)),
                   child: Icon(
-                    Icons.calendar_month,
+                    Icons.calendar_today,
                     size: 30.0,
                     color: Colors.white,
                   )),

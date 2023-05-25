@@ -22,14 +22,14 @@ class CategoryButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: buttonColor,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-                spreadRadius: 2,
-                blurRadius: 2,
-                offset: Offset(0, 2),
-              ),
-            ],
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+            //     spreadRadius: 2,
+            //     blurRadius: 2,
+            //     offset: Offset(0, 2),
+            //   ),
+            // ],
           ),
           child: Icon(
             icon,

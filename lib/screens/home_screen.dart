@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         timelineCard(),
                         MainMenuCategorySection(),
                         SizedBox(
-                          height: 24,
+                          height: 20,
                         ),
                         MainMenuVideoCourseSection(),
                         SizedBox(
