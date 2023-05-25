@@ -19,7 +19,6 @@ class ResourcesMainCard extends StatelessWidget {
           width: 210,
           height: 250,
           alignment: Alignment.bottomLeft,
-          padding: EdgeInsets.only(bottom: 10, left: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
@@ -34,17 +33,33 @@ class ResourcesMainCard extends StatelessWidget {
             ],
           ),
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            width: double.infinity,
+            height: double.infinity,
             decoration: BoxDecoration(
-                color: backgroundPurple,
-                borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-                color: primaryDarkPurple,
+              borderRadius: BorderRadius.circular(20),
+              // gradient: LinearGradient(
+              //     begin: Alignment.topCenter,
+              //     end: Alignment.bottomCenter,
+              //     colors: [
+              //       Colors.transparent,
+              //     ]),
+            ),
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: secondaryLightPurple.withOpacity(0.7),
+              ),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           )),
