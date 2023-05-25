@@ -1,7 +1,9 @@
+import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/widgets/calendar_selection.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:carve_app/widgets/tracker_baby.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:table_calendar/table_calendar.dart';
 
@@ -17,7 +19,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
   final CalendarFormat _calendarFormat = CalendarFormat.week;
   TextEditingController _noteController = TextEditingController();
 
-  void _showNotesDialog(BuildContext context) {
+  void _inputNotesDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -62,10 +64,24 @@ class _TrackerScreenState extends State<TrackerScreen> {
           TextButton(
             onPressed: () {
               setState(() {
-                note = _noteController.text;
+                //Create e.g. 26/5/2023
+                String todayDate =
+                    "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}";
+
+                //Create 26/5/2023 - Notes
+                String finalNotes = "$todayDate - ${_noteController.text}";
+
+                Provider.of<UserProvider>(context, listen: false)
+                    .userProviderData
+                    .notes
+                    .add(finalNotes);
+                Provider.of<UserProvider>(context, listen: false).addNewNotes(
+                    Provider.of<UserProvider>(context, listen: false)
+                        .userProviderData
+                        .notes);
                 _noteController.clear();
+                Navigator.pop(context);
               });
-              Navigator.pop(context);
             },
             child: Text(
               'Add',
@@ -80,8 +96,82 @@ class _TrackerScreenState extends State<TrackerScreen> {
     );
   }
 
+  void _displayNotes(BuildContext ctx, List<String> notes) {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      backgroundColor: Colors.white,
+      context: ctx,
+      builder: (_) {
+        return Container(
+          height: 240,
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'My Notes',
+                style: TextStyle(
+                    color: custom_colors.primaryDarkPurple,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: notes.length,
+                    itemBuilder: (_, index) {
+                      return Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            height: 40,
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 8),
+                            decoration: BoxDecoration(
+                                color: custom_colors.secondaryLightPurple
+                                    .withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Text(
+                              notes[index],
+                              style: TextStyle(
+                                color: custom_colors.primaryDarkPurple,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<String> notesList = Provider.of<UserProvider>(context, listen: false)
+        .userProviderData
+        .notes;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -118,11 +208,20 @@ class _TrackerScreenState extends State<TrackerScreen> {
                         "Your previous visit/check-up",
                         Icons.medical_information),
                     SizedBox(height: 20),
-                    TrackerOptions("My Notes", "Your memories recorded",
-                        Icons.my_library_books_outlined),
+                    GestureDetector(
+                      onTap: () => _displayNotes(
+                          context,
+                          Provider.of<UserProvider>(context, listen: false)
+                              .userProviderData
+                              .notes),
+                      child: TrackerOptions(
+                          "My Notes",
+                          "Your memories recorded",
+                          Icons.my_library_books_outlined),
+                    ),
                     SizedBox(height: 50),
                     GestureDetector(
-                      onTap: () => _showNotesDialog(context),
+                      onTap: () => _inputNotesDialog(context),
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         height: 45,
@@ -246,7 +345,7 @@ class TrackerOptions extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12),
       height: 60,
       width: double.infinity,
-      //color: Colors.blue,
+      color: custom_colors.backgroundPurple,
       child: Row(
         children: [
           Icon(
