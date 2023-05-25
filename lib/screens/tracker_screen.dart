@@ -1,5 +1,6 @@
 import 'package:carve_app/widgets/calendar_selection.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
+import 'package:carve_app/widgets/tracker_baby.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:table_calendar/table_calendar.dart';
@@ -21,23 +22,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
       body: SingleChildScrollView(
           child: Container(
         color: custom_colors.backgroundPurple,
-        height: 1000,
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              height: 420,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xffE5E6FE), Color(0xff8F94FC)]),
-                  boxShadow: [BoxShadow(blurRadius: 10)],
-                  color: custom_colors.secondaryLightPurple,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40))),
-            ),
+            TrackerBabyCard(),
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -46,126 +33,14 @@ class _TrackerScreenState extends State<TrackerScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 160,
-                        height: 90,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: custom_colors.primaryDarkPurple
-                                    .withOpacity(0.2),
-                                spreadRadius: 3,
-                                blurRadius: 5,
-                                offset: Offset(1, 5),
-                              )
-                            ]),
-                        child: Row(
-                          children: [
-                            SizedBox(width: 12),
-                            Container(
-                              height: 45,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'lib/assets/images/tracker_pregnant_icon.png'),
-                                      fit: BoxFit.cover)),
-                            ),
-                            SizedBox(width: 10),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 25),
-                                Text(
-                                  "Due Date",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color:
-                                          Color(0xFF02084B).withOpacity(0.3)),
-                                ),
-                                SizedBox(height: 5),
-                                Text(
-                                  "19 Jan 2024",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 160,
-                        height: 90,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: custom_colors.primaryDarkPurple
-                                    .withOpacity(0.2),
-                                spreadRadius: 3,
-                                blurRadius: 5,
-                                offset: Offset(1, 5),
-                              )
-                            ]),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(width: 15),
-                            Container(
-                              height: 50,
-                              width: 25,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'lib/assets/images/tracker_contractions_icon.png'),
-                                      fit: BoxFit.fitWidth)),
-                            ),
-                            SizedBox(width: 20),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 25),
-                                Text(
-                                  "Contractions",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color:
-                                          Color(0xFF02084B).withOpacity(0.3)),
-                                ),
-                                SizedBox(height: 5),
-                                RichText(
-                                  text: TextSpan(
-                                    style: const TextStyle(
-                                      fontSize: 14.0,
-                                      color: Colors.black,
-                                    ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: '10 ',
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 18)),
-                                      TextSpan(
-                                          text: '/day',
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 14)),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
+                      TrackerInfo("19 Jan ", "2024", "Due Date",
+                          "lib/assets/images/tracker_pregnant_icon.png", 18),
+                      TrackerInfo(
+                          "10 ",
+                          "/day",
+                          "Contractions",
+                          "lib/assets/images/tracker_contractions_icon.png",
+                          16),
                     ],
                   ),
                   SizedBox(height: 40),
@@ -249,6 +124,105 @@ class _TrackerScreenState extends State<TrackerScreen> {
       //     ),
       //   ),
       // ),
+    );
+  }
+}
+
+// class TrackerBabyCard extends StatelessWidget {
+//   const TrackerBabyCard({
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: double.infinity,
+//       height: 420,
+//       decoration: BoxDecoration(
+//           gradient: LinearGradient(
+//               begin: Alignment.topCenter,
+//               end: Alignment.bottomCenter,
+//               colors: [Color(0xffE5E6FE), Color(0xff8F94FC)]),
+//           boxShadow: [BoxShadow(blurRadius: 10)],
+//           color: custom_colors.secondaryLightPurple,
+//           borderRadius: BorderRadius.only(
+//               bottomLeft: Radius.circular(40),
+//               bottomRight: Radius.circular(40))),
+//     );
+//   }
+// }
+
+class TrackerInfo extends StatelessWidget {
+  String description1;
+  String description2;
+  String header;
+  String imagePath;
+  double alternateFontSize;
+
+  TrackerInfo(this.description1, this.description2, this.header, this.imagePath,
+      this.alternateFontSize);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 160,
+      height: 90,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+              spreadRadius: 3,
+              blurRadius: 5,
+              offset: Offset(1, 5),
+            )
+          ]),
+      child: Row(
+        children: [
+          SizedBox(width: 12),
+          Container(
+            height: 45,
+            width: 25,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(imagePath), fit: BoxFit.cover)),
+          ),
+          SizedBox(width: 10),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 25),
+              Text(
+                header,
+                style: TextStyle(
+                    fontSize: 12, color: Color(0xFF02084B).withOpacity(0.3)),
+              ),
+              SizedBox(height: 5),
+              RichText(
+                text: TextSpan(
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.black,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: description1,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 18)),
+                    TextSpan(
+                        text: description2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: alternateFontSize)),
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }
