@@ -15,6 +15,70 @@ class TrackerScreen extends StatefulWidget {
 
 class _TrackerScreenState extends State<TrackerScreen> {
   final CalendarFormat _calendarFormat = CalendarFormat.week;
+  TextEditingController _noteController = TextEditingController();
+
+  void _showNotesDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'Today\'s Notes',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: custom_colors.primaryDarkPurple),
+        ),
+        content: TextField(
+          autofocus: true,
+          controller: _noteController,
+          cursorColor: custom_colors.secondaryLightPurple,
+          decoration: InputDecoration(
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: custom_colors.primaryDarkPurple),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: custom_colors.primaryDarkPurple),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  Icons.clear,
+                  color: custom_colors.secondaryLightPurple,
+                ),
+                onPressed: () {
+                  _noteController.clear();
+                },
+              ),
+              hintText: "Add a note for " +
+                  targetDay.day.toString() +
+                  "/" +
+                  targetDay.month.toString() +
+                  '/' +
+                  targetDay.year.toString(),
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  color: custom_colors.primaryDarkPurple.withOpacity(0.5))),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              setState(() {
+                note = _noteController.text;
+                _noteController.clear();
+              });
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Add',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: custom_colors.secondaryLightPurple),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,39 +121,42 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     TrackerOptions("My Notes", "Your memories recorded",
                         Icons.my_library_books_outlined),
                     SizedBox(height: 50),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      height: 45,
-                      width: 175,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: custom_colors.primaryDarkPurple
-                                .withOpacity(0.2),
-                            spreadRadius: 3,
-                            blurRadius: 5,
-                            offset: Offset(0, 3),
-                          )
-                        ],
-                        color: custom_colors.secondaryLightPurple,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "Add Notes",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          Icon(
-                            Icons.add_circle_outlined,
-                            color: Colors.white,
-                            size: 24,
-                          )
-                        ],
+                    GestureDetector(
+                      onTap: () => _showNotesDialog(context),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        height: 45,
+                        width: 175,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: custom_colors.primaryDarkPurple
+                                  .withOpacity(0.2),
+                              spreadRadius: 3,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            )
+                          ],
+                          color: custom_colors.secondaryLightPurple,
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              "Add Notes",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            Icon(
+                              Icons.add_circle_outlined,
+                              color: Colors.white,
+                              size: 24,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(height: 50),
@@ -100,60 +167,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
           ),
         ),
       ),
-      // body: SingleChildScrollView(
-      //   child: Container(
-      //     width: double.infinity,
-      //     color: backgroundPurple,
-      //     padding: EdgeInsets.only(
-      //         left: 20,
-      //         right: 20,
-      //         bottom: 60,
-      //         top: MediaQuery.of(context).padding.top + 20),
-      //     child: Column(
-      //       crossAxisAlignment: CrossAxisAlignment.center,
-      //       mainAxisAlignment: MainAxisAlignment.start,
-      //       children: [
-      //         Text(
-      //           "Pregnancy Tracker",
-      //           style: TextStyle(
-      //             fontWeight: FontWeight.bold,
-      //             fontSize: 30,
-      //             color:primaryDarkPurple
-      //           ),
-      //         ),
-      //         SizedBox(height: 20),
-      //         CalendarSelection()
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
 }
-
-// class TrackerBabyCard extends StatelessWidget {
-//   const TrackerBabyCard({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: double.infinity,
-//       height: 420,
-//       decoration: BoxDecoration(
-//           gradient: LinearGradient(
-//               begin: Alignment.topCenter,
-//               end: Alignment.bottomCenter,
-//               colors: [Color(0xffE5E6FE), Color(0xff8F94FC)]),
-//           boxShadow: [BoxShadow(blurRadius: 10)],
-//           color: custom_colors.secondaryLightPurple,
-//           borderRadius: BorderRadius.only(
-//               bottomLeft: Radius.circular(40),
-//               bottomRight: Radius.circular(40))),
-//     );
-//   }
-// }
 
 class TrackerInfo extends StatelessWidget {
   String description;
