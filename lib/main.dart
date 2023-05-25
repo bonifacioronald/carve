@@ -8,18 +8,14 @@ import 'package:carve_app/providers/resource_provider.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/providers/video_provider.dart';
 import 'package:carve_app/screens/content_library_story_screen.dart';
+import 'package:carve_app/screens/create_forum_screen.dart';
+import 'package:carve_app/screens/daily_content_screen.dart';
 import 'package:carve_app/screens/forum_all_screen.dart';
 import 'package:carve_app/screens/forum_detail_screen.dart';
 import 'package:carve_app/screens/home_screen.dart';
-import 'package:carve_app/screens/create_forum_screen.dart';
-import 'package:carve_app/screens/daily_content_screen.dart';
-import 'package:carve_app/screens/question_2_if_pregnant.dart';
-import 'package:carve_app/screens/resource_detail_screen.dart';
-import 'package:carve_app/screens/setting_screen.dart';
 import 'package:carve_app/screens/login_register_screen.dart';
-import 'package:carve_app/screens/welcome_screen.dart';
-import 'package:provider/provider.dart';
 import 'package:carve_app/screens/question_1_screen.dart';
+import 'package:carve_app/screens/question_2_if_pregnant.dart';
 import 'package:carve_app/screens/question_2_screen.dart';
 import 'package:carve_app/screens/question_3_screen.dart';
 import 'package:carve_app/screens/question_4_screen.dart';
@@ -28,12 +24,11 @@ import 'package:carve_app/screens/question_6_screen.dart';
 import 'package:carve_app/screens/question_title_screen.dart';
 import 'package:carve_app/screens/resource_detail_screen.dart';
 import 'package:carve_app/screens/setting_screen.dart';
-import 'package:carve_app/screens/shopping_screen.dart';
-import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import './models/colors.dart' as custom_colors;
-import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
