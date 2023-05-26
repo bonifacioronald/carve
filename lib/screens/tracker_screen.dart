@@ -228,7 +228,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
       context: ctx,
       builder: (_) {
         return Container(
-          height: 240,
+          height: 280,
           padding: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,40 +254,58 @@ class _TrackerScreenState extends State<TrackerScreen> {
                 height: 20,
               ),
               Expanded(
-                child: Container(
-                  width: double.infinity,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: dataNewest.length,
-                    itemBuilder: (_, index) {
-                      return Column(
-                        children: [
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            height: 40,
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 8),
-                            decoration: BoxDecoration(
-                                color: custom_colors.secondaryLightPurple
-                                    .withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Text(
-                              dataNewest[index],
-                              style: TextStyle(
+                child: data.isEmpty
+                    ? Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: custom_colors.secondaryLightPurple
+                              .withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'No Record Added',
+                            style: TextStyle(
                                 color: custom_colors.primaryDarkPurple,
                                 fontSize: 14,
-                              ),
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                        ),
+                      )
+                    : Container(
+                        width: double.infinity,
+                        child: ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: dataNewest.length,
+                          itemBuilder: (_, index) {
+                            return Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 40,
+                                  width: double.infinity,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 8),
+                                  decoration: BoxDecoration(
+                                      color: custom_colors.secondaryLightPurple
+                                          .withOpacity(0.15),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: Text(
+                                    dataNewest[index],
+                                    style: TextStyle(
+                                      color: custom_colors.primaryDarkPurple,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
               ),
               SizedBox(
                 height: 20,
