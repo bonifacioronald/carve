@@ -108,10 +108,17 @@ class UserProvider with ChangeNotifier {
     print('Added notes');
   }
 
-  List<String> tempMedicalHistory = <String>[];
-  List<String> tempNotes = <String>[];
+  Future<void> addNewMedHis(List<String> medHis) async {
+    await FirebaseFirestore.instance
+        .collection('user')
+        .doc(Auth().currentUser!.uid)
+        .update({"medicalHistory": FieldValue.arrayUnion(medHis)});
+    print('Added medHis');
+  }
 
   Future<void> fetchUserData() async {
+    List<String> tempMedicalHistory = <String>[];
+    List<String> tempNotes = <String>[];
     await FirebaseFirestore.instance
         .collection('user')
         .doc(Auth().currentUser!.uid)
