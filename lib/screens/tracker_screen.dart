@@ -1,6 +1,7 @@
 import 'package:carve_app/data/milestone_data.dart';
 import 'package:carve_app/models/milestones_model.dart';
 import 'package:carve_app/providers/user_provider.dart';
+import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:carve_app/widgets/calendar_selection.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:carve_app/widgets/tracker_baby.dart';
@@ -20,6 +21,7 @@ class TrackerScreen extends StatefulWidget {
 class _TrackerScreenState extends State<TrackerScreen> {
   final CalendarFormat _calendarFormat = CalendarFormat.week;
   TextEditingController _noteController = TextEditingController();
+
   String notesOrMedicalHistory = 'medicalHistory';
 
   void _showInputNotesDialog(BuildContext context) {
@@ -234,7 +236,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
       context: ctx,
       builder: (_) {
         return Container(
-          height: 600,
+          height: 560,
           padding: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,7 +302,6 @@ class _TrackerScreenState extends State<TrackerScreen> {
                             ),
                             Container(
                               height: double.infinity,
-                              //color: Colors.black,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -310,15 +311,35 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                     width: 20,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: custom_colors.secondaryLightPurple,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: custom_colors.primaryDarkPurple
+                                      color: (uniqueWeek[index] <=
+                                              int.parse(
+                                                  Provider.of<UserProvider>(
+                                                          context,
+                                                          listen: false)
+                                                      .userProviderData
+                                                      .childAge))
+                                          ? custom_colors.secondaryLightPurple
+                                          : custom_colors.secondaryLightPurple
                                               .withOpacity(0.2),
-                                          spreadRadius: 1,
-                                          blurRadius: 3,
-                                          offset: Offset(0, 2),
-                                        )
+                                      boxShadow: [
+                                        (uniqueWeek[index] <=
+                                                int.parse(
+                                                    Provider.of<UserProvider>(
+                                                            context,
+                                                            listen: false)
+                                                        .userProviderData
+                                                        .childAge))
+                                            ? BoxShadow(
+                                                color: custom_colors
+                                                    .primaryDarkPurple
+                                                    .withOpacity(0.1),
+                                                spreadRadius: 1,
+                                                blurRadius: 3,
+                                                offset: Offset(0, 2),
+                                              )
+                                            : BoxShadow(
+                                                color: Colors.transparent,
+                                              )
                                       ],
                                     ),
                                   ),
@@ -327,7 +348,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                   Expanded(
                                     child: Container(
                                       width: 4,
-                                      color: custom_colors.primaryDarkPurple
+                                      color: custom_colors.secondaryLightPurple
                                           .withOpacity(0.1),
                                     ),
                                   )
@@ -355,10 +376,14 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                             Text(
                                               milestoneListByWeek[i].milestone,
                                               style: TextStyle(
-                                                color: custom_colors
-                                                    .primaryDarkPurple,
-                                                fontSize: 14,
-                                              ),
+                                                  color: custom_colors
+                                                      .primaryDarkPurple,
+                                                  fontSize: 14,
+                                                  fontWeight:
+                                                      milestoneListByWeek[i]
+                                                              .isBolded
+                                                          ? FontWeight.bold
+                                                          : FontWeight.normal),
                                             ),
                                             SizedBox(
                                               height: 8,
@@ -488,9 +513,11 @@ class _TrackerScreenState extends State<TrackerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> notesList = Provider.of<UserProvider>(context, listen: false)
-        .userProviderData
-        .notes;
+    int currentPregnancyWeek = int.parse(
+        Provider.of<UserProvider>(context, listen: false)
+            .userProviderData
+            .childAge);
+    int trimester = getTrimesterFromWeek(currentPregnancyWeek);
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -520,7 +547,8 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     ),
                     SizedBox(height: 50),
                     GestureDetector(
-                      onTap: () => _displayMilestoneBottomSheet(1, 2, context),
+                      onTap: () => _displayMilestoneBottomSheet(
+                          trimester, currentPregnancyWeek, context),
                       child: TrackerOptions(
                           "Milestones", "Your important dates", Icons.list),
                     ),
