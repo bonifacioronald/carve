@@ -1,4 +1,4 @@
-import 'package:carve_app/data/content_data.dart';
+import 'package:carve_app/data/milestone_data.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/daily_content_provider.dart';
