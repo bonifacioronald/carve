@@ -13,7 +13,6 @@ import '../models/colors.dart';
 
 class TrackerScreen extends StatefulWidget {
   static const routeName = '/tracker-screen';
-
   @override
   State<TrackerScreen> createState() => _TrackerScreenState();
 }
