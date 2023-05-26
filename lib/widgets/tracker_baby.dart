@@ -21,8 +21,37 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
   bool loadedBabyImage = false;
   List<Container> exampleList = [];
   String imageUrl = ' ';
+  int babyListIndex = 0;
 
   void calculateTrimester(int week) {
+    if (selectedWeeks == 1) {
+      babyListIndex = 0;
+    } else if (selectedWeeks == 2) {
+      babyListIndex = 1;
+    } else if (selectedWeeks > 2 && selectedWeeks <= 4) {
+      babyListIndex = 2;
+    } else if (selectedWeeks > 4 && selectedWeeks <= 8) {
+      babyListIndex = 3;
+    } else if (selectedWeeks > 8 && selectedWeeks <= 12) {
+      babyListIndex = 4;
+    } else if (selectedWeeks > 12 && selectedWeeks <= 16) {
+      babyListIndex = 5;
+    } else if (selectedWeeks > 16 && selectedWeeks <= 20) {
+      babyListIndex = 6;
+    } else if (selectedWeeks > 20 && selectedWeeks <= 24) {
+      babyListIndex = 6;
+    } else if (selectedWeeks > 24 && selectedWeeks <= 28) {
+      babyListIndex = 7;
+    } else if (selectedWeeks > 28 && selectedWeeks <= 32) {
+      babyListIndex = 8;
+    } else if (selectedWeeks > 32 && selectedWeeks <= 36) {
+      babyListIndex = 9;
+    } else if (selectedWeeks > 36 && selectedWeeks <= 40) {
+      babyListIndex = 10;
+    } else {
+      babyListIndex = 11;
+    }
+
     currentFirstTrimester = false;
     currentSecondTrimester = false;
     currentThirdTrimester = false;
@@ -118,6 +147,20 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
 
   @override
   Widget build(BuildContext context) {
+    List babyDescription = [
+      'The zygote begins to form after fertilization',
+      'The zygote implants in the uterine lining',
+      'The embryo develops basic structures like the heart and limbs',
+      'The fetus has distinct facial features and vital organs are forming',
+      'The fetus can make small movements and its digestive system is developing',
+      'The fetus has developed to the size of an avocado and can make coordinated movements',
+      'The fetus is now the size of a banana and begins to grow fine hair',
+      'The fetus is about the size of an ear of corn and its lungs and eyes are developing',
+      'The fetus has grown to the size of a butternut squash and its brain and senses are rapidly developing',
+      'The fetus is approximately the size of a pineapple and its bones are fully formed but still soft',
+      'The fetus is about the size of a honeydew melon and its lungs are nearly mature',
+      'The fetus is fully developed and ready for birth, resembling a small watermelon in size'
+    ];
     void clearList() {
       exampleList.clear();
     }
@@ -174,7 +217,7 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
     return Container(
       padding: EdgeInsets.only(top: 80, left: 20, right: 20, bottom: 10),
       width: double.infinity,
-      height: 500,
+      height: 610,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -217,7 +260,7 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -250,7 +293,7 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
               )
             ],
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Container(
             width: 351,
             height: 32,
@@ -302,7 +345,20 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
             ]),
           ),
           SizedBox(height: 20),
-          WeekView(selectedWeeks, exampleList)
+          WeekView(selectedWeeks, exampleList),
+          SizedBox(
+            height: 16,
+          ),
+          Text(
+            "Weeks",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+          ),
+          SizedBox(height: 40),
+          Text(
+            babyDescription[babyListIndex],
+            style: TextStyle(fontSize: 18, color: Colors.white),
+            textAlign: TextAlign.center,
+          )
         ],
       ),
     );
@@ -312,7 +368,7 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
 class WeekView extends StatefulWidget {
   int selectedWeek;
   List exampleWeek;
- 
+
   WeekView(this.selectedWeek, this.exampleWeek);
 
   @override
@@ -320,13 +376,13 @@ class WeekView extends StatefulWidget {
 }
 
 class _WeekViewState extends State<WeekView> {
- 
   @override
   Widget build(BuildContext context) {
-     ScrollController scrollController = ScrollController(
-    initialScrollOffset: (widget.selectedWeek.toDouble()-3)*77, // or whatever offset you wish
-    keepScrollOffset: true,
-  );
+    ScrollController scrollController = ScrollController(
+      initialScrollOffset: (widget.selectedWeek.toDouble() - 3) *
+          77, // or whatever offset you wish
+      keepScrollOffset: false,
+    );
     return Container(
         width: double.infinity,
         height: 60,
