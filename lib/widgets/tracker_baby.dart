@@ -19,9 +19,14 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
   bool currentThirdTrimester = false;
   bool calculatedTrimester = false;
   bool loadedBabyImage = false;
+  List<Container> exampleList = [];
   String imageUrl = ' ';
 
   void calculateTrimester(int week) {
+    currentFirstTrimester = false;
+    currentSecondTrimester = false;
+    currentThirdTrimester = false;
+
     if (week <= 12) {
       currentFirstTrimester = true;
     } else if (week > 12 && week <= 26) {
@@ -113,6 +118,49 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
 
   @override
   Widget build(BuildContext context) {
+    void clearList() {
+      exampleList.clear();
+    }
+
+    void addList() {
+      for (int i = 1; i <= 42; i++) {
+        bool containerSelected = false;
+        if (selectedWeeks == i) {
+          containerSelected = true;
+        }
+        ;
+        exampleList.add(
+          Container(
+            height: 47,
+            width: 47,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: containerSelected ? Colors.white : Colors.transparent),
+            child: Center(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    clearList();
+                    selectedWeeks = i;
+                    print(selectedWeeks);
+                    calculateTrimester(selectedWeeks);
+                    loadBabyImage(selectedWeeks);
+                  });
+                },
+                child: Text('$i',
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: containerSelected
+                            ? custom_colors.secondaryLightPurple
+                            : Colors.white)),
+              ),
+            ),
+          ),
+        );
+      }
+    }
+
     UserModel currentUser =
         Provider.of<UserProvider>(context, listen: false).userProviderData;
     int pregnantWeeks = int.parse(currentUser.childAge);
@@ -120,6 +168,8 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
     calculatedTrimester ? null : selectedWeeks = pregnantWeeks;
     calculatedTrimester ? null : calculateTrimester(pregnantWeeks);
     loadedBabyImage ? null : loadBabyImage(pregnantWeeks);
+    exampleList.isEmpty ? addList() : null;
+    print(exampleList.isEmpty);
 
     return Container(
       padding: EdgeInsets.only(top: 80, left: 20, right: 20, bottom: 10),
@@ -168,12 +218,37 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
             ),
           ),
           SizedBox(height: 20),
-          Text(
-            "Trimesters",
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: custom_colors.primaryDarkPurple),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Trimesters",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                    color: custom_colors.primaryDarkPurple),
+              ),
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedWeeks = pregnantWeeks;
+                    loadBabyImage(selectedWeeks);
+                    calculateTrimester(selectedWeeks);
+                    clearList();
+                    addList();
+                  });
+                },
+                child: Text(
+                  "Today",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 12,
+              )
+            ],
           ),
           SizedBox(height: 10),
           Container(
@@ -191,6 +266,8 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
                       imageUrl =
                           'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_3month.png';
                       selectedWeeks = 13;
+                      clearList();
+                      addList();
                     });
                   },
                   child: TrimesterSelection("First", currentFirstTrimester)),
@@ -203,6 +280,8 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
                       imageUrl =
                           'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_4month.png';
                       selectedWeeks = 14;
+                      clearList();
+                      addList();
                     });
                   },
                   child: TrimesterSelection("Second", currentSecondTrimester)),
@@ -215,13 +294,15 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
                       imageUrl =
                           'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_7month.png';
                       selectedWeeks = 27;
+                      clearList();
+                      addList();
                     });
                   },
                   child: TrimesterSelection("Third", currentThirdTrimester)),
             ]),
           ),
-          SizedBox(height: 10),
-          WeekView(selectedWeeks)
+          SizedBox(height: 20),
+          WeekView(selectedWeeks, exampleList)
         ],
       ),
     );
@@ -230,57 +311,39 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
 
 class WeekView extends StatefulWidget {
   int selectedWeek;
-
-  WeekView(this.selectedWeek);
+  List exampleWeek;
+ 
+  WeekView(this.selectedWeek, this.exampleWeek);
 
   @override
   State<WeekView> createState() => _WeekViewState();
 }
 
 class _WeekViewState extends State<WeekView> {
-  List<Container> exampleList = [];
-
-  void addList() {
-    for (int i = 1; i <= 42; i++) {
-      exampleList.add(
-        Container(
-          height: 47,
-          width: 47,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle, color: custom_colors.primaryDarkPurple),
-          child: Center(
-            child: Text('$i',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white)),
-          ),
-        ),
-      );
-    }
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
-    exampleList.isEmpty ? addList() : null;
-
+     ScrollController scrollController = ScrollController(
+    initialScrollOffset: (widget.selectedWeek.toDouble()-3)*77, // or whatever offset you wish
+    keepScrollOffset: true,
+  );
     return Container(
         width: double.infinity,
         height: 60,
-        color: Colors.amber,
         child: ListView.builder(
+          controller: scrollController,
           clipBehavior: Clip.none,
           padding: EdgeInsets.zero,
           primary: false,
           scrollDirection: Axis.horizontal,
           physics: BouncingScrollPhysics(),
-          itemCount: exampleList.length,
+          itemCount: widget.exampleWeek.length,
           itemBuilder: (_, index) {
             return Row(
               children: [
-                exampleList[index],
+                widget.exampleWeek[index],
                 SizedBox(
-                  width: 20,
+                  width: 30,
                 ),
               ],
             );
