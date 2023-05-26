@@ -95,8 +95,6 @@ class MyApp extends StatelessWidget {
           ResourceDetailScreen.routeName: (context) => ResourceDetailScreen(),
           ContentLibraryStory.routeName: (context) => ContentLibraryStory(),
           forumPage.routeName: (context) => forumPage(),
-          TrackerScreen.routeName: (context) => forumPage(),
-          TrackerScreen.routeName: (context) => TrackerScreen(),
         },
       ),
     );

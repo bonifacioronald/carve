@@ -1,3 +1,5 @@
+import 'package:carve_app/data/milestone_data.dart';
+import 'package:carve_app/models/milestones_model.dart';
 import 'package:carve_app/providers/user_provider.dart';
 import 'package:carve_app/widgets/calendar_selection.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
@@ -216,6 +218,173 @@ class _TrackerScreenState extends State<TrackerScreen> {
     );
   }
 
+  void _displayMilestoneBottomSheet(int trimester, int week, BuildContext ctx) {
+    String weekRange = getWeekRange(trimester);
+    List<int> uniqueWeek = getUniqueWeek(trimester);
+    List<MilestoneModel> milestoneListByTrimester =
+        getMilestoneContentByTrimester(trimester);
+    List<MilestoneModel> milestoneListByWeek = [];
+
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      backgroundColor: Colors.white,
+      context: ctx,
+      builder: (_) {
+        return Container(
+          height: 600,
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Trimester $trimester ($weekRange)',
+                style: TextStyle(
+                    color: custom_colors.primaryDarkPurple,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                'Your important dates',
+                style: TextStyle(
+                  color: custom_colors.secondaryLightPurple,
+                  fontSize: 14,
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Expanded(
+                child: Container(
+                  child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: uniqueWeek.length,
+                    itemBuilder: (_, index) {
+                      milestoneListByWeek = [];
+                      milestoneListByTrimester.forEach(
+                        (element) {
+                          if (element.week == uniqueWeek[index]) {
+                            milestoneListByWeek.add(element);
+                          }
+                        },
+                      );
+                      print("week ${uniqueWeek[index]}: $milestoneListByWeek");
+                      return Container(
+                        height: milestoneListByWeek.length * 20 + 40,
+                        decoration: BoxDecoration(
+                            // color: Colors.amber,
+                            // border: Border.all(color: Colors.white, width: 2),
+                            ),
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  'Week ${uniqueWeek[index]}',
+                                  style: TextStyle(
+                                      color: custom_colors.primaryDarkPurple
+                                          .withOpacity(0.4),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Spacer()
+                              ],
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Container(
+                              height: double.infinity,
+                              //color: Colors.black,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  //cirlce
+                                  Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: custom_colors.secondaryLightPurple,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: custom_colors.primaryDarkPurple
+                                              .withOpacity(0.2),
+                                          spreadRadius: 1,
+                                          blurRadius: 3,
+                                          offset: Offset(0, 2),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+
+                                  //line
+                                  Expanded(
+                                    child: Container(
+                                      width: 4,
+                                      color: custom_colors.primaryDarkPurple
+                                          .withOpacity(0.1),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height:
+                                        milestoneListByWeek.length * 20 + 40,
+                                    //  color: Colors.red,
+                                    child: ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: milestoneListByWeek.length,
+                                      itemBuilder: (_, i) {
+                                        return Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              milestoneListByWeek[i].milestone,
+                                              style: TextStyle(
+                                                color: custom_colors
+                                                    .primaryDarkPurple,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   void _displayDataBottomSheet(
       String title, String description, BuildContext ctx, List<String> data) {
     List<String> dataNewest = data.reversed.toList();
@@ -350,8 +519,11 @@ class _TrackerScreenState extends State<TrackerScreen> {
                       ],
                     ),
                     SizedBox(height: 50),
-                    TrackerOptions(
-                        "Milestones", "Your important dates", Icons.list),
+                    GestureDetector(
+                      onTap: () => _displayMilestoneBottomSheet(1, 2, context),
+                      child: TrackerOptions(
+                          "Milestones", "Your important dates", Icons.list),
+                    ),
                     SizedBox(height: 20),
                     GestureDetector(
                       onTap: () => _displayDataBottomSheet(
