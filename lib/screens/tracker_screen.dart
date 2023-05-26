@@ -18,47 +18,154 @@ class TrackerScreen extends StatefulWidget {
 class _TrackerScreenState extends State<TrackerScreen> {
   final CalendarFormat _calendarFormat = CalendarFormat.week;
   TextEditingController _noteController = TextEditingController();
+  String notesOrMedicalHistory = 'medicalHistory';
 
-  void _inputNotesDialog(BuildContext context) {
+  void _showInputNotesDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        elevation: 20,
+        backgroundColor: custom_colors.backgroundPurple,
         title: Text(
-          'Today\'s Notes',
+          'Add New Records',
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
               color: custom_colors.primaryDarkPurple),
         ),
-        content: TextField(
-          autofocus: true,
-          controller: _noteController,
-          cursorColor: custom_colors.secondaryLightPurple,
-          decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: custom_colors.primaryDarkPurple),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: custom_colors.primaryDarkPurple),
-              ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  Icons.clear,
-                  color: custom_colors.secondaryLightPurple,
-                ),
-                onPressed: () {
-                  _noteController.clear();
+        titlePadding: EdgeInsets.all(20),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20),
+        actionsPadding: EdgeInsets.all(20),
+        content: Container(
+          height: 160,
+          child: Column(
+            children: [
+              StatefulBuilder(
+                builder: (context, setState) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: (() {
+                          setState(() {
+                            notesOrMedicalHistory = 'medicalHistory';
+                          });
+                        }),
+                        child: Container(
+                          height: 40,
+                          width: 120,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 2,
+                                  color:
+                                      notesOrMedicalHistory == 'medicalHistory'
+                                          ? custom_colors.secondaryLightPurple
+                                          : custom_colors.secondaryLightPurple
+                                              .withOpacity(0.4)),
+                              color: notesOrMedicalHistory == 'medicalHistory'
+                                  ? custom_colors.primaryDarkPurple
+                                  : custom_colors.secondaryLightPurple
+                                      .withOpacity(0.4),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8))),
+                          child: Center(
+                            child: Text(
+                              'Medical',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color:
+                                      notesOrMedicalHistory == 'medicalHistory'
+                                          ? Colors.white
+                                          : Colors.white.withOpacity(0.9),
+                                  fontWeight:
+                                      notesOrMedicalHistory == 'medicalHistory'
+                                          ? FontWeight.w600
+                                          : FontWeight.normal),
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: (() {
+                          setState(() {
+                            notesOrMedicalHistory = 'notes';
+                          });
+                        }),
+                        child: Container(
+                          height: 40,
+                          width: 120,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 2,
+                                  color: notesOrMedicalHistory == 'notes'
+                                      ? custom_colors.secondaryLightPurple
+                                      : custom_colors.secondaryLightPurple
+                                          .withOpacity(0.4)),
+                              color: notesOrMedicalHistory == 'notes'
+                                  ? custom_colors.primaryDarkPurple
+                                  : custom_colors.secondaryLightPurple
+                                      .withOpacity(0.4),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(8),
+                                  bottomRight: Radius.circular(8))),
+                          child: Center(
+                            child: Text(
+                              'Notes',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: notesOrMedicalHistory == 'notes'
+                                      ? Colors.white
+                                      : Colors.white.withOpacity(0.9),
+                                  fontWeight: notesOrMedicalHistory == 'notes'
+                                      ? FontWeight.w600
+                                      : FontWeight.normal),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
                 },
               ),
-              hintText: "Add a note for " +
-                  targetDay.day.toString() +
-                  "/" +
-                  targetDay.month.toString() +
-                  '/' +
-                  targetDay.year.toString(),
-              hintStyle: TextStyle(
-                  fontSize: 16,
-                  color: custom_colors.primaryDarkPurple.withOpacity(0.5))),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                autofocus: true,
+                controller: _noteController,
+                cursorColor: custom_colors.secondaryLightPurple,
+                decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: custom_colors.primaryDarkPurple),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: custom_colors.primaryDarkPurple),
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        Icons.clear,
+                        color: custom_colors.secondaryLightPurple,
+                      ),
+                      onPressed: () {
+                        _noteController.clear();
+                      },
+                    ),
+                    hintText: "Add a record for " +
+                        targetDay.day.toString() +
+                        "/" +
+                        targetDay.month.toString() +
+                        '/' +
+                        targetDay.year.toString(),
+                    hintStyle: TextStyle(
+                        fontSize: 16,
+                        color:
+                            custom_colors.primaryDarkPurple.withOpacity(0.5))),
+              ),
+            ],
+          ),
         ),
         actions: [
           TextButton(
@@ -69,16 +176,29 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}";
 
                 //Create 26/5/2023 - Notes
-                String finalNotes = "$todayDate - ${_noteController.text}";
+                String finalRecord = "$todayDate - ${_noteController.text}";
 
-                Provider.of<UserProvider>(context, listen: false)
-                    .userProviderData
-                    .notes
-                    .add(finalNotes);
-                Provider.of<UserProvider>(context, listen: false).addNewNotes(
-                    Provider.of<UserProvider>(context, listen: false)
-                        .userProviderData
-                        .notes);
+                if (notesOrMedicalHistory == 'notes') {
+                  Provider.of<UserProvider>(context, listen: false)
+                      .userProviderData
+                      .notes
+                      .add(finalRecord);
+                  Provider.of<UserProvider>(context, listen: false).addNewNotes(
+                      Provider.of<UserProvider>(context, listen: false)
+                          .userProviderData
+                          .notes);
+                } else if (notesOrMedicalHistory == 'medicalHistory') {
+                  Provider.of<UserProvider>(context, listen: false)
+                      .userProviderData
+                      .medicalHistory
+                      .add(finalRecord);
+                  Provider.of<UserProvider>(context, listen: false)
+                      .addNewMedHis(
+                          Provider.of<UserProvider>(context, listen: false)
+                              .userProviderData
+                              .medicalHistory);
+                }
+
                 _noteController.clear();
                 Navigator.pop(context);
               });
@@ -96,7 +216,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
     );
   }
 
-  void _displayNotes(BuildContext ctx, List<String> notes) {
+  void _displayDataBottomSheet(
+      String title, String description, BuildContext ctx, List<String> data) {
+    List<String> dataNewest = data.reversed.toList();
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -112,11 +234,21 @@ class _TrackerScreenState extends State<TrackerScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'My Notes',
+                title,
                 style: TextStyle(
                     color: custom_colors.primaryDarkPurple,
                     fontSize: 18,
                     fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                description,
+                style: TextStyle(
+                  color: custom_colors.secondaryLightPurple,
+                  fontSize: 14,
+                ),
               ),
               SizedBox(
                 height: 20,
@@ -126,7 +258,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                   width: double.infinity,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: notes.length,
+                    itemCount: dataNewest.length,
                     itemBuilder: (_, index) {
                       return Column(
                         children: [
@@ -141,7 +273,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                     .withOpacity(0.15),
                                 borderRadius: BorderRadius.circular(12)),
                             child: Text(
-                              notes[index],
+                              dataNewest[index],
                               style: TextStyle(
                                 color: custom_colors.primaryDarkPurple,
                                 fontSize: 14,
@@ -203,13 +335,24 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     TrackerOptions(
                         "Milestones", "Your important dates", Icons.list),
                     SizedBox(height: 20),
-                    TrackerOptions(
-                        "Medical History",
-                        "Your previous visit/check-up",
-                        Icons.medical_information),
+                    GestureDetector(
+                      onTap: () => _displayDataBottomSheet(
+                          'Medical History',
+                          'Your previous visit/check-up',
+                          context,
+                          Provider.of<UserProvider>(context, listen: false)
+                              .userProviderData
+                              .medicalHistory),
+                      child: TrackerOptions(
+                          "Medical History",
+                          "Your previous visit/check-up",
+                          Icons.medical_information),
+                    ),
                     SizedBox(height: 20),
                     GestureDetector(
-                      onTap: () => _displayNotes(
+                      onTap: () => _displayDataBottomSheet(
+                          'My Notes',
+                          'Your memories recorded',
                           context,
                           Provider.of<UserProvider>(context, listen: false)
                               .userProviderData
@@ -221,11 +364,11 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     ),
                     SizedBox(height: 50),
                     GestureDetector(
-                      onTap: () => _inputNotesDialog(context),
+                      onTap: () => _showInputNotesDialog(context),
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         height: 45,
-                        width: 175,
+                        width: 180,
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
@@ -243,7 +386,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "Add Notes",
+                              "Add A Record ",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

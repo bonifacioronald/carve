@@ -51,6 +51,7 @@ class NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     double NavBarIconSize = 32;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: custom_colors.backgroundPurple,
       floatingActionButton: Container(
         height: 64,
