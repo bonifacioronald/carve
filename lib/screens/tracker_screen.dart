@@ -6,6 +6,7 @@ import 'package:carve_app/widgets/calendar_selection.dart';
 import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:carve_app/widgets/tracker_baby.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:table_calendar/table_calendar.dart';
@@ -518,6 +519,14 @@ class _TrackerScreenState extends State<TrackerScreen> {
             .userProviderData
             .childAge);
     int trimester = getTrimesterFromWeek(currentPregnancyWeek);
+    int howManyDays = currentPregnancyWeek * 7;
+    int remainingday = 7 * (42 - currentPregnancyWeek);
+    DateTime date = DateTime.now();
+    DateTime firstDate = date.subtract(Duration(days: howManyDays));
+    DateTime duedate = date.add(Duration(days: remainingday));
+    String formattedFirstDate = DateFormat.yMMM().format(firstDate);
+    String formattedDueDate = DateFormat.yMMM().format(duedate);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -534,14 +543,14 @@ class _TrackerScreenState extends State<TrackerScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TrackerInfo(
-                          "Jan 2024",
-                          "Due Date",
-                          Icons.pregnant_woman_rounded,
+                          "${formattedFirstDate}",
+                          "Conception",
+                          Icons.child_friendly,
                         ),
                         TrackerInfo(
-                          "10/day",
-                          "Contractions",
-                          Icons.child_friendly,
+                          "${formattedDueDate}",
+                          "Due Date",
+                          Icons.pregnant_woman_rounded,
                         ),
                       ],
                     ),
