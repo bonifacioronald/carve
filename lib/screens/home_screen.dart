@@ -86,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   CustomAppBar(),
                   //First Half Until Content Card
                   Container(
-                    //color: Colors.red,
                     height: 364,
                     child: Stack(
                       children: [
@@ -145,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Recommended',
+                              'Recommended For You',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: custom_colors.primaryDarkPurple,
@@ -154,7 +153,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         SizedBox(height: 20),
-                        TimelineCard(),
+                        GestureDetector(
+                            onTap: () => navigationBar.onTap!(2),
+                            child: TimelineCard()),
                         SizedBox(height: 24),
                         MainMenuCategorySection(),
                         SizedBox(

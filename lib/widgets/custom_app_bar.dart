@@ -30,14 +30,10 @@ class CustomAppBar extends StatelessWidget {
           SizedBox(
             width: 12,
           ),
-          GestureDetector(
-            onTap: () =>
-                Navigator.of(context).pushNamed(SettingScreen.routeName),
-            child: Icon(
-              Icons.account_circle_outlined,
-              color: Colors.white,
-              size: 40,
-            ),
+          Icon(
+            Icons.notifications_active_outlined,
+            color: Colors.white,
+            size: 28,
           ),
         ],
       ),

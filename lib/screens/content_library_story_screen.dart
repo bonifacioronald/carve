@@ -1,6 +1,6 @@
 import "package:carve_app/models/content_model.dart";
 import "package:flutter/material.dart";
-import 'package:carve_app/data/content_data.dart';
+import 'package:carve_app/data/milestone_data.dart';
 import 'package:carve_app/screens/loading_screen.dart';
 import 'package:carve_app/providers/daily_content_provider.dart';
 import 'package:carve_app/widgets/daily_content_story.dart';
