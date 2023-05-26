@@ -5,12 +5,14 @@ class MilestoneModel {
   int week;
   int trimester;
   bool isPassed;
+  bool isBolded;
 
   MilestoneModel(
       {required this.milestone,
       required this.week,
       required this.trimester,
-      required this.isPassed});
+      required this.isPassed,
+      required this.isBolded});
 }
 
 String getWeekRange(int trimester) {
@@ -48,4 +50,15 @@ List<MilestoneModel> getMilestoneContentByTrimester(int trimester) {
     }
   });
   return milestoneModel;
+}
+
+int getTrimesterFromWeek(int currentWeek) {
+  if (currentWeek <= 12) {
+    return 1;
+  } else if (currentWeek > 12 && currentWeek <= 26) {
+    return 2;
+  } else if (currentWeek > 26) {
+    return 3;
+  } else
+    return 0;
 }
