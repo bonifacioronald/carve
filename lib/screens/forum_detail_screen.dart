@@ -126,7 +126,7 @@ class _forumPageState extends State<forumPage> {
                               width: double.infinity,
                               height: _provider2.filteredForumReplyList.length *
                                       360 +
-                                  _provider2.filteredForumReplyList.length * 16,
+                                  _provider2.filteredForumReplyList.length * 40,
                               child: ListView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount:
