@@ -107,13 +107,14 @@ class _forumPageState extends State<forumPage> {
                               publishedDate: displayedContent.publishedDate),
                           SizedBox(height: 16),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                   "Replies (${_provider2.filteredForumReplyList.length})",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
-                              SizedBox(width: 120),
+                              Expanded(child: SizedBox()),
                               Text("See all replies",
                                   style: TextStyle(
                                       fontSize: 16,
@@ -125,8 +126,8 @@ class _forumPageState extends State<forumPage> {
                           Container(
                               width: double.infinity,
                               height: _provider2.filteredForumReplyList.length *
-                                      360 +
-                                  _provider2.filteredForumReplyList.length * 40,
+                                      420 +
+                                  _provider2.filteredForumReplyList.length * 50,
                               child: ListView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount:
