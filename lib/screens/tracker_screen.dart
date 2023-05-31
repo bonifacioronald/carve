@@ -569,14 +569,14 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     SizedBox(height: 20),
                     GestureDetector(
                       onTap: () => _displayDataBottomSheet(
-                          'Medical History',
+                          'Record of Previous Medical Visit',
                           'Your previous visit/check-up',
                           context,
                           Provider.of<UserProvider>(context, listen: false)
                               .userProviderData
                               .medicalHistory),
                       child: TrackerOptions(
-                          "Medical History",
+                          "Medical Record",
                           "Your previous visit/check-up",
                           Icons.medical_information),
                     ),
