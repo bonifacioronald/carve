@@ -493,7 +493,7 @@ class _content_boxState extends State<content_box> {
               fontWeight:
                   widget.isTitleScreen ? FontWeight.w900 : FontWeight.w600,
               height: 1.5),
-          minFontSize: 23,
+          minFontSize: 20,
           maxFontSize: widget.isTitleScreen ? 40 : 23,
           maxLines: 13,
         ),
