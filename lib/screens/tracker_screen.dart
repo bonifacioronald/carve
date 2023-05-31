@@ -184,24 +184,29 @@ class _TrackerScreenState extends State<TrackerScreen> {
                 String finalRecord = "$todayDate - ${_noteController.text}";
 
                 if (notesOrMedicalHistory == 'notes') {
-                  Provider.of<UserProvider>(context, listen: false)
-                      .userProviderData
-                      .notes
-                      .add(finalRecord);
-                  Provider.of<UserProvider>(context, listen: false).addNewNotes(
-                      Provider.of<UserProvider>(context, listen: false)
-                          .userProviderData
-                          .notes);
+                  if (_noteController.text.isEmpty == false) {
+                    Provider.of<UserProvider>(context, listen: false)
+                        .userProviderData
+                        .notes
+                        .add(finalRecord);
+                    Provider.of<UserProvider>(context, listen: false)
+                        .addNewNotes(
+                            Provider.of<UserProvider>(context, listen: false)
+                                .userProviderData
+                                .notes);
+                  }
                 } else if (notesOrMedicalHistory == 'medicalHistory') {
-                  Provider.of<UserProvider>(context, listen: false)
-                      .userProviderData
-                      .medicalHistory
-                      .add(finalRecord);
-                  Provider.of<UserProvider>(context, listen: false)
-                      .addNewMedHis(
-                          Provider.of<UserProvider>(context, listen: false)
-                              .userProviderData
-                              .medicalHistory);
+                  if (_noteController.text.isEmpty == false) {
+                    Provider.of<UserProvider>(context, listen: false)
+                        .userProviderData
+                        .medicalHistory
+                        .add(finalRecord);
+                    Provider.of<UserProvider>(context, listen: false)
+                        .addNewMedHis(
+                            Provider.of<UserProvider>(context, listen: false)
+                                .userProviderData
+                                .medicalHistory);
+                  }
                 }
 
                 _noteController.clear();
