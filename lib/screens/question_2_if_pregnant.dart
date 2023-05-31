@@ -1,6 +1,7 @@
 import 'package:carve_app/screens/question_4_screen.dart';
 import 'package:carve_app/widgets/question_progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../models/colors.dart' as custom_colors;
@@ -14,7 +15,9 @@ class Question2PregnantScreen extends StatefulWidget {
       _Question2PregnantScreenState();
 
   int selectedAnswerIndex = 0;
-  TextEditingController ageController = TextEditingController();
+  TextEditingController lastPeriodController = TextEditingController();
+
+  TextEditingController dueDateController = TextEditingController();
 }
 
 String errorMessage = '';
@@ -24,6 +27,7 @@ void _updateUserChildAge(String childAge, BuildContext context) {
 }
 
 class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
+  late int pregnancyWeek;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +85,7 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                       Container(
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
-                        child: Text("How many weeks have you been pregnant?",
+                        child: Text("When did you last period start?",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: custom_colors.primaryDarkPurple,
@@ -90,9 +94,34 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                       ),
                       SizedBox(height: 30),
                       TextField(
-                          keyboardType: TextInputType.number,
+                          onTap: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now()
+                                    .subtract(Duration(days: 42 * 7)),
+                                lastDate: DateTime.now());
+
+                            if (pickedDate != null) {
+                              pregnancyWeek = ((DateTime.now()
+                                          .difference(pickedDate)
+                                          .inDays
+                                          .toInt()) /
+                                      7)
+                                  .ceil();
+                              debugPrint(pregnancyWeek.toString());
+                              String formattedDate =
+                                  DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                              setState(() {
+                                widget.lastPeriodController.text =
+                                    formattedDate;
+                              });
+                            }
+                          },
+                          readOnly: true,
                           cursorColor: custom_colors.primaryDarkPurple,
-                          controller: widget.ageController,
+                          controller: widget.lastPeriodController,
                           decoration: InputDecoration(
                             filled: true,
                             focusedBorder: OutlineInputBorder(
@@ -102,7 +131,81 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                                   width: 4.0),
                             ),
                             fillColor: Colors.white,
-                            hintText: 'enter week ...',
+                            hintText: 'enter last period ...',
+                            hintStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: custom_colors.primaryDarkPurple
+                                    .withOpacity(0.2)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none,
+                            ),
+                          )),
+                      SizedBox(height: 30),
+                      Container(
+                        height: 40,
+                        width: 40,
+                        child: Center(
+                            child: Text(
+                          "or",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: custom_colors.primaryDarkPurple),
+                        )),
+                      ),
+                      SizedBox(height: 30),
+                      Container(
+                        width: double.infinity,
+                        alignment: Alignment.centerLeft,
+                        child: Text("What is your due date?",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: custom_colors.primaryDarkPurple,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w900)),
+                      ),
+                      SizedBox(height: 30),
+                      TextField(
+                          readOnly: true,
+                          onTap: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime(2101));
+
+                            if (pickedDate != null) {
+                              pregnancyWeek = 42 -
+                                  ((pickedDate
+                                              .difference(DateTime.now())
+                                              .inDays
+                                              .toInt()) /
+                                          7)
+                                      .ceil();
+                              debugPrint(pregnancyWeek.toString());
+                              String formattedDate =
+                                  DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                              setState(() {
+                                widget.dueDateController.text = formattedDate;
+                              });
+                            }
+                          },
+                          keyboardType: TextInputType.number,
+                          cursorColor: custom_colors.primaryDarkPurple,
+                          controller: widget.dueDateController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                  color: custom_colors.primaryDarkPurple,
+                                  width: 4.0),
+                            ),
+                            fillColor: Colors.white,
+                            hintText: 'enter date ...',
                             hintStyle: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
@@ -115,7 +218,7 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                           )),
                       SizedBox(height: 30),
                       Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.center,
                           child: Text(
                             errorMessage,
                             style: TextStyle(
@@ -126,17 +229,15 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                       Spacer(),
                       GestureDetector(
                         onTap: (() {
-                          if (widget.ageController.text.isNotEmpty &&
-                              int.parse(widget.ageController.text) > 0 &&
-                              int.parse(widget.ageController.text) <= 42) {
+                          if (widget.dueDateController.text.isNotEmpty ||
+                              widget.lastPeriodController.text.isNotEmpty) {
                             Navigator.of(context)
                                 .pushNamed(Question4Screen.routeName);
                             _updateUserChildAge(
-                                widget.ageController.text, context);
+                                pregnancyWeek.toString(), context);
                           } else {
                             setState(() {
-                              errorMessage =
-                                  'Please Input A Valid Time Period! (1-42 weeks)';
+                              errorMessage = 'Please Input A Valid Date!';
                             });
                           }
                         }),
