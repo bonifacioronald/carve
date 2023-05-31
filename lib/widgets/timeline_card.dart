@@ -9,6 +9,24 @@ import 'calendar_selection.dart';
 
 class TimelineCard extends StatelessWidget {
   const TimelineCard({super.key});
+  String toOrdinal(int number) {
+    if (number < 0) throw Exception('Invalid Number');
+    if (number >= 11 && number <= 13) {
+      return '${number}th';
+    }
+    ;
+
+    switch (number % 10) {
+      case 1:
+        return '${number}st';
+      case 2:
+        return '${number}nd';
+      case 3:
+        return '${number}rd';
+      default:
+        return '${number}th';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +67,7 @@ class TimelineCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${displayedWeek}th Week of Pregnancy",
+                    "${toOrdinal(displayedWeek)} Week of Pregnancy",
                     style: TextStyle(
                         color: primaryDarkPurple,
                         fontSize: 18,
