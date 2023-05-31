@@ -1,5 +1,6 @@
 import 'package:carve_app/widgets/icon_switching.dart';
 import 'package:flutter/material.dart';
+import '../models/colors.dart';
 import '/models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
 
@@ -58,7 +59,7 @@ class forumContentCard extends StatelessWidget {
                       Text(
                         '$authorName •',
                         style: TextStyle(
-                          color: Color(0XFF000000).withOpacity(0.4),
+                          color: primaryDarkPurple.withOpacity(0.4),
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -68,7 +69,7 @@ class forumContentCard extends StatelessWidget {
                       Text(
                         DateFormat('MMM dd').format(publishedDate).toString(),
                         style: TextStyle(
-                          color: Color(0XFF000000).withOpacity(0.4),
+                          color: primaryDarkPurple.withOpacity(0.4),
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -129,7 +130,7 @@ class forumContentCard extends StatelessWidget {
                       child: Text(
                         category.toString(),
                         style: TextStyle(
-                          color: Colors.black,
+                          color: primaryDarkPurple,
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),

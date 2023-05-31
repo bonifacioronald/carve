@@ -65,12 +65,12 @@ class replyCard extends StatelessWidget {
                                 style: TextStyle(
                                     color: custom_colors.primaryDarkPurple
                                         .withOpacity(0.4),
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w600),
                                 overflow: TextOverflow.ellipsis),
                           ],
                         )),
-                    SizedBox(width: 124),
+                    SizedBox(width: 120),
                     // Bookmark icon
                     iconSwitching(
                       Icons.bookmark_border,
@@ -83,7 +83,7 @@ class replyCard extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
             ),
             Text(
               content,

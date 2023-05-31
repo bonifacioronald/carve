@@ -88,7 +88,7 @@ class _ForumAllScreenState extends State<ForumAllScreen> {
                 Container(
                   width: double.infinity,
                   height: _provider.forumIdList.length * 200 +
-                      _provider.forumIdList.length * 20,
+                      _provider.forumIdList.length * 25,
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: _provider.forumIdList.length,
