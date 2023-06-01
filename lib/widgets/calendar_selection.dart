@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 

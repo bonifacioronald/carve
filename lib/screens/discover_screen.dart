@@ -1,9 +1,9 @@
-import '../models/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/content_provider.dart';
 import '../widgets/content_library_card.dart';
 import '../widgets/resources_main_card.dart';
+import '../models/colors.dart';
 import 'content_library_story_screen.dart';
 import 'loading_screen.dart';
 

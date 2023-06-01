@@ -1,6 +1,6 @@
-import '../models/colors.dart';
 import 'package:flutter/material.dart';
 import '../widgets/shopping_widget.dart';
+import '../models/colors.dart';
 
 class ShoppingScreen extends StatefulWidget {
   const ShoppingScreen({super.key});

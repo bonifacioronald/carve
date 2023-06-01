@@ -1,12 +1,12 @@
-import '../models/milestones_model.dart';
-import '../providers/user_provider.dart';
-import '../widgets/calendar_selection.dart';
-import '../widgets/tracker_baby.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:table_calendar/table_calendar.dart';
+import '../models/milestones_model.dart';
+import '../providers/user_provider.dart';
+import '../widgets/calendar_selection.dart';
+import '../widgets/tracker_baby.dart';
 
 class TrackerScreen extends StatefulWidget {
   static const routeName = '/tracker-screen';

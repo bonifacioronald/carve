@@ -1,7 +1,7 @@
-import '../models/colors.dart' as custom_colors;
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import '../models/colors.dart' as custom_colors;
 
 class SettingWidget extends StatelessWidget {
   IconData icon;

@@ -1,6 +1,6 @@
-import '../models/content_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../models/content_model.dart';
 
 class ContentProvider with ChangeNotifier {
   List<String> contentIdList = [];

@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/video_model.dart';
 import '../providers/user_provider.dart';
 import '../providers/video_provider.dart';
 import '../widgets/video_course_card.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 
 class MainMenuVideoCourseSection extends StatelessWidget {

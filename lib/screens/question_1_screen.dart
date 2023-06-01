@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 import '../screens/question_2_if_pregnant.dart';
 import '../widgets/question_progress_bar.dart';
 import '../widgets/question_screen_answer_options.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 
 class Question1Screen extends StatefulWidget {

@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/forum_provider.dart';
 import '../screens/forum_all_screen.dart';
 import '../screens/forum_detail_screen.dart';
 import '../screens/loading_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../widgets/create_button.dart';
 import '../widgets/forum_card.dart';

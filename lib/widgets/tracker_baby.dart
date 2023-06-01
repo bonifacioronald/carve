@@ -1,8 +1,8 @@
-import '../models/user_model.dart';
-import '../providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
+import '../models/user_model.dart';
+import '../providers/user_provider.dart';
 
 class TrackerBabyCard extends StatefulWidget {
   const TrackerBabyCard({

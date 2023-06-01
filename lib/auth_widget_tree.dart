@@ -1,7 +1,7 @@
-import '../screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'navigation.dart';
+import '../screens/welcome_screen.dart';
 
 class AuthWidgetTree extends StatefulWidget {
   const AuthWidgetTree({super.key});

@@ -1,10 +1,10 @@
-import '../widgets/category_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../navigation.dart';
 import '../providers/user_provider.dart';
 import '../screens/resource_detail_screen.dart';
+import '../widgets/category_button.dart';
 
 class MainMenuCategorySection extends StatelessWidget {
   const MainMenuCategorySection({super.key});

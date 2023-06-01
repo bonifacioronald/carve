@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/forum_provider.dart';
 import '../screens/forum_detail_screen.dart';
 import '../widgets/forum_card.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '/models/colors.dart' as custom_colors;
 
 class ForumAllScreen extends StatefulWidget {

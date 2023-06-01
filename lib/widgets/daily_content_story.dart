@@ -2,13 +2,13 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../models/content_model.dart';
-import '../widgets/icon_switching_button.dart';
+import 'package:intl/intl.dart';
+import 'package:translator/translator.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:intl/intl.dart';
-import 'package:translator/translator.dart';
+import '../models/content_model.dart';
+import '../widgets/icon_switching_button.dart';
 
 class DailyContentStory extends StatefulWidget {
   ContentModel content;

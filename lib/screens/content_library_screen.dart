@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../providers/content_provider.dart';
 import '../screens/content_library_story_screen.dart';
 import '../screens/loading_screen.dart';
 import '../widgets/content_library_card.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 
 class ContentLibraryScreen extends StatefulWidget {

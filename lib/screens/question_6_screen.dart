@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../navigation.dart';
 import '../providers/user_provider.dart';
 import '../widgets/question_progress_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 
 class Question6Screen extends StatefulWidget {

@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../widgets/map_screen_widgets.dart';
 import '../widgets/resource_card.dart';
 import '../widgets/search_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../models/resources_model.dart';
 import '../providers/resource_provider.dart';

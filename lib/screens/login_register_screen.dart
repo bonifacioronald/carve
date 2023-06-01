@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../navigation.dart';
 import '../screens/question_title_screen.dart';
-import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:firebase_auth/firebase_auth.dart';
 import '../auth.dart';
 
 class LoginRegisterScreen extends StatefulWidget {

@@ -1,12 +1,12 @@
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 import '../providers/user_provider.dart';
 import '../screens/loading_screen.dart';
 import '../providers/daily_content_provider.dart';
 import '../widgets/daily_content_story.dart';
 import '../widgets/toggle_button.dart';
-import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class DailyContentScreen extends StatefulWidget {
   const DailyContentScreen({super.key});

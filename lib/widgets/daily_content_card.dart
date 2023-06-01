@@ -1,8 +1,8 @@
-import '../providers/user_provider.dart';
-import '../screens/daily_content_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
+import '../providers/user_provider.dart';
+import '../screens/daily_content_screen.dart';
 
 class DailyContentCard extends StatelessWidget {
   const DailyContentCard({super.key});

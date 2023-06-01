@@ -1,7 +1,7 @@
-import '../models/forum_model.dart';
-import '../models/forum_reply_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../models/forum_model.dart';
+import '../models/forum_reply_model.dart';
 
 class ForumReplyProvider with ChangeNotifier {
   List<String> forumReplyIdList = [];

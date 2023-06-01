@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/user_model.dart';
 import '../providers/user_provider.dart';
 import '../providers/video_provider.dart';
@@ -6,8 +8,6 @@ import '../widgets/custom_app_bar.dart';
 import '../widgets/daily_content_card.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/timeline_card.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../models/colors.dart';
 import '../navigation.dart';

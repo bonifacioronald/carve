@@ -1,6 +1,6 @@
-import '../models/forum_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../models/forum_model.dart';
 
 class ForumProvider with ChangeNotifier {
   List<String> forumIdList = [];

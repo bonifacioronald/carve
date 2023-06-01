@@ -1,5 +1,5 @@
-import '../screens/question_1_screen.dart';
 import 'package:flutter/material.dart';
+import '../screens/question_1_screen.dart';
 import '../models/colors.dart' as custom_colors;
 
 class QuestionTitleScreen extends StatelessWidget {

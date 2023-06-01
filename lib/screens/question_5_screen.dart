@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../screens/question_6_screen.dart';
 import '../widgets/question_progress_bar.dart';
 import '../widgets/question_screen_answer_options.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 

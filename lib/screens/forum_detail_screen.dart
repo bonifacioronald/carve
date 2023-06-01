@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/forum_model.dart';
 import '../models/user_model.dart';
 import '../providers/forum_reply_provider.dart';
@@ -5,8 +7,6 @@ import '../providers/user_provider.dart';
 import '../screens/loading_screen.dart';
 import '../widgets/forum_content_page_card.dart';
 import '../widgets/reply_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '/models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
 

@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import './models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 import '../screens/discover_screen.dart';
 import '../screens/forum_home_screen.dart';
@@ -5,9 +8,6 @@ import '../screens/home_screen.dart';
 import '../screens/loading_screen.dart';
 import '../screens/setting_screen.dart';
 import '../screens/tracker_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import './models/colors.dart' as custom_colors;
 
 class Navigation extends StatefulWidget {
   static const routeName = '/navigation';

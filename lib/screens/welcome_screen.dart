@@ -1,8 +1,8 @@
-import '../widgets/welcome_page_view.dart';
-import '../models/colors.dart' as custom_colors;
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'login_register_screen.dart';
+import '../widgets/welcome_page_view.dart';
+import '../models/colors.dart' as custom_colors;
 
 class WelcomeScreen extends StatefulWidget {
   WelcomeScreen({super.key});

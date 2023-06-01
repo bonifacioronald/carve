@@ -1,6 +1,6 @@
-import '../models/colors.dart';
 import 'package:flutter/material.dart';
 import '../screens/resource_detail_screen.dart';
+import '../models/colors.dart';
 
 class ResourcesMainCard extends StatelessWidget {
   String text;

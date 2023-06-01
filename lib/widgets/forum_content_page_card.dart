@@ -1,8 +1,8 @@
-import '../widgets/icon_switching.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart';
 import '/models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
+import '../widgets/icon_switching.dart';
 
 class forumContentCard extends StatelessWidget {
   String authorName;
