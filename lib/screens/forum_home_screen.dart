@@ -1,13 +1,12 @@
-import 'package:carve_app/providers/forum_provider.dart';
-import 'package:carve_app/screens/forum_all_screen.dart';
-import 'package:carve_app/screens/forum_detail_screen.dart';
-import 'package:carve_app/screens/loading_screen.dart';
-import 'package:carve_app/widgets/icon_switching.dart';
+import '../providers/forum_provider.dart';
+import '../screens/forum_all_screen.dart';
+import '../screens/forum_detail_screen.dart';
+import '../screens/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:carve_app/widgets/create_button.dart';
-import 'package:carve_app/widgets/forum_card.dart';
+import '../widgets/create_button.dart';
+import '../widgets/forum_card.dart';
 
 class ForumHomeScreen extends StatefulWidget {
   const ForumHomeScreen({super.key});
@@ -39,9 +38,11 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
         },
       );
     } else {
-      setState(() {
-        _isLoading = false;
-      });
+      setState(
+        () {
+          _isLoading = false;
+        },
+      );
     }
 
     super.initState();
@@ -68,25 +69,26 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
                   children: [
                     Text("Need Any Support?\nAsk Here!",
                         style: TextStyle(
-                            color: Color(0XFF02084B),
+                            color: custom_colors.primaryDarkPurple,
                             fontSize: 32,
                             fontWeight: FontWeight.bold)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                         "Join and connect with parents in the community nearby",
                         style: TextStyle(
-                            color: Color(0XFF02084B).withOpacity(0.5),
+                            color: custom_colors.primaryDarkPurple
+                                .withOpacity(0.5),
                             fontSize: 16,
                             fontWeight: FontWeight.bold)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     // Create forum button
-                    createButton("Create Forum"),
-                    SizedBox(height: 20),
+                    const createButton("Create Forum"),
+                    const SizedBox(height: 20),
                     Divider(
-                      color: Color(0XFF02084B).withOpacity(0.1),
+                      color: custom_colors.primaryDarkPurple.withOpacity(0.1),
                       thickness: 2,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -104,7 +106,7 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
                             child: Text(
                               'See All',
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 16,
                                   color: custom_colors.secondaryLightPurple,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -112,14 +114,14 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Container(
                       width: double.infinity,
                       height: _provider.forumIdList.length * 200 +
                           _provider.forumIdList.length * 20,
                       child: ListView.builder(
                         padding: EdgeInsets.zero,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: _provider.forumIdList.length,
                         itemBuilder: (context, index) {
                           return Column(
@@ -143,7 +145,7 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
                                       .loadedForumList[index].totalReplies,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               )
                             ],

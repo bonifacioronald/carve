@@ -1,9 +1,8 @@
-import 'package:carve_app/screens/question_4_screen.dart';
-import 'package:carve_app/widgets/question_progress_bar.dart';
+import '../screens/question_4_screen.dart';
+import '../widgets/question_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 
@@ -51,14 +50,14 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Just A Few More...",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     QuestionProgressBar(3, 6)
@@ -67,16 +66,17 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: custom_colors.backgroundPurple,
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: AssetImage(
                             'lib/assets/images/question_screen_bg.png'),
                         fit: BoxFit.fitWidth,
                       ),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40))),
                   child: Column(
@@ -92,14 +92,14 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900)),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       TextField(
                           onTap: () async {
                             DateTime? pickedDate = await showDatePicker(
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime.now()
-                                    .subtract(Duration(days: 42 * 7)),
+                                    .subtract(const Duration(days: 42 * 7)),
                                 lastDate: DateTime.now());
 
                             if (pickedDate != null) {
@@ -142,7 +142,7 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                               borderSide: BorderSide.none,
                             ),
                           )),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Container(
                         height: 40,
                         width: 40,
@@ -155,7 +155,7 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                               color: custom_colors.primaryDarkPurple),
                         )),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Container(
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
@@ -166,7 +166,7 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900)),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       TextField(
                           readOnly: true,
                           onTap: () async {
@@ -216,7 +216,7 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                               borderSide: BorderSide.none,
                             ),
                           )),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Align(
                           alignment: Alignment.center,
                           child: Text(
@@ -226,7 +226,7 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                                 fontSize: 14,
                                 color: custom_colors.primaryDarkPurple),
                           )),
-                      Spacer(),
+                      const Spacer(),
                       GestureDetector(
                         onTap: (() {
                           if (widget.dueDateController.text.isNotEmpty ||
@@ -253,14 +253,14 @@ class _Question2PregnantScreenState extends State<Question2PregnantScreen> {
                                     .withOpacity(0.3),
                                 spreadRadius: 2,
                                 blurRadius: 5,
-                                offset: Offset(0, 2),
+                                offset: const Offset(0, 2),
                               ),
                             ],
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 'Next Question',
                                 style: TextStyle(
                                     fontSize: 16,

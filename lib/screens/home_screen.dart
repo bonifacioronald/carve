@@ -1,12 +1,11 @@
-import 'package:carve_app/models/user_model.dart';
-import 'package:carve_app/models/video_model.dart';
-import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/providers/video_provider.dart';
-import 'package:carve_app/screens/loading_screen.dart';
-import 'package:carve_app/widgets/custom_app_bar.dart';
-import 'package:carve_app/widgets/daily_content_card.dart';
-import 'package:carve_app/widgets/search_bar.dart';
-import 'package:carve_app/widgets/timeline_card.dart';
+import '../models/user_model.dart';
+import '../providers/user_provider.dart';
+import '../providers/video_provider.dart';
+import '../screens/loading_screen.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/daily_content_card.dart';
+import '../widgets/search_bar.dart';
+import '../widgets/timeline_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
@@ -63,9 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       );
     } else {
-      setState(() {
-        _isLoading = false;
-      });
+      setState(
+        () {
+          _isLoading = false;
+        },
+      );
     }
 
     super.initState();
@@ -83,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: custom_colors.backgroundPurple,
               child: Column(
                 children: [
-                  CustomAppBar(),
+                  const CustomAppBar(),
                   //First Half Until Content Card
                   Container(
                     height: 364,
@@ -92,24 +93,26 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           height: 320,
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 20),
                           decoration: BoxDecoration(
-                              color: custom_colors.primaryDarkPurple,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(60),
-                                  bottomRight: Radius.circular(60))),
+                            color: custom_colors.primaryDarkPurple,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(60),
+                              bottomRight: Radius.circular(60),
+                            ),
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Welcome Back,\n${currentUser.name}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
                               GestureDetector(
@@ -121,11 +124,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        Align(
+                        const Align(
                           alignment: Alignment.bottomCenter,
                           child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            padding: EdgeInsets.symmetric(horizontal: 20.0),
                             child: DailyContentCard(),
                           ),
                         ),
@@ -133,11 +135,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     // color: Colors.red,
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 34,
                         ),
                         Row(
@@ -152,17 +154,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         GestureDetector(
                             onTap: () => navigationBar.onTap!(2),
-                            child: TimelineCard()),
-                        SizedBox(height: 24),
-                        MainMenuCategorySection(),
-                        SizedBox(
+                            child: const TimelineCard()),
+                        const SizedBox(height: 24),
+                        const MainMenuCategorySection(),
+                        const SizedBox(
                           height: 30,
                         ),
-                        MainMenuVideoCourseSection(),
-                        SizedBox(
+                        const MainMenuVideoCourseSection(),
+                        const SizedBox(
                           height: 30,
                         ),
                       ],
