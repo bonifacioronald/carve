@@ -1,4 +1,4 @@
-import 'package:carve_app/models/colors.dart' as custom_colors;
+import '../models/colors.dart' as custom_colors;
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class SettingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -25,7 +25,7 @@ class SettingWidget extends StatelessWidget {
                   color: custom_colors.primaryDarkPurple.withOpacity(0.2),
                   spreadRadius: 2,
                   blurRadius: 2,
-                  offset: Offset(0, 2),
+                  offset: const Offset(0, 2),
                 ),
               ]
             : null,
@@ -36,7 +36,7 @@ class SettingWidget extends StatelessWidget {
             icon,
             color: custom_colors.primaryDarkPurple,
           ),
-          SizedBox(
+          const SizedBox(
             width: 12,
           ),
           Text(
@@ -46,7 +46,7 @@ class SettingWidget extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: isProfile ? FontWeight.bold : FontWeight.w400),
           ),
-          Spacer(),
+          const Spacer(),
           Icon(
             isProfile ? null : Icons.keyboard_arrow_right_sharp,
             color: custom_colors.primaryDarkPurple,

@@ -1,17 +1,13 @@
 import 'dart:io';
-import 'package:carve_app/models/user_model.dart';
-import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/forum_all_screen.dart';
-import 'package:carve_app/screens/forum_home_screen.dart';
-import 'package:carve_app/widgets/add_image.dart';
-import 'package:carve_app/widgets/category_button.dart';
-import 'package:carve_app/widgets/create_button.dart';
-import 'package:carve_app/widgets/forum_create_page_description.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import '../models/user_model.dart';
+import '../providers/user_provider.dart';
+import '../widgets/add_image.dart';
+import '../widgets/category_button.dart';
 import '/models/colors.dart' as custom_colors;
 
 class createForum extends StatefulWidget {
@@ -22,8 +18,8 @@ class createForum extends StatefulWidget {
 }
 
 final _forumAddedSnackBar = SnackBar(
-    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-    padding: EdgeInsets.all(20),
+    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    padding: const EdgeInsets.all(20),
     backgroundColor: custom_colors.secondaryLightPurple,
     behavior: SnackBarBehavior.floating,
     shape: const RoundedRectangleBorder(
@@ -94,7 +90,7 @@ class _createForumState extends State<createForum> {
             children: [
               IconButton(
                 padding: EdgeInsets.zero,
-                constraints: BoxConstraints(),
+                constraints: const BoxConstraints(),
                 onPressed: (() => Navigator.of(context).pop()),
                 icon: Icon(
                   Icons.keyboard_arrow_left_rounded,
@@ -102,7 +98,7 @@ class _createForumState extends State<createForum> {
                   color: custom_colors.primaryDarkPurple,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Create A Forum',
                 style: TextStyle(
@@ -110,32 +106,36 @@ class _createForumState extends State<createForum> {
                     color: custom_colors.primaryDarkPurple,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 controller: _titleController,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color(0XFFFFFFFF),
+                  fillColor: const Color(0XFFFFFFFF),
                   hintText: "Forum Title",
                   hintStyle: TextStyle(
-                    color: Color(0XFF02084B).withOpacity(0.3),
+                    color: custom_colors.primaryDarkPurple.withOpacity(0.3),
                     fontSize: 16,
                   ),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                          color: Color(0XFF02084B).withOpacity(0.2))),
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: custom_colors.primaryDarkPurple.withOpacity(0.2),
+                    ),
+                  ),
                   focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0XFF02084B))),
+                    borderSide:
+                        BorderSide(color: custom_colors.primaryDarkPurple),
+                  ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text("Categories",
                   style: TextStyle(
-                      color: Color(0XFF02084B),
+                      color: custom_colors.primaryDarkPurple,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(children: [
@@ -158,7 +158,7 @@ class _createForumState extends State<createForum> {
                           Icons.pregnant_woman,
                           "Pregnancy"),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -177,7 +177,7 @@ class _createForumState extends State<createForum> {
                           Icons.child_care_rounded,
                           "Growth"),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -196,7 +196,7 @@ class _createForumState extends State<createForum> {
                           Icons.restaurant,
                           "Nutrition"),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -215,7 +215,7 @@ class _createForumState extends State<createForum> {
                           Icons.school,
                           "Education"),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -234,7 +234,7 @@ class _createForumState extends State<createForum> {
                           Icons.attach_money,
                           "Financial"),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -253,15 +253,15 @@ class _createForumState extends State<createForum> {
                           Icons.drag_indicator_sharp,
                           "Others"),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                   ])),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text("Description",
                   style: TextStyle(
-                      color: Color(0XFF02084B),
+                      color: custom_colors.primaryDarkPurple,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
                   height: 120,
                   child: Container(
@@ -280,27 +280,30 @@ class _createForumState extends State<createForum> {
                         maxLengthEnforcement: MaxLengthEnforcement.enforced,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Color(0XFFFFFFFF),
+                          fillColor: const Color(0XFFFFFFFF),
                           hintText: "Description",
                           hintStyle: TextStyle(
-                            color: Color(0XFF02084B).withOpacity(0.3),
+                            color: custom_colors.primaryDarkPurple
+                                .withOpacity(0.3),
                             fontSize: 16,
                           ),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
-                                  color: Color(0XFF02084B).withOpacity(0.2))),
+                                  color: custom_colors.primaryDarkPurple
+                                      .withOpacity(0.2))),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0XFF02084B))),
+                              borderSide: BorderSide(
+                                  color: custom_colors.primaryDarkPurple)),
                         ),
                       ))),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text("Add Media",
                   style: TextStyle(
-                      color: Color(0XFF02084B),
+                      color: custom_colors.primaryDarkPurple,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   Expanded(
@@ -309,7 +312,7 @@ class _createForumState extends State<createForum> {
                         Icons.photo_album_rounded,
                         () => pickImage(ImageSource.gallery)),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Expanded(
                     child: AddImageInputButton(
                         "Take a Photo",
@@ -318,7 +321,7 @@ class _createForumState extends State<createForum> {
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
                   createNewForum(
@@ -336,10 +339,10 @@ class _createForumState extends State<createForum> {
                   width: 352,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: Color(0XFF02084B),
+                    color: custom_colors.primaryDarkPurple,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Publish Forum",
                       style: TextStyle(

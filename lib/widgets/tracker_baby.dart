@@ -1,5 +1,5 @@
-import 'package:carve_app/models/user_model.dart';
-import 'package:carve_app/providers/user_provider.dart';
+import '../models/user_model.dart';
+import '../providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
@@ -134,11 +134,13 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
       ];
     } else {
       [
-        setState(() {
-          imageUrl =
-              'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_9month.png';
-          loadedBabyImage = true;
-        })
+        setState(
+          () {
+            imageUrl =
+                'lib/assets/images/pregnancy_tracker_assets/pregnancy_tracker_fetus_9month.png';
+            loadedBabyImage = true;
+          },
+        )
       ];
     }
   }
@@ -215,17 +217,17 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
     print(exampleList.isEmpty);
 
     return Container(
-      padding: EdgeInsets.only(top: 80, left: 20, right: 20, bottom: 10),
+      padding: const EdgeInsets.only(top: 80, left: 20, right: 20, bottom: 10),
       width: double.infinity,
       height: 610,
       decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [Color(0xffE5E6FE), Color(0xff8F94FC)]),
-          boxShadow: [BoxShadow(blurRadius: 10)],
+          boxShadow: [const BoxShadow(blurRadius: 10)],
           color: custom_colors.secondaryLightPurple,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(40),
               bottomRight: Radius.circular(40))),
       child: Column(
@@ -254,13 +256,13 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
                     backgroundColor: Colors.white30,
                     value: selectedWeeks / 42,
                     strokeWidth: 10,
-                    valueColor: AlwaysStoppedAnimation(Colors.white),
+                    valueColor: const AlwaysStoppedAnimation(Colors.white),
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -271,7 +273,7 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
                     fontWeight: FontWeight.w900,
                     color: custom_colors.primaryDarkPurple),
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () {
                   setState(() {
@@ -282,18 +284,18 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
                     addList();
                   });
                 },
-                child: Text(
+                child: const Text(
                   "Today",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 12,
               )
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             width: 351,
             height: 32,
@@ -344,19 +346,19 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
                   child: TrimesterSelection("Third", currentThirdTrimester)),
             ]),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           WeekView(selectedWeeks, exampleList),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          Text(
+          const Text(
             "Weeks",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           Text(
             babyDescription[babyListIndex],
-            style: TextStyle(fontSize: 18, color: Colors.white),
+            style: const TextStyle(fontSize: 18, color: Colors.white),
             textAlign: TextAlign.center,
           )
         ],
@@ -384,27 +386,28 @@ class _WeekViewState extends State<WeekView> {
       keepScrollOffset: false,
     );
     return Container(
-        width: double.infinity,
-        height: 60,
-        child: ListView.builder(
-          controller: scrollController,
-          clipBehavior: Clip.none,
-          padding: EdgeInsets.zero,
-          primary: false,
-          scrollDirection: Axis.horizontal,
-          physics: BouncingScrollPhysics(),
-          itemCount: widget.exampleWeek.length,
-          itemBuilder: (_, index) {
-            return Row(
-              children: [
-                widget.exampleWeek[index],
-                SizedBox(
-                  width: 30,
-                ),
-              ],
-            );
-          },
-        ));
+      width: double.infinity,
+      height: 60,
+      child: ListView.builder(
+        controller: scrollController,
+        clipBehavior: Clip.none,
+        padding: EdgeInsets.zero,
+        primary: false,
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: widget.exampleWeek.length,
+        itemBuilder: (_, index) {
+          return Row(
+            children: [
+              widget.exampleWeek[index],
+              const SizedBox(
+                width: 30,
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 }
 

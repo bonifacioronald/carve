@@ -35,13 +35,13 @@ Widget selectedTimePeriodContainer(String text) {
           color: custom_colors.secondaryLightPurple.withOpacity(0.5),
           spreadRadius: 2,
           blurRadius: 2,
-          offset: Offset(0, 0),
+          offset: const Offset(0, 0),
         ),
       ],
     ),
     child: Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 16,
         color: Colors.white,
         fontWeight: FontWeight.bold,
@@ -71,13 +71,13 @@ class _CalendarSelectionState extends State<CalendarSelection> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Add Note'),
+        title: const Text('Add Note'),
         content: TextField(
             autofocus: true,
             controller: _noteController,
             decoration: InputDecoration(
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                   onPressed: () {
                     _noteController.clear();
                   },
@@ -97,7 +97,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
 
               Navigator.pop(context);
             },
-            child: Text(
+            child: const Text(
               'Submit',
               style: TextStyle(fontWeight: FontWeight.w900),
             ),
@@ -214,7 +214,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                                 .withOpacity(0.4),
                             spreadRadius: 4,
                             blurRadius: 5,
-                            offset: Offset(0, 0),
+                            offset: const Offset(0, 0),
                           ),
                         ],
                       ),
@@ -227,7 +227,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                               height: 250)),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text('Week ' + displayedWeek.toString(),
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
@@ -331,7 +331,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 0,
                   ),
                   TableCalendar(
@@ -389,7 +389,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                       });
                     },
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
@@ -410,7 +410,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.arrow_left_outlined,
                             ),
                             Text(
@@ -433,7 +433,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
         _noteController.text.isNotEmpty
             ? Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
@@ -441,12 +441,12 @@ class _CalendarSelectionState extends State<CalendarSelection> {
                     style: TextStyle(
                         fontSize: 16, color: custom_colors.primaryDarkPurple),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   )
                 ],
               )
-            : SizedBox(
+            : const SizedBox(
                 height: 20,
               ),
         GestureDetector(
@@ -457,7 +457,7 @@ class _CalendarSelectionState extends State<CalendarSelection> {
             decoration: BoxDecoration(
                 color: custom_colors.primaryDarkPurple, shape: BoxShape.circle),
             alignment: Alignment.center,
-            child: Icon(Icons.add, color: Colors.white),
+            child: const Icon(Icons.add, color: Colors.white),
           ),
         )
       ],

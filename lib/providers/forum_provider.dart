@@ -1,4 +1,4 @@
-import 'package:carve_app/models/forum_model.dart';
+import '../models/forum_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -7,16 +7,18 @@ class ForumProvider with ChangeNotifier {
   List<ForumModel> loadedForumList = [];
 
   Future<void>? createNewForum(String content) {
-    FirebaseFirestore.instance.collection('forum').doc().set({
-      "authorName": '',
-      "category": '',
-      "content": content,
-      'id': '',
-      'publishedDate': '',
-      'title': '',
-      'totalLikes': '',
-      'totalReplies': '',
-    });
+    FirebaseFirestore.instance.collection('forum').doc().set(
+      {
+        "authorName": '',
+        "category": '',
+        "content": content,
+        'id': '',
+        'publishedDate': '',
+        'title': '',
+        'totalLikes': '',
+        'totalReplies': '',
+      },
+    );
   }
 
   Future<void> fetchForumId() async {

@@ -1,4 +1,4 @@
-import 'package:carve_app/models/content_model.dart';
+import '../models/content_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -68,9 +68,11 @@ class DailyContentProvider with ChangeNotifier {
               loadedNonPregnantContent.content[i].replaceAll('\\n', '\n');
           loadedNonPregnantContent.content[i] = formattedString;
         }
-        List.from(snapshot.data()!['suitableCategories']).forEach((category) {
-          loadedNonPregnantContent.suitableCategories.add(category);
-        });
+        List.from(snapshot.data()!['suitableCategories']).forEach(
+          (category) {
+            loadedNonPregnantContent.suitableCategories.add(category);
+          },
+        );
       },
     );
   }

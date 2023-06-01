@@ -1,5 +1,5 @@
-import 'package:carve_app/models/forum_model.dart';
-import 'package:carve_app/models/forum_reply_model.dart';
+import '../models/forum_model.dart';
+import '../models/forum_reply_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -70,11 +70,13 @@ class ForumReplyProvider with ChangeNotifier {
 
   void selectDisplayedForumReplybyId(String id) {
     filteredForumReplyList = [];
-    loadedForumReplyList.forEach((forumReply) {
-      if (forumReply.forumId == id) {
-        filteredForumReplyList.add(forumReply);
-      }
-    });
+    loadedForumReplyList.forEach(
+      (forumReply) {
+        if (forumReply.forumId == id) {
+          filteredForumReplyList.add(forumReply);
+        }
+      },
+    );
   }
 
   void updateForumReplyList() {

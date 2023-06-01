@@ -123,28 +123,34 @@ class UserProvider with ChangeNotifier {
         .collection('user')
         .doc(Auth().currentUser!.uid)
         .get()
-        .then((snapshot) {
-      userProviderData.id = snapshot.data()!['id'];
-      userProviderData.name = snapshot.data()!['name'];
-      userProviderData.email = snapshot.data()!['email'];
-      userProviderData.complication = snapshot.data()!['complication'];
-      userProviderData.childAge = snapshot.data()!['childAge'];
-      userProviderData.childGender = snapshot.data()!['childGender'];
-      userProviderData.numOfTimesPregnant =
-          snapshot.data()!['numberOfTimesPregnant'];
-      userProviderData.parentType = snapshot.data()!['parentType'];
-      userProviderData.isPregnant = snapshot.data()!['isPregnant'];
-      userProviderData.weight = snapshot.data()!['weight'];
-      List.from(snapshot.data()!['medicalHistory']).forEach((medHis) {
-        String data = medHis;
-        tempMedicalHistory.add(data);
-      });
-      userProviderData.medicalHistory = tempMedicalHistory;
-      List.from(snapshot.data()!['notes']).forEach((notes) {
-        String data = notes;
-        tempNotes.add(data);
-      });
-      userProviderData.notes = tempNotes;
-    });
+        .then(
+      (snapshot) {
+        userProviderData.id = snapshot.data()!['id'];
+        userProviderData.name = snapshot.data()!['name'];
+        userProviderData.email = snapshot.data()!['email'];
+        userProviderData.complication = snapshot.data()!['complication'];
+        userProviderData.childAge = snapshot.data()!['childAge'];
+        userProviderData.childGender = snapshot.data()!['childGender'];
+        userProviderData.numOfTimesPregnant =
+            snapshot.data()!['numberOfTimesPregnant'];
+        userProviderData.parentType = snapshot.data()!['parentType'];
+        userProviderData.isPregnant = snapshot.data()!['isPregnant'];
+        userProviderData.weight = snapshot.data()!['weight'];
+        List.from(snapshot.data()!['medicalHistory']).forEach(
+          (medHis) {
+            String data = medHis;
+            tempMedicalHistory.add(data);
+          },
+        );
+        userProviderData.medicalHistory = tempMedicalHistory;
+        List.from(snapshot.data()!['notes']).forEach(
+          (notes) {
+            String data = notes;
+            tempNotes.add(data);
+          },
+        );
+        userProviderData.notes = tempNotes;
+      },
+    );
   }
 }

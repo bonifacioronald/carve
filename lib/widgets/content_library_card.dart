@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
 import '../models/colors.dart';
 
 class ContentLibraryCard extends StatelessWidget {
@@ -18,25 +17,26 @@ class ContentLibraryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        height: 300,
-        padding: EdgeInsets.zero,
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: primaryDarkPurple.withOpacity(0.2),
-                spreadRadius: 3,
-                blurRadius: 2,
-                offset: Offset(0, 3),
-              )
-            ],
-            borderRadius: BorderRadius.circular(12),
-            image: DecorationImage(
-                image: NetworkImage(contentImageUrl), fit: BoxFit.cover)),
-        child: Column(children: [
+      width: double.infinity,
+      height: 300,
+      padding: EdgeInsets.zero,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: primaryDarkPurple.withOpacity(0.2),
+              spreadRadius: 3,
+              blurRadius: 2,
+              offset: const Offset(0, 3),
+            )
+          ],
+          borderRadius: BorderRadius.circular(12),
+          image: DecorationImage(
+              image: NetworkImage(contentImageUrl), fit: BoxFit.cover)),
+      child: Column(
+        children: [
           Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: Colors.white,
                   image: DecorationImage(
@@ -45,7 +45,8 @@ class ContentLibraryCard extends StatelessWidget {
               child: Align(
                   alignment: Alignment.topLeft,
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     decoration: BoxDecoration(
                         color: backgroundPurple,
                         borderRadius: BorderRadius.circular(20)),
@@ -61,7 +62,7 @@ class ContentLibraryCard extends StatelessWidget {
                   ))),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               width: double.infinity,
               color: Colors.white,
               child: Column(
@@ -78,7 +79,7 @@ class ContentLibraryCard extends StatelessWidget {
                       color: primaryDarkPurple,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     contentDesc,
                     textAlign: TextAlign.start,
@@ -93,6 +94,8 @@ class ContentLibraryCard extends StatelessWidget {
               ),
             ),
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }

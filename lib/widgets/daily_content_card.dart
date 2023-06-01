@@ -1,5 +1,5 @@
-import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/daily_content_screen.dart';
+import '../providers/user_provider.dart';
+import '../screens/daily_content_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
@@ -10,11 +10,11 @@ class DailyContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       width: double.infinity,
       height: 160,
       decoration: BoxDecoration(
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage('lib/assets/images/daily_content_card_bg.png'),
           fit: BoxFit.cover,
         ),
@@ -24,7 +24,7 @@ class DailyContentCard extends StatelessWidget {
             color: custom_colors.primaryDarkPurple.withOpacity(0.2),
             spreadRadius: 3,
             blurRadius: 2,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -35,7 +35,7 @@ class DailyContentCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
+              const Text(
                 'Your Daily Content\nIs Waiting!',
                 style: TextStyle(
                     color: Colors.white,
@@ -54,7 +54,7 @@ class DailyContentCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
+                      const Text(
                         'Access Now',
                         style: TextStyle(
                             color: Colors.white,
@@ -72,7 +72,7 @@ class DailyContentCard extends StatelessWidget {
               )
             ],
           ),
-          Spacer(),
+          const Spacer(),
           Container(
             width: 120,
             height: double.infinity,

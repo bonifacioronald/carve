@@ -1,4 +1,4 @@
-import 'package:carve_app/widgets/category_button.dart';
+import '../widgets/category_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;

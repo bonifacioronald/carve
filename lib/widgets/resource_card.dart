@@ -13,7 +13,7 @@ class ResourceCard extends StatelessWidget {
     return GestureDetector(
       onTap: (() => launch(url)),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         width: double.infinity,
         height: 60,
         decoration: BoxDecoration(
@@ -24,7 +24,7 @@ class ResourceCard extends StatelessWidget {
               color: custom_colors.primaryDarkPurple.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 2,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
         ),
@@ -46,7 +46,7 @@ class ResourceCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Icon(Icons.keyboard_arrow_right_sharp,

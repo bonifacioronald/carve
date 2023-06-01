@@ -13,7 +13,7 @@ class WelcomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         width: double.infinity,
         color: Colors.white,
         child: Column(
@@ -27,21 +27,21 @@ class WelcomePageView extends StatelessWidget {
                     image: AssetImage(imageUrl), fit: BoxFit.fitHeight),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: custom_colors.primaryDarkPurple,
                     fontSize: 28,
                     fontWeight: FontWeight.w900)),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 description,
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                style: const TextStyle(color: Colors.black, fontSize: 16),
                 textAlign: TextAlign.center,
               ),
             )

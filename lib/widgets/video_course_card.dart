@@ -23,7 +23,7 @@ class VideoCourseCard extends StatelessWidget {
         launch(videoUrl);
       }),
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         width: double.infinity,
         height: 140,
         decoration: BoxDecoration(
@@ -42,7 +42,7 @@ class VideoCourseCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: Image.network(thumbnailUrl, fit: BoxFit.cover)),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Expanded(
@@ -57,7 +57,7 @@ class VideoCourseCard extends StatelessWidget {
                         size: 16,
                         color: custom_colors.secondaryLightPurple,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Text(
@@ -95,7 +95,7 @@ class VideoCourseCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Icon(

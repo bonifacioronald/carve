@@ -1,7 +1,6 @@
-import 'package:carve_app/models/colors.dart';
+import '../models/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/content_provider.dart';
 import '../widgets/content_library_card.dart';
 import '../widgets/resources_main_card.dart';
@@ -37,9 +36,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         },
       );
     } else {
-      setState(() {
-        _isLoading = false;
-      });
+      setState(
+        () {
+          _isLoading = false;
+        },
+      );
     }
 
     super.initState();
@@ -67,7 +68,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 32,
                             color: primaryDarkPurple)),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
@@ -80,21 +81,21 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 'Pregnancy Classes',
                                 'https://images.ctfassets.net/9wtva4vhlgxb/6QWEHMlC0gSnCAdZVYJuvJ/321f0c3ae02c30b4cf45cc7ec6037559/mask_3x.webp',
                                 'Pregnancy Classes'),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             ResourcesMainCard(
                                 'Family Therapy',
                                 'https://www.arkansasrelationshipcenter.com/wp-content/uploads/2019/02/Family-therapy-family-counseling-little-rock-common-family-therapy-issues-1080x675.jpg',
                                 'Therapy'),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             ResourcesMainCard(
                                 'Food Bank',
                                 'https://assets.hmetro.com.my/images/articles/food_1585123849.jpg',
                                 'Food Bank'),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             ResourcesMainCard(
@@ -102,7 +103,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               'https://media.istockphoto.com/id/1402700264/photo/teacher-with-a-group-of-elementary-students-playing-with-toy-blocks.jpg?b=1&s=170667a&w=0&k=20&c=pC8b5jyKPBJoOr0_kjHFMEtKARgjPrF_HUkvpoPF8pw=',
                               'Daycare',
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             ResourcesMainCard(
@@ -110,7 +111,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               'https://www.holtinternational.org/wp-content/uploads/2022/02/2882ebac5a32-4ae7-4d37-be6b-bcbcd74627f8-8894-000004ae1a480abd.jpg',
                               'Adoption Agency',
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             ResourcesMainCard(
@@ -118,7 +119,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               'https://media.istockphoto.com/id/1148848093/photo/marriage-therapy.jpg?s=612x612&w=0&k=20&c=95sWBPdDCIhj1fOg33L4Zm0Rt4kwFqu33fFbFBtCm_Q=',
                               'Marriage Counselling',
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             ResourcesMainCard(
@@ -126,7 +127,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               'https://media.istockphoto.com/id/1017183652/photo/team-teamwork-business-join-hand-together-concept-power-of-volunteer-charity-work-stack-of.jpg?b=1&s=612x612&w=0&k=20&c=3Zm8E7nSUPInwDswufGx9kyA_sj8MmasH-2_yggC_z0=',
                               'Charities',
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             ResourcesMainCard(
@@ -138,7 +139,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ),
                     ), //resources cards
-                    SizedBox(height: 20), //planning tools texts
+                    const SizedBox(height: 20), //planning tools texts
                     Text(
                       'Articles',
                       style: TextStyle(
@@ -146,7 +147,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fontSize: 20,
                           color: primaryDarkPurple),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Container(
                       height: 300 *
                               _provider.loadedContentList.length.toDouble() +
@@ -159,7 +160,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         clipBehavior: Clip.none,
                         padding: EdgeInsets.zero,
                         primary: false,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: _provider.loadedContentList.length,
                         itemBuilder: (_, index) {
                           return Column(
@@ -180,7 +181,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                     contentDesc: _provider
                                         .loadedContentList[index].content[0]),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                             ],
                           );
                         },

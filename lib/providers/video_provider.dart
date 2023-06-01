@@ -1,4 +1,4 @@
-import 'package:carve_app/models/video_model.dart';
+import '../models/video_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

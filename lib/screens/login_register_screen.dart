@@ -1,9 +1,8 @@
-import 'package:carve_app/navigation.dart';
-import 'package:carve_app/screens/question_title_screen.dart';
+import '../navigation.dart';
+import '../screens/question_title_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../auth.dart';
 
 class LoginRegisterScreen extends StatefulWidget {
@@ -123,7 +122,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        decoration: BoxDecoration(),
+        decoration: const BoxDecoration(),
         width: 220,
         height: 50,
         child: ElevatedButton(
@@ -134,7 +133,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
               : createUserWithEmailAndPassword()),
           child: Text(
             isLogin ? 'LOG IN' : 'SIGN UP',
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
@@ -182,7 +181,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   isLogin ? "LOG IN" : 'SIGN UP',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 32,
                       fontWeight: FontWeight.bold),
@@ -190,11 +189,11 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(32),
+                  padding: const EdgeInsets.all(32),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: custom_colors.backgroundPurple,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40)),
                     boxShadow: [
@@ -203,7 +202,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                             custom_colors.secondaryLightPurple.withOpacity(0.3),
                         spreadRadius: 5,
                         blurRadius: 10,
-                        offset: Offset(0, -3),
+                        offset: const Offset(0, -3),
                       ),
                     ],
                   ),
@@ -217,14 +216,14 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       _entryField(
                         'email address...',
                         _controllerEmail,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       Text(
@@ -234,24 +233,24 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       _entryField(
                         'your password...',
                         _controllerPassword,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       Center(
                         child: _errorMessage(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Center(
                         child: _submitButton(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       Row(
@@ -283,13 +282,13 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       GestureDetector(
                         onTap: () => Auth().signInWithGoogle(),
                         child: Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           width: double.infinity,
                           height: 50,
                           decoration: BoxDecoration(
@@ -304,7 +303,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                                 'lib/assets/images/google_logo.png',
                                 fit: BoxFit.cover,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 20,
                               ),
                               Text(
@@ -318,7 +317,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                           ),
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -330,7 +329,7 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
                                 color: custom_colors.primaryDarkPurple,
                                 fontSize: 14),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           _loginOrRegisterButton(),

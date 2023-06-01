@@ -1,13 +1,12 @@
-import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/discover_screen.dart';
-import 'package:carve_app/screens/forum_home_screen.dart';
-import 'package:carve_app/screens/home_screen.dart';
-import 'package:carve_app/screens/loading_screen.dart';
-import 'package:carve_app/screens/setting_screen.dart';
-import 'package:carve_app/screens/tracker_screen.dart';
+import '../providers/user_provider.dart';
+import '../screens/discover_screen.dart';
+import '../screens/forum_home_screen.dart';
+import '../screens/home_screen.dart';
+import '../screens/loading_screen.dart';
+import '../screens/setting_screen.dart';
+import '../screens/tracker_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import './models/colors.dart' as custom_colors;
 
 class Navigation extends StatefulWidget {
@@ -28,9 +27,9 @@ class NavigationState extends State<Navigation> {
 
   List<Widget> screens = [
     HomeScreen(),
-    DiscoverScreen(),
+    const DiscoverScreen(),
     TrackerScreen(),
-    ForumHomeScreen(),
+    const ForumHomeScreen(),
     SettingScreen(),
   ];
 
@@ -71,7 +70,7 @@ class NavigationState extends State<Navigation> {
       bottomNavigationBar: Container(
         height: 80,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(28),
             topRight: Radius.circular(28),
           ),
@@ -80,12 +79,12 @@ class NavigationState extends State<Navigation> {
               color: custom_colors.secondaryLightPurple.withOpacity(0.3),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, -2),
+              offset: const Offset(0, -2),
             ),
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(28), topRight: Radius.circular(28)),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -115,7 +114,7 @@ class NavigationState extends State<Navigation> {
                     Icons.explore,
                     size: NavBarIconSize,
                   )),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
                   Icons.group_outlined,

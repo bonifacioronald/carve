@@ -1,9 +1,5 @@
-import 'package:carve_app/screens/resource_detail_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:url_launcher/url_launcher.dart';
-
-import '../models/colors.dart';
 
 class CategoryButton extends StatelessWidget {
   Color buttonColor;
@@ -22,14 +18,6 @@ class CategoryButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: buttonColor,
             borderRadius: BorderRadius.circular(8),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: custom_colors.primaryDarkPurple.withOpacity(0.2),
-            //     spreadRadius: 2,
-            //     blurRadius: 2,
-            //     offset: Offset(0, 2),
-            //   ),
-            // ],
           ),
           child: Icon(
             icon,
@@ -37,7 +25,7 @@ class CategoryButton extends StatelessWidget {
             size: 36,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         Text(

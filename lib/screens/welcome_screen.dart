@@ -1,10 +1,7 @@
-import 'package:carve_app/models/colors.dart';
-import 'package:carve_app/widgets/welcome_page_view.dart';
+import '../widgets/welcome_page_view.dart';
 import '../models/colors.dart' as custom_colors;
 import 'package:flutter/material.dart';
-
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import 'login_register_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -51,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   .pushReplacementNamed(LoginRegisterScreen.routeName),
               child: Container(
                 alignment: Alignment.centerRight,
-                child: Text(
+                child: const Text(
                   "SKIP",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                 ),
@@ -104,7 +101,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     activeDotColor: custom_colors.secondaryLightPurple),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
               onTap: () {
                 currentPage == 2
@@ -130,13 +127,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           custom_colors.secondaryLightPurple.withOpacity(0.7),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
                 child: Text(
                   currentPage == 2 ? 'Get Started' : 'Next',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),

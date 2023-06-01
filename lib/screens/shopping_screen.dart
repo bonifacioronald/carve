@@ -1,6 +1,5 @@
-import 'package:carve_app/models/colors.dart';
+import '../models/colors.dart';
 import 'package:flutter/material.dart';
-
 import '../widgets/shopping_widget.dart';
 
 class ShoppingScreen extends StatefulWidget {
@@ -27,18 +26,18 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Shopping('Baby Shampoo'),
-              Shopping('Baby Clothes'),
-              Shopping('Baby Monitor'),
-              Shopping('Baby Toys'),
-              Shopping('Baby Chair'),
-              Shopping('Baby Cot'),
-              Shopping('Baby Lotion'),
-              Shopping('Baby Diapers'),
-              Shopping('Baby Milk'),
-              Shopping('Parental Vitamins'),
-              Shopping('Baby Car Seat'),
-              Shopping('Supportive Bra'),
+              const Shopping('Baby Shampoo'),
+              const Shopping('Baby Clothes'),
+              const Shopping('Baby Monitor'),
+              const Shopping('Baby Toys'),
+              const Shopping('Baby Chair'),
+              const Shopping('Baby Cot'),
+              const Shopping('Baby Lotion'),
+              const Shopping('Baby Diapers'),
+              const Shopping('Baby Milk'),
+              const Shopping('Parental Vitamins'),
+              const Shopping('Baby Car Seat'),
+              const Shopping('Supportive Bra'),
             ],
           ),
         ),

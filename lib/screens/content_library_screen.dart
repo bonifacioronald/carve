@@ -1,13 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:carve_app/providers/content_provider.dart';
-import 'package:carve_app/screens/content_library_story_screen.dart';
-import 'package:carve_app/screens/daily_content_screen.dart';
-import 'package:carve_app/screens/loading_screen.dart';
-import 'package:carve_app/widgets/content_library_card.dart';
+import '../providers/content_provider.dart';
+import '../screens/content_library_story_screen.dart';
+import '../screens/loading_screen.dart';
+import '../widgets/content_library_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
-import '../providers/daily_content_provider.dart';
 
 class ContentLibraryScreen extends StatefulWidget {
   const ContentLibraryScreen({super.key});
@@ -61,7 +59,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                           top: MediaQuery.of(context).padding.top + 20,
                           left: 30,
                           right: 30),
-                      child: Text(
+                      child: const Text(
                         "What to Learn?",
                         style: TextStyle(
                             color: Colors.white,
@@ -69,9 +67,9 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Container(
-                      padding: EdgeInsets.only(left: 30, right: 10),
+                      padding: const EdgeInsets.only(left: 30, right: 10),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -80,12 +78,12 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                             height: 85,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image: AssetImage(
                                         "lib/assets/images/Content_Library_Assets/content_library_pregnant_mother.png"),
                                     fit: BoxFit.cover)),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +92,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                 width: 250,
                                 child: AutoSizeText(
                                   _provider.loadedContentList[0].title,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                   maxFontSize: 17,
@@ -102,7 +100,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                   maxLines: 2,
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               Container(
                                 width: 230,
                                 height: 10,
@@ -117,8 +115,8 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 4),
-                              Text(
+                              const SizedBox(height: 4),
+                              const Text(
                                 "0% completed",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -130,11 +128,11 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Expanded(
                       child: Container(
                         width: double.infinity,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
                                 topRight: Radius.circular(30)),
@@ -157,7 +155,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                         fontSize: 20,
                                         color: custom_colors.primaryDarkPurple),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Icon(
                                     Icons.filter_alt_sharp,
                                     color: custom_colors.primaryDarkPurple,
@@ -166,14 +164,14 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
-                              padding: EdgeInsets.only(left: 20),
+                              padding: const EdgeInsets.only(left: 20),
                               height: 280,
                               width: 800,
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemCount: 3,
                                 itemBuilder: (_, index) {
@@ -199,7 +197,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                               .content[0],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 25,
                                       )
                                     ],
@@ -207,7 +205,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                 },
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20.0, right: 20, bottom: 10),
@@ -218,12 +216,12 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                       color: custom_colors.primaryDarkPurple)),
                             ),
                             Container(
-                              padding: EdgeInsets.only(left: 20),
+                              padding: const EdgeInsets.only(left: 20),
                               height: 280,
                               width: 800,
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemCount:
                                     _provider.loadedContentList.length - 2,
@@ -251,7 +249,7 @@ class _ContentLibraryScreenState extends State<ContentLibraryScreen> {
                                               .content[0],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 25,
                                       )
                                     ],
