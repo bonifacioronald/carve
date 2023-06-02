@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
 class ToggleButton extends StatefulWidget {
@@ -15,13 +14,16 @@ class ToggleButtonState extends State<ToggleButton> {
   Widget build(BuildContext context) {
     return Center(
       child: CupertinoSwitch(
-          activeColor: custom_colors.secondaryLightPurple,
-          value: widget.default_State,
-          onChanged: (bool value) {
-            setState(() {
+        activeColor: custom_colors.secondaryLightPurple,
+        value: widget.default_State,
+        onChanged: (bool value) {
+          setState(
+            () {
               widget.default_State = value;
-            });
-          }),
+            },
+          );
+        },
+      ),
     );
   }
 }

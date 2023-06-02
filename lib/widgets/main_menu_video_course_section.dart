@@ -1,9 +1,9 @@
-import 'package:carve_app/models/video_model.dart';
-import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/providers/video_provider.dart';
-import 'package:carve_app/widgets/video_course_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/video_model.dart';
+import '../providers/user_provider.dart';
+import '../providers/video_provider.dart';
+import '../widgets/video_course_card.dart';
 import '../models/colors.dart' as custom_colors;
 
 class MainMenuVideoCourseSection extends StatelessWidget {
@@ -32,7 +32,7 @@ class MainMenuVideoCourseSection extends StatelessWidget {
               color: custom_colors.primaryDarkPurple,
               fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
@@ -40,7 +40,7 @@ class MainMenuVideoCourseSection extends StatelessWidget {
           height: loadedVideoFilteredIsForPregancyList.length * 140 +
               loadedVideoFilteredIsForPregancyList.length * 16,
           child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemCount: loadedVideoFilteredIsForPregancyList.length,
             itemBuilder: (context, index) {
@@ -55,7 +55,7 @@ class MainMenuVideoCourseSection extends StatelessWidget {
                       title: loadedVideoFilteredIsForPregancyList[index].title,
                       authorName: loadedVideoFilteredIsForPregancyList[index]
                           .authorName),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                 ],

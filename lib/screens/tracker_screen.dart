@@ -1,17 +1,12 @@
-import 'package:carve_app/data/milestone_data.dart';
-import 'package:carve_app/models/milestones_model.dart';
-import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/screens/welcome_screen.dart';
-import 'package:carve_app/widgets/calendar_selection.dart';
-import 'package:carve_app/widgets/icon_switching.dart';
-import 'package:carve_app/widgets/tracker_baby.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:table_calendar/table_calendar.dart';
-
-import '../models/colors.dart';
+import '../models/milestones_model.dart';
+import '../providers/user_provider.dart';
+import '../widgets/calendar_selection.dart';
+import '../widgets/tracker_baby.dart';
 
 class TrackerScreen extends StatefulWidget {
   static const routeName = '/tracker-screen';
@@ -38,9 +33,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
               fontSize: 24,
               color: custom_colors.primaryDarkPurple),
         ),
-        titlePadding: EdgeInsets.all(20),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-        actionsPadding: EdgeInsets.all(20),
+        titlePadding: const EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+        actionsPadding: const EdgeInsets.all(20),
         content: Container(
           height: 160,
           child: Column(
@@ -71,7 +66,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                   ? custom_colors.primaryDarkPurple
                                   : custom_colors.secondaryLightPurple
                                       .withOpacity(0.4),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(8),
                                   bottomLeft: Radius.circular(8))),
                           child: Center(
@@ -111,7 +106,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                   ? custom_colors.primaryDarkPurple
                                   : custom_colors.secondaryLightPurple
                                       .withOpacity(0.4),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(8),
                                   bottomRight: Radius.circular(8))),
                           child: Center(
@@ -133,7 +128,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextField(
@@ -234,7 +229,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
     List<MilestoneModel> milestoneListByWeek = [];
 
     showModalBottomSheet(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       ),
@@ -243,7 +238,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
       builder: (_) {
         return Container(
           height: 560,
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -254,7 +249,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               Text(
@@ -264,13 +259,13 @@ class _TrackerScreenState extends State<TrackerScreen> {
                   fontSize: 14,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Expanded(
                 child: Container(
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     itemCount: uniqueWeek.length,
                     itemBuilder: (_, index) {
                       milestoneListByWeek = [];
@@ -284,7 +279,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                       print("week ${uniqueWeek[index]}: $milestoneListByWeek");
                       return Container(
                         height: milestoneListByWeek.length * 20 + 40,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             // color: Colors.amber,
                             // border: Border.all(color: Colors.white, width: 2),
                             ),
@@ -300,10 +295,10 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Spacer()
+                                const Spacer()
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             Container(
@@ -341,9 +336,9 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                                     .withOpacity(0.1),
                                                 spreadRadius: 1,
                                                 blurRadius: 3,
-                                                offset: Offset(0, 2),
+                                                offset: const Offset(0, 2),
                                               )
-                                            : BoxShadow(
+                                            : const BoxShadow(
                                                 color: Colors.transparent,
                                               )
                                       ],
@@ -361,7 +356,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             Expanded(
@@ -372,7 +367,8 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                         milestoneListByWeek.length * 20 + 40,
                                     //  color: Colors.red,
                                     child: ListView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       itemCount: milestoneListByWeek.length,
                                       itemBuilder: (_, i) {
                                         return Column(
@@ -391,7 +387,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                                           ? FontWeight.bold
                                                           : FontWeight.normal),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                           ],
@@ -420,7 +416,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
       String title, String description, BuildContext ctx, List<String> data) {
     List<String> dataNewest = data.reversed.toList();
     showModalBottomSheet(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       ),
@@ -429,7 +425,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
       builder: (_) {
         return Container(
           height: 280,
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -440,7 +436,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               Text(
@@ -450,7 +446,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                   fontSize: 14,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Expanded(
@@ -475,7 +471,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                     : Container(
                         width: double.infinity,
                         child: ListView.builder(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           itemCount: dataNewest.length,
                           itemBuilder: (_, index) {
                             return Column(
@@ -484,7 +480,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                   alignment: Alignment.centerLeft,
                                   height: 40,
                                   width: double.infinity,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 8),
                                   decoration: BoxDecoration(
                                       color: custom_colors.secondaryLightPurple
@@ -498,7 +494,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                               ],
@@ -507,7 +503,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                         ),
                       ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               )
             ],
@@ -538,8 +534,8 @@ class _TrackerScreenState extends State<TrackerScreen> {
           color: custom_colors.backgroundPurple,
           child: Column(
             children: [
-              TrackerBabyCard(),
-              SizedBox(height: 30),
+              const TrackerBabyCard(),
+              const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -559,14 +555,14 @@ class _TrackerScreenState extends State<TrackerScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     GestureDetector(
                       onTap: () => _displayMilestoneBottomSheet(
                           trimester, currentPregnancyWeek, context),
                       child: TrackerOptions(
                           "Milestones", "Your important dates", Icons.list),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     GestureDetector(
                       onTap: () => _displayDataBottomSheet(
                           'Record of Previous Medical Visit',
@@ -580,7 +576,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                           "Your previous visit/check-up",
                           Icons.medical_information),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     GestureDetector(
                       onTap: () => _displayDataBottomSheet(
                           'My Notes',
@@ -594,11 +590,11 @@ class _TrackerScreenState extends State<TrackerScreen> {
                           "Your memories recorded",
                           Icons.my_library_books_outlined),
                     ),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     GestureDetector(
                       onTap: () => _showInputNotesDialog(context),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
                         height: 45,
                         width: 180,
                         decoration: BoxDecoration(
@@ -608,23 +604,24 @@ class _TrackerScreenState extends State<TrackerScreen> {
                                   .withOpacity(0.2),
                               spreadRadius: 3,
                               blurRadius: 5,
-                              offset: Offset(0, 3),
+                              offset: const Offset(0, 3),
                             )
                           ],
                           color: custom_colors.secondaryLightPurple,
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(50)),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(
+                            const Text(
                               "Add A Record ",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.add_circle_outlined,
                               color: Colors.white,
                               size: 24,
@@ -633,7 +630,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                   ],
                 ),
               )
@@ -661,16 +658,16 @@ class TrackerInfo extends StatelessWidget {
     return Container(
       width: 160,
       height: 80,
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
               color: custom_colors.primaryDarkPurple.withOpacity(0.2),
               spreadRadius: 3,
               blurRadius: 5,
-              offset: Offset(1, 5),
+              offset: const Offset(1, 5),
             )
           ]),
       child: Row(
@@ -681,7 +678,7 @@ class TrackerInfo extends StatelessWidget {
             size: 40,
             color: custom_colors.secondaryLightPurple,
           ),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -717,7 +714,7 @@ class TrackerOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       height: 60,
       width: double.infinity,
       color: custom_colors.backgroundPurple,
@@ -728,7 +725,7 @@ class TrackerOptions extends StatelessWidget {
             size: 40,
             color: custom_colors.secondaryLightPurple,
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -749,7 +746,7 @@ class TrackerOptions extends StatelessWidget {
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Container(
             width: 40,
             height: 40,

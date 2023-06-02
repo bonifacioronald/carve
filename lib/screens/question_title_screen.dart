@@ -1,5 +1,5 @@
-import 'package:carve_app/screens/question_1_screen.dart';
 import 'package:flutter/material.dart';
+import '../screens/question_1_screen.dart';
 import '../models/colors.dart' as custom_colors;
 
 class QuestionTitleScreen extends StatelessWidget {
@@ -19,7 +19,7 @@ class QuestionTitleScreen extends StatelessWidget {
         height: double.infinity,
         decoration: BoxDecoration(
           color: custom_colors.secondaryLightPurple,
-          image: DecorationImage(
+          image: const DecorationImage(
               image: AssetImage(
                 'lib/assets/images/question_screen_bg.png',
               ),
@@ -35,7 +35,7 @@ class QuestionTitleScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Text(
@@ -45,7 +45,7 @@ class QuestionTitleScreen extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                   color: custom_colors.primaryDarkPurple),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
               onTap: (() =>
                   Navigator.of(context).pushNamed(Question1Screen.routeName)),
@@ -60,24 +60,24 @@ class QuestionTitleScreen extends StatelessWidget {
                       color: custom_colors.primaryDarkPurple.withOpacity(0.3),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Get Started',
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.keyboard_arrow_right_rounded,
                       size: 32,
                       color: Colors.white,

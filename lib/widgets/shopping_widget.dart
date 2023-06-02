@@ -20,28 +20,29 @@ class _ShoppingState extends State<Shopping> {
       child: Row(
         children: [
           Text(widget.text),
-          Spacer(),
+          const Spacer(),
           Container(
-              child: Row(
-            children: [
-              Checkbox(
-                  value: toBuy,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      toBuy = value!;
-                      gotIt = false;
-                    });
-                  }),
-              Checkbox(
-                  value: gotIt,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      gotIt = value!;
-                      toBuy = false;
-                    });
-                  }),
-            ],
-          ))
+            child: Row(
+              children: [
+                Checkbox(
+                    value: toBuy,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        toBuy = value!;
+                        gotIt = false;
+                      });
+                    }),
+                Checkbox(
+                    value: gotIt,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        gotIt = value!;
+                        toBuy = false;
+                      });
+                    }),
+              ],
+            ),
+          )
         ],
       ),
     );

@@ -1,8 +1,7 @@
-import 'package:carve_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'auth.dart';
-import 'screens/login_register_screen.dart';
 import 'navigation.dart';
+import '../screens/welcome_screen.dart';
 
 class AuthWidgetTree extends StatefulWidget {
   const AuthWidgetTree({super.key});

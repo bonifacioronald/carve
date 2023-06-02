@@ -1,12 +1,8 @@
-import 'dart:ffi';
-
-import 'package:carve_app/auth.dart';
-import 'package:carve_app/navigation.dart';
-import 'package:carve_app/providers/user_provider.dart';
-import 'package:carve_app/widgets/question_progress_bar.dart';
-import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../navigation.dart';
+import '../providers/user_provider.dart';
+import '../widgets/question_progress_bar.dart';
 import '../models/colors.dart' as custom_colors;
 
 class Question6Screen extends StatefulWidget {
@@ -50,14 +46,14 @@ class _Question6ScreenState extends State<Question6Screen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "And We Are Done...",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     QuestionProgressBar(6, 6)
@@ -66,16 +62,17 @@ class _Question6ScreenState extends State<Question6Screen> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: custom_colors.backgroundPurple,
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: AssetImage(
                             'lib/assets/images/question_screen_bg.png'),
                         fit: BoxFit.fitWidth,
                       ),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40))),
                   child: Container(
@@ -87,8 +84,8 @@ class _Question6ScreenState extends State<Question6Screen> {
                                 color: custom_colors.primaryDarkPurple,
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900)),
-                        SizedBox(height: 30),
-                        SizedBox(
+                        const SizedBox(height: 30),
+                        const SizedBox(
                           height: 32,
                         ),
                         Container(
@@ -102,7 +99,7 @@ class _Question6ScreenState extends State<Question6Screen> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         TextField(
                             cursorColor: custom_colors.primaryDarkPurple,
                             controller: widget.nameController,
@@ -126,7 +123,7 @@ class _Question6ScreenState extends State<Question6Screen> {
                                 borderSide: BorderSide.none,
                               ),
                             )),
-                        Spacer(),
+                        const Spacer(),
                         GestureDetector(
                           onTap: (() {
                             widget.setUserName(
@@ -144,14 +141,14 @@ class _Question6ScreenState extends State<Question6Screen> {
                                       .withOpacity(0.3),
                                   spreadRadius: 2,
                                   blurRadius: 5,
-                                  offset: Offset(0, 2),
+                                  offset: const Offset(0, 2),
                                 ),
                               ],
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   'Start Your Journey',
                                   style: TextStyle(
                                       fontSize: 16,

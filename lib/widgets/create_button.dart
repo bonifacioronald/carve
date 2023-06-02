@@ -1,5 +1,6 @@
-import 'package:carve_app/screens/create_forum_screen.dart';
 import 'package:flutter/material.dart';
+import '../models/colors.dart' as custom_colors;
+import '../screens/create_forum_screen.dart';
 
 class createButton extends StatefulWidget {
   final String title;
@@ -18,13 +19,13 @@ class _createButtonState extends State<createButton> {
         width: 352,
         height: 60,
         decoration: BoxDecoration(
-          color: Color(0XFF02084B),
+          color: custom_colors.primaryDarkPurple,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(
           child: Text(
             widget.title,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),

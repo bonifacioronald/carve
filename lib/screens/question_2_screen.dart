@@ -1,10 +1,8 @@
-import 'package:carve_app/screens/question_2_if_pregnant.dart';
-import 'package:carve_app/screens/question_3_screen.dart';
-import 'package:carve_app/screens/question_5_screen.dart';
-import 'package:carve_app/widgets/question_progress_bar.dart';
-import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../screens/question_3_screen.dart';
+import '../widgets/question_progress_bar.dart';
+import '../widgets/question_screen_answer_options.dart';
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 
@@ -71,14 +69,14 @@ class _Question2ScreenState extends State<Question2Screen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Tell Us...",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   QuestionProgressBar(2, 6)
@@ -87,16 +85,17 @@ class _Question2ScreenState extends State<Question2Screen> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: custom_colors.backgroundPurple,
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage(
                           'lib/assets/images/question_screen_bg.png'),
                       fit: BoxFit.fitWidth,
                     ),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40))),
                 child: Column(
@@ -112,7 +111,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                               fontSize: 24,
                               fontWeight: FontWeight.w900)),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -122,7 +121,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                       child: QuestionScreenAnswerOptions(true, '<1 year old',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -132,7 +131,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                       child: QuestionScreenAnswerOptions(true, '1-2 years old',
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -142,7 +141,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                       child: QuestionScreenAnswerOptions(true, '3-5 years old',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -152,7 +151,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                       child: QuestionScreenAnswerOptions(true, '6-12 years old',
                           widget.selectedAnswerIndex == 4 ? true : false),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -162,7 +161,7 @@ class _Question2ScreenState extends State<Question2Screen> {
                       child: QuestionScreenAnswerOptions(true, '12+ years old',
                           widget.selectedAnswerIndex == 5 ? true : false),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: (() {
                         if (widget.selectedAnswerIndex != 0) {
@@ -184,14 +183,14 @@ class _Question2ScreenState extends State<Question2Screen> {
                                   .withOpacity(0.3),
                               spreadRadius: 2,
                               blurRadius: 5,
-                              offset: Offset(0, 2),
+                              offset: const Offset(0, 2),
                             ),
                           ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               'Next Question',
                               style: TextStyle(
                                   fontSize: 16,

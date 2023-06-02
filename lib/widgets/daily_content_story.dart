@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:carve_app/models/content_model.dart';
-import 'package:carve_app/widgets/icon_switching_button.dart';
+import 'package:intl/intl.dart';
+import 'package:translator/translator.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/colors.dart' as custom_colors;
-import 'package:intl/intl.dart';
-import 'package:translator/translator.dart';
+import '../models/content_model.dart';
+import '../widgets/icon_switching_button.dart';
 
 class DailyContentStory extends StatefulWidget {
   ContentModel content;
@@ -36,7 +35,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
   @override
   void startAutoPlayTimer() {
     storyAutoPlayProgressIndicatorTimer =
-        new Timer.periodic(Duration(milliseconds: 80), (Timer t) {
+        new Timer.periodic(const Duration(milliseconds: 80), (Timer t) {
       setState(() {
         if (storyAutoPlayProgressIndicatorValue < 1) {
           storyAutoPlayProgressIndicatorValue += 0.016;
@@ -44,26 +43,33 @@ class _DailyContentStoryState extends State<DailyContentStory> {
       });
     });
 
-    storyAutoPlayTimer = new Timer.periodic(Duration(seconds: 5), (Timer t) {
-      print('timer started n finished operation');
-      setState(() {
-        if (currentSlideIndex < widget.content.content.length + 1) {
-          currentSlideIndex++;
-          storyAutoPlayProgressIndicatorValue = 0;
-        } else {
-          cancelAutoPlayTimer();
-        }
-      });
-    });
+    storyAutoPlayTimer = new Timer.periodic(
+      const Duration(seconds: 5),
+      (Timer t) {
+        print('timer started n finished operation');
+        setState(
+          () {
+            if (currentSlideIndex < widget.content.content.length + 1) {
+              currentSlideIndex++;
+              storyAutoPlayProgressIndicatorValue = 0;
+            } else {
+              cancelAutoPlayTimer();
+            }
+          },
+        );
+      },
+    );
   }
 
   @override
   void cancelAutoPlayTimer() {
-    setState(() {
-      storyAutoPlayTimer!.cancel();
-      storyAutoPlayProgressIndicatorTimer!.cancel();
-      storyAutoPlayProgressIndicatorValue = 0;
-    });
+    setState(
+      () {
+        storyAutoPlayTimer!.cancel();
+        storyAutoPlayProgressIndicatorTimer!.cancel();
+        storyAutoPlayProgressIndicatorValue = 0;
+      },
+    );
   }
 
   @override
@@ -159,7 +165,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).pop();
@@ -171,7 +177,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                   child: Container(
                                     height: 30,
                                     width: 30,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         color: Colors.white,
                                         shape: BoxShape.circle),
                                     child: Icon(
@@ -182,14 +188,14 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                   ),
                                 )
                               ]),
-                          SizedBox(
+                          const SizedBox(
                             height: 21,
                           ),
                           Container(
                               padding: EdgeInsets.zero,
                               child: ClipRRect(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
+                                    const BorderRadius.all(Radius.circular(20)),
                                 child: LinearProgressIndicator(
                                   minHeight: 5,
                                   value: storyAutoPlayProgressIndicatorValue,
@@ -223,7 +229,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           isLastScreen
                               ? ending_box(content.title)
                               : content_box(content, isTitleScreen),
@@ -242,14 +248,14 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                     isEnglish
                                         ? formattedDate
                                         : translatedDateToChinese,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 90),
+                              const SizedBox(width: 90),
                               GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -274,8 +280,8 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                       color: Colors.white,
                                     )),
                               ),
-                              SizedBox(width: 5),
-                              IconSwitchingButton(
+                              const SizedBox(width: 5),
+                              const IconSwitchingButton(
                                   Icons.volume_off, Icons.volume_up)
                             ],
                           )
@@ -303,13 +309,15 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                   onTap: () {
                                     isLastScreen = false;
                                     if (currentSlideIndex != 0) {
-                                      setState(() {
-                                        currentSlideIndex--;
-                                        if (timerIsStarted == true) {
-                                          cancelAutoPlayTimer();
-                                          timerIsStarted = false;
-                                        }
-                                      });
+                                      setState(
+                                        () {
+                                          currentSlideIndex--;
+                                          if (timerIsStarted == true) {
+                                            cancelAutoPlayTimer();
+                                            timerIsStarted = false;
+                                          }
+                                        },
+                                      );
                                     }
                                   },
                                   child: Container(
@@ -329,13 +337,15 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                                 child: GestureDetector(
                                   onTap: () {
                                     if (currentSlideIndex <= totalSlides - 2) {
-                                      setState(() {
-                                        currentSlideIndex++;
-                                        if (timerIsStarted == true) {
-                                          cancelAutoPlayTimer();
-                                          timerIsStarted = false;
-                                        }
-                                      });
+                                      setState(
+                                        () {
+                                          currentSlideIndex++;
+                                          if (timerIsStarted == true) {
+                                            cancelAutoPlayTimer();
+                                            timerIsStarted = false;
+                                          }
+                                        },
+                                      );
                                     }
                                   },
                                   child: Container(
@@ -361,7 +371,8 @@ class _DailyContentStoryState extends State<DailyContentStory> {
             child: Row(
               children: [
                 Container(
-                    padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                    padding:
+                        const EdgeInsets.only(left: 30, right: 30, top: 10),
                     child: Row(children: [
                       Container(
                         child: Text(
@@ -372,7 +383,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               fontSize: 16),
                         ),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       CupertinoSwitch(
                           activeColor: custom_colors.secondaryLightPurple,
                           value: !isEnglish,
@@ -381,7 +392,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               isEnglish = !isEnglish;
                             });
                           }),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Container(
                         child: Text(
                           "CN",
@@ -391,7 +402,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                               fontSize: 16),
                         ),
                       ),
-                      SizedBox(width: 135),
+                      const SizedBox(width: 135),
                       GestureDetector(
                         onTap: () {
                           launch('https://www.instagram.com/');
@@ -402,7 +413,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: custom_colors.primaryDarkPurple),
-                          child: Center(
+                          child: const Center(
                             child: Icon(
                               Icons.ios_share,
                               color: Colors.white,
@@ -411,7 +422,7 @@ class _DailyContentStoryState extends State<DailyContentStory> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text(
                         "Share",
                         style: TextStyle(
@@ -445,11 +456,15 @@ class _content_boxState extends State<content_box> {
   Future<void> translateTitle(String input) async {
     final translator = GoogleTranslator();
     try {
-      await translator.translate(input, from: 'en', to: 'zh-cn').then((value) {
-        setState(() {
-          translatedTitleToChinese = value.toString();
-        });
-      });
+      await translator.translate(input, from: 'en', to: 'zh-cn').then(
+        (value) {
+          setState(
+            () {
+              translatedTitleToChinese = value.toString();
+            },
+          );
+        },
+      );
     } catch (e) {
       throw (e);
     }
@@ -458,11 +473,15 @@ class _content_boxState extends State<content_box> {
   Future<void> translateContent(String input) async {
     final translator = GoogleTranslator();
     try {
-      await translator.translate(input, from: 'en', to: 'zh-cn').then((value) {
-        setState(() {
-          translatedContentToChinese = value.toString();
-        });
-      });
+      await translator.translate(input, from: 'en', to: 'zh-cn').then(
+        (value) {
+          setState(
+            () {
+              translatedContentToChinese = value.toString();
+            },
+          );
+        },
+      );
     } catch (e) {
       throw (e);
     }
@@ -517,11 +536,15 @@ class _ending_boxState extends State<ending_box> {
   Future<void> translateTitle(String input) async {
     final translator = GoogleTranslator();
     try {
-      await translator.translate(input, from: 'en', to: 'zh-cn').then((value) {
-        setState(() {
-          translatedTitleToChinese = value.toString();
-        });
-      });
+      await translator.translate(input, from: 'en', to: 'zh-cn').then(
+        (value) {
+          setState(
+            () {
+              translatedTitleToChinese = value.toString();
+            },
+          );
+        },
+      );
     } catch (e) {
       throw (e);
     }
@@ -548,7 +571,7 @@ class _ending_boxState extends State<ending_box> {
                     height: 1.5),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -563,50 +586,50 @@ class _ending_boxState extends State<ending_box> {
                     Container(
                       child: Text(
                         isEnglish ? widget.title : translatedTitleToChinese,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 32,
                             color: Colors.white,
                             fontWeight: FontWeight.w900),
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     Text(
                       isEnglish ? "Rate this summary" : '评价这个概括',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 22),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                           color: Colors.white,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                           color: Colors.white,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                           color: Colors.white,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                           color: Colors.white,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                           color: Colors.white,
@@ -617,7 +640,7 @@ class _ending_boxState extends State<ending_box> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             )
           ],

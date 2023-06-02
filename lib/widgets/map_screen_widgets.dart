@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/foundation.dart';
-import 'package:location/location.dart';
 import '/models/colors.dart' as custom_colors;
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 
 class CurrentLocationScreen extends StatefulWidget {
   const CurrentLocationScreen({Key? key}) : super(key: key);
@@ -21,17 +18,6 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   double _currentLatitude = 0;
   double _currentLongitude = 0;
   Position? position;
-
-  // void getNearbyPlaces() async {
-  //   var url = Uri.parse(
-  //       "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=daycare&location=" +
-  //           _currentLatitude.toString() +
-  //           "," +
-  //           _currentLongitude.toString() +
-  //           "&radius=20000&type=charity&key=AIzaSyAiOYlxasmVetg6yEhINO__TfyVb7wpLwE");
-
-  //   var response = await http.post(url);
-  // }
 
   Future<void> _determinePosition() async {
     bool serviceEnabled;
@@ -59,9 +45,6 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
     position = await Geolocator.getCurrentPosition();
   }
-
-  // final position = Geolocator.getCurrentPosition(forceAndroidLocationManager: true);
-  // Position _currentPosition;
 
   late GoogleMapController googleMapController;
 
@@ -96,17 +79,6 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
     );
   }
 
-  // _getCurrentLocation() {
-  //   position
-  //       .getCurrent(desiredAccuracy: LocationAccuracy.best)
-  //       .then((Position position) {
-  //     setState(() {
-  //       _currentPosition = position;
-  //     });
-  //   }).catchError((e) {
-  //     print(e);
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

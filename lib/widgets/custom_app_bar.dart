@@ -1,7 +1,3 @@
-import 'dart:ffi';
-import 'package:carve_app/screens/setting_screen.dart';
-
-import '../auth.dart';
 import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 
@@ -11,7 +7,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       height: MediaQuery.of(context).viewPadding.top + 56,
       width: double.infinity,
       alignment: Alignment.bottomCenter,
@@ -26,11 +22,11 @@ class CustomAppBar extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Spacer(),
-          SizedBox(
+          const Spacer(),
+          const SizedBox(
             width: 12,
           ),
-          Icon(
+          const Icon(
             Icons.notifications_active_outlined,
             color: Colors.white,
             size: 28,

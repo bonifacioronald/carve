@@ -1,18 +1,9 @@
-import "package:carve_app/models/content_model.dart";
-import "package:flutter/material.dart";
-import 'package:carve_app/data/milestone_data.dart';
-import 'package:carve_app/screens/loading_screen.dart';
-import 'package:carve_app/providers/daily_content_provider.dart';
-import 'package:carve_app/widgets/daily_content_story.dart';
-import 'package:carve_app/widgets/icon_switching_button.dart';
-import 'package:carve_app/widgets/toggle_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import '../models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-
-import '../models/content_model.dart';
+import "package:flutter/material.dart";
+import '../widgets/daily_content_story.dart';
+import '../widgets/toggle_button.dart';
+import '../models/colors.dart' as custom_colors;
+import "../models/content_model.dart";
 
 class ContentLibraryStory extends StatefulWidget {
   const ContentLibraryStory({super.key});
@@ -41,16 +32,16 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
             children: [
               DailyContentStory(displayedContent),
               Container(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                 child: Column(
                   children: [
                     Container(
                         child: Row(children: [
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                     ])),
-                    SizedBox(height: 20, width: 180),
+                    const SizedBox(height: 20, width: 180),
                     Container(
-                      padding: EdgeInsets.only(top: 15, left: 15),
+                      padding: const EdgeInsets.only(top: 15, left: 15),
                       height: 90,
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -59,14 +50,14 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Add a note about something you've learnt",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15),
                           ),
-                          SizedBox(height: 15, width: 20),
+                          const SizedBox(height: 15, width: 20),
                           Row(
                             children: [
                               Container(
@@ -75,7 +66,7 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                 decoration: BoxDecoration(
                                     color: custom_colors.secondaryLightPurple,
                                     shape: BoxShape.circle),
-                                child: Center(
+                                child: const Center(
                                   child: Icon(
                                     Icons.note_add_rounded,
                                     color: Colors.white,
@@ -83,11 +74,11 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                                 width: 8,
                               ),
-                              Text(
+                              const Text(
                                 "Add a note",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -98,9 +89,9 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 35),
+                    const SizedBox(height: 35),
                     Container(
-                        padding: EdgeInsets.only(left: 30),
+                        padding: const EdgeInsets.only(left: 30),
                         child: Column(
                           children: [
                             Row(
@@ -111,33 +102,33 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                   decoration: BoxDecoration(
                                       color: custom_colors.primaryDarkPurple,
                                       shape: BoxShape.circle),
-                                  child: Icon(Icons.bookmark_add_outlined,
+                                  child: const Icon(Icons.bookmark_add_outlined,
                                       color: Colors.white),
                                 ),
-                                SizedBox(width: 8),
-                                Text(
+                                const SizedBox(width: 8),
+                                const Text(
                                   "Save",
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(width: 100),
+                                const SizedBox(width: 100),
                                 Container(
                                     width: 35,
                                     height: 35,
                                     decoration: BoxDecoration(
                                         color: custom_colors.primaryDarkPurple,
                                         shape: BoxShape.circle),
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.my_library_books,
                                       color: Colors.white,
                                       size: 20,
                                     )),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Mode",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
@@ -152,7 +143,7 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                 )
                               ],
                             ),
-                            SizedBox(height: 30),
+                            const SizedBox(height: 30),
                             Row(
                               children: [
                                 Container(
@@ -161,22 +152,22 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                   decoration: BoxDecoration(
                                       color: custom_colors.primaryDarkPurple,
                                       shape: BoxShape.circle),
-                                  child: Icon(Icons.download,
+                                  child: const Icon(Icons.download,
                                       size: 20, color: Colors.white),
                                 ),
-                                SizedBox(width: 8),
-                                Text(
+                                const SizedBox(width: 8),
+                                const Text(
                                   "Download",
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(width: 63),
+                                const SizedBox(width: 63),
                                 Container(
                                     width: 35,
                                     height: 35,
                                     decoration: BoxDecoration(
                                         color: custom_colors.primaryDarkPurple,
                                         shape: BoxShape.circle),
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         "1.0x",
                                         style: TextStyle(
@@ -185,13 +176,13 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                             fontSize: 12),
                                       ),
                                     )),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Speed",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
@@ -202,7 +193,7 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                             ),
                           ],
                         )),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Container(
                       height: 80,
                       width: double.infinity,
@@ -215,7 +206,7 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                 fontSize: 15,
                                 color: custom_colors.primaryDarkPurple),
                           ),
-                          SizedBox(width: 130),
+                          const SizedBox(width: 130),
                           ToggleButton(false)
                         ],
                       ),
@@ -232,7 +223,7 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                 fontSize: 15,
                                 color: custom_colors.primaryDarkPurple),
                           ),
-                          SizedBox(width: 149),
+                          const SizedBox(width: 149),
                           ToggleButton(false)
                         ],
                       ),
@@ -249,14 +240,14 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                 fontSize: 15,
                                 color: custom_colors.primaryDarkPurple),
                           ),
-                          SizedBox(width: 155),
+                          const SizedBox(width: 155),
                           Container(
                             width: 35,
                             height: 35,
                             decoration: BoxDecoration(
                                 color: custom_colors.primaryDarkPurple,
                                 shape: BoxShape.circle),
-                            child: Center(
+                            child: const Center(
                               child: Center(
                                 child: Icon(
                                   Icons.star_border,
@@ -280,14 +271,14 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                 fontSize: 15,
                                 color: custom_colors.primaryDarkPurple),
                           ),
-                          SizedBox(width: 188),
+                          const SizedBox(width: 188),
                           Container(
                             width: 35,
                             height: 35,
                             decoration: BoxDecoration(
                                 color: custom_colors.primaryDarkPurple,
                                 shape: BoxShape.circle),
-                            child: Center(
+                            child: const Center(
                               child: Center(
                                 child: Icon(
                                   Icons.warning_amber_outlined,
@@ -312,14 +303,14 @@ class _ContentLibraryStoryState extends State<ContentLibraryStory> {
                                 fontSize: 15,
                                 color: custom_colors.primaryDarkPurple),
                           ),
-                          SizedBox(width: 190),
+                          const SizedBox(width: 190),
                           Container(
                             width: 35,
                             height: 35,
                             decoration: BoxDecoration(
                                 color: custom_colors.primaryDarkPurple,
                                 shape: BoxShape.circle),
-                            child: Center(
+                            child: const Center(
                               child: Center(
                                 child: Icon(
                                   Icons.chat_bubble_outline,

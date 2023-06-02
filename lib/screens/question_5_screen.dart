@@ -1,9 +1,8 @@
-import 'package:carve_app/screens/question_6_screen.dart';
-import 'package:carve_app/widgets/question_progress_bar.dart';
-import 'package:carve_app/widgets/question_screen_answer_options.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../screens/question_6_screen.dart';
+import '../widgets/question_progress_bar.dart';
+import '../widgets/question_screen_answer_options.dart';
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 
@@ -65,14 +64,14 @@ class _Question5ScreenState extends State<Question5Screen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Last One...",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   QuestionProgressBar(5, 6)
@@ -81,16 +80,17 @@ class _Question5ScreenState extends State<Question5Screen> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: custom_colors.backgroundPurple,
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage(
                           'lib/assets/images/question_screen_bg.png'),
                       fit: BoxFit.fitWidth,
                     ),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40))),
                 child: Column(
@@ -102,7 +102,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                             color: custom_colors.primaryDarkPurple,
                             fontSize: 24,
                             fontWeight: FontWeight.w900)),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -114,7 +114,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                           'No, it has been smooth',
                           widget.selectedAnswerIndex == 1 ? true : false),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     GestureDetector(
@@ -128,7 +128,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                           'Yes, I have complications',
                           widget.selectedAnswerIndex == 2 ? true : false),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -140,7 +140,7 @@ class _Question5ScreenState extends State<Question5Screen> {
                           'Yes, I have a medical condition',
                           widget.selectedAnswerIndex == 3 ? true : false),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -152,8 +152,8 @@ class _Question5ScreenState extends State<Question5Screen> {
                           'Prefer not to disclose',
                           widget.selectedAnswerIndex == 4 ? true : false),
                     ),
-                    SizedBox(height: 12),
-                    Spacer(),
+                    const SizedBox(height: 12),
+                    const Spacer(),
                     GestureDetector(
                       onTap: (() {
                         if (widget.selectedAnswerIndex != 0) {
@@ -175,14 +175,14 @@ class _Question5ScreenState extends State<Question5Screen> {
                                   .withOpacity(0.3),
                               spreadRadius: 2,
                               blurRadius: 5,
-                              offset: Offset(0, 2),
+                              offset: const Offset(0, 2),
                             ),
                           ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               'Next Question',
                               style: TextStyle(
                                   fontSize: 16,
