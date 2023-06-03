@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class iconSwitching extends StatefulWidget {
+class IconSwitching extends StatefulWidget {
   final IconData icon1;
   final IconData icon2;
   final double size1;
   final Color color1;
-  const iconSwitching(this.icon1, this.icon2, this.size1, this.color1,
+  const IconSwitching(this.icon1, this.icon2, this.size1, this.color1,
       {super.key});
 
   @override
-  State<iconSwitching> createState() => _iconSwitchingState();
+  State<IconSwitching> createState() => _IconSwitchingState();
 }
 
-class _iconSwitchingState extends State<iconSwitching> {
+class _IconSwitchingState extends State<IconSwitching> {
   bool isPlaying = true;
 
   @override

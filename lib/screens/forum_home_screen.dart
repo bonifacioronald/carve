@@ -82,7 +82,7 @@ class _ForumHomeScreenState extends State<ForumHomeScreen> {
                             fontWeight: FontWeight.bold)),
                     const SizedBox(height: 20),
                     // Create forum button
-                    const createButton("Create Forum"),
+                    const CreateButton("Create Forum"),
                     const SizedBox(height: 20),
                     Divider(
                       color: custom_colors.primaryDarkPurple.withOpacity(0.1),

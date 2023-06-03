@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import '../models/colors.dart' as custom_colors;
 import '../screens/create_forum_screen.dart';
 
-class createButton extends StatefulWidget {
+class CreateButton extends StatefulWidget {
   final String title;
-  const createButton(this.title);
+  const CreateButton(this.title);
 
   @override
-  State<createButton> createState() => _createButtonState();
+  State<CreateButton> createState() => _CreateButtonState();
 }
 
-class _createButtonState extends State<createButton> {
+class _CreateButtonState extends State<CreateButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
