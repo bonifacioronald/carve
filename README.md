@@ -1,6 +1,6 @@
 # Carve
 
-An inclusive parenting application made for Google Solution Challenge 2023 aimed to tackle the UN's SDG 3.7, SDG 4.2, and SDG 10.2.
+Carve is a mobile application designed to empower parents, particularly those facing unplanned pregnancies and limited resources, to navigate the challenges of pregnancy with confidence and support. It is developed for Google Submission Challenge 2023 to tackler United Nation's Sustainable Development Goals (SDGs) 3, 4, and 10.
 
 ## Table Of Contents
 
@@ -15,34 +15,32 @@ An inclusive parenting application made for Google Solution Challenge 2023 aimed
 
 https://www.youtube.com/watch?v=icWvPHag3ic
 
-According to the World Health Organization, more than 50% of all pregnancies are unplanned. On top of this, almost 30 percent of all pregnancies end in abortion. Furthermore, locally, In Malaysia alone, nearly half of the parents admit they are not financially prepared to have a kid and 25% of teens are growing up in unhappy family homes.
+Carve is a mobile application designed to empower parents, particularly those facing unplanned pregnancies and limited resources, to navigate the challenges of pregnancy with confidence and support. Our mission is to provide a comprehensive solution that addresses the key problems faced by expecting parents and promotes a positive and healthy pregnancy experience.
 
-The above statistics from various sources indicate that in all parenting stages, from the initial pregnancies to the child’s infancy to birth, to childhood, all the way to adolescence, there are parents who are unprepared and struggling. Furthermore, if parents are unprepared for the initial pregnancies, they are also more likely to be unprepared for the upcoming parenting stages in the future. 
+Carve tackles various issues such as the lack of essential pregnancy knowledge and information, limited access to social support and resources, financial constraints and stress, emotional and psychological strain during pregnancy, and the stigma surrounding unplanned pregnancies and limited healthcare access. By addressing these problems, Carve aims to contribute to several United Nations Sustainable Development Goals (SDGs), including good health and well-being, quality education, gender equality, and reduced inequalities.
 
-In light of these challenges, Carve is an innovative mobile application that seeks to help parents tackle these issues by providing them with personalized content and resources on essential parenting skills. With Carve, parents can access this information in as little as 10 minutes per day, making it possible for even the busiest parents to stay informed and up-to-date on the latest parenting trends and practices.
+The app offers a range of features to support parents throughout their pregnancy journey. Personalized pregnancy education provides tailored content based on trimester, covering essential pregnancy skills and knowledge. The comprehensive pregnancy tracker enables users to monitor and track fetal growth, important milestones, medical appointments, and keep digital medical records. The community forum facilitates connections with other parents, allowing them to share experiences, seek advice, and find local support groups. Additionally, the resource discovery feature helps users explore nearby resources, including NGOs, healthcare facilities, classes, and services to access additional support.
 
-Carve is designed to cater to all types of parents, including those who are underprivileged and often overlooked. By providing access to reliable information and communities both locally and globally, Carve seeks to accommodate diverse cultural and personal values, empowering parents to make informed decisions about their child-rearing practices.
-
-On the technical front, Carve leverages the power of Flutter for its front-end development, enabling the app to deliver a seamless and user-friendly experience. The back-end architecture of Carve is built using Cloud Firestore, a scalable NoSQL database that provides superior performance and reliability. Google Analytics is seamlessly integrated into the app's database, allowing for powerful tracking and user metrics. Additionally, Carve uses APIs and external libraries to enhance user experience, creating a cost-effective and powerful platform.
+Carve is built using Flutter for the front-end development and Cloud Firestore for the back-end architecture, with integration of Google Analytics for user metrics. The app leverages APIs and external libraries to enhance the user experience, ensuring a powerful and cost-effective platform.
 
 ## Getting Started
 
-1. Download the source code and unzip it 
-2. Open the source code folder on your IDE (Visal Studio Code Recommended)
+1. Download the source code folder and unzip 
+2. Open the source code folder on your preferred IDE (Visual Studio Code Recommended)
 3. Run the source code on any physical / virtual device, [online documentation](https://www.fluttercampus.com/tutorial/4/run-first-application/)
 4. Start navigating and using the application's features.
 
 ## Features
 
+- Comprehensive Pregnancy Tracker
+- Medical Records and Notes History
 - Personalized User Experience and Content
-- Seamless Sign Up / Login With Firebase
 - Daily Parenting Content and Tips
-- Video Courses
 - Access to Local Resources and Classes
-- Content Library With Numerous Courses on Parenting
+- Pregnancy-related Articles and Video Courses
 - Community and Forum
-- Child Growth Tracker
 - Multilingual Support
+- Seamless Sign Up / Login With Firebase Authentication
 
 ## Technologies
 
@@ -70,8 +68,7 @@ External Packages and Dependecies:
 
 ## Screenshots
 
-![Carve Screenshots](https://user-images.githubusercontent.com/106251683/225062943-ce1ef6a7-3d79-4f42-b40b-1e87c5418f5b.png)
-
+![carve-screens](https://github.com/bonifacioronald/carve/assets/106251683/619750c6-b06b-4367-8c8a-c2ed65cac8ce)
   
 ## Contributors
 
