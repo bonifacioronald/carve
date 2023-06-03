@@ -94,7 +94,7 @@ class _forumPageState extends State<forumPage> {
                   Container(
                     child: Column(
                       children: [
-                        forumContentCard(
+                        ForumContentCard(
                             authorName: displayedContent.authorName,
                             category: displayedContent.category,
                             title: displayedContent.title,

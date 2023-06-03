@@ -72,7 +72,7 @@ class replyCard extends StatelessWidget {
                       )),
                   const SizedBox(width: 120),
                   // Bookmark icon
-                  iconSwitching(
+                  IconSwitching(
                     Icons.bookmark_border,
                     Icons.bookmark,
                     40,

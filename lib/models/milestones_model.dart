@@ -1,4 +1,4 @@
-import 'package:carve_app/data/milestone_data.dart';
+import '../data/milestone_data.dart';
 
 class MilestoneModel {
   String milestone;

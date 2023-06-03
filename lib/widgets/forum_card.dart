@@ -85,7 +85,7 @@ class ForumCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              const iconSwitching(
+              const IconSwitching(
                   Icons.bookmark_add_outlined, Icons.bookmark, 28, Colors.grey),
             ],
           ),
@@ -107,7 +107,7 @@ class ForumCard extends StatelessWidget {
           ),
           Row(
             children: [
-              iconSwitching(Icons.thumb_up_alt_outlined, Icons.thumb_up, 24,
+              IconSwitching(Icons.thumb_up_alt_outlined, Icons.thumb_up, 24,
                   const Color(0XFF5B5B5B5B).withOpacity(0.5)),
               const SizedBox(
                 width: 4,
@@ -118,7 +118,7 @@ class ForumCard extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               const SizedBox(width: 16),
-              iconSwitching(Icons.comment_outlined, Icons.comment, 24,
+              IconSwitching(Icons.comment_outlined, Icons.comment, 24,
                   const Color(0XFF5B5B5B5B).withOpacity(0.5)),
               const SizedBox(width: 4),
               Text(totalReplies.toString(),

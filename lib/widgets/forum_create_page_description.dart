@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/colors.dart' as custom_colors;
 
-class descriptionForum extends StatefulWidget {
+class DescriptionForum extends StatefulWidget {
   final TextEditingController _descriptionController = TextEditingController();
-  descriptionForum(_descriptionController);
+  DescriptionForum(_descriptionController);
 
   @override
-  State<descriptionForum> createState() => _descriptionForumState();
+  State<DescriptionForum> createState() => _DescriptionForumState();
 }
 
-class _descriptionForumState extends State<descriptionForum> {
+class _DescriptionForumState extends State<DescriptionForum> {
   var _counterText = "";
   final maxLines = 5;
   @override

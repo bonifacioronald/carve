@@ -1,3 +1,4 @@
+import 'package:carve_app/screens/shopping_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -67,11 +68,12 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Carve',
         theme: ThemeData(
             fontFamily: 'Livvic',
             hintColor: custom_colors.secondaryLightPurple),
-        home: const AuthWidgetTree(),
+        home: const ShoppingScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           LoginRegisterScreen.routeName: (context) => LoginRegisterScreen(),

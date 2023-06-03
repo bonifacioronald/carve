@@ -4,7 +4,7 @@ import '/models/colors.dart' as custom_colors;
 import 'package:intl/intl.dart';
 import '../widgets/icon_switching.dart';
 
-class forumContentCard extends StatelessWidget {
+class ForumContentCard extends StatelessWidget {
   String authorName;
   DateTime publishedDate;
   String category;
@@ -12,7 +12,7 @@ class forumContentCard extends StatelessWidget {
   String title;
   int totalLikes;
 
-  forumContentCard(
+  ForumContentCard(
       {required this.authorName,
       required this.publishedDate,
       required this.category,
@@ -79,7 +79,7 @@ class forumContentCard extends StatelessWidget {
               ),
               const Expanded(child: SizedBox()),
               // Bookmark icon
-              iconSwitching(
+              IconSwitching(
                 Icons.bookmark_border,
                 Icons.bookmark,
                 40,

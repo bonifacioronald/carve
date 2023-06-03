@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../widgets/setting_widget.dart';
 import '../auth.dart';
 import '../models/colors.dart' as custom_colors;
 import '../providers/user_provider.dart';
 import '../screens/question_title_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../widgets/setting_widget.dart';
 
 class SettingScreen extends StatelessWidget {
   static const routeName = '/setting';
