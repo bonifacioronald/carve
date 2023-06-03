@@ -13,7 +13,7 @@ Carve is a mobile application designed to empower parents, particularly those fa
 
 ## Application Overview
 
-https://www.youtube.com/watch?v=icWvPHag3ic
+https://youtu.be/0B35m72VeYI
 
 Carve is a mobile application designed to empower parents, particularly those facing unplanned pregnancies and limited resources, to navigate the challenges of pregnancy with confidence and support. Our mission is to provide a comprehensive solution that addresses the key problems faced by expecting parents and promotes a positive and healthy pregnancy experience.
 
