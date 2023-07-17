@@ -32,7 +32,7 @@ class TimelineCard extends StatelessWidget {
     int displayedWeek = int.parse(currentUser.childAge);
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12, right: 8),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: primaryDarkPurple.withOpacity(0.2),

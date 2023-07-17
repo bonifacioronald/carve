@@ -297,7 +297,7 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
           ),
           const SizedBox(height: 20),
           Container(
-            width: 351,
+            width: 344,
             height: 32,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(20)),
@@ -355,12 +355,13 @@ class _TrackerBabyCardState extends State<TrackerBabyCard> {
             "Weeks",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
           ),
-          const SizedBox(height: 40),
+          Expanded(child: const SizedBox()),
           Text(
             babyDescription[babyListIndex],
             style: const TextStyle(fontSize: 18, color: Colors.white),
             textAlign: TextAlign.center,
-          )
+          ),
+          Expanded(child: SizedBox())
         ],
       ),
     );
@@ -425,7 +426,7 @@ class _TrimesterSelectionState extends State<TrimesterSelection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 117,
+      width: 114.6,
       height: 32,
       alignment: Alignment.center,
       decoration: BoxDecoration(
