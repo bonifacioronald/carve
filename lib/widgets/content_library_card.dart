@@ -79,7 +79,7 @@ class ContentLibraryCard extends StatelessWidget {
                       color: primaryDarkPurple,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 3),
                   Text(
                     contentDesc,
                     textAlign: TextAlign.start,

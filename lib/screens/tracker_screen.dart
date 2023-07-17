@@ -624,7 +624,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
                             const Icon(
                               Icons.add_circle_outlined,
                               color: Colors.white,
-                              size: 24,
+                              size: 18,
                             )
                           ],
                         ),

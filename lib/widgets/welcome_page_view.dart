@@ -35,7 +35,7 @@ class WelcomePageView extends StatelessWidget {
                     fontSize: 28,
                     fontWeight: FontWeight.w900)),
             const SizedBox(
-              height: 20,
+              height: 6,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
